@@ -8,7 +8,7 @@ public class Payment_Controller implements I_Payment {
 	 * @param paymentType
 	 * @param priceOfJob
 	 */
-	public Payment createPayment(long paymentID, string paymentType, double priceOfJob) {
+	public Payment createPayment(long paymentID, String paymentType, double priceOfJob) {
 		// TODO - implement Payment_Controller.createPayment
 		throw new UnsupportedOperationException();
 	}

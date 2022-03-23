@@ -2,12 +2,12 @@ package Customers;
 
 public class Vehicle {
 
-	private string numberPlate;
-	private string model;
-	private string name;
-	private string vehicleDescription;
+	private String numberPlate;
+	private String model;
+	private String name;
+	private String vehicleDescription;
 
-	public string getNumberPlate() {
+	public String getNumberPlate() {
 		return this.numberPlate;
 	}
 
@@ -15,11 +15,11 @@ public class Vehicle {
 	 * 
 	 * @param numberPlate
 	 */
-	public void setNumberPlate(string numberPlate) {
+	public void setNumberPlate(String numberPlate) {
 		this.numberPlate = numberPlate;
 	}
 
-	public string getModel() {
+	public String getModel() {
 		return this.model;
 	}
 
@@ -27,11 +27,11 @@ public class Vehicle {
 	 * 
 	 * @param model
 	 */
-	public void setModel(string model) {
+	public void setModel(String model) {
 		this.model = model;
 	}
 
-	public string getName() {
+	public String getName() {
 		return this.name;
 	}
 
@@ -39,11 +39,11 @@ public class Vehicle {
 	 * 
 	 * @param name
 	 */
-	public void setName(string name) {
+	public void setName(String name) {
 		this.name = name;
 	}
 
-	public string getVehicleDescription() {
+	public String getVehicleDescription() {
 		return this.vehicleDescription;
 	}
 
@@ -51,7 +51,7 @@ public class Vehicle {
 	 * 
 	 * @param vehicleDescription
 	 */
-	public void setVehicleDescription(string vehicleDescription) {
+	public void setVehicleDescription(String vehicleDescription) {
 		this.vehicleDescription = vehicleDescription;
 	}
 
@@ -62,7 +62,7 @@ public class Vehicle {
 	 * @param name
 	 * @param desc
 	 */
-	public Vehicle(string plateNo, string model, string name, string desc) {
+	public Vehicle(String plateNo, String model, String name, String desc) {
 		// TODO - implement Vehicle.Vehicle
 		throw new UnsupportedOperationException();
 	}

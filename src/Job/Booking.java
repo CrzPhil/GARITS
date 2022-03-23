@@ -4,7 +4,7 @@ public class Booking {
 
 	private long bookingID;
 	private date date;
-	private string jobType;
+	private String jobType;
 
 	/**
 	 * 
@@ -12,7 +12,7 @@ public class Booking {
 	 * @param date
 	 * @param jobType
 	 */
-	public Booking(long bookingID, date date, string jobType) {
+	public Booking(long bookingID, date date, String jobType) {
 		// TODO - implement Booking.Booking
 		throw new UnsupportedOperationException();
 	}
@@ -41,7 +41,7 @@ public class Booking {
 		this.date = date;
 	}
 
-	public string getJobType() {
+	public String getJobType() {
 		return this.jobType;
 	}
 
@@ -49,7 +49,7 @@ public class Booking {
 	 * 
 	 * @param jobType
 	 */
-	public void setJobType(string jobType) {
+	public void setJobType(String jobType) {
 		this.jobType = jobType;
 	}
 

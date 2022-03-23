@@ -3,10 +3,10 @@ package Accounts;
 public class User {
 
 	private long userID;
-	private string username;
-	private string email;
-	private string password;
-	private string name;
+	private String username;
+	private String email;
+	private String password;
+	private String name;
 
 	/**
 	 * 
@@ -16,7 +16,7 @@ public class User {
 	 * @param password
 	 * @param name
 	 */
-	public User(long userID, string username, string email, string password, string name) {
+	public User(long userID, String username, String email, String password, String name) {
 		// TODO - implement User.User
 		throw new UnsupportedOperationException();
 	}
@@ -33,7 +33,7 @@ public class User {
 		this.userID = userID;
 	}
 
-	public string getUsername() {
+	public String getUsername() {
 		return this.username;
 	}
 
@@ -41,11 +41,11 @@ public class User {
 	 * 
 	 * @param username
 	 */
-	public void setUsername(string username) {
+	public void setUsername(String username) {
 		this.username = username;
 	}
 
-	public string getEmail() {
+	public String getEmail() {
 		return this.email;
 	}
 
@@ -53,11 +53,11 @@ public class User {
 	 * 
 	 * @param email
 	 */
-	public void setEmail(string email) {
+	public void setEmail(String email) {
 		this.email = email;
 	}
 
-	public string getPassword() {
+	public String getPassword() {
 		return this.password;
 	}
 
@@ -65,11 +65,11 @@ public class User {
 	 * 
 	 * @param password
 	 */
-	public void setPassword(string password) {
+	public void setPassword(String password) {
 		this.password = password;
 	}
 
-	public string getName() {
+	public String getName() {
 		return this.name;
 	}
 
@@ -77,7 +77,7 @@ public class User {
 	 * 
 	 * @param name
 	 */
-	public void setName(string name) {
+	public void setName(String name) {
 		this.name = name;
 	}
 

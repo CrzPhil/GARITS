@@ -1,5 +1,7 @@
 package Job;
 
+import java.util.Date;
+
 public class BookingCollection {
 
 	private int index = 0;
@@ -15,7 +17,7 @@ public class BookingCollection {
 	 * @param date
 	 * @param JobType
 	 */
-	public void addItem(long bookingID, date date, string JobType) {
+	public void addItem(long bookingID, Date date, String JobType) {
 		// TODO - implement BookingCollection.addItem
 		throw new UnsupportedOperationException();
 	}

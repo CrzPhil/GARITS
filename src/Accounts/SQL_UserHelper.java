@@ -12,7 +12,7 @@ public class SQL_UserHelper {
 	 * @param obj
 	 * @param command
 	 */
-	public string generateQuery(Object obj, string command) {
+	public String generateQuery(Object obj, String command) {
 		// TODO - implement SQL_UserHelper.generateQuery
 		throw new UnsupportedOperationException();
 	}

@@ -5,7 +5,7 @@ import Accounts.*;
 public class Customer extends User {
 
 	private long customerID;
-	private string contactNumber;
+	private String contactNumber;
 	private boolean regularCustomer;
 	private boolean valuedCustomer;
 
@@ -16,12 +16,12 @@ public class Customer extends User {
 	 * @param regular
 	 * @param valued
 	 */
-	public Customer(long ID, string contactNo, boolean regular, boolean valued) {
+	public Customer(long ID, String contactNo, boolean regular, boolean valued) {
 		// TODO - implement Customer.Customer
 		throw new UnsupportedOperationException();
 	}
 
-	public decimal getDiscountPlan() {
+	public double getDiscountPlan() {
 		// TODO - implement Customer.getDiscountPlan
 		throw new UnsupportedOperationException();
 	}
@@ -38,7 +38,7 @@ public class Customer extends User {
 		this.customerID = customerID;
 	}
 
-	public string getContactNumber() {
+	public String getContactNumber() {
 		return this.contactNumber;
 	}
 
@@ -46,7 +46,7 @@ public class Customer extends User {
 	 * 
 	 * @param contactNumber
 	 */
-	public void setContactNumber(string contactNumber) {
+	public void setContactNumber(String contactNumber) {
 		this.contactNumber = contactNumber;
 	}
 

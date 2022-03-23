@@ -9,7 +9,7 @@ public class Customer_Controller implements I_Customers {
 	 * @param regularCustomer
 	 * @param valuedCustomer
 	 */
-	public Customer createCustomer(long customerID, string contactNumber, boolean regularCustomer, boolean valuedCustomer) {
+	public Customer createCustomer(long customerID, String contactNumber, boolean regularCustomer, boolean valuedCustomer) {
 		// TODO - implement Customer_Controller.createCustomer
 		throw new UnsupportedOperationException();
 	}

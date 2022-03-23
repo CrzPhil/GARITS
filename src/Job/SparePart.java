@@ -1,11 +1,13 @@
 package Job;
 
+import java.util.Date;
+
 public class SparePart {
 
 	private long partID;
-	private string type;
-	private string name;
-	private date purchaseDate;
+	private String type;
+	private String name;
+	private Date purchaseDate;
 
 	/**
 	 * 
@@ -14,7 +16,7 @@ public class SparePart {
 	 * @param name
 	 * @param purchaseDate
 	 */
-	public SparePart(long partID, string type, string name, date purchaseDate) {
+	public SparePart(long partID, String type, String name, Date purchaseDate) {
 		// TODO - implement SparePart.SparePart
 		throw new UnsupportedOperationException();
 	}
@@ -60,7 +62,7 @@ public class SparePart {
 	 * 
 	 * @param type
 	 */
-	public void setType(string type) {
+	public void setType(String type) {
 		this.type = type;
 	}
 
@@ -68,7 +70,7 @@ public class SparePart {
 	 * 
 	 * @param name
 	 */
-	public void setName(string name) {
+	public void setName(String name) {
 		this.name = name;
 	}
 
@@ -76,7 +78,7 @@ public class SparePart {
 	 * 
 	 * @param purchaseDate
 	 */
-	public void setPurchaseDate(date purchaseDate) {
+	public void setPurchaseDate(Date purchaseDate) {
 		this.purchaseDate = purchaseDate;
 	}
 

@@ -1,10 +1,12 @@
 package Customers;
 
+import java.util.Date;
+
 public class MOT_Reminder {
 
 	private long MOTID;
 	private long SMS;
-	private date nextMOTDate;
+	private Date nextMOTDate;
 
 	public long getMOTID() {
 		// TODO - implement MOT_Reminder.getMOTID
@@ -54,7 +56,7 @@ public class MOT_Reminder {
 	 * @param sms
 	 * @param nextDate
 	 */
-	public MOT_Reminder(long ID, long sms, date nextDate) {
+	public MOT_Reminder(long ID, long sms, Date nextDate) {
 		// TODO - implement MOT_Reminder.MOT_Reminder
 		throw new UnsupportedOperationException();
 	}

@@ -2,9 +2,9 @@ package Database;
 
 public class Database_Controller implements I_Database {
 
-	private string query;
+	private String query;
 
-	public string getQuery() {
+	public String getQuery() {
 		return this.query;
 	}
 
@@ -12,7 +12,7 @@ public class Database_Controller implements I_Database {
 	 * 
 	 * @param query
 	 */
-	public void setQuery(string query) {
+	public void setQuery(String query) {
 		this.query = query;
 	}
 
@@ -21,7 +21,7 @@ public class Database_Controller implements I_Database {
 	 * @param obj
 	 * @param command
 	 */
-	public string generateQuery(Object obj, string command) {
+	public String generateQuery(Object obj, String command) {
 		// TODO - implement Database_Controller.generateQuery
 		throw new UnsupportedOperationException();
 	}

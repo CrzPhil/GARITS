@@ -10,7 +10,7 @@ public class Accounts_Controller implements I_Accounts {
 	 * @param password
 	 * @param name
 	 */
-	public User createUser(long userID, string username, string email, string password, string name) {
+	public User createUser(long userID, String username, String email, String password, String name) {
 		// TODO - implement Accounts_Controller.createUser
 		throw new UnsupportedOperationException();
 	}

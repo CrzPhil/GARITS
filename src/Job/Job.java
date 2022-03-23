@@ -1,14 +1,16 @@
 package Job;
 
+import java.util.Date;
+
 public class Job {
 
 	private long jobID;
-	private string name;
+	private String name;
 	private boolean status;
-	private date startDate;
-	private date finishDate;
+	private Date startDate;
+	private Date finishDate;
 	private double price;
-	private string jobDetails;
+	private String jobDetails;
 	private spare_Parts partsNeed;
 	private double duration;
 
@@ -24,7 +26,7 @@ public class Job {
 	 * @param partsNeed
 	 * @param duration
 	 */
-	public Job(long jobID, string name, boolean status, date startDate, date finishDate, double price, string jobDetails, SparePart partsNeed, double duration) {
+	public Job(long jobID, String name, boolean status, Date startDate, Date finishDate, double price, String jobDetails, SparePart partsNeed, double duration) {
 		// TODO - implement Job.Job
 		throw new UnsupportedOperationException();
 	}
@@ -51,7 +53,7 @@ public class Job {
 		this.jobID = jobID;
 	}
 
-	public string getName() {
+	public String getName() {
 		return this.name;
 	}
 
@@ -59,7 +61,7 @@ public class Job {
 	 * 
 	 * @param name
 	 */
-	public void setName(string name) {
+	public void setName(String name) {
 		this.name = name;
 	}
 
@@ -75,7 +77,7 @@ public class Job {
 		this.status = status;
 	}
 
-	public date getStartDate() {
+	public Date getStartDate() {
 		return this.startDate;
 	}
 
@@ -83,7 +85,7 @@ public class Job {
 	 * 
 	 * @param startDate
 	 */
-	public void setStartDate(date startDate) {
+	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
 	}
 
@@ -111,7 +113,7 @@ public class Job {
 		this.price = price;
 	}
 
-	public string getJobDetails() {
+	public String getJobDetails() {
 		return this.jobDetails;
 	}
 
@@ -119,7 +121,7 @@ public class Job {
 	 * 
 	 * @param jobDetails
 	 */
-	public void setJobDetails(string jobDetails) {
+	public void setJobDetails(String jobDetails) {
 		this.jobDetails = jobDetails;
 	}
 
