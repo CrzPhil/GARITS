@@ -1,9 +1,11 @@
 package Job;
 
+import java.util.Date;
+
 public class Booking {
 
 	private long bookingID;
-	private date date;
+	private Date date;
 	private String jobType;
 
 	/**
@@ -12,7 +14,7 @@ public class Booking {
 	 * @param date
 	 * @param jobType
 	 */
-	public Booking(long bookingID, date date, String jobType) {
+	public Booking(long bookingID, Date date, String jobType) {
 		// TODO - implement Booking.Booking
 		throw new UnsupportedOperationException();
 	}
@@ -29,7 +31,7 @@ public class Booking {
 		this.bookingID = bookingID;
 	}
 
-	public date getDate() {
+	public Date getDate() {
 		return this.date;
 	}
 
@@ -37,7 +39,7 @@ public class Booking {
 	 * 
 	 * @param date
 	 */
-	public void setDate(date date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 

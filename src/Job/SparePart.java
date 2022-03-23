@@ -41,7 +41,7 @@ public class SparePart {
 		throw new UnsupportedOperationException();
 	}
 
-	public stock checkStock() {
+	public SparePartsCollection checkStock() {
 		// TODO - implement SparePart.checkStock
 		throw new UnsupportedOperationException();
 	}

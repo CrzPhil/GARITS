@@ -1,5 +1,7 @@
 package Accounts;
 
+import Job.*;
+
 public class Mechanic extends User {
 
 	public JobCollection viewJobSheet() {
@@ -12,7 +14,7 @@ public class Mechanic extends User {
 		throw new UnsupportedOperationException();
 	}
 
-	public job recieveJob() {
+	public Job recieveJob() {
 		// TODO - implement Mechanic.recieveJob
 		throw new UnsupportedOperationException();
 	}
@@ -21,7 +23,7 @@ public class Mechanic extends User {
 	 * 
 	 * @param status
 	 */
-	public job changeJobStatus(boolean status) {
+	public Job changeJobStatus(boolean status) {
 		// TODO - implement Mechanic.changeJobStatus
 		throw new UnsupportedOperationException();
 	}

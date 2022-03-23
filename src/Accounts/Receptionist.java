@@ -1,7 +1,9 @@
 package Accounts;
 
+import Database.Alert;
 import Job.*;
 import Customers.*;
+import Payment.*;
 
 public class Receptionist extends User {
 
@@ -25,7 +27,7 @@ public class Receptionist extends User {
 		throw new UnsupportedOperationException();
 	}
 
-	public payment recordPayment() {
+	public Payment recordPayment() {
 		// TODO - implement Receptionist.recordPayment
 		throw new UnsupportedOperationException();
 	}
@@ -60,12 +62,12 @@ public class Receptionist extends User {
 		throw new UnsupportedOperationException();
 	}
 
-	public SpareParts searchSpareParts() {
+	public SparePartsCollection searchSpareParts() {
 		// TODO - implement Receptionist.searchSpareParts
 		throw new UnsupportedOperationException();
 	}
 
-	public Stock recordSparePartsUsed() {
+	public SparePartsCollection recordSparePartsUsed() {
 		// TODO - implement Receptionist.recordSparePartsUsed
 		throw new UnsupportedOperationException();
 	}

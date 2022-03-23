@@ -21,6 +21,10 @@ public class User {
 		throw new UnsupportedOperationException();
 	}
 
+    public User() {
+
+    }
+
 	public long getUserID() {
 		return this.userID;
 	}

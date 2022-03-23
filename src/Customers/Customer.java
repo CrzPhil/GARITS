@@ -17,6 +17,7 @@ public class Customer extends User {
 	 * @param valued
 	 */
 	public Customer(long ID, String contactNo, boolean regular, boolean valued) {
+		super();
 		// TODO - implement Customer.Customer
 		throw new UnsupportedOperationException();
 	}

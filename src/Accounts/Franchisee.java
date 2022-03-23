@@ -1,6 +1,8 @@
 package Accounts;
 
 import Customers.*;
+import Database.Alert;
+import Database.Report;
 
 public class Franchisee extends User {
 
@@ -44,7 +46,7 @@ public class Franchisee extends User {
 		throw new UnsupportedOperationException();
 	}
 
-	public report submitOnDemeandReports() {
+	public Report submitOnDemeandReports() {
 		// TODO - implement Franchisee.submitOnDemeandReports
 		throw new UnsupportedOperationException();
 	}

@@ -11,7 +11,7 @@ public class Job {
 	private Date finishDate;
 	private double price;
 	private String jobDetails;
-	private spare_Parts partsNeed;
+	private SparePartsCollection partsNeed;
 	private double duration;
 
 	/**
@@ -89,7 +89,7 @@ public class Job {
 		this.startDate = startDate;
 	}
 
-	public date getFinishDate() {
+	public Date getFinishDate() {
 		return this.finishDate;
 	}
 
@@ -97,7 +97,7 @@ public class Job {
 	 * 
 	 * @param finishDate
 	 */
-	public void setFinishDate(date finishDate) {
+	public void setFinishDate(Date finishDate) {
 		this.finishDate = finishDate;
 	}
 

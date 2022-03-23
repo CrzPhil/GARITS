@@ -12,7 +12,7 @@ public class UserCollection {
 	 * @param password
 	 * @param name
 	 */
-	public void addItem(long userID, string username, string email, string password, string name) {
+	public void addItem(long userID, String username, String email, String password, String name) {
 		// TODO - implement UserCollection.addItem
 		throw new UnsupportedOperationException();
 	}
