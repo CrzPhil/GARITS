@@ -2,9 +2,9 @@ package Job;
 
 public class Service extends Job {
 
-	private string serviceType;
+	private String serviceType;
 
-	public string getServiceType() {
+	public String getServiceType() {
 		return this.serviceType;
 	}
 
@@ -12,7 +12,7 @@ public class Service extends Job {
 	 * 
 	 * @param serviceType
 	 */
-	public void setServiceType(string serviceType) {
+	public void setServiceType(String serviceType) {
 		this.serviceType = serviceType;
 	}
 
@@ -20,7 +20,7 @@ public class Service extends Job {
 	 * 
 	 * @param type
 	 */
-	public Service(string type) {
+	public Service(String type) {
 		// TODO - implement Service.Service
 		throw new UnsupportedOperationException();
 	}

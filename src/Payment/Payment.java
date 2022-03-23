@@ -3,7 +3,7 @@ package Payment;
 public class Payment {
 
 	private long paymentID;
-	private string paymentType;
+	private String paymentType;
 	private double priceOfJob;
 
 	public long getPaymentID() {
@@ -18,7 +18,7 @@ public class Payment {
 		this.paymentID = paymentID;
 	}
 
-	public string getPaymentType() {
+	public String getPaymentType() {
 		return this.paymentType;
 	}
 
@@ -26,7 +26,7 @@ public class Payment {
 	 * 
 	 * @param paymentType
 	 */
-	public void setPaymentType(string paymentType) {
+	public void setPaymentType(String paymentType) {
 		this.paymentType = paymentType;
 	}
 
@@ -40,7 +40,7 @@ public class Payment {
 	 * @param paymentType
 	 * @param priceOfJob
 	 */
-	public Payment(long paymentID, string paymentType, double priceOfJob) {
+	public Payment(long paymentID, String paymentType, double priceOfJob) {
 		// TODO - implement Payment.Payment
 		throw new UnsupportedOperationException();
 	}

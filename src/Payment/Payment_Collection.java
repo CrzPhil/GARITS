@@ -27,7 +27,7 @@ public class Payment_Collection {
 	 * @param paymentType
 	 * @param priceOfJob
 	 */
-	public Payment addItem(long paymentID, string paymentType, double priceOfJob) {
+	public Payment addItem(long paymentID, String paymentType, double priceOfJob) {
 		// TODO - implement Payment_Collection.addItem
 		throw new UnsupportedOperationException();
 	}

@@ -2,9 +2,9 @@ package Job;
 
 public class Repair extends Job {
 
-	private string repairType;
+	private String repairType;
 
-	public string getRepairType() {
+	public String getRepairType() {
 		return this.repairType;
 	}
 
@@ -12,7 +12,7 @@ public class Repair extends Job {
 	 * 
 	 * @param repairType
 	 */
-	public void setRepairType(string repairType) {
+	public void setRepairType(String repairType) {
 		this.repairType = repairType;
 	}
 
@@ -20,7 +20,7 @@ public class Repair extends Job {
 	 * 
 	 * @param type
 	 */
-	public Repair(string type) {
+	public Repair(String type) {
 		// TODO - implement Repair.Repair
 		throw new UnsupportedOperationException();
 	}

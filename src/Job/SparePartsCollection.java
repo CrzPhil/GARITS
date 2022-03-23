@@ -1,12 +1,14 @@
 package Job;
 
+import java.util.Date;
+
 public class SparePartsCollection {
 
 	private int index = 0;
 	private int partsInStock;
-	private string partLocation;
+	private String partLocation;
 
-	public string getPartLocation() {
+	public String getPartLocation() {
 		return this.partLocation;
 	}
 
@@ -14,7 +16,7 @@ public class SparePartsCollection {
 	 * 
 	 * @param partLocation
 	 */
-	public void setPartLocation(string partLocation) {
+	public void setPartLocation(String partLocation) {
 		this.partLocation = partLocation;
 	}
 
@@ -42,7 +44,7 @@ public class SparePartsCollection {
 	 * @param name
 	 * @param purchaseDate
 	 */
-	public SparePart addItem(long partID, string type, string name, date purchaseDate) {
+	public SparePart addItem(long partID, String type, String name, Date purchaseDate) {
 		// TODO - implement SparePartsCollection.addItem
 		throw new UnsupportedOperationException();
 	}

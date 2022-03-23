@@ -7,7 +7,7 @@ public class SQL_JobHelper {
 	 * @param obj
 	 * @param command
 	 */
-	public string generateQuery(Object obj, string command) {
+	public String generateQuery(Object obj, String command) {
 		// TODO - implement SQL_JobHelper.generateQuery
 		throw new UnsupportedOperationException();
 	}

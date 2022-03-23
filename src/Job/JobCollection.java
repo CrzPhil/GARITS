@@ -1,5 +1,7 @@
 package Job;
 
+import java.util.Date;
+
 public class JobCollection {
 
 	private int index = 0;
@@ -21,7 +23,7 @@ public class JobCollection {
 	 * @param partsNeeded
 	 * @param duration
 	 */
-	public Job addItem(long jobID, string name, boolean status, date startDate, date finishDate, double price, string jobDetails, SparePart partsNeeded, double duration) {
+	public Job addItem(long jobID, String name, boolean status, Date startDate, Date finishDate, double price, String jobDetails, SparePart partsNeeded, double duration) {
 		// TODO - implement JobCollection.addItem
 		throw new UnsupportedOperationException();
 	}

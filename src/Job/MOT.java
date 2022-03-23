@@ -1,14 +1,16 @@
 package Job;
 
+import java.util.Date;
+
 public class MOT extends Job {
 
 	private boolean pass;
 	private long mileage;
 	private long MOTTestNumber;
-	private date expiryDate;
-	private string testLocation;
-	private string defects;
-	private date dateTested;
+	private Date expiryDate;
+	private String testLocation;
+	private String defects;
+	private Date dateTested;
 
 	public boolean getPass() {
 		return this.pass;
@@ -48,7 +50,7 @@ public class MOT extends Job {
 		throw new UnsupportedOperationException();
 	}
 
-	public date getExpirtDate() {
+	public Date getExpirtDate() {
 		// TODO - implement MOT.getExpirtDate
 		throw new UnsupportedOperationException();
 	}
@@ -57,12 +59,12 @@ public class MOT extends Job {
 	 * 
 	 * @param expirtDate
 	 */
-	public void setExpirtDate(date expirtDate) {
+	public void setExpirtDate(Date expirtDate) {
 		// TODO - implement MOT.setExpirtDate
 		throw new UnsupportedOperationException();
 	}
 
-	public string getTestLocation() {
+	public String getTestLocation() {
 		return this.testLocation;
 	}
 
@@ -70,11 +72,11 @@ public class MOT extends Job {
 	 * 
 	 * @param testLocation
 	 */
-	public void setTestLocation(string testLocation) {
+	public void setTestLocation(String testLocation) {
 		this.testLocation = testLocation;
 	}
 
-	public string getDefects() {
+	public String getDefects() {
 		return this.defects;
 	}
 
@@ -82,11 +84,11 @@ public class MOT extends Job {
 	 * 
 	 * @param Defects
 	 */
-	public void setDefects(string Defects) {
+	public void setDefects(String Defects) {
 		this.defects = Defects;
 	}
 
-	public date getDateTested() {
+	public Date getDateTested() {
 		return this.dateTested;
 	}
 
@@ -94,7 +96,7 @@ public class MOT extends Job {
 	 * 
 	 * @param dateTested
 	 */
-	public void setDateTested(date dateTested) {
+	public void setDateTested(Date dateTested) {
 		this.dateTested = dateTested;
 	}
 
@@ -108,7 +110,7 @@ public class MOT extends Job {
 	 * @param defects
 	 * @param dateTested
 	 */
-	public MOT(boolean pass, long mileage, long testNo, date expiry, string loc, string defects, date dateTested) {
+	public MOT(boolean pass, long mileage, long testNo, Date expiry, String loc, String defects, Date dateTested) {
 		// TODO - implement MOT.MOT
 		throw new UnsupportedOperationException();
 	}

@@ -26,8 +26,9 @@ public class Job {
 	 * @param partsNeed
 	 * @param duration
 	 */
-	public Job(long jobID, String name, boolean status, Date startDate, Date finishDate, double price, String jobDetails, SparePart partsNeed, double duration) {
+	public Job() {
 		// TODO - implement Job.Job
+		System.out.println("Default Constructor");
 		throw new UnsupportedOperationException();
 	}
 
