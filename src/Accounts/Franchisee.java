@@ -71,9 +71,8 @@ public class Franchisee extends User {
 		throw new UnsupportedOperationException();
 	}
 
-	public Franchisee() {
-		// TODO - implement Franchisee.Franchisee
-		throw new UnsupportedOperationException();
+	public Franchisee(long userID, String username, String email, String password, String name) {
+		super(userID, username, email, password, name);
 	}
 
 }

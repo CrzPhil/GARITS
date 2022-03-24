@@ -1,20 +1,20 @@
-package src.Accounts;
+package Accounts;
 
-import src.Job.*;
+import Job.*;
 
 public class Mechanic extends Accounts.User {
 
-	public Job.JobCollection viewJobSheet() {
+	public JobCollection viewJobSheet() {
 		// TODO - implement Mechanic.viewJobSheet
 		throw new UnsupportedOperationException();
 	}
 
-	public Job.Job findJob() {
+	public Job findJob() {
 		// TODO - implement Mechanic.findJob
 		throw new UnsupportedOperationException();
 	}
 
-	public Job.Job recieveJob() {
+	public Job recieveJob() {
 		// TODO - implement Mechanic.recieveJob
 		throw new UnsupportedOperationException();
 	}
@@ -23,7 +23,7 @@ public class Mechanic extends Accounts.User {
 	 * 
 	 * @param status
 	 */
-	public Job.Job changeJobStatus(boolean status) {
+	public Job changeJobStatus(boolean status) {
 		// TODO - implement Mechanic.changeJobStatus
 		throw new UnsupportedOperationException();
 	}
@@ -33,17 +33,17 @@ public class Mechanic extends Accounts.User {
 		throw new UnsupportedOperationException();
 	}
 
-	public Job.Job deleteJob() {
+	public Job deleteJob() {
 		// TODO - implement Mechanic.deleteJob
 		throw new UnsupportedOperationException();
 	}
 
-	public Job.Job searchJob() {
+	public Job searchJob() {
 		// TODO - implement Mechanic.searchJob
 		throw new UnsupportedOperationException();
 	}
 
-	public Job.Job addJob() {
+	public Job addJob() {
 		// TODO - implement Mechanic.addJob
 		throw new UnsupportedOperationException();
 	}
@@ -52,14 +52,13 @@ public class Mechanic extends Accounts.User {
 	 * 
 	 * @param duration
 	 */
-	public Job.Job alterJobDuration(double duration) {
+	public Job alterJobDuration(double duration) {
 		// TODO - implement Mechanic.alterJobDuration
 		throw new UnsupportedOperationException();
 	}
 
-	public Mechanic() {
-		// TODO - implement Mechanic.Mechanic
-		throw new UnsupportedOperationException();
+	public Mechanic(long userID, String username, String email, String password, String name) {
+		super(userID, username, email, password, name);
 	}
 
 }

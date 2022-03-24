@@ -72,9 +72,8 @@ public class Receptionist extends User {
 		throw new UnsupportedOperationException();
 	}
 
-	public Receptionist() {
-		// TODO - implement Receptionist.Receptionist
-		throw new UnsupportedOperationException();
+	public Receptionist(long userID, String username, String email, String password, String name) {
+		super(userID, username, email, password, name);
 	}
 
 }

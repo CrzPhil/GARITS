@@ -2,28 +2,36 @@ package Accounts;
 
 public class User {
 
-	private long userID;
-	private String username;
-	private String email;
-	private String password;
-	private String name;
+	protected long userID;
+	protected String username;
+	protected String email;
+	protected String password;
+	protected String name;
 
 	/**
 	 * 
 	 * @param userID
+	 * Primary key for User object
 	 * @param username
+	 * Username used to log into GARITS
 	 * @param email
+	 * Email associated to the account
 	 * @param password
+	 * Hashed password
 	 * @param name
+	 * Employee name
 	 */
 	public User(long userID, String username, String email, String password, String name) {
-		// TODO - implement User.User
-		throw new UnsupportedOperationException();
+		this.userID = userID;
+		this.username = username;
+		this.email = email;
+		this.password = password;
+		this.name = name;
 	}
 
-    public User() {
+	public User() {
 
-    }
+	}
 
 	public long getUserID() {
 		return this.userID;
@@ -32,6 +40,7 @@ public class User {
 	/**
 	 * 
 	 * @param userID
+	 * New userID
 	 */
 	public void setUserID(long userID) {
 		this.userID = userID;
@@ -44,6 +53,7 @@ public class User {
 	/**
 	 * 
 	 * @param username
+	 * New username
 	 */
 	public void setUsername(String username) {
 		this.username = username;
@@ -56,6 +66,7 @@ public class User {
 	/**
 	 * 
 	 * @param email
+	 * New email
 	 */
 	public void setEmail(String email) {
 		this.email = email;
@@ -68,6 +79,7 @@ public class User {
 	/**
 	 * 
 	 * @param password
+	 * New hashed password
 	 */
 	public void setPassword(String password) {
 		this.password = password;
@@ -80,6 +92,7 @@ public class User {
 	/**
 	 * 
 	 * @param name
+	 * New name
 	 */
 	public void setName(String name) {
 		this.name = name;
