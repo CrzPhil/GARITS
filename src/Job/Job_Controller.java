@@ -1,4 +1,6 @@
-package Job;
+package src.Job;
+
+import src.Job.*;
 
 import java.util.Date;
 
@@ -16,7 +18,7 @@ public class Job_Controller implements I_Job {
 	 * @param partsNeed
 	 * @param duration
 	 */
-	public Job createJob(long jobID, String name, boolean status, Date startDate, Date finishDate, double price, String jobDetails, SparePart partsNeed, double duration) {
+	public Job.Job createJob(long jobID, String name, boolean status, Date startDate, Date finishDate, double price, String jobDetails, Job.SparePart partsNeed, double duration) {
 		// TODO - implement Job_Controller.createJob
 		throw new UnsupportedOperationException();
 	}
@@ -25,7 +27,7 @@ public class Job_Controller implements I_Job {
 	 * 
 	 * @param jobID
 	 */
-	public Job getJob(long jobID) {
+	public Job.Job getJob(long jobID) {
 		// TODO - implement Job_Controller.getJob
 		throw new UnsupportedOperationException();
 	}
@@ -37,7 +39,7 @@ public class Job_Controller implements I_Job {
 	 * @param name
 	 * @param purchaseDate
 	 */
-	public SparePart createSparePart(long partID, String type, String name, Date purchaseDate) {
+	public Job.SparePart createSparePart(long partID, String type, String name, Date purchaseDate) {
 		// TODO - implement Job_Controller.createSparePart
 		throw new UnsupportedOperationException();
 	}
@@ -84,7 +86,7 @@ public class Job_Controller implements I_Job {
 	 * @param date
 	 * @param jobType
 	 */
-	public Booking createBooking(long bookingID, Date date, String jobType) {
+	public Job.Booking createBooking(long bookingID, Date date, String jobType) {
 		// TODO - implement Job_Controller.createBooking
 		throw new UnsupportedOperationException();
 	}

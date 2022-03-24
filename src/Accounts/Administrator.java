@@ -1,13 +1,13 @@
-package Accounts;
+package src.Accounts;
 
-public class Administrator extends User {
+public class Administrator extends Accounts.User {
 
-	public User createUserAccount() {
+	public Accounts.User createUserAccount() {
 		// TODO - implement Administrator.createUserAccount
 		throw new UnsupportedOperationException();
 	}
 
-	public User modifyAccount() {
+	public Accounts.User modifyAccount() {
 		// TODO - implement Administrator.modifyAccount
 		throw new UnsupportedOperationException();
 	}
@@ -17,7 +17,7 @@ public class Administrator extends User {
 		throw new UnsupportedOperationException();
 	}
 
-	public User searchAccount() {
+	public Accounts.User searchAccount() {
 		// TODO - implement Administrator.searchAccount
 		throw new UnsupportedOperationException();
 	}

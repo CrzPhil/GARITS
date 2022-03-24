@@ -1,4 +1,6 @@
-package Payment;
+package src.Payment;
+
+import src.Payment.*;
 
 public class Payment_Controller implements I_Payment {
 
@@ -8,7 +10,7 @@ public class Payment_Controller implements I_Payment {
 	 * @param paymentType
 	 * @param priceOfJob
 	 */
-	public Payment createPayment(long paymentID, String paymentType, double priceOfJob) {
+	public Payment.Payment createPayment(long paymentID, String paymentType, double priceOfJob) {
 		// TODO - implement Payment_Controller.createPayment
 		throw new UnsupportedOperationException();
 	}
@@ -17,7 +19,7 @@ public class Payment_Controller implements I_Payment {
 	 * 
 	 * @param paymentID
 	 */
-	public Payment getPayment(long paymentID) {
+	public Payment.Payment getPayment(long paymentID) {
 		// TODO - implement Payment_Controller.getPayment
 		throw new UnsupportedOperationException();
 	}

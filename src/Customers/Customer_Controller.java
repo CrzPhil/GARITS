@@ -1,4 +1,6 @@
-package Customers;
+package src.Customers;
+
+import src.Customers.*;
 
 public class Customer_Controller implements I_Customers {
 
@@ -9,32 +11,32 @@ public class Customer_Controller implements I_Customers {
 	 * @param regularCustomer
 	 * @param valuedCustomer
 	 */
-	public Customer createCustomer(long customerID, String contactNumber, boolean regularCustomer, boolean valuedCustomer) {
+	public Customers.Customer createCustomer(long customerID, String contactNumber, boolean regularCustomer, boolean valuedCustomer) {
 		// TODO - implement Customer_Controller.createCustomer
 		throw new UnsupportedOperationException();
 	}
 
-	public Customer getCustomer() {
+	public Customers.Customer getCustomer() {
 		// TODO - implement Customer_Controller.getCustomer
 		throw new UnsupportedOperationException();
 	}
 
-	public Vehicle createVehicle() {
+	public Customers.Vehicle createVehicle() {
 		// TODO - implement Customer_Controller.createVehicle
 		throw new UnsupportedOperationException();
 	}
 
-	public Vehicle getVehicle() {
+	public Customers.Vehicle getVehicle() {
 		// TODO - implement Customer_Controller.getVehicle
 		throw new UnsupportedOperationException();
 	}
 
-	public MOT_Reminder createReminder() {
+	public Customers.MOT_Reminder createReminder() {
 		// TODO - implement Customer_Controller.createReminder
 		throw new UnsupportedOperationException();
 	}
 
-	public MOT_Reminder getReminder() {
+	public Customers.MOT_Reminder getReminder() {
 		// TODO - implement Customer_Controller.getReminder
 		throw new UnsupportedOperationException();
 	}
