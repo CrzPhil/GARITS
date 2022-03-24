@@ -1,6 +1,6 @@
-package src.Database;
+package Database;
 
-import src.Database.*;
+import Database.*;
 
 public class Database_Controller implements I_Database {
 

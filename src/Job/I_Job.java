@@ -1,6 +1,6 @@
-package src.Job;
+package Job;
 
-import src.Job.*;
+import Job.*;
 
 import java.time.LocalDate;
 import java.util.Date;
@@ -19,13 +19,13 @@ public interface I_Job {
      * @param partsNeed
      * @param duration
      */
-    abstract Job.Job createJob(long jobID, String name, boolean status, Date startDate, Date finishDate, double price, String jobDetails, Job.SparePart partsNeed, double duration);
+    abstract Job createJob(long jobID, String name, boolean status, Date startDate, Date finishDate, double price, String jobDetails, SparePart partsNeed, double duration);
 
     /**
      *
      * @param jobID
      */
-    abstract Job.Job getJob(long jobID);
+    abstract Job getJob(long jobID);
 
     /**
      *
@@ -34,7 +34,7 @@ public interface I_Job {
      * @param name
      * @param purchaseDate
      */
-    abstract Job.SparePart createSparePart(long partID, String type, String name, Date purchaseDate);
+    abstract SparePart createSparePart(long partID, String type, String name, Date purchaseDate);
 
     /**
      *
@@ -66,7 +66,7 @@ public interface I_Job {
      * @param date
      * @param jobType
      */
-    abstract Job.Booking createBooking(long bookingID, Date date, String jobType);
+    abstract Booking createBooking(long bookingID, Date date, String jobType);
 
     /**
      *

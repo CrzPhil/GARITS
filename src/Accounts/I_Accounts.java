@@ -1,6 +1,6 @@
-package src.Accounts;
+package Accounts;
 
-import src.Accounts.*;
+import Accounts.*;
 
 public interface I_Accounts {
 

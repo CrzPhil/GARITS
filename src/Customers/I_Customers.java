@@ -1,6 +1,6 @@
-package src.Customers;
+package Customers;
 
-import src.Customers.*;
+import Customers.*;
 
 public interface I_Customers {
 

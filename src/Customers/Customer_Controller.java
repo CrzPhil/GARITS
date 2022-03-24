@@ -1,6 +1,6 @@
-package src.Customers;
+package Customers;
 
-import src.Customers.*;
+import Customers.*;
 
 public class Customer_Controller implements I_Customers {
 

@@ -1,6 +1,6 @@
-package src.Database;
+package Database;
 
-import src.Database.*;
+import Database.*;
 
 public interface I_Database {
 
