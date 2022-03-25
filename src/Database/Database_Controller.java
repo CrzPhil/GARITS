@@ -1,31 +1,20 @@
 package Database;
 
-import Database.*;
-
 import java.sql.*;
 
 public class Database_Controller implements I_Database {
 
-	private String query;
-	private Connection conn;
+	protected String query;
+	protected Connection conn;
 
 	public String getQuery() {
 		return this.query;
 	}
 
-	/**
-	 * 
-	 * @param query
-	 */
 	public void setQuery(String query) {
 		this.query = query;
 	}
 
-	/**
-	 * 
-	 * @param obj
-	 * @param command
-	 */
 	public String generateQuery(Object obj, String command) {
 		// TODO - implement Database_Controller.generateQuery
 		throw new UnsupportedOperationException();
@@ -41,7 +30,7 @@ public class Database_Controller implements I_Database {
 		throw new UnsupportedOperationException();
 	}
 
-	public void connectToDb() {
+	public Connection connectToDb() {
 		try {
 			// IP + Database name
 			String url = "jdbc:mysql://176.58.124.119:3306/GARITS";
@@ -49,15 +38,21 @@ public class Database_Controller implements I_Database {
 			// Username + Password
 			conn = DriverManager.getConnection(url, "GARITS", "G@R!T$$$");
 
-			test();
-
-			conn.close();
+			return conn;
 
 		} catch (SQLException ex) {
 			System.err.println(ex.getMessage());
 		}
+		return null;
 	}
 
+	public void closeConnection() {
+		try {
+			this.conn.close();
+		} catch (SQLException ex) {
+			System.err.println(ex.getMessage());
+		}
+	}
 
 	private void test() {
 		System.out.println("Test output:");
