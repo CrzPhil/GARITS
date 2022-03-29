@@ -1,7 +1,12 @@
 import javax.swing.*;
+import javax.swing.tree.DefaultMutableTreeNode;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import Accounts.Administrator;
+import Accounts.SQL_UserHelper;
+import Accounts.User;
 
 public class AccountMenuGUI extends JFrame{
     private JPanel Main;
@@ -26,6 +31,39 @@ public class AccountMenuGUI extends JFrame{
             }
         });
     }
+
+    private void drawTree() {
+        DefaultMutableTreeNode top = new DefaultMutableTreeNode("Users");
+        createNodes(top);
+        UserAccounts = new JTree(top);
+    }
+
+    private void createNodes(DefaultMutableTreeNode top) {
+        String[] roles = {"Administrator", "Franchisee", "Mechanic", "Foreperson", "Receptionist"};
+        SQL_UserHelper helper = new SQL_UserHelper();
+        DefaultMutableTreeNode category;
+
+        for (String role : roles) {
+            category = new DefaultMutableTreeNode(role + " Accounts");
+            top.add(category);
+            User[] users = helper.getByRole(role, true);
+            for (User user : users) {
+                category.add(new DefaultMutableTreeNode(user));
+            }
+        }
+
+/*        category = new DefaultMutableTreeNode("Administrator Accounts");
+        top.add(category);
+
+        User[] admins = helper.getByRole("Administrator", true);
+
+        for (User admin : admins) {
+            category.add(new DefaultMutableTreeNode(admin));
+        }*/
+
+        helper.closeConnection();
+    }
+
     public static void main(){
         j.setContentPane(new AccountMenuGUI().Main);
         j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -34,5 +72,10 @@ public class AccountMenuGUI extends JFrame{
         j.pack();
         j.setLocationRelativeTo(null);
         j.setVisible(true);
+    }
+
+    private void createUIComponents() {
+        // TODO: place custom component creation code here
+        drawTree();
     }
 }

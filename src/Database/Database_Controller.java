@@ -53,22 +53,4 @@ public class Database_Controller implements I_Database {
 			System.err.println(ex.getMessage());
 		}
 	}
-
-	private void test() {
-		System.out.println("Test output:");
-		String query = "SELECT customerID, firstName, lastName FROM Customer";
-
-		try {
-			Statement st = conn.createStatement();
-			ResultSet rs = st.executeQuery(query);
-			while (rs.next()) {
-				int s = rs.getInt("customerID");
-				String f = rs.getString("firstName");
-				String l = rs.getString("lastName");
-				System.out.println(s + " " + f + " " + l);
-			}
-		} catch (SQLException ex) {
-			System.err.println(ex.getMessage());
-		}
-	}
 }
