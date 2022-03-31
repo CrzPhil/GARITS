@@ -27,9 +27,7 @@ public class Administrator extends Accounts.User {
 	// toString method in order for the admin's names to be displayed in the JTree
 	@Override
 	public String toString() {
-		return "Administrator{" +
-				"name='" + name + '\'' +
-				'}';
+		return super.toString();
 	}
 
 	// Debug method to print account details

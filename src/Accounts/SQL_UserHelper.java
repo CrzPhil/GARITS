@@ -47,27 +47,30 @@ public class SQL_UserHelper extends Database_Controller {
 	}
 
 	public User[] getByRole(String role, boolean debug) {
+		String sizequr = String.format("SELECT COUNT(*) AS Count FROM Staff WHERE role LIKE '%s'", role);
 		String qur = String.format("SELECT * FROM Staff WHERE role LIKE '%s'", role);
 		User[] out = null;
 		try {
 			Statement st = conn.createStatement();
-			ResultSet rs = st.executeQuery(qur);
+			ResultSet rs = st.executeQuery(sizequr);
 
 			// Get count for the returned rows to match the array to that size (WIP)
-/*			int size = 0;
-			if (rs.last()) {
-				size = rs.getRow();
-				rs.beforeFirst();
-			}*/
+			rs.next();
+			int size = rs.getInt("Count");
+			rs.close();
 
-			out = new User[4];
+			// Get users
+			rs = st.executeQuery(qur);
+			out = new User[size];
 
 			int i = 0;
+			String name;
+
 			while (rs.next()) {
 				switch (role) {
 					case "Administrator":
 						// Combine first and last name
-						String name = rs.getString("firstName") + " " + rs.getString("lastName");
+						name = rs.getString("firstName") + " " + rs.getString("lastName");
 						out[i] = new Administrator(rs.getInt("staffID"),
 								rs.getString("username"),
 								null, //rs.getString("email"),
@@ -81,6 +84,13 @@ public class SQL_UserHelper extends Database_Controller {
 					case "Franchisee":
 						break;
 					case "Mechanic":
+						// Combine first and last name
+						name = rs.getString("firstName") + " " + rs.getString("lastName");
+						out[i] = new Mechanic(rs.getInt("staffID"),
+								rs.getString("username"),
+								null, //rs.getString("email"),
+								rs.getString("password"),
+								name);
 						break;
 					case "Foreperson":
 						break;
@@ -93,6 +103,7 @@ public class SQL_UserHelper extends Database_Controller {
 				}
 				i++;
 			}
+			rs.close();
 		} catch (SQLException ex) {
 			System.err.println(ex.getMessage());
 		}
