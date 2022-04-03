@@ -46,7 +46,7 @@ public class SQL_UserHelper extends Database_Controller {
 		}
 	}
 
-	public User[] getByRole(String role, boolean debug) {
+	public User[] getByRole(String role) {
 		String sizequr = String.format("SELECT COUNT(*) AS Count FROM Staff WHERE role LIKE '%s'", role);
 		String qur = String.format("SELECT * FROM Staff WHERE role LIKE '%s'", role);
 		User[] out = null;
@@ -68,7 +68,7 @@ public class SQL_UserHelper extends Database_Controller {
 
 			while (rs.next()) {
 				switch (role) {
-					case "Administrator":
+					case "Administrator" -> {
 						// Combine first and last name
 						name = rs.getString("firstName") + " " + rs.getString("lastName");
 						out[i] = new Administrator(rs.getInt("staffID"),
@@ -77,13 +77,17 @@ public class SQL_UserHelper extends Database_Controller {
 								rs.getString("password"),
 								name,
 								rs.getInt("hourlyrate"));
-						if (debug) {
-							((Administrator) out[i]).printAccount();
-						}
-						break;
-					case "Franchisee":
-						break;
-					case "Mechanic":
+					}
+					case "Franchisee" -> {
+						// Combine first and last name
+						name = rs.getString("firstName") + " " + rs.getString("lastName");
+						out[i] = new Franchisee(rs.getInt("staffID"),
+								rs.getString("username"),
+								null, //rs.getString("email"),
+								rs.getString("password"),
+								name);
+					}
+					case "Mechanic" -> {
 						// Combine first and last name
 						name = rs.getString("firstName") + " " + rs.getString("lastName");
 						out[i] = new Mechanic(rs.getInt("staffID"),
@@ -91,15 +95,26 @@ public class SQL_UserHelper extends Database_Controller {
 								null, //rs.getString("email"),
 								rs.getString("password"),
 								name);
-						break;
-					case "Foreperson":
-						break;
-					case "Receptionist":
-						break;
-					default:
-						if (debug)
-							System.out.println("[DEBUG] Role not found!");
-						break;
+					}
+					case "Foreperson" -> {
+						// Combine first and last name
+						name = rs.getString("firstName") + " " + rs.getString("lastName");
+						out[i] = new ForePerson(rs.getInt("staffID"),
+								rs.getString("username"),
+								null, //rs.getString("email"),
+								rs.getString("password"),
+								name);
+					}
+					case "Receptionist" -> {
+						// Combine first and last name
+						name = rs.getString("firstName") + " " + rs.getString("lastName");
+						out[i] = new Receptionist(rs.getInt("staffID"),
+								rs.getString("username"),
+								null, //rs.getString("email"),
+								rs.getString("password"),
+								name);
+					}
+					default -> System.out.println("[DEBUG] Role not found!");
 				}
 				i++;
 			}

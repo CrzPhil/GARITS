@@ -13,7 +13,7 @@ public class AccountMenuGUI extends JFrame{
     private JButton returnButton;
     private JButton modifyAccountButton;
     private JTree UserAccounts;
-    private static AccountMenuGUI j = new AccountMenuGUI();
+    private static final AccountMenuGUI j = new AccountMenuGUI();
 
     public AccountMenuGUI() {
         returnButton.addActionListener(new ActionListener() {
@@ -46,20 +46,11 @@ public class AccountMenuGUI extends JFrame{
         for (String role : roles) {
             category = new DefaultMutableTreeNode(role + " Accounts");
             top.add(category);
-            User[] users = helper.getByRole(role, true);
+            User[] users = helper.getByRole(role);
             for (User user : users) {
                 category.add(new DefaultMutableTreeNode(user));
             }
         }
-
-/*        category = new DefaultMutableTreeNode("Administrator Accounts");
-        top.add(category);
-
-        User[] admins = helper.getByRole("Administrator", true);
-
-        for (User admin : admins) {
-            category.add(new DefaultMutableTreeNode(admin));
-        }*/
 
         helper.closeConnection();
     }
