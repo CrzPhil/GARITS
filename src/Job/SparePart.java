@@ -4,21 +4,65 @@ import java.util.Date;
 
 public class SparePart {
 
-	private long partID;
+	private String partID;
 	private String type;
+	private String manufacturer;
 	private String name;
-	private Date purchaseDate;
+	private int year;
+	private int stock;
+	private double price;
+
+	public String getType() {
+		return type;
+	}
+
+	public String getManufacturer() {
+		return manufacturer;
+	}
+
+	public void setManufacturer(String manufacturer) {
+		this.manufacturer = manufacturer;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public int getYear() {
+		return year;
+	}
+
+	public int getStock() {
+		return stock;
+	}
+
+	public void setStock(int stock) {
+		this.stock = stock;
+	}
+
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
 
 	/**
 	 * 
 	 * @param partID
 	 * @param type
 	 * @param name
-	 * @param purchaseDate
+	 * @param year
 	 */
-	public SparePart(long partID, String type, String name, Date purchaseDate) {
-		// TODO - implement SparePart.SparePart
-		throw new UnsupportedOperationException();
+	public SparePart(String partID, String name, String manufacturer, String type, int year, int stock, double price) {
+		this.type = type;
+		this.name = name;
+		this.year = year;
+		this.manufacturer = manufacturer;
+		this.stock = stock;
+		this.price = price;
+		this.partID = partID;
 	}
 
 	public boolean orderPart() {
@@ -46,7 +90,7 @@ public class SparePart {
 		throw new UnsupportedOperationException();
 	}
 
-	public long getPartID() {
+	public String getPartID() {
 		return this.partID;
 	}
 
@@ -54,7 +98,7 @@ public class SparePart {
 	 * 
 	 * @param partID
 	 */
-	public void setPartID(long partID) {
+	public void setPartID(String partID) {
 		this.partID = partID;
 	}
 
@@ -76,10 +120,10 @@ public class SparePart {
 
 	/**
 	 * 
-	 * @param purchaseDate
+	 * @param year
 	 */
-	public void setPurchaseDate(Date purchaseDate) {
-		this.purchaseDate = purchaseDate;
+	public void setYear(int year) {
+		this.year = year;
 	}
 
 }

@@ -22,6 +22,7 @@ public class SQL_UserHelper extends Database_Controller {
 		return this.query;
 	}
 
+	// Might be unnecessary
 	public void getByName(String fname, String lname) {
 		System.out.println("Querying user " + fname + " " + lname + " ... ");
 		String qur = String.format("SELECT * FROM Staff WHERE firstName LIKE '%s' OR lastName LIKE '%s'", fname, lname);
@@ -47,21 +48,22 @@ public class SQL_UserHelper extends Database_Controller {
 	}
 
 	public User[] getByRole(String role) {
-		String sizequr = String.format("SELECT COUNT(*) AS Count FROM Staff WHERE role LIKE '%s'", role);
+		String getsize = String.format("SELECT COUNT(*) AS Count FROM Staff WHERE role LIKE '%s'", role);
 		String qur = String.format("SELECT * FROM Staff WHERE role LIKE '%s'", role);
 		User[] out = null;
 		try {
 			Statement st = conn.createStatement();
-			ResultSet rs = st.executeQuery(sizequr);
+			ResultSet rs = st.executeQuery(getsize);
 
 			// Get count for the returned rows to match the array to that size (WIP)
 			rs.next();
 			int size = rs.getInt("Count");
 			rs.close();
 
+			out = new User[size];
+
 			// Get users
 			rs = st.executeQuery(qur);
-			out = new User[size];
 
 			int i = 0;
 			String name;
