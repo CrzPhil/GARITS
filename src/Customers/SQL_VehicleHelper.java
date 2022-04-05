@@ -1,11 +1,10 @@
 package Customers;
 
-public class SQL_VehicleHelper {
+import Database.Database_Controller;
 
-	public SQL_VehicleHelper() {
-		// TODO - implement SQL_VehicleHelper.SQL_VehicleHelper
-		throw new UnsupportedOperationException();
-	}
+public class SQL_VehicleHelper extends Database_Controller {
+
+	public SQL_VehicleHelper() { this.conn = super.connectToDb();}
 
 	/**
 	 * 
@@ -13,8 +12,8 @@ public class SQL_VehicleHelper {
 	 * @param command
 	 */
 	public String generateQuery(Object obj, String command) {
-		// TODO - implement SQL_VehicleHelper.generateQuery
-		throw new UnsupportedOperationException();
+		this.query = command;
+		return this.query;
 	}
 
 }
