@@ -1,11 +1,10 @@
 package Customers;
 
-public class SQL_CustomerHelper {
+import Database.Database_Controller;
 
-	public SQL_CustomerHelper() {
-		// TODO - implement SQL_CustomerHelper.SQL_CustomerHelper
-		throw new UnsupportedOperationException();
-	}
+public class SQL_CustomerHelper extends Database_Controller {
+
+	public SQL_CustomerHelper() { this.conn = super.connectToDb();}
 
 	/**
 	 * 
@@ -13,8 +12,8 @@ public class SQL_CustomerHelper {
 	 * @param command
 	 */
 	public String generateQuery(Object obj, String command) {
-		// TODO - implement SQL_CustomerHelper.generateQuery
-		throw new UnsupportedOperationException();
+		this.query = command;
+		return this.query;
 	}
 
 }

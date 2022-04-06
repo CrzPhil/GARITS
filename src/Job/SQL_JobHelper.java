@@ -1,6 +1,12 @@
 package Job;
 
-public class SQL_JobHelper {
+import Database.Database_Controller;
+
+public class SQL_JobHelper extends Database_Controller {
+
+	public SQL_JobHelper() {
+		this.conn = super.connectToDb();
+	}
 
 	/**
 	 * 
@@ -8,13 +14,10 @@ public class SQL_JobHelper {
 	 * @param command
 	 */
 	public String generateQuery(Object obj, String command) {
-		// TODO - implement SQL_JobHelper.generateQuery
-		throw new UnsupportedOperationException();
+		this.query = command;
+		return this.query;
 	}
 
-	public SQL_JobHelper() {
-		// TODO - implement SQL_JobHelper.SQL_JobHelper
-		throw new UnsupportedOperationException();
-	}
+
 
 }
