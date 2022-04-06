@@ -13,18 +13,26 @@ public class Customer extends User {
 	 * 
 	 * @param ID
 	 * @param contactNo
-	 * @param regular
+	 * @param regularCustomer
 	 * @param valuedCustomer
 	 */
-	public Customer(long ID, String contactNo, boolean regular, boolean valuedCustomer) {
+	public Customer(long ID, String contactNo, boolean regularCustomer, boolean valuedCustomer) {
 		super();
 		regular = false;
 		valuedCustomer = false;
 	}
 
 	public double getDiscountPlan() {
-		// TODO - implement Customer.getDiscountPlan
-		throw new UnsupportedOperationException();
+		//end price can be multiplied bt the values below for discounts depending on customer status.
+		if (regularCustomer == true && valuedCustomer == true){
+			return 0.8;
+		}else if (regularCustomer == true){
+			return 0.95;
+		}else if (valuedCustomer == true){
+			return 0.9;
+		}else{
+			return 1;
+		}
 	}
 
 	public long getCustomerID() {
