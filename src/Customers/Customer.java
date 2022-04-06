@@ -14,12 +14,12 @@ public class Customer extends User {
 	 * @param ID
 	 * @param contactNo
 	 * @param regular
-	 * @param valued
+	 * @param valuedCustomer
 	 */
-	public Customer(long ID, String contactNo, boolean regular, boolean valued) {
+	public Customer(long ID, String contactNo, boolean regular, boolean valuedCustomer) {
 		super();
-		// TODO - implement Customer.Customer
-		throw new UnsupportedOperationException();
+		regular = false;
+		valuedCustomer = false;
 	}
 
 	public double getDiscountPlan() {
@@ -29,14 +29,6 @@ public class Customer extends User {
 
 	public long getCustomerID() {
 		return this.customerID;
-	}
-
-	/**
-	 * 
-	 * @param customerID
-	 */
-	public void setCustomerID(long customerID) {
-		this.customerID = customerID;
 	}
 
 	public String getContactNumber() {
