@@ -21,8 +21,8 @@ public class AdminLoginGUI extends JFrame{
                     j.dispose();
                     AccountMenuGUI.main();
                 } else {
-                    // TO-DO implement some sort of error screen
-                    System.out.println("[DEBUG] Wrong pass");
+                    // Error pop up for wrong password
+                    JOptionPane.showMessageDialog(null, "Wrong Password!");
                 }
             }
         });
