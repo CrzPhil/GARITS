@@ -6,9 +6,10 @@ import Job.SQL_PartsHelper;
 import Job.SparePart;
 
 public class SearchResultsGUI extends JFrame{
-    private JPanel Main;
+    JPanel Main;
     private JButton returnButton;
     private JTable resultTable;
+    private JScrollPane scrollPane;
     private static SearchResultsGUI j = new SearchResultsGUI();
 
     public SearchResultsGUI() {
@@ -29,17 +30,18 @@ public class SearchResultsGUI extends JFrame{
         j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         j.setTitle("Search results");
         j.setPreferredSize(new Dimension(800,480));
+        j.Main.setOpaque(true);
         j.pack();
         j.setLocationRelativeTo(null);
         j.setVisible(true);
     }
 
-    private Object[][] prepareData(SparePart[] data) {
+    private String[][] prepareData(SparePart[] data) {
         // 7 is attribute count of a spare part
-        Object[][] out = new Object[data.length][7] ;
+        String[][] out = new String[data.length][7] ;
         int i = 0;
         for (SparePart part : data) {
-            out[i] = new Object[]{part};
+            out[i] = part.toData();
 
             ++i;
         }
@@ -58,16 +60,20 @@ public class SearchResultsGUI extends JFrame{
                 "Price"
         };
         SparePart[] data = getParts();
+
         resultTable = new JTable(prepareData(data), columnNames);
+
+        scrollPane = new JScrollPane(resultTable);
+        resultTable.setFillsViewportHeight(true);
     }
 
     private SparePart[] getParts() {
         SQL_PartsHelper helper = new SQL_PartsHelper();
+        // TODO: Get text from previous Panel and search accordingly
         return helper.getByID("'%'");
     }
 
     private void createUIComponents() {
-        // TODO: place custom component creation code here
         generateTable();
     }
 }

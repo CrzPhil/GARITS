@@ -65,6 +65,11 @@ public class SparePart {
 		this.partID = partID;
 	}
 
+	// Used when displaying Spare Parts in GUI, when creating the JTable
+	public String[] toData() {
+		return new String[]{this.partID, this.name, this.manufacturer, this.type, String.valueOf(this.year), String.valueOf(this.stock), String.valueOf(this.price)};
+	}
+
 	public boolean orderPart() {
 		// TODO - implement SparePart.orderPart
 		throw new UnsupportedOperationException();
