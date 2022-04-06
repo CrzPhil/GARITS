@@ -18,7 +18,7 @@ public class Customer extends User {
 	 */
 	public Customer(long ID, String contactNo, boolean regularCustomer, boolean valuedCustomer) {
 		super();
-		regular = false;
+		regularCustomer = false;
 		valuedCustomer = false;
 	}
 
