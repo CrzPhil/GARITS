@@ -5,7 +5,7 @@ import java.sql.*;
 public class Database_Controller implements I_Database {
 
 	protected String query;
-	protected Connection conn;
+	protected static Connection conn;
 
 	public String getQuery() {
 		return this.query;

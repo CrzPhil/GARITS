@@ -5,26 +5,28 @@ import java.util.Date;
 public class Job {
 
 	private long jobID;
-	private String name;
-	private boolean status;
+	private long customerID;
+	private String jobType;
 	private Date startDate;
 	private Date finishDate;
 	private double price;
-	private String jobDetails;
-	private SparePartsCollection partsNeed;
+	private String motNO;
+	private String parts;
 	private double duration;
+	private double mileage;
 
 	/**
-	 * 
+	 *
 	 * @param jobID
-	 * @param name
-	 * @param status
+	 * @param customerID
+	 * @param jobType
 	 * @param startDate
 	 * @param finishDate
 	 * @param price
-	 * @param jobDetails
-	 * @param partsNeed
+	 * @param motNO
+	 * @param parts
 	 * @param duration
+	 * @param mileage
 	 */
 	public Job() {
 		// TODO - implement Job.Job
@@ -42,93 +44,90 @@ public class Job {
 		throw new UnsupportedOperationException();
 	}
 
+
+
+	public void partsAvaliable() {
+		// TODO - implement Job.partsAvaliable
+		throw new UnsupportedOperationException();
+	}
 	public long getJobID() {
-		return this.jobID;
+		return jobID;
 	}
 
-	/**
-	 * 
-	 * @param jobID
-	 */
 	public void setJobID(long jobID) {
 		this.jobID = jobID;
 	}
 
-	public String getName() {
-		return this.name;
+	public long getCustomerID() {
+		return customerID;
 	}
 
-	/**
-	 * 
-	 * @param name
-	 */
-	public void setName(String name) {
-		this.name = name;
+	public void setCustomerID(long customerID) {
+		this.customerID = customerID;
 	}
 
-	public boolean getStatus() {
-		return this.status;
+	public String getJobType() {
+		return jobType;
 	}
 
-	/**
-	 * 
-	 * @param status
-	 */
-	public void setStatus(boolean status) {
-		this.status = status;
+	public void setJobType(String jobType) {
+		this.jobType = jobType;
 	}
 
 	public Date getStartDate() {
-		return this.startDate;
+		return startDate;
 	}
 
-	/**
-	 * 
-	 * @param startDate
-	 */
 	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
 	}
 
 	public Date getFinishDate() {
-		return this.finishDate;
+		return finishDate;
 	}
 
-	/**
-	 * 
-	 * @param finishDate
-	 */
 	public void setFinishDate(Date finishDate) {
 		this.finishDate = finishDate;
 	}
 
 	public double getPrice() {
-		return this.price;
+		return price;
 	}
 
-	/**
-	 * 
-	 * @param price
-	 */
 	public void setPrice(double price) {
 		this.price = price;
 	}
 
-	public String getJobDetails() {
-		return this.jobDetails;
+	public String getMotNO() {
+		return motNO;
 	}
 
-	/**
-	 * 
-	 * @param jobDetails
-	 */
-	public void setJobDetails(String jobDetails) {
-		this.jobDetails = jobDetails;
+	public void setMotNO(String motNO) {
+		this.motNO = motNO;
 	}
 
-	public void partsAvaliable() {
-		// TODO - implement Job.partsAvaliable
-		throw new UnsupportedOperationException();
+	public String getParts() {
+		return parts;
+	}
+
+	public void setParts(String parts) {
+		this.parts = parts;
+	}
+
+	public double getDuration() {
+		return duration;
+	}
+
+	public void setDuration(double duration) {
+		this.duration = duration;
+	}
+
+	public double getMileage() {
+		return mileage;
+	}
+
+	public void setMileage(double mileage) {
+		this.mileage = mileage;
 	}
 
 }

@@ -1,3 +1,5 @@
+import Job.SQL_JobHelper;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -36,6 +38,7 @@ public class CreateJobGUI extends JFrame{
         finishButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                //SQL_JobHelper.sendData();
                 j.dispose();
                 JobsMenuGUI.main();
             }
