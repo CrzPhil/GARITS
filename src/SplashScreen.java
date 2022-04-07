@@ -3,10 +3,10 @@ import java.awt.*;
 
 import static java.lang.Thread.sleep;
 
-public class SplashScreen extends JFrame{
+public class SplashScreen extends JFrame {
     private JPanel Main;
 
-    public static void main(String args[]){
+    public static void main(String args[]) {
         SplashScreen j = new SplashScreen();
         j.setContentPane(new SplashScreen().Main);
         j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
