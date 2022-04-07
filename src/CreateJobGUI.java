@@ -17,6 +17,7 @@ public class CreateJobGUI extends JFrame{
     private JTextField textField7;
     private JTextField textField8;
     private JButton finishButton;
+    private JTextArea textArea1;
     private static CreateJobGUI j = new CreateJobGUI();
 
     public CreateJobGUI() {
@@ -40,7 +41,7 @@ public class CreateJobGUI extends JFrame{
         j.setContentPane(new CreateJobGUI().Main);
         j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         j.setTitle("Job Creation Menu");
-        j.setPreferredSize(new Dimension(800,480));
+        j.setPreferredSize(new Dimension(1280,720));
         j.pack();
         j.setLocationRelativeTo(null);
         j.setVisible(true);
