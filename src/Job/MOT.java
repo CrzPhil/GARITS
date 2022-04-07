@@ -24,7 +24,7 @@ public class MOT extends Job {
 		this.pass = pass;
 	}
 
-	public long getMileage() {
+	public double getMileage() {
 		return this.mileage;
 	}
 
