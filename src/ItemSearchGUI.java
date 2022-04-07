@@ -1,7 +1,10 @@
+import Job.SQL_PartsHelper;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Objects;
 
 public class ItemSearchGUI extends JFrame {
     private JTextField txtPartName;
@@ -9,7 +12,7 @@ public class ItemSearchGUI extends JFrame {
     private JTextField txtPartType;
     private JButton searchButton1;
     private JPanel Main;
-    private JComboBox comboBox1;
+    private JComboBox typeBox;
     private JButton returnButton;
     private static ItemSearchGUI j = new ItemSearchGUI();
 
@@ -19,9 +22,15 @@ public class ItemSearchGUI extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 String partName = txtPartName.getText();
                 j.dispose();
-                SearchResultsGUI.main();
 
-               ;
+                if (!partName.equals(""))
+                    SearchResultsGUI.main(partName);
+
+                else if (!typeBox.getItemAt(typeBox.getSelectedIndex()).equals(""))
+                    SearchResultsGUI.main((String) typeBox.getItemAt(typeBox.getSelectedIndex()));
+
+                else
+                    SearchResultsGUI.main();
             }
         });
 
@@ -48,5 +57,15 @@ public class ItemSearchGUI extends JFrame {
         j.pack();
         j.setLocationRelativeTo(null);
         j.setVisible(true);
+    }
+
+
+    private void createUIComponents() {
+        SQL_PartsHelper helper = new SQL_PartsHelper();
+
+        String[] types = helper.getTypes();
+
+        typeBox = new JComboBox(types);
+
     }
 }

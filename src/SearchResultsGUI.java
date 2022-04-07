@@ -11,6 +11,8 @@ public class SearchResultsGUI extends JFrame{
     private JTable resultTable;
     private JScrollPane scrollPane;
     private static SearchResultsGUI j = new SearchResultsGUI();
+    private String partName;
+    private String typeName;
 
     public SearchResultsGUI() {
         returnButton.addActionListener(new ActionListener() {
@@ -25,8 +27,32 @@ public class SearchResultsGUI extends JFrame{
         });
     }
 
+    public SearchResultsGUI(String partName) {
+        this.partName = partName;
+
+        returnButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                j.dispose();
+                ItemSearchGUI.main();
+
+
+
+            }
+        });
+    }
+
     public static void main(){
         j.setContentPane(new SearchResultsGUI().Main);
+        createFrame();
+    }
+
+    public static void main(String partName){
+        j.setContentPane(new SearchResultsGUI(partName).Main);
+        createFrame();
+    }
+
+    private static void createFrame() {
         j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         j.setTitle("Search results");
         j.setPreferredSize(new Dimension(800,480));
@@ -70,7 +96,7 @@ public class SearchResultsGUI extends JFrame{
     private SparePart[] getParts() {
         SQL_PartsHelper helper = new SQL_PartsHelper();
         // TODO: Get text from previous Panel and search accordingly
-        return helper.getByID("'%'");
+        return helper.getPartByIdName(this.partName);
     }
 
     private void createUIComponents() {
