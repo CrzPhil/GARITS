@@ -3,7 +3,7 @@
   <grid id="27dc6" binding="Main" layout-manager="GridLayoutManager" row-count="15" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
-      <xy x="20" y="20" width="765" height="444"/>
+      <xy x="20" y="20" width="798" height="444"/>
     </constraints>
     <properties>
       <background color="-14666175"/>
@@ -20,168 +20,6 @@
           <font name="Yu Gothic UI Semibold" size="18"/>
           <foreground color="-1114625"/>
           <text value="Please Enter Required Information:"/>
-        </properties>
-      </component>
-      <component id="a8fb6" class="javax.swing.JTextField" binding="textField1" default-binding="true">
-        <constraints>
-          <grid row="9" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-            <preferred-size width="262" height="30"/>
-          </grid>
-        </constraints>
-        <properties/>
-      </component>
-      <component id="7ba99" class="javax.swing.JTextField" binding="textField2" default-binding="true">
-        <constraints>
-          <grid row="12" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-            <preferred-size width="262" height="30"/>
-          </grid>
-        </constraints>
-        <properties/>
-      </component>
-      <component id="8bf51" class="javax.swing.JTextField" binding="textField3" default-binding="true">
-        <constraints>
-          <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-            <preferred-size width="262" height="30"/>
-          </grid>
-        </constraints>
-        <properties/>
-      </component>
-      <component id="69ce3" class="javax.swing.JTextField" binding="textField4" default-binding="true">
-        <constraints>
-          <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-            <preferred-size width="262" height="30"/>
-          </grid>
-        </constraints>
-        <properties/>
-      </component>
-      <component id="6f841" class="javax.swing.JButton" binding="confirmJobTypeButton" default-binding="true">
-        <constraints>
-          <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
-            <preferred-size width="262" height="30"/>
-          </grid>
-        </constraints>
-        <properties>
-          <background color="-1114625"/>
-          <font name="Yu Gothic UI Semibold" size="14"/>
-          <foreground color="-16777216"/>
-          <text value="Confirm Job Type"/>
-        </properties>
-      </component>
-      <component id="82df7" class="javax.swing.JButton" binding="confirmJobDurationButton" default-binding="true">
-        <constraints>
-          <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
-            <preferred-size width="262" height="30"/>
-          </grid>
-        </constraints>
-        <properties>
-          <background color="-1114625"/>
-          <font name="Yu Gothic UI Semibold" size="14"/>
-          <foreground color="-16777216"/>
-          <text value="Confirm Job Duration"/>
-        </properties>
-      </component>
-      <component id="8b2e8" class="javax.swing.JButton" binding="confirmJobPriceButton" default-binding="true">
-        <constraints>
-          <grid row="10" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
-            <preferred-size width="262" height="30"/>
-          </grid>
-        </constraints>
-        <properties>
-          <background color="-1114625"/>
-          <font name="Yu Gothic UI Semibold" size="14"/>
-          <foreground color="-16777216"/>
-          <text value="Confirm Job Price"/>
-        </properties>
-      </component>
-      <component id="25d82" class="javax.swing.JButton" binding="confirmJobDatesButton" default-binding="true">
-        <constraints>
-          <grid row="13" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
-            <preferred-size width="262" height="30"/>
-          </grid>
-        </constraints>
-        <properties>
-          <background color="-1114625"/>
-          <font name="Yu Gothic UI Semibold" size="14"/>
-          <foreground color="-16777216"/>
-          <text value="Confirm Job Dates"/>
-        </properties>
-      </component>
-      <component id="e3fe4" class="javax.swing.JTextField" binding="textField5" default-binding="true">
-        <constraints>
-          <grid row="3" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-            <preferred-size width="262" height="30"/>
-          </grid>
-        </constraints>
-        <properties/>
-      </component>
-      <component id="f04e0" class="javax.swing.JTextField" binding="textField6" default-binding="true">
-        <constraints>
-          <grid row="6" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-            <preferred-size width="262" height="30"/>
-          </grid>
-        </constraints>
-        <properties>
-          <text value=""/>
-        </properties>
-      </component>
-      <component id="b1a9c" class="javax.swing.JTextField" binding="textField7" default-binding="true">
-        <constraints>
-          <grid row="9" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-            <preferred-size width="262" height="30"/>
-          </grid>
-        </constraints>
-        <properties/>
-      </component>
-      <component id="9cb8d" class="javax.swing.JTextField" binding="textField8" default-binding="true">
-        <constraints>
-          <grid row="11" column="3" row-span="2" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="3" indent="0" use-parent-layout="false">
-            <preferred-size width="262" height="30"/>
-          </grid>
-        </constraints>
-        <properties/>
-      </component>
-      <component id="f53bf" class="javax.swing.JButton" binding="confirmMileageButton" default-binding="true">
-        <constraints>
-          <grid row="10" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <background color="-1114625"/>
-          <font name="Yu Gothic UI Semibold" size="14"/>
-          <foreground color="-16777216"/>
-          <text value="Confirm Mileage"/>
-        </properties>
-      </component>
-      <component id="41add" class="javax.swing.JButton" binding="addDetailsButton" default-binding="true">
-        <constraints>
-          <grid row="13" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <background color="-1114625"/>
-          <font name="Yu Gothic UI Semibold" size="14"/>
-          <foreground color="-16777216"/>
-          <text value="Add Details"/>
-        </properties>
-      </component>
-      <component id="3abd6" class="javax.swing.JButton" binding="confirmMOTTestNumberButton" default-binding="true">
-        <constraints>
-          <grid row="7" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <background color="-1114625"/>
-          <font name="Yu Gothic UI Semibold" size="14"/>
-          <foreground color="-16777216"/>
-          <text value="Confirm MOT Test Number (If Needed)"/>
-        </properties>
-      </component>
-      <component id="cf88a" class="javax.swing.JButton" binding="confirmRequiredPartsIfButton" default-binding="true">
-        <constraints>
-          <grid row="4" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <background color="-1114625"/>
-          <font name="Yu Gothic UI Semibold" size="14"/>
-          <foreground color="-16777216"/>
-          <text value="Confirm Required Parts (If Needed)"/>
         </properties>
       </component>
       <hspacer id="ef1d5">
@@ -211,7 +49,7 @@
           <background color="-1114625"/>
           <font name="Yu Gothic UI Semibold" size="12"/>
           <foreground color="-16777216"/>
-          <text value="Return"/>
+          <text value="Cancel and Return"/>
         </properties>
       </component>
       <vspacer id="4f147">
@@ -269,7 +107,163 @@
           <background color="-1114625"/>
           <font name="Yu Gothic UI Semibold" size="12"/>
           <foreground color="-16777216"/>
-          <text value="Finish"/>
+          <text value="Confirm and Finish"/>
+        </properties>
+      </component>
+      <component id="8bf51" class="javax.swing.JTextField" binding="textField3" default-binding="true">
+        <constraints>
+          <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="262" height="30"/>
+          </grid>
+        </constraints>
+        <properties/>
+      </component>
+      <component id="e61ee" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-1114625"/>
+          <font name="Yu Gothic UI Semibold" size="14"/>
+          <foreground color="-1114625"/>
+          <text value="Job Type"/>
+        </properties>
+      </component>
+      <component id="69ce3" class="javax.swing.JTextField" binding="textField4" default-binding="true">
+        <constraints>
+          <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="262" height="30"/>
+          </grid>
+        </constraints>
+        <properties/>
+      </component>
+      <component id="fdb9d" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-1114625"/>
+          <font name="Yu Gothic UI Semibold" size="14"/>
+          <foreground color="-1114625"/>
+          <text value="Job Duration"/>
+        </properties>
+      </component>
+      <component id="a8fb6" class="javax.swing.JTextField" binding="textField1" default-binding="true">
+        <constraints>
+          <grid row="10" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="262" height="30"/>
+          </grid>
+        </constraints>
+        <properties/>
+      </component>
+      <component id="2feb4" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="9" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-1114625"/>
+          <font name="Yu Gothic UI Semibold" size="14"/>
+          <foreground color="-1114625"/>
+          <text value="Job Price"/>
+        </properties>
+      </component>
+      <component id="7ba99" class="javax.swing.JTextField" binding="textField2" default-binding="true">
+        <constraints>
+          <grid row="13" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="262" height="30"/>
+          </grid>
+        </constraints>
+        <properties/>
+      </component>
+      <component id="6be09" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="12" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-1114625"/>
+          <font name="Yu Gothic UI Semibold" size="14"/>
+          <foreground color="-1114625"/>
+          <text value="Job Dates"/>
+        </properties>
+      </component>
+      <component id="e3fe4" class="javax.swing.JTextField" binding="textField5" default-binding="true">
+        <constraints>
+          <grid row="4" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="262" height="30"/>
+          </grid>
+        </constraints>
+        <properties/>
+      </component>
+      <component id="4beb1" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="3" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-1114625"/>
+          <font name="Yu Gothic UI Semibold" size="14"/>
+          <foreground color="-1114625"/>
+          <text value="Required Parts (If Needed)"/>
+        </properties>
+      </component>
+      <component id="f04e0" class="javax.swing.JTextField" binding="textField6" default-binding="true">
+        <constraints>
+          <grid row="7" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="262" height="30"/>
+          </grid>
+        </constraints>
+        <properties>
+          <text value=""/>
+        </properties>
+      </component>
+      <component id="a3b81" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="6" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-1"/>
+          <font name="Yu Gothic UI Semibold" size="14"/>
+          <foreground color="-1114625"/>
+          <text value="MOT Test Number (If Needed)"/>
+        </properties>
+      </component>
+      <component id="b1a9c" class="javax.swing.JTextField" binding="textField7" default-binding="true">
+        <constraints>
+          <grid row="10" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="262" height="30"/>
+          </grid>
+        </constraints>
+        <properties/>
+      </component>
+      <component id="e2c43" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="9" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-1114625"/>
+          <font name="Yu Gothic UI Semibold" size="14"/>
+          <foreground color="-1114625"/>
+          <text value="Mileage"/>
+        </properties>
+      </component>
+      <component id="9cb8d" class="javax.swing.JTextField" binding="textField8" default-binding="true">
+        <constraints>
+          <grid row="12" column="3" row-span="2" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="3" indent="0" use-parent-layout="false">
+            <preferred-size width="262" height="30"/>
+          </grid>
+        </constraints>
+        <properties>
+          <text value=""/>
+        </properties>
+      </component>
+      <component id="5894b" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="11" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-1114625"/>
+          <font name="Yu Gothic UI Semibold" size="14"/>
+          <foreground color="-1114625"/>
+          <text value="Additional Details"/>
         </properties>
       </component>
     </children>
