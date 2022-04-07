@@ -1,7 +1,12 @@
+import Accounts.SQL_UserHelper;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 public class LoginGUI extends JFrame{
     public JPanel Main;
@@ -18,13 +23,55 @@ public class LoginGUI extends JFrame{
 
                 String username = txtUsername.getText();
                 String password = String.valueOf(txtPassword.getPassword());
-                j.dispose();
-                MainMenuGUI.main();
+
+                if (checkCredentials(username, password)) {
+                    j.dispose();
+                    MainMenuGUI.main();
+                } else {
+                    // Error pop up for wrong password
+                    JOptionPane.showMessageDialog(null, "Wrong Password!");
+                }
 
             }
         });
 
     }
+
+    // TODO: Inspired by https://www.baeldung.com/sha-256-hashing-java
+    private String byteToString(byte[] bytes) {
+        StringBuilder hexStr = new StringBuilder(2 * bytes.length);
+        for (byte i : bytes) {
+            String hex = Integer.toHexString(0xff & i);
+            if (hex.length() == 1)
+                hexStr.append('0');
+            hexStr.append(hex);
+        }
+        return hexStr.toString();
+    }
+
+    // Passwords are sha-256 encoded in the database
+    private String stringtosha256(String text) {
+        try {
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            byte[] encodedhash = digest.digest(text.getBytes(StandardCharsets.UTF_8));
+            return byteToString(encodedhash);
+
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    private boolean checkCredentials(String username, String password) {
+        SQL_UserHelper helper = new SQL_UserHelper();
+        boolean login = helper.compareCredentials(username, stringtosha256(password));
+
+        helper.closeConnection();
+
+        return login;
+    }
+
     public static void main(){
 
         j.setContentPane(new LoginGUI().Main);

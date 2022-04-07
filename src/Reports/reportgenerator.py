@@ -2,6 +2,11 @@ import datetime
 import mysql.connector
 from weasyprint import HTML
 
+'''
+weasyprint dependency:
+https://stackoverflow.com/questions/63449770/oserror-cannot-load-library-gobject-2-0-error-0x7e
+'''
+
 def connect():
     """ Connect to MySQL database """
     conn = None

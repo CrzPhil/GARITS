@@ -23,28 +23,26 @@ public class SQL_UserHelper extends Database_Controller {
 	}
 
 	// Might be unnecessary
-	public void getByName(String fname, String lname) {
-		System.out.println("Querying user " + fname + " " + lname + " ... ");
-		String qur = String.format("SELECT * FROM Staff WHERE firstName LIKE '%s' OR lastName LIKE '%s'", fname, lname);
+	public boolean compareCredentials(String username, String password) {
+		String qur = String.format("SELECT Count(*) AS Count FROM Staff WHERE username LIKE '%s' AND password LIKE '%s'", username, password);
+
+		boolean login = false;
 
 		try {
 			Statement st = conn.createStatement();
 			ResultSet rs = st.executeQuery(qur);
-			while (rs.next()) {
-				int s = rs.getInt("staffID");
-				String f = rs.getString("firstName");
-				String l = rs.getString("lastName");
-				String r = rs.getString("role");
-				String u = rs.getString("username");
-				String p = rs.getString("password");
-				int h = rs.getInt("hourlyRate");
-				System.out.println("");
-				System.out.println(f + " " + l + " " + r + " " + u + " " + p + " " + h);
-			}
+
+			rs.next();
+
+			login = rs.getInt("Count") == 1;
+
+			st.close();
 			rs.close();
 		} catch (SQLException ex) {
 			System.err.println(ex.getMessage());
 		}
+
+		return login;
 	}
 
 	public User[] getByRole(String role) {
