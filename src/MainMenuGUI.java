@@ -11,6 +11,7 @@ public class MainMenuGUI extends JFrame{
     private JButton accountManagementButton;
     private JButton logOutButton;
     private JLabel ImageLogo;
+    private JButton customerAccountManagementButton;
     private static MainMenuGUI j = new MainMenuGUI();
 
     public MainMenuGUI() {
@@ -47,6 +48,13 @@ public class MainMenuGUI extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 j.dispose();
                 ReportsMenuGUI.main();
+            }
+        });
+        customerAccountManagementButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                j.dispose();
+                FranchiseeLoginGUI.main();
             }
         });
     }

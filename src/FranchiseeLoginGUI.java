@@ -3,23 +3,23 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class AdminLoginGUI extends JFrame{
+public class FranchiseeLoginGUI extends JFrame{
     private JPanel Main;
     private JButton enterButton;
     private JTextField txtUsername;
     private JPasswordField txtPassword;
     private JButton returnButton;
-    private static AdminLoginGUI j = new AdminLoginGUI();
+    private static FranchiseeLoginGUI j = new FranchiseeLoginGUI();
 
-    public AdminLoginGUI() {
+    public FranchiseeLoginGUI() {
         enterButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
                 String password = String.valueOf(txtPassword.getPassword());
-                if (password.equals("adminpass")) {
+                if (password.equals("franchiseepass")) {
                     j.dispose();
-                    UserAccountMenuGUI.main();
+                    CustomerAccountMenuGUI.main();
                 } else {
                     // Error pop up for wrong password
                     JOptionPane.showMessageDialog(null, "Wrong Password!");
@@ -35,7 +35,7 @@ public class AdminLoginGUI extends JFrame{
         });
     }
     public static void main(){
-        j.setContentPane(new AdminLoginGUI().Main);
+        j.setContentPane(new FranchiseeLoginGUI().Main);
         j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         j.setTitle("Please Enter Credentials.");
         j.setPreferredSize(new Dimension(1280, 720));
