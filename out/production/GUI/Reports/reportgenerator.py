@@ -1,11 +1,7 @@
 import datetime
 import mysql.connector
 from weasyprint import HTML
-
-'''
-weasyprint dependency:
-https://stackoverflow.com/questions/63449770/oserror-cannot-load-library-gobject-2-0-error-0x7e
-'''
+import inspect, os.path
 
 def connect():
     """ Connect to MySQL database """
@@ -22,7 +18,7 @@ def connect():
         print(e)
 
     return conn
-    
+
 
 class SparePart:
     def __init__(self, code, name, manuf, type, year, price, stock ) -> None:
@@ -108,9 +104,9 @@ def generateRow(parts):
                     <td>{part[2]}</td>
                     <td>{part[3]}</td>
                     <td>{part[4]}</td>
+                    <td>£{part[6]}</td>
                     <td>{part[5]}</td>
-                    <td>{part[6]}</td>
-                </tr>""" 
+                </tr>"""
     return out
 
 
@@ -118,17 +114,21 @@ def main():
     conn = connect()
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM SpareParts")
-    
+
     entries = []
     for row in cursor:
         entries.append(row)
-    
+
     mid = generateRow(entries)
 
-    with open("report.html", "w") as f:
+    cpath = os.path.dirname(__file__)
+
+    fname = datetime.date.today()
+
+    with open(f"{cpath}/report.html", "w") as f:
         f.write(head+mid+tail)
-    
-    HTML('report.html').write_pdf('report.pdf')
+
+    HTML('report.html').write_pdf(f'{cpath}/{fname}-report.pdf')
 
 
 if __name__ == "__main__":

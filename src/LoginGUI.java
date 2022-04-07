@@ -24,9 +24,20 @@ public class LoginGUI extends JFrame{
                 String username = txtUsername.getText();
                 String password = String.valueOf(txtPassword.getPassword());
 
+                // Credential checker verifies if username corresponds to hashed version of the password
                 if (checkCredentials(username, password)) {
+                    String role = getRole(username);
                     j.dispose();
-                    MainMenuGUI.main();
+
+                    // Different roles have access to different parts of GARITS
+                    switch (role) {
+                        case "Administrator":
+                            UserAccountMenuGUI.main();
+                            break;
+                        default:
+                            MainMenuGUI.main();
+                            break;
+                    }
                 } else {
                     // Error pop up for wrong password
                     JOptionPane.showMessageDialog(null, "Wrong Password!");
@@ -63,13 +74,26 @@ public class LoginGUI extends JFrame{
         return null;
     }
 
+    // Helper function to check credentials
     private boolean checkCredentials(String username, String password) {
         SQL_UserHelper helper = new SQL_UserHelper();
         boolean login = helper.compareCredentials(username, stringtosha256(password));
 
+        // Cannot instantly return from helper function, as helper has to be closed first.
         helper.closeConnection();
 
         return login;
+    }
+
+    // Get the role of a given username
+    private String getRole(String username) {
+        SQL_UserHelper helper = new SQL_UserHelper();
+        String role = helper.getRole(username);
+
+        // Cannot instantly return from helper function, as helper has to be closed first.
+        helper.closeConnection();
+
+        return role;
     }
 
     public static void main(){
