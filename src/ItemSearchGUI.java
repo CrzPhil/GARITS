@@ -21,7 +21,7 @@ public class ItemSearchGUI extends JFrame {
                 j.dispose();
                 SearchResultsGUI.main();
 
-               ;
+
             }
         });
 
@@ -30,13 +30,6 @@ public class ItemSearchGUI extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 j.dispose();
                 MainMenuGUI.main();
-            }
-        });
-        searchButton1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                j.dispose();
-                SearchResultsGUI.main();
             }
         });
     }
