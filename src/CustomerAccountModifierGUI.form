@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="CustomerAccountModifierGUI">
+  <grid id="27dc6" binding="Main" layout-manager="GridLayoutManager" row-count="12" column-count="9" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="0" left="0" bottom="0" right="0"/>
+    <constraints>
+      <xy x="20" y="20" width="660" height="401"/>
+    </constraints>
+    <properties>
+      <background color="-14666175"/>
+      <foreground color="-14666175"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <component id="db94c" class="javax.swing.JButton" binding="modifyCustomerEmailButton" default-binding="true">
+        <constraints>
+          <grid row="3" column="6" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-1"/>
+          <font name="Yu Gothic UI Semibold" size="14"/>
+          <foreground color="-16777216"/>
+          <text value="Modify Customer Email"/>
+        </properties>
+      </component>
+      <component id="643f4" class="javax.swing.JButton" binding="modifyCustomerAddressButton" default-binding="true">
+        <constraints>
+          <grid row="4" column="6" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-1"/>
+          <font name="Yu Gothic UI Semibold" size="14"/>
+          <foreground color="-16777216"/>
+          <text value="Modify Customer Address"/>
+        </properties>
+      </component>
+      <component id="4ca07" class="javax.swing.JButton" binding="modifyCustomerNumberplateSButton" default-binding="true">
+        <constraints>
+          <grid row="5" column="5" row-span="1" col-span="3" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-1114625"/>
+          <font name="Yu Gothic UI Semibold" size="14"/>
+          <foreground color="-16777216"/>
+          <text value="Modify Customer Numberplate(s)"/>
+        </properties>
+      </component>
+      <hspacer id="be74e">
+        <constraints>
+          <grid row="11" column="1" row-span="1" col-span="7" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+      </hspacer>
+      <component id="a1769" class="javax.swing.JButton" binding="modifyCustomerNameButton" default-binding="true">
+        <constraints>
+          <grid row="2" column="5" row-span="1" col-span="3" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-1114625"/>
+          <font name="Yu Gothic UI Semibold" size="14"/>
+          <foreground color="-16777216"/>
+          <text value="Modify Customer Name"/>
+        </properties>
+      </component>
+      <component id="3f7a1" class="javax.swing.JButton" binding="modifyCustomerIDButton" default-binding="true">
+        <constraints>
+          <grid row="1" column="6" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-1114625"/>
+          <font name="Yu Gothic UI Semibold" size="14"/>
+          <foreground color="-16777216"/>
+          <text value="Modify Customer ID"/>
+        </properties>
+      </component>
+      <component id="14158" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="0" column="1" row-span="1" col-span="6" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font name="Yu Gothic UI Semibold" size="24"/>
+          <foreground color="-1"/>
+          <text value="Customer ID : 1240 ; John Barry"/>
+        </properties>
+      </component>
+      <component id="23a61" class="javax.swing.JTextField" binding="textField1" default-binding="true">
+        <constraints>
+          <grid row="1" column="1" row-span="1" col-span="4" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties/>
+      </component>
+      <component id="a9afe" class="javax.swing.JTextField" binding="textField2" default-binding="true">
+        <constraints>
+          <grid row="2" column="1" row-span="1" col-span="4" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties/>
+      </component>
+      <component id="20afc" class="javax.swing.JTextField" binding="textField3" default-binding="true">
+        <constraints>
+          <grid row="3" column="1" row-span="1" col-span="4" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties/>
+      </component>
+      <component id="c4c10" class="javax.swing.JTextField" binding="textField4" default-binding="true">
+        <constraints>
+          <grid row="4" column="1" row-span="1" col-span="4" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties/>
+      </component>
+      <component id="f1d82" class="javax.swing.JTextField" binding="textField5" default-binding="true">
+        <constraints>
+          <grid row="5" column="1" row-span="1" col-span="4" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties/>
+      </component>
+      <component id="52aa1" class="javax.swing.JButton" binding="returnButton" default-binding="true">
+        <constraints>
+          <grid row="0" column="8" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-1114625"/>
+          <font name="Yu Gothic UI Semibold" size="14"/>
+          <foreground color="-16777216"/>
+          <text value="Return"/>
+        </properties>
+      </component>
+      <hspacer id="a79ab">
+        <constraints>
+          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+      </hspacer>
+      <component id="b6883" class="javax.swing.JTextField" binding="textField6" default-binding="true">
+        <constraints>
+          <grid row="6" column="1" row-span="1" col-span="4" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties/>
+      </component>
+      <component id="5423" class="javax.swing.JTextField" binding="textField7" default-binding="true">
+        <constraints>
+          <grid row="7" column="1" row-span="1" col-span="4" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties/>
+      </component>
+      <component id="19886" class="javax.swing.JButton" binding="modifyCarSButton" default-binding="true">
+        <constraints>
+          <grid row="6" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-1114625"/>
+          <font name="Yu Gothic UI Semibold" size="14"/>
+          <foreground color="-16777216"/>
+          <text value="Modify Car(s)"/>
+        </properties>
+      </component>
+      <component id="42860" class="javax.swing.JButton" binding="modifyFaxButton" default-binding="true">
+        <constraints>
+          <grid row="7" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-1114625"/>
+          <font name="Yu Gothic UI Semibold" size="14"/>
+          <foreground color="-16777216"/>
+          <text value="Modify Fax"/>
+        </properties>
+      </component>
+      <component id="e0de8" class="javax.swing.JTextField" binding="textField8" default-binding="true">
+        <constraints>
+          <grid row="8" column="1" row-span="1" col-span="4" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties/>
+      </component>
+      <component id="531ee" class="javax.swing.JButton" binding="modifyDateIssuedButton" default-binding="true">
+        <constraints>
+          <grid row="8" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-1"/>
+          <font name="Yu Gothic UI Semibold" size="14"/>
+          <foreground color="-16777216"/>
+          <text value="Modify Date Issued"/>
+        </properties>
+      </component>
+      <component id="c9ca3" class="javax.swing.JCheckBox" binding="regularCustomerCheckBox" default-binding="true">
+        <constraints>
+          <grid row="10" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-1114625"/>
+          <font name="Yu Gothic UI Semibold" size="14"/>
+          <foreground color="-16777216"/>
+          <text value="Regular Customer"/>
+        </properties>
+      </component>
+      <component id="8327e" class="javax.swing.JCheckBox" binding="valuedCustomerCheckBox" default-binding="true">
+        <constraints>
+          <grid row="10" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-1"/>
+          <font name="Yu Gothic UI Semibold" size="14"/>
+          <foreground color="-16777216"/>
+          <text value="Valued Customer"/>
+        </properties>
+      </component>
+      <component id="2947" class="javax.swing.JTextField" binding="textField9" default-binding="true">
+        <constraints>
+          <grid row="9" column="1" row-span="1" col-span="4" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties/>
+      </component>
+      <component id="b39ce" class="javax.swing.JButton" binding="modifyDiscountButton" default-binding="true">
+        <constraints>
+          <grid row="9" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-1114625"/>
+          <font name="Yu Gothic UI Semibold" size="14"/>
+          <foreground color="-16777216"/>
+          <text value="Modify Discount"/>
+        </properties>
+      </component>
+    </children>
+  </grid>
+</form>

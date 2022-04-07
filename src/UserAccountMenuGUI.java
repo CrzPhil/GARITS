@@ -7,14 +7,14 @@ import java.awt.event.ActionListener;
 import Accounts.SQL_UserHelper;
 import Accounts.User;
 
-public class AccountMenuGUI extends JFrame{
+public class UserAccountMenuGUI extends JFrame{
     private JPanel Main;
     private JButton returnButton;
     private JButton modifyAccountButton;
     private JTree UserAccounts;
-    private static final AccountMenuGUI j = new AccountMenuGUI();
+    private static final UserAccountMenuGUI j = new UserAccountMenuGUI();
 
-    public AccountMenuGUI() {
+    public UserAccountMenuGUI() {
         returnButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -26,7 +26,7 @@ public class AccountMenuGUI extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 j.dispose();
-                AccountModifierGUI.main();
+                UserAccountModifierGUI.main();
             }
         });
     }
@@ -55,9 +55,9 @@ public class AccountMenuGUI extends JFrame{
     }
 
     public static void main(){
-        j.setContentPane(new AccountMenuGUI().Main);
+        j.setContentPane(new UserAccountMenuGUI().Main);
         j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        j.setTitle("Account Library");
+        j.setTitle("User Account Library");
         j.setPreferredSize(new Dimension(800, 480));
         j.pack();
         j.setLocationRelativeTo(null);
