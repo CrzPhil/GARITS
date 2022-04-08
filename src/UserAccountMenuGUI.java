@@ -12,6 +12,7 @@ public class UserAccountMenuGUI extends JFrame{
     private JButton logoutButton;
     private JButton modifyAccountButton;
     private JTree UserAccounts;
+    private JButton createButton;
     private static final UserAccountMenuGUI j = new UserAccountMenuGUI();
 
     public UserAccountMenuGUI() {
@@ -27,6 +28,14 @@ public class UserAccountMenuGUI extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 j.dispose();
                 UserAccountModifierGUI.main();
+            }
+        });
+
+        createButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                j.dispose();
+                UserAccountCreationGUI.main();
             }
         });
     }
