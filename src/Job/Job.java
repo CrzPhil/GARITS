@@ -4,34 +4,43 @@ import java.util.Date;
 
 public class Job {
 
-	private long jobID;
-	private long customerID;
+
+
+	private int jobID;
 	private String jobType;
-	private Date startDate;
-	private Date finishDate;
-	private double price;
+	private String dates;
+	private float price;
 	private String motNO;
 	private String parts;
-	private double duration;
+	private float duration;
 	private double mileage;
+	private String requiredParts;
+	private String additionalInfo;
 
 	/**
 	 *
 	 * @param jobID
-	 * @param customerID
 	 * @param jobType
-	 * @param startDate
-	 * @param finishDate
+	 * @param dates
 	 * @param price
-	 * @param motNO
+	 * @param motNo
 	 * @param parts
 	 * @param duration
 	 * @param mileage
+	 * @param requiredParts
+	 * @param additionalInfo
 	 */
-	public Job() {
-		// TODO - implement Job.Job
-		System.out.println("Default Constructor");
-		throw new UnsupportedOperationException();
+	public Job(int jobID, String jobType, float duration, String dates, String parts, String motNo, int mileage, float price, String requiredParts, String additionalInfo) {
+		this.jobID = jobID;
+		this.jobType = jobType;
+		this.duration = duration;
+		this.dates = dates;
+		this.parts = parts;
+		this.motNO = motNo;
+		this.mileage = mileage;
+		this.price = price;
+		this.requiredParts = requiredParts;
+		this.additionalInfo = additionalInfo;
 	}
 
 	public void update_on_job() {
@@ -50,20 +59,9 @@ public class Job {
 		// TODO - implement Job.partsAvaliable
 		throw new UnsupportedOperationException();
 	}
-	public long getJobID() {
+
+	public int getJobID() {
 		return jobID;
-	}
-
-	public void setJobID(long jobID) {
-		this.jobID = jobID;
-	}
-
-	public long getCustomerID() {
-		return customerID;
-	}
-
-	public void setCustomerID(long customerID) {
-		this.customerID = customerID;
 	}
 
 	public String getJobType() {
@@ -74,27 +72,19 @@ public class Job {
 		this.jobType = jobType;
 	}
 
-	public Date getStartDate() {
-		return startDate;
+	public String getDates() {
+		return dates;
 	}
 
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
+	public void setDates(String dates) {
+		this.dates = dates;
 	}
 
-	public Date getFinishDate() {
-		return finishDate;
-	}
-
-	public void setFinishDate(Date finishDate) {
-		this.finishDate = finishDate;
-	}
-
-	public double getPrice() {
+	public float getPrice() {
 		return price;
 	}
 
-	public void setPrice(double price) {
+	public void setPrice(float price) {
 		this.price = price;
 	}
 
@@ -114,11 +104,11 @@ public class Job {
 		this.parts = parts;
 	}
 
-	public double getDuration() {
+	public float getDuration() {
 		return duration;
 	}
 
-	public void setDuration(double duration) {
+	public void setDuration(float duration) {
 		this.duration = duration;
 	}
 
@@ -128,6 +118,22 @@ public class Job {
 
 	public void setMileage(double mileage) {
 		this.mileage = mileage;
+	}
+
+	public String getRequiredParts() {
+		return requiredParts;
+	}
+
+	public void setRequiredParts(String requiredParts) {
+		this.requiredParts = requiredParts;
+	}
+
+	public String getAdditionalInfo() {
+		return additionalInfo;
+	}
+
+	public void setAdditionalInfo(String additionalInfo) {
+		this.additionalInfo = additionalInfo;
 	}
 
 }
