@@ -57,7 +57,7 @@ public class JobDetailsGUI extends JFrame{
     // TODO: Registration Number ?
     private void createUIComponents() {
         if (job != null) {
-            jobIDField = new JTextField(job.getJobID());
+            jobIDField = new JTextField(String.valueOf(job.getJobID()));
             statusField = new JTextField(job.getStatus());
             typeField = new JTextField(job.getJobType());
             priceField = new JTextField(String.valueOf(job.getPrice()));
