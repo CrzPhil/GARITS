@@ -14,6 +14,10 @@ public class JobDetailsGUI extends JFrame{
     private JTextField textField6;
     private JTextField textField7;
     private JTextField textField8;
+    private JTextField textField9;
+    private JTextField textField10;
+    private JTextArea textArea1;
+    private JButton saveChangesButton;
     private static JobDetailsGUI j = new JobDetailsGUI();
 
     public JobDetailsGUI() {

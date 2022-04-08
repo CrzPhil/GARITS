@@ -8,7 +8,6 @@ public class JobsMenuGUI extends JFrame{
     private JButton viewJobsButton;
     private JButton createJobsButton;
     private JButton returnButton;
-    private JButton createBookingButton;
     private static JobsMenuGUI j = new JobsMenuGUI();
 
     public JobsMenuGUI() {
@@ -31,13 +30,6 @@ public class JobsMenuGUI extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 j.dispose();
                 CreateJobGUI.main();
-            }
-        });
-        createBookingButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                j.dispose();
-                CreateBookingGUI.main();
             }
         });
     }

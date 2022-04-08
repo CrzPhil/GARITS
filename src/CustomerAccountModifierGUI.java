@@ -42,7 +42,7 @@ public class CustomerAccountModifierGUI extends JFrame{
         j.setContentPane(new CustomerAccountModifierGUI().Main);
         j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         j.setTitle("Making Account Changes");
-        j.setPreferredSize(new Dimension(800, 480));
+        j.setPreferredSize(new Dimension(800, 600));
         j.pack();
         j.setLocationRelativeTo(null);
         j.setVisible(true);
