@@ -16,7 +16,7 @@
           <grid row="0" column="1" row-span="1" col-span="2" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
       </hspacer>
-      <component id="314f0" class="javax.swing.JTextField" binding="textField1" default-binding="true">
+      <component id="314f0" class="javax.swing.JTextField" binding="jobIDField" custom-create="true">
         <constraints>
           <grid row="3" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -24,7 +24,7 @@
         </constraints>
         <properties/>
       </component>
-      <component id="84a15" class="javax.swing.JTextField" binding="textField2" default-binding="true">
+      <component id="84a15" class="javax.swing.JTextField" binding="statusField" custom-create="true">
         <constraints>
           <grid row="5" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -32,7 +32,7 @@
         </constraints>
         <properties/>
       </component>
-      <component id="a973f" class="javax.swing.JTextField" binding="textField3" default-binding="true">
+      <component id="a973f" class="javax.swing.JTextField" binding="typeField" custom-create="true">
         <constraints>
           <grid row="8" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -40,7 +40,7 @@
         </constraints>
         <properties/>
       </component>
-      <component id="e84a1" class="javax.swing.JTextField" binding="textField4" default-binding="true">
+      <component id="e84a1" class="javax.swing.JTextField" binding="durationField" custom-create="true">
         <constraints>
           <grid row="10" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -135,7 +135,7 @@
           <text value="Price"/>
         </properties>
       </component>
-      <component id="9cb" class="javax.swing.JTextField" binding="textField5" default-binding="true">
+      <component id="9cb" class="javax.swing.JTextField" binding="priceField" custom-create="true">
         <constraints>
           <grid row="3" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -154,7 +154,7 @@
           <text value="Dates"/>
         </properties>
       </component>
-      <component id="e720e" class="javax.swing.JTextField" binding="textField6" default-binding="true">
+      <component id="e720e" class="javax.swing.JTextField" binding="dateField" custom-create="true">
         <constraints>
           <grid row="5" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -173,7 +173,7 @@
           <text value="Required Parts"/>
         </properties>
       </component>
-      <component id="9a1f8" class="javax.swing.JTextField" binding="textField7" default-binding="true">
+      <component id="9a1f8" class="javax.swing.JTextField" binding="requiredPartsField" custom-create="true">
         <constraints>
           <grid row="8" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -192,7 +192,7 @@
           <text value="Mileage"/>
         </properties>
       </component>
-      <component id="f2de9" class="javax.swing.JTextField" binding="textField8" default-binding="true">
+      <component id="f2de9" class="javax.swing.JTextField" binding="mileageField" custom-create="true">
         <constraints>
           <grid row="10" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -247,7 +247,7 @@
           <grid row="5" column="8" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
         </constraints>
       </vspacer>
-      <component id="47d4b" class="javax.swing.JTextField" binding="textField9" default-binding="true">
+      <component id="47d4b" class="javax.swing.JTextField" binding="motField" custom-create="true">
         <constraints>
           <grid row="3" column="6" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -255,7 +255,7 @@
         </constraints>
         <properties/>
       </component>
-      <component id="4e20d" class="javax.swing.JTextField" binding="textField10" default-binding="true">
+      <component id="4e20d" class="javax.swing.JTextField" binding="regNoField" custom-create="true">
         <constraints>
           <grid row="5" column="6" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -300,7 +300,7 @@
           <grid row="0" column="8" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
       </hspacer>
-      <component id="f337a" class="javax.swing.JTextArea" binding="textArea1" default-binding="true">
+      <component id="f337a" class="javax.swing.JTextArea" binding="additionalField">
         <constraints>
           <grid row="8" column="6" row-span="3" col-span="2" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="50"/>

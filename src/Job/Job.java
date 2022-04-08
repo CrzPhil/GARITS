@@ -16,6 +16,7 @@ public class Job {
 	private double mileage;
 	private String requiredParts;
 	private String additionalInfo;
+	private String status;
 
 	/**
 	 *
@@ -41,11 +42,20 @@ public class Job {
 		this.price = price;
 		this.requiredParts = requiredParts;
 		this.additionalInfo = additionalInfo;
+		this.status = "Incomplete";
 	}
 
     public Job() {
 
     }
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
 
 	@Override
 	public String toString() {

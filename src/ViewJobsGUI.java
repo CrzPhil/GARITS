@@ -2,6 +2,8 @@ import Job.Job;
 import Job.Job_Controller;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,6 +15,7 @@ public class ViewJobsGUI extends JFrame{
     private JList jobList;
     private JLabel titleLabel;
     private static ViewJobsGUI j = new ViewJobsGUI();
+    private Job selectedJob = null;
 
     public ViewJobsGUI() {
         returnButton.addActionListener(new ActionListener() {
@@ -25,8 +28,13 @@ public class ViewJobsGUI extends JFrame{
         detailsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                j.dispose();
-                JobDetailsGUI.main();
+                if (selectedJob != null) {
+                    j.dispose();
+                    // Pass the job to the next GUI
+                    JobDetailsGUI.main(selectedJob);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Select a job first!");
+                }
             }
         });
     }
@@ -51,8 +59,20 @@ public class ViewJobsGUI extends JFrame{
             jobModel.addElement(job);
         }
 
+        // Specify jobList
         jobList = new JList<>(jobModel);
         jobList.setFixedCellHeight(80);
         jobList.setFont(new Font("monospaced", Font.PLAIN, 18));
+        jobList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+        // Listener for when an item is selected
+        jobList.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if (!e.getValueIsAdjusting()) {
+                    selectedJob = (Job) jobList.getSelectedValue();
+                }
+            }
+        });
     }
 }
