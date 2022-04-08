@@ -9,17 +9,17 @@ import Accounts.User;
 
 public class UserAccountMenuGUI extends JFrame{
     private JPanel Main;
-    private JButton returnButton;
+    private JButton logoutButton;
     private JButton modifyAccountButton;
     private JTree UserAccounts;
     private static final UserAccountMenuGUI j = new UserAccountMenuGUI();
 
     public UserAccountMenuGUI() {
-        returnButton.addActionListener(new ActionListener() {
+        logoutButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 j.dispose();
-                MainMenuGUI.main();
+                LoginGUI.main();
             }
         });
         modifyAccountButton.addActionListener(new ActionListener() {
