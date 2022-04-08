@@ -1,3 +1,4 @@
+import Accounts.HashClass;
 import Accounts.SQL_UserHelper;
 
 import javax.swing.*;
@@ -48,36 +49,11 @@ public class LoginGUI extends JFrame{
 
     }
 
-    // TODO: Inspired by https://www.baeldung.com/sha-256-hashing-java
-    private String byteToString(byte[] bytes) {
-        StringBuilder hexStr = new StringBuilder(2 * bytes.length);
-        for (byte i : bytes) {
-            String hex = Integer.toHexString(0xff & i);
-            if (hex.length() == 1)
-                hexStr.append('0');
-            hexStr.append(hex);
-        }
-        return hexStr.toString();
-    }
-
-    // Passwords are sha-256 encoded in the database
-    private String stringtosha256(String text) {
-        try {
-            MessageDigest digest = MessageDigest.getInstance("SHA-256");
-            byte[] encodedhash = digest.digest(text.getBytes(StandardCharsets.UTF_8));
-            return byteToString(encodedhash);
-
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
-
-        return null;
-    }
-
     // Helper function to check credentials
     private boolean checkCredentials(String username, String password) {
         SQL_UserHelper helper = new SQL_UserHelper();
-        boolean login = helper.compareCredentials(username, stringtosha256(password));
+        HashClass hasher = new HashClass();
+        boolean login = helper.compareCredentials(username, hasher.stringtosha256(password));
 
         // Cannot instantly return from helper function, as helper has to be closed first.
         helper.closeConnection();

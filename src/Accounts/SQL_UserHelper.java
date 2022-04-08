@@ -45,7 +45,7 @@ public class SQL_UserHelper extends Database_Controller {
 		return login;
 	}
 
-	// Get the role of a username
+	// Get the role of a username -> used for privileges
 	public String getRole(String username) {
 		String qur = String.format("SELECT role FROM Staff WHERE username LIKE '%s'", username);
 		String role = null;
@@ -150,8 +150,8 @@ public class SQL_UserHelper extends Database_Controller {
 
 	// Matches First name, last name, username for easy recognition; returns full name
 	public String getStaff(String any) {
-		String getsize = String.format("SELECT COUNT(*) AS Count FROM Staff FROM Staff WHERE firstName LIKE '%s' OR lastName LIKE '%s' OR username LIKE '%s' OR ", any, any, any);
-		String qur = String.format("SELECT firstName, lastName FROM Staff WHERE firstName LIKE '%s' OR lastName LIKE '%s' OR username LIKE '%s' OR ", any, any, any);
+		String getsize = String.format("SELECT COUNT(*) AS Count FROM Staff WHERE firstName LIKE '%s' OR lastName LIKE '%s' OR username LIKE '%s'", any, any, any);
+		String qur = String.format("SELECT firstName, lastName FROM Staff WHERE firstName LIKE '%s' OR lastName LIKE '%s' OR username LIKE '%s'", any, any, any);
 
 		return getStaffName(getsize, qur);
 	}
@@ -177,6 +177,8 @@ public class SQL_UserHelper extends Database_Controller {
 			String name = null;
 
 			rs = st.executeQuery(qur);
+
+			rs.next();
 
 			if (size == 1) {
 				name = rs.getString("firstName") + " ";
