@@ -47,7 +47,7 @@
           <background color="-1"/>
           <font name="Yu Gothic UI Semibold" size="14"/>
           <foreground color="-16777216"/>
-          <text value="Details"/>
+          <text value="View Job"/>
         </properties>
       </component>
     </children>
