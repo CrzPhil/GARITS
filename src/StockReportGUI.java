@@ -2,7 +2,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class StockReportGUI extends JFrame{
     private JPanel Main;
@@ -21,8 +23,25 @@ public class StockReportGUI extends JFrame{
         generateReportButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                j.dispose();
-                ReportsMenuGUI.main();
+                try {
+                    // Current working directory
+                    String cdir = System.getProperty("user.dir");
+
+                    // Python process
+                    ProcessBuilder pb = new ProcessBuilder("python3", cdir + "/src/Reports/reportgenerator.py");
+                    Process p = pb.start();
+
+                    // DEBUG ONLY
+                    // BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
+                    // System.out.println(in.readLine());
+
+                    // TODO: New panel/frame displaying the report image
+
+                } catch (Exception ignore) {
+                    JOptionPane.showMessageDialog(null, "Something went wrong. Contact your administrator.");
+                }
+                // j.dispose();
+                // ReportsMenuGUI.main();
             }
         });
     }
