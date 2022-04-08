@@ -34,7 +34,8 @@ public class CreateJobGUI extends JFrame{
         textField4.addKeyListener(new KeyAdapter() {
             public void keyTyped(KeyEvent e) {
                 char c = e.getKeyChar();
-                if ( ((c < '0') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE)) {
+                System.out.println("DEBUG: " + c);
+                if ((c < '0' || c > '9') && c != KeyEvent.VK_BACK_SPACE) {
                     e.consume();  // if it's not a number, ignore the event
                     JOptionPane.showMessageDialog(null, "Numbers Only!");
                 }
@@ -51,6 +52,7 @@ public class CreateJobGUI extends JFrame{
             }
         });
 
+        // TODO: allow decimals
         textField1.addKeyListener(new KeyAdapter() {
             public void keyTyped(KeyEvent e) {
                 char c = e.getKeyChar();
