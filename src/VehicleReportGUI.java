@@ -24,8 +24,9 @@ public class VehicleReportGUI extends JFrame{
         generateReportButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                j.dispose();
-                ReportsMenuGUI.main();
+               /* j.dispose();
+                ReportsMenuGUI.main(); */
+                DisplayReportGUI.main();
             }
         });
     }
