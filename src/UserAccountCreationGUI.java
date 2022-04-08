@@ -45,7 +45,10 @@ public class UserAccountCreationGUI extends JFrame {
 
                 if (digestInfo(rate, username, pass, confirmpass, mail, role)) {
                     // Create account + add to database
+                    Accounts_Controller controller = new Accounts_Controller();
+                    controller.createUser(fname, lname, username, pass, role, mail, rate);
 
+                    // Success popup
                     JOptionPane.showMessageDialog(null, "Account created successfully!");
 
                     j.dispose();
@@ -55,6 +58,7 @@ public class UserAccountCreationGUI extends JFrame {
         });
     }
 
+    // Method to validate user input; mostly regex, one query to the database to check for the username
     private boolean digestInfo(String rate, String username, char[] pass, char[] confirmpass, String mail, String role) {
         Accounts_Controller controller = new Accounts_Controller();
 
@@ -63,6 +67,7 @@ public class UserAccountCreationGUI extends JFrame {
             return false;
         }
 
+        // Check if username is taken
         if (!checkForUsername(username)) {
             JOptionPane.showMessageDialog(null, "Username already exists!");
             return false;

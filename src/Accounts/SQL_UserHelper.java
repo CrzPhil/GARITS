@@ -96,7 +96,7 @@ public class SQL_UserHelper extends Database_Controller {
 						name = rs.getString("firstName") + " " + rs.getString("lastName");
 						out[i] = new Administrator(rs.getInt("staffID"),
 								rs.getString("username"),
-								null, //rs.getString("email"),
+								null, // We don't store Staff emails in DB
 								rs.getString("password"),
 								name,
 								rs.getInt("hourlyrate"));
@@ -106,7 +106,7 @@ public class SQL_UserHelper extends Database_Controller {
 						name = rs.getString("firstName") + " " + rs.getString("lastName");
 						out[i] = new Franchisee(rs.getInt("staffID"),
 								rs.getString("username"),
-								null, //rs.getString("email"),
+								null, // We don't store Staff emails in DB
 								rs.getString("password"),
 								name);
 					}
@@ -115,7 +115,7 @@ public class SQL_UserHelper extends Database_Controller {
 						name = rs.getString("firstName") + " " + rs.getString("lastName");
 						out[i] = new Mechanic(rs.getInt("staffID"),
 								rs.getString("username"),
-								null, //rs.getString("email"),
+								null, // We don't store Staff emails in DB
 								rs.getString("password"),
 								name);
 					}
@@ -124,7 +124,7 @@ public class SQL_UserHelper extends Database_Controller {
 						name = rs.getString("firstName") + " " + rs.getString("lastName");
 						out[i] = new ForePerson(rs.getInt("staffID"),
 								rs.getString("username"),
-								null, //rs.getString("email"),
+								null, // We don't store Staff emails in DB
 								rs.getString("password"),
 								name);
 					}
@@ -133,7 +133,7 @@ public class SQL_UserHelper extends Database_Controller {
 						name = rs.getString("firstName") + " " + rs.getString("lastName");
 						out[i] = new Receptionist(rs.getInt("staffID"),
 								rs.getString("username"),
-								null, //rs.getString("email"),
+								null, // We don't store Staff emails in DB
 								rs.getString("password"),
 								name);
 					}
@@ -162,6 +162,52 @@ public class SQL_UserHelper extends Database_Controller {
 		String qur = String.format("SELECT firstName, lastName FROM Staff WHERE staffID LIKE %d", staffID);
 
 		return getStaffName(getsize, qur);
+	}
+
+	// Get ID by username
+	public long getID(String username) {
+		String qur = String.format("SELECT staffID FROM Staff WHERE username LIKE '%s'", username);
+
+		try {
+			Statement st = conn.createStatement();
+			ResultSet rs = st.executeQuery(qur);
+
+			rs.next();
+
+			long id = rs.getLong("staffID");
+
+			rs.close();
+			st.close();
+
+			return id;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return 0;
+		}
+	}
+
+	// Get Hashed pass by username
+	public String getPass(String username) {
+		String qur = String.format("SELECT password FROM Staff WHERE username LIKE '%s'", username);
+
+		try {
+			Statement st = conn.createStatement();
+			ResultSet rs = st.executeQuery(qur);
+
+			rs.next();
+
+			String hashedpass = rs.getString("password");
+
+			rs.close();
+			st.close();
+
+			return hashedpass;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	private String getStaffName(String getsize, String qur) {
@@ -193,6 +239,27 @@ public class SQL_UserHelper extends Database_Controller {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
+		}
+	}
+
+	// Create a Staff account in the database
+	public void createStaff(String fname, String lname, String username, char[] password, String role, String rate) {
+		HashClass hasher = new HashClass();
+		String hashedpass = hasher.chartosha256(password);
+
+		String qur = String.format("INSERT INTO Staff(firstName, lastName, role, username, password, hourlyRate) VALUES('%s','%s','%s','%s', '%s', %d)",
+				fname,
+				lname,
+				role,
+				username,
+				hashedpass,
+				Integer.valueOf(rate));
+
+		try {
+			Statement st = conn.createStatement();
+			st.executeUpdate(qur);
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 	}
 

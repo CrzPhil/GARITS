@@ -1,33 +1,75 @@
 package Accounts;
 
-import Accounts.*;
-
 import java.util.Arrays;
 import java.util.LinkedHashSet;
-import java.util.Map;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Accounts_Controller implements I_Accounts {
+	private final SQL_UserHelper helper = new SQL_UserHelper();
+	private final UserCollection collection = new UserCollection();
 
-	/**
-	 *  @param userID
-	 * @param username
-	 * @param email
-	 * @param password
-	 * @param name
-	 * @return
-	 */
-	public Accounts.User createUser(long userID, String username, String email, String password, String name) {
-		return new User(userID, username, email, password, name);
+	public User createUser(String fname, String lname, String username, char[] password, String role, String mail, String rate) {
+		// Create the user in the Database
+		helper.createStaff(fname, lname, username, password, role, rate);
+		long staffID;
+		String hashpass;
+
+		switch (role) {
+			case "Administrator" -> {
+				// Query DB for ID & hashed pass
+				staffID = helper.getID(username);
+				hashpass = helper.getPass(username);
+
+				// Create a local object & store object in collection
+				collection.addItem(staffID, new Administrator(staffID, username, null, hashpass, fname + " " + lname, Integer.parseInt(rate)));
+			}
+			case "Franchisee" -> {
+				// Query DB for ID & hashed pass
+				staffID = helper.getID(username);
+				hashpass = helper.getPass(username);
+
+				// Create a local object & store object in collection
+				collection.addItem(staffID, new Franchisee(staffID, username, null, hashpass, fname + " " + lname));
+			}
+			case "Mechanic" -> {
+				// Query DB for ID & hashed pass
+				staffID = helper.getID(username);
+				hashpass = helper.getPass(username);
+
+				// Create a local object & store object in collection
+				collection.addItem(staffID, new Mechanic(staffID, username, null, hashpass, fname + " " + lname));
+			}
+			case "Receptionist" -> {
+				// Query DB for ID & hashed pass
+				staffID = helper.getID(username);
+				hashpass = helper.getPass(username);
+
+				// Create a local object & store object in collection
+				collection.addItem(staffID, new Receptionist(staffID, username, null, hashpass, fname + " " + lname));
+			}
+			case "Foreperson" -> {
+				// Query DB for ID & hashed pass
+				staffID = helper.getID(username);
+				hashpass = helper.getPass(username);
+
+				// Create a local object & store object in collection
+				collection.addItem(staffID, new ForePerson(staffID, username, null, hashpass, fname + " " + lname));
+			}
+			default -> {
+			}
+		}
+
+		helper.closeConnection();
+		return null;
 	}
 
 	/**
 	 * 
 	 * @param userID
 	 */
-	public Accounts.User modifyAccount(long userID) {
+	public User modifyAccount(long userID) {
 		// TODO - implement Accounts_Controller.modifyAccount
 		throw new UnsupportedOperationException();
 	}
@@ -98,7 +140,7 @@ public class Accounts_Controller implements I_Accounts {
 
 	// Simple price matcher (float with 2 digits behind the comma)
 	public boolean validateRate(String rate) {
-		String rateRegex = "^\\d+(,\\d{1,2})?$";
+		String rateRegex = "^[1-9]\\d*$";
 		return checkRegex(rateRegex, rate);
 	}
 }

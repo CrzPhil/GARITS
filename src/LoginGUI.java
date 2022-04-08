@@ -30,7 +30,7 @@ public class LoginGUI extends JFrame{
                     String role = getRole(username);
                     j.dispose();
 
-                    // Different roles have access to different parts of GARITS
+                    // TODO: Different roles have access to different parts of GARITS
                     switch (role) {
                         case "Administrator":
                             UserAccountMenuGUI.main();
