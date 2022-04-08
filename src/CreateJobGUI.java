@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class CreateJobGUI extends JFrame{
     private JPanel Main;
@@ -28,6 +30,37 @@ public class CreateJobGUI extends JFrame{
                 JobsMenuGUI.main();
             }
         });
+
+        textField4.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent e) {
+                char c = e.getKeyChar();
+                if ( ((c < '0') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE)) {
+                    e.consume();  // if it's not a number, ignore the event
+                    JOptionPane.showMessageDialog(null, "Numbers Only!");
+                }
+            }
+        });
+
+        textField7.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent e) {
+                char c = e.getKeyChar();
+                if ( ((c < '0') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE)) {
+                    e.consume();  // if it's not a number, ignore the event
+                    JOptionPane.showMessageDialog(null, "Numbers Only!");
+                }
+            }
+        });
+
+        textField1.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent e) {
+                char c = e.getKeyChar();
+                if ( ((c < '0') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE)) {
+                    e.consume();  // if it's not a number, ignore the event
+                    JOptionPane.showMessageDialog(null, "Numbers Only!");
+                }
+            }
+        });
+
         finishButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -42,16 +75,6 @@ public class CreateJobGUI extends JFrame{
                 float price = Float.parseFloat(textField1.getText());
                 String requiredParts = textField5.getText();
                 String additionalInfo = textArea1.getText();
-
-                System.out.println(jobType);
-                System.out.println(duration);
-                System.out.println(dates);
-                System.out.println(parts);
-                System.out.println(motNo);
-                System.out.println(mileage);
-                System.out.println(price);
-                System.out.println(requiredParts);
-                System.out.println(additionalInfo);
 
                 sqlJob.sendData(jobType, duration, dates, parts, motNo, mileage, price, requiredParts, additionalInfo);
                 j.dispose();
