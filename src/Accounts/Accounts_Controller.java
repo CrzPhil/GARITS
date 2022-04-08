@@ -13,8 +13,7 @@ public class Accounts_Controller implements I_Accounts {
 	 * @return
 	 */
 	public Accounts.User createUser(long userID, String username, String email, String password, String name) {
-		// TODO - implement Accounts_Controller.createUser
-		throw new UnsupportedOperationException();
+		return new User(userID, username, email, password, name);
 	}
 
 	/**
@@ -27,12 +26,20 @@ public class Accounts_Controller implements I_Accounts {
 	}
 
 	/**
-	 * 
+	 * Delete user (staff) from Database
 	 * @param userID
 	 */
 	public boolean removeAccount(long userID) {
-		// TODO - implement Accounts_Controller.removeAccount
-		throw new UnsupportedOperationException();
+		SQL_UserHelper helper = new SQL_UserHelper();
+		boolean userDeleted = false;
+
+		if (helper.getStaff(userID) != null) {
+			helper.deleteStaff(userID);
+		}
+
+		helper.closeConnection();
+
+		return userDeleted;
 	}
 
 	/**

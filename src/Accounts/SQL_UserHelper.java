@@ -22,6 +22,7 @@ public class SQL_UserHelper extends Database_Controller {
 		return this.query;
 	}
 
+	// Authentication function
 	public boolean compareCredentials(String username, String password) {
 		String qur = String.format("SELECT Count(*) AS Count FROM Staff WHERE username LIKE '%s' AND password LIKE '%s'", username, password);
 
@@ -43,7 +44,6 @@ public class SQL_UserHelper extends Database_Controller {
 
 		return login;
 	}
-
 
 	// Get the role of a username
 	public String getRole(String username) {
@@ -67,6 +67,7 @@ public class SQL_UserHelper extends Database_Controller {
 		return role;
 	}
 
+	// Get a user by role
 	public User[] getByRole(String role) {
 		String getsize = String.format("SELECT COUNT(*) AS Count FROM Staff WHERE role LIKE '%s'", role);
 		String qur = String.format("SELECT * FROM Staff WHERE role LIKE '%s'", role);
@@ -147,4 +148,61 @@ public class SQL_UserHelper extends Database_Controller {
 		return out;
 	}
 
+	// Matches First name, last name, username for easy recognition; returns full name
+	public String getStaff(String any) {
+		String getsize = String.format("SELECT COUNT(*) AS Count FROM Staff FROM Staff WHERE firstName LIKE '%s' OR lastName LIKE '%s' OR username LIKE '%s' OR ", any, any, any);
+		String qur = String.format("SELECT firstName, lastName FROM Staff WHERE firstName LIKE '%s' OR lastName LIKE '%s' OR username LIKE '%s' OR ", any, any, any);
+
+		return getStaffName(getsize, qur);
+	}
+
+	// Get Staff by ID
+	public String getStaff(long staffID) {
+		String getsize = String.format("SELECT COUNT(*) AS Count FROM Staff FROM Staff WHERE staffID LIKE %d", staffID);
+		String qur = String.format("SELECT firstName, lastName FROM Staff WHERE staffID LIKE %d", staffID);
+
+		return getStaffName(getsize, qur);
+	}
+
+	private String getStaffName(String getsize, String qur) {
+		try {
+			Statement st = conn.createStatement();
+			ResultSet rs = st.executeQuery(getsize);
+
+			// Get count for the returned rows to match the array to that size (WIP)
+			rs.next();
+			int size = rs.getInt("Count");
+			rs.close();
+
+			String name = null;
+
+			rs = st.executeQuery(qur);
+
+			if (size == 1) {
+				name = rs.getString("firstName") + " ";
+				name += rs.getString("lastName");
+			}
+
+			rs.close();
+			st.close();
+
+			return name;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	public void deleteStaff(long userID) {
+			String qur = String.format("DELETE FROM Staff WHERE staffID LIKE '%d'", userID);
+			try {
+				Statement st = conn.createStatement();
+				st.executeUpdate(qur);
+				st.close();
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 }
