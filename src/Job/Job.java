@@ -43,6 +43,15 @@ public class Job {
 		this.additionalInfo = additionalInfo;
 	}
 
+    public Job() {
+
+    }
+
+	@Override
+	public String toString() {
+		return this.jobID + "    " + this.dates + "    " + this.jobType + "    ￡" + this.price;
+	}
+
 	public void update_on_job() {
 		// TODO - implement Job.update_on_job
 		throw new UnsupportedOperationException();

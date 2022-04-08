@@ -23,7 +23,7 @@ public class SQL_JobHelper extends Database_Controller {
 	}
 
 	public Job[] sendData(String jobType, float duration, String dates, String parts, String motNO, int mileage, float price, String requiredParts, String additionalInfo){
-		String sendJob = String.format("INSERT INTO Jobs (jobType, duration, dates, parts, motNo, mileage, price, requiredParts, additionalInfo)");
+		String sendJob = "INSERT INTO Jobs (jobType, duration, dates, parts, motNo, mileage, price, requiredParts, additionalInfo)";
 		String sendValues = String.format(" VALUES ('%s', '%f', '%s', '%s', '%s', '%d', '%f', '%s', '%s')", jobType, duration, dates, parts, motNO, mileage, price, requiredParts, additionalInfo);
 		Job[] out = null;
 
@@ -39,25 +39,25 @@ public class SQL_JobHelper extends Database_Controller {
 		return out;
 	}
 
+	// Get all jobs from database
 	public Job[] getJobs() {
 		Job[] out = null;
 
-		String sizequr = "SELECT COUNT(DISTINCT vehicleType) AS Count FROM SpareParts";
-		String qur = String.format("SELECT DISTINCT * FROM Jobs");
+		String sizequr = "SELECT COUNT(*) AS Count FROM Jobs";
+		String qur = "SELECT * FROM Jobs";
 
 		try {
 			Statement st = conn.createStatement();
-			ResultSet rs = st.executeQuery(qur);
+			ResultSet rs = st.executeQuery(sizequr);
 
 			// Get count for returned rows
 			rs.next();
 			int size = rs.getInt("Count");
 			rs.close();
 
-			// We add one entry for the default Select value in the GUI, in case the user wants to search
 			out = new Job[size];
 
-			// Get spare parts
+			// Get Job
 			rs = st.executeQuery(qur);
 
 			int i = 0;
