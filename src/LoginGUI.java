@@ -33,7 +33,7 @@ public class LoginGUI extends JFrame{
                     // TODO: Different roles have access to different parts of GARITS
                     switch (role) {
                         case "Administrator":
-                            UserAccountMenuGUI.main();
+                            AdminDashboardGUI.main();
                             break;
                         default:
                             MainMenuGUI.main();

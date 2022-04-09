@@ -28,7 +28,7 @@ public class UserAccountMenuGUI extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 j.dispose();
-                LoginGUI.main();
+                AdminDashboardGUI.main();
             }
         });
         modifyAccountButton.addActionListener(new ActionListener() {

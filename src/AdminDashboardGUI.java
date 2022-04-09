@@ -1,25 +1,52 @@
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.FileInputStream;
 
-public class AdminMainMenuGUI extends JFrame{
+public class AdminDashboardGUI extends JFrame{
     private JButton usersButton;
     private JPanel Main;
     private JButton databaseButton;
     private JLabel titleLabel;
     private JLabel usersLabel;
     private JLabel databaseLabel;
-    public static AdminMainMenuGUI j = new AdminMainMenuGUI();
+    private JButton logOutButton;
+    public static AdminDashboardGUI j = new AdminDashboardGUI();
 
     public static void main() {
-        j.setContentPane(new AdminMainMenuGUI().Main);
+        j.setContentPane(new AdminDashboardGUI().Main);
         j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         j.setTitle("Admin Dashboard");
         j.setPreferredSize(new Dimension(1280,720));
         j.pack();
         j.setLocationRelativeTo(null);
         j.setVisible(true);
+    }
+
+    public AdminDashboardGUI() {
+        usersButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                j.dispose();
+                UserAccountMenuGUI.main();
+            }
+        });
+        databaseButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                j.dispose();
+                ManageDatabaseGUI.main();
+            }
+        });
+        logOutButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                j.dispose();
+                LoginGUI.main();
+            }
+        });
     }
 
     private void createUIComponents() {

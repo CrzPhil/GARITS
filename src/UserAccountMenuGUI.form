@@ -60,7 +60,7 @@
           <background color="-1"/>
           <font name="Yu Gothic UI Semibold" size="12"/>
           <foreground color="-16777216"/>
-          <text value="Log Out"/>
+          <text value="Return"/>
         </properties>
       </component>
       <component id="9d280" class="javax.swing.JButton" binding="createButton">

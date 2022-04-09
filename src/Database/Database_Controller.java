@@ -1,6 +1,8 @@
 package Database;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.sql.*;
 
 public class Database_Controller implements I_Database {
@@ -55,7 +57,12 @@ public class Database_Controller implements I_Database {
 		}
 	}
 
-	// Method to create a backup of the current database state
+	/**
+	 * Method to create a backup of the current database state.
+	 * For backing up & restoration we use mysqldump, which comes with MySQL.
+	 * This has to be installed on the Admin's system in order to handle backups.
+	 * @return If backup was successful
+	 */
 	public boolean backupDatabase() {
 		// Current directory
 		String cdir = System.getProperty("user.dir");
@@ -63,8 +70,9 @@ public class Database_Controller implements I_Database {
 
 		try {
 			// TODO: Windows/Version-specific
-			String cmd = "C:/Program Files/MySQL/MySQL Server 8.0/mysqldump.exe -uGARITS -pG@R!T$$$ -h176.58.124.119 GARITS > " +
-					cdir + "/src/Database/Backups/" + filename;
+			String cmd = "C:\\Program Files\\MySQL\\MySQL Server 8.0\\bin\\mysqldump.exe -uGARITS -pG@R!T$$$ -h176.58.124.119 GARITS > " +
+					cdir + "\\src\\Database\\Backups\\" + filename;
+			System.out.println(cmd);
 			Runtime rt = Runtime.getRuntime();
 			rt.exec(cmd);
 			return true;
@@ -83,20 +91,28 @@ public class Database_Controller implements I_Database {
 		}
 	}
 
-	// Restore/Rollback database to file
+	/**
+	 * Method to restore the database to a previous backup's state.
+	 * For restoration we use mysql.
+	 * This has to be installed on the Admin's system in order to handle backups.
+	 * @return If rollback was successful
+	 */
 	public boolean restoreDatabase(String filePath) {
-		// Current directory
-		String cdir = System.getProperty("user.dir");
-
 		try {
 			// TODO: Windows/Version-specific
-			String cmd = "C:/Program Files/MySQL/MySQL Server 8.0/mysqldump.exe -uGARITS -pG@R!T$$$ -h176.58.124.119 GARITS < " + filePath;
-			Runtime rt = Runtime.getRuntime();
-			rt.exec(cmd);
-			return true;
+			String[] cmd = {"cmd", "/c", "\"C:\\Program Files\\MySQL\\MySQL Server 8.0\\bin\\mysql.exe\"", "-uGARITS", "-pG@R!T$$$", "-h176.58.124.119", "GARITS", "<", filePath};
+
+			ProcessBuilder pb = new ProcessBuilder(cmd);
+			pb.redirectErrorStream(true);
+			Process pr = pb.start();
+
+			pr.waitFor();
+			// 0 means success, anything else means it failed
+			return pr.exitValue() == 0;
+
 		} catch (Exception e) {
 			// Linux/Mac specific; MySQL has to be installed.
-			String cmd = "mysqldump -uGARITS -pG@R!T$$$ -h176.58.124.119 GARITS < " + filePath;
+			String cmd = "/bin/sh -c mysql -uGARITS -pG@R!T$$$ -h176.58.124.119 GARITS < " + filePath;
 			Runtime rt = Runtime.getRuntime();
 			try {
 				rt.exec(cmd);
