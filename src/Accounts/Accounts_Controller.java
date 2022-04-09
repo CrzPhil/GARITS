@@ -85,6 +85,7 @@ public class Accounts_Controller implements I_Accounts {
 
 		if (helper.getStaff(userID) != null) {
 			helper.deleteStaff(userID);
+			userDeleted = true;
 		}
 
 		helper.closeConnection();

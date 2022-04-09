@@ -158,8 +158,8 @@ public class SQL_UserHelper extends Database_Controller {
 
 	// Get Staff by ID
 	public String getStaff(long staffID) {
-		String getsize = String.format("SELECT COUNT(*) AS Count FROM Staff FROM Staff WHERE staffID LIKE %d", staffID);
-		String qur = String.format("SELECT firstName, lastName FROM Staff WHERE staffID LIKE %d", staffID);
+		String getsize = String.format("SELECT COUNT(*) AS Count FROM Staff WHERE staffID = %d", staffID);
+		String qur = String.format("SELECT firstName, lastName FROM Staff WHERE staffID = %d", staffID);
 
 		return getStaffName(getsize, qur);
 	}
@@ -264,7 +264,7 @@ public class SQL_UserHelper extends Database_Controller {
 	}
 
 	public void deleteStaff(long userID) {
-			String qur = String.format("DELETE FROM Staff WHERE staffID LIKE '%d'", userID);
+			String qur = String.format("DELETE FROM Staff WHERE staffID = %d", userID);
 			try {
 				Statement st = conn.createStatement();
 				st.executeUpdate(qur);

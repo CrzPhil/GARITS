@@ -20,7 +20,7 @@ public class UserAccountMenuGUI extends JFrame{
     private JTree UserAccounts;
     private JButton createButton;
     private JLabel titleLabel;
-    private Administrator selectedAccount;
+    private User selectedAccount;
     private static final UserAccountMenuGUI j = new UserAccountMenuGUI();
 
     public UserAccountMenuGUI() {
@@ -35,9 +35,8 @@ public class UserAccountMenuGUI extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (selectedAccount != null) {
-                    UserAccountModifierGUI.main();
                     j.dispose();
-                    UserAccountModifierGUI.main();
+                    UserAccountModifierGUI.main(selectedAccount);
                 } else {
                     JOptionPane.showMessageDialog(null, "Select an account first!");
                 }
@@ -65,7 +64,14 @@ public class UserAccountMenuGUI extends JFrame{
         UserAccounts.addTreeSelectionListener(new TreeSelectionListener() {
             @Override
             public void valueChanged(TreeSelectionEvent e) {
-                selectedAccount = (Administrator) e.getSource();
+                DefaultMutableTreeNode node = (DefaultMutableTreeNode) UserAccounts.getLastSelectedPathComponent();
+                if (node == null) {
+                    return;
+                }
+                // Only leaf nodes are accounts
+                // TODO: If a superclass has no leaf nodes, we get an error w/o crash
+                if (node.isLeaf() && node.getUserObject() != null)
+                    selectedAccount = (User) node.getUserObject();
             }
         });
     }
