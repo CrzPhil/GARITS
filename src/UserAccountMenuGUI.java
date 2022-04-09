@@ -1,9 +1,15 @@
 import javax.swing.*;
+import javax.swing.event.TreeSelectionEvent;
+import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeCellEditor;
+import javax.swing.tree.DefaultTreeCellRenderer;
+import javax.swing.tree.TreeSelectionModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import Accounts.Administrator;
 import Accounts.SQL_UserHelper;
 import Accounts.User;
 
@@ -13,6 +19,8 @@ public class UserAccountMenuGUI extends JFrame{
     private JButton modifyAccountButton;
     private JTree UserAccounts;
     private JButton createButton;
+    private JLabel titleLabel;
+    private Administrator selectedAccount;
     private static final UserAccountMenuGUI j = new UserAccountMenuGUI();
 
     public UserAccountMenuGUI() {
@@ -26,8 +34,13 @@ public class UserAccountMenuGUI extends JFrame{
         modifyAccountButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                j.dispose();
-                UserAccountModifierGUI.main();
+                if (selectedAccount != null) {
+                    UserAccountModifierGUI.main();
+                    j.dispose();
+                    UserAccountModifierGUI.main();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Select an account first!");
+                }
             }
         });
 
@@ -44,6 +57,17 @@ public class UserAccountMenuGUI extends JFrame{
         DefaultMutableTreeNode top = new DefaultMutableTreeNode("Users");
         createNodes(top);
         UserAccounts = new JTree(top);
+        UserAccounts.setRowHeight(40);
+        UserAccounts.setFont(new Font("Yu Gothic UI", Font.PLAIN, 14));
+        UserAccounts.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
+
+        // Store selected account
+        UserAccounts.addTreeSelectionListener(new TreeSelectionListener() {
+            @Override
+            public void valueChanged(TreeSelectionEvent e) {
+                selectedAccount = (Administrator) e.getSource();
+            }
+        });
     }
 
     private void createNodes(DefaultMutableTreeNode top) {
