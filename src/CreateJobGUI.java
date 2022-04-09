@@ -61,10 +61,9 @@ public class CreateJobGUI extends JFrame{
                     String motNo = motField.getText();
                     int mileage = Integer.parseInt(mileageField.getText());
                     float price = Float.parseFloat(priceField.getText());
-                    String requiredParts = partsField.getText();
                     String additionalInfo = detailsField.getText();
 
-                    sqlJob.sendData(jobType, duration, dates, parts, motNo, mileage, price, requiredParts, additionalInfo);
+                    sqlJob.sendData(jobType, duration, dates, parts, motNo, mileage, price, additionalInfo);
                     j.dispose();
                     JobsMenuGUI.main();
                 }

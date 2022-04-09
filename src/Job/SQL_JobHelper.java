@@ -22,14 +22,38 @@ public class SQL_JobHelper extends Database_Controller {
 		return this.query;
 	}
 
-	public Job[] sendData(String jobType, float duration, String dates, String parts, String motNO, int mileage, float price, String requiredParts, String additionalInfo){
-		String sendJob = "INSERT INTO Jobs (jobType, duration, dates, parts, motNo, mileage, price, requiredParts, additionalInfo)";
-		String sendValues = String.format(" VALUES ('%s', '%f', '%s', '%s', '%s', '%d', '%f', '%s', '%s')", jobType, duration, dates, parts, motNO, mileage, price, requiredParts, additionalInfo);
+	// Update all values in row by jobID
+	public boolean updateJob(long jobID, String jobType, float duration, String dates, String parts, String motNO, int mileage, float price, String additionalInfo) {
+		// Update Row with new values
+		String updateRow = String.format("UPDATE Jobs SET jobType = '%s', duration = %f, dates = '%s', parts = '%s', motNo = '%s', mileage = %d, price = %f, additionalInfo = '%s' WHERE jobID = %d",
+				jobType,
+				duration,
+				dates,
+				parts,
+				motNO,
+				mileage,
+				price,
+				additionalInfo,
+				jobID);
+		System.out.println("deb " + updateRow);
+		try {
+			Statement st = conn.createStatement();
+			st.executeUpdate(updateRow);
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	// TODO: Modify type
+	public Job[] sendData(String jobType, float duration, String dates, String parts, String motNO, int mileage, float price, String additionalInfo){
+		String sendJob = "INSERT INTO Jobs (jobType, duration, dates, parts, motNo, mileage, price, additionalInfo)";
+		String sendValues = String.format(" VALUES ('%s', '%f', '%s', '%s', '%s', '%d', '%f', '%s', '%s')", jobType, duration, dates, parts, motNO, mileage, price, additionalInfo);
 		Job[] out = null;
 
 		try {
 			Statement st = conn.createStatement();
-			System.out.println("cas");
 			st.executeUpdate(sendJob + sendValues);
 
 		} catch (SQLException ex) {
@@ -43,7 +67,8 @@ public class SQL_JobHelper extends Database_Controller {
 	public Job[] getJobs() {
 		Job[] out = null;
 
-		String sizequr = "SELECT COUNT(*) AS Count FROM Jobs";
+		// Order Jobs, starting from the most recent so it's listed at the top in the gui
+		String sizequr = "SELECT COUNT(*) AS Count FROM Jobs ORDER BY jobID DESC";
 		String qur = "SELECT * FROM Jobs";
 
 		try {
@@ -72,7 +97,6 @@ public class SQL_JobHelper extends Database_Controller {
 						rs.getString("motNo"),
 						rs.getInt("mileage"),
 						rs.getFloat("price"),
-						rs.getString("requiredParts"),
 						rs.getString("additionalInfo")
 				);
 				i++;

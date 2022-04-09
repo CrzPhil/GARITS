@@ -1,7 +1,5 @@
 package Job;
 
-import java.util.Date;
-
 public class Job {
 
 
@@ -13,8 +11,7 @@ public class Job {
 	private String motNO;
 	private String parts;
 	private float duration;
-	private double mileage;
-	private String requiredParts;
+	private int mileage;
 	private String additionalInfo;
 	private String status;
 
@@ -28,10 +25,9 @@ public class Job {
 	 * @param parts
 	 * @param duration
 	 * @param mileage
-	 * @param requiredParts
 	 * @param additionalInfo
 	 */
-	public Job(int jobID, String jobType, float duration, String dates, String parts, String motNo, int mileage, float price, String requiredParts, String additionalInfo) {
+	public Job(int jobID, String jobType, float duration, String dates, String parts, String motNo, int mileage, float price, String additionalInfo) {
 		this.jobID = jobID;
 		this.jobType = jobType;
 		this.duration = duration;
@@ -40,7 +36,6 @@ public class Job {
 		this.motNO = motNo;
 		this.mileage = mileage;
 		this.price = price;
-		this.requiredParts = requiredParts;
 		this.additionalInfo = additionalInfo;
 		this.status = "Incomplete";
 	}
@@ -131,20 +126,12 @@ public class Job {
 		this.duration = duration;
 	}
 
-	public double getMileage() {
+	public int getMileage() {
 		return mileage;
 	}
 
-	public void setMileage(double mileage) {
+	public void setMileage(int mileage) {
 		this.mileage = mileage;
-	}
-
-	public String getRequiredParts() {
-		return requiredParts;
-	}
-
-	public void setRequiredParts(String requiredParts) {
-		this.requiredParts = requiredParts;
 	}
 
 	public String getAdditionalInfo() {

@@ -4,11 +4,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import Job.SQL_JobHelper;
 
 public class JobDetailsGUI extends JFrame{
     private JPanel Main;
     private JButton returnButton;
-    private JTextField jobIDField;
     private JTextField statusField;
     private JTextField typeField;
     private JTextField durationField;
@@ -20,16 +20,47 @@ public class JobDetailsGUI extends JFrame{
     private JTextField regNoField;
     private JTextArea additionalField;
     private JButton saveChangesButton;
+    private JLabel jobIDLabel;
+    private JLabel idLabel;
     private static JobDetailsGUI j = new JobDetailsGUI();
     private Job job;
 
     public JobDetailsGUI(Job job) {
         this.job = job;
+        jobIDLabel.setText(String.valueOf(job.getJobID()));
+
         returnButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 j.dispose();
                 ViewJobsGUI.main();
+            }
+        });
+        saveChangesButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int confirm = JOptionPane.showConfirmDialog(null, "Are you sure you want to make these changes?", "Confirm changes", JOptionPane.YES_NO_OPTION);
+                if (confirm == JOptionPane.YES_OPTION) {
+                    SQL_JobHelper helper = new SQL_JobHelper();
+                    if (helper.updateJob(
+                            job.getJobID(),
+                            typeField.getText(),
+                            Float.parseFloat(durationField.getText()),
+                            dateField.getText(),
+                            requiredPartsField.getText(),
+                            motField.getText(),
+                            Integer.parseInt(mileageField.getText()),
+                            Float.parseFloat(priceField.getText()),
+                            additionalField.getText())) {
+                        // Successful Job update
+                        JOptionPane.showMessageDialog(null, "Job updated successfully.");
+                        j.dispose();
+                        ViewJobsGUI.main();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Something went wrong.\n Double-check your values.");
+                    }
+
+                }
             }
         });
     }
@@ -57,7 +88,11 @@ public class JobDetailsGUI extends JFrame{
     // TODO: Registration Number ?
     private void createUIComponents() {
         if (job != null) {
-            jobIDField = new JTextField(String.valueOf(job.getJobID()));
+            // For some reason label does not get updated here, and we have to repeat this in the constructor
+            // jobID is not modifiable, as it is a PK in the database and has to be unique
+            jobIDLabel = new JLabel(String.valueOf(job.getJobID()));
+
+            // Create text fields
             statusField = new JTextField(job.getStatus());
             typeField = new JTextField(job.getJobType());
             priceField = new JTextField(String.valueOf(job.getPrice()));
@@ -65,10 +100,10 @@ public class JobDetailsGUI extends JFrame{
             regNoField = new JTextField();
             dateField = new JTextField(job.getDates());
             durationField = new JTextField(String.valueOf(job.getDuration()));
-            requiredPartsField = new JTextField(job.getRequiredParts());
+            requiredPartsField = new JTextField(job.getParts());
             mileageField = new JTextField(String.valueOf(job.getMileage()));
         } else {
-            jobIDField = new JTextField();
+            jobIDLabel = new JLabel();
             statusField = new JTextField();
             typeField = new JTextField();
             priceField = new JTextField();
