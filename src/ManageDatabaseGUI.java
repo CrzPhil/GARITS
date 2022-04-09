@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class ManageDatabaseGUI extends JFrame {
-    private JPanel main;
+    private JPanel Main;
     private JLabel titleLabel;
     private JButton backupButton;
     private JButton restoreButton;
@@ -13,7 +13,7 @@ public class ManageDatabaseGUI extends JFrame {
     }
 
     public static void main(){
-        j.setContentPane(new ManageDatabaseGUI().main);
+        j.setContentPane(new ManageDatabaseGUI().Main);
         j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         j.setTitle("Manage Database");
         j.setPreferredSize(new Dimension(1280,720));
