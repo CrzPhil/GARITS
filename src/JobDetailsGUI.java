@@ -41,28 +41,52 @@ public class JobDetailsGUI extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 int confirm = JOptionPane.showConfirmDialog(null, "Are you sure you want to make these changes?", "Confirm changes", JOptionPane.YES_NO_OPTION);
                 if (confirm == JOptionPane.YES_OPTION) {
-                    SQL_JobHelper helper = new SQL_JobHelper();
-                    if (helper.updateJob(
-                            job.getJobID(),
-                            typeField.getText(),
-                            Float.parseFloat(durationField.getText()),
-                            dateField.getText(),
-                            requiredPartsField.getText(),
-                            motField.getText(),
-                            Integer.parseInt(mileageField.getText()),
-                            Float.parseFloat(priceField.getText()),
-                            additionalField.getText())) {
-                        // Successful Job update
-                        JOptionPane.showMessageDialog(null, "Job updated successfully.");
-                        j.dispose();
-                        ViewJobsGUI.main();
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Something went wrong.\n Double-check your values.");
+                    if (inputValid(typeField.getText(),
+                            durationField.getText(),
+                            mileageField.getText(),
+                            priceField.getText())) {
+                        SQL_JobHelper helper = new SQL_JobHelper();
+                        if (helper.updateJob(
+                                job.getJobID(),
+                                typeField.getText(),
+                                Float.parseFloat(durationField.getText()),
+                                dateField.getText(),
+                                requiredPartsField.getText(),
+                                motField.getText(),
+                                Integer.parseInt(mileageField.getText()),
+                                Float.parseFloat(priceField.getText()),
+                                additionalField.getText())) {
+                            // Successful Job update
+                            JOptionPane.showMessageDialog(null, "Job updated successfully.");
+                            j.dispose();
+                            ViewJobsGUI.main();
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Something went wrong.\n Double-check your values.");
+                        }
                     }
-
+                    // If input invalid
+                    else {
+                        JOptionPane.showMessageDialog(null, "Please verify your input and try again.");
+                    }
                 }
             }
         });
+    }
+
+    private boolean inputValid(String type, String duration, String mileage, String price) {
+        // Check if Type is valid
+        if (!job.getJobTypes().contains(type)) {
+            return false;
+        }
+        // Check for number formats
+        try {
+            Float.parseFloat(duration);
+            Float.parseFloat(price);
+            Integer.parseInt(mileage);
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
     }
 
     public JobDetailsGUI() {

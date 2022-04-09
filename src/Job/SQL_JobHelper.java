@@ -23,6 +23,7 @@ public class SQL_JobHelper extends Database_Controller {
 	}
 
 	// Update all values in row by jobID
+	// TODO: status -> tinyint
 	public boolean updateJob(long jobID, String jobType, float duration, String dates, String parts, String motNO, int mileage, float price, String additionalInfo) {
 		// Update Row with new values
 		String updateRow = String.format("UPDATE Jobs SET jobType = '%s', duration = %f, dates = '%s', parts = '%s', motNo = '%s', mileage = %d, price = %f, additionalInfo = '%s' WHERE jobID = %d",
@@ -35,7 +36,6 @@ public class SQL_JobHelper extends Database_Controller {
 				price,
 				additionalInfo,
 				jobID);
-		System.out.println("deb " + updateRow);
 		try {
 			Statement st = conn.createStatement();
 			st.executeUpdate(updateRow);

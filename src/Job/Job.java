@@ -1,10 +1,18 @@
 package Job;
 
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 public class Job {
 
 
 
 	private int jobID;
+	private final Set<String> jobTypes =
+			Stream.of("MOT", "Service")
+					.collect(Collectors.toCollection(HashSet::new));
 	private String jobType;
 	private String dates;
 	private float price;
@@ -142,4 +150,7 @@ public class Job {
 		this.additionalInfo = additionalInfo;
 	}
 
+	public Set<String> getJobTypes() {
+		return jobTypes;
+	}
 }
