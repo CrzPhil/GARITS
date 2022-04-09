@@ -8,7 +8,6 @@ public class MainMenuGUI extends JFrame{
     private JButton jobsButton;
     private JButton generateReportButton;
     private JButton sparePartsCatalogueButton;
-    private JButton accountManagementButton;
     private JButton logOutButton;
     private JLabel ImageLogo;
     private JButton customerAccountManagementButton;
@@ -27,13 +26,6 @@ public class MainMenuGUI extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 j.dispose();
                 ItemSearchGUI.main();
-            }
-        });
-        accountManagementButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                j.dispose();
-                AdminLoginGUI.main();
             }
         });
         jobsButton.addActionListener(new ActionListener() {
