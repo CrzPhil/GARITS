@@ -9,7 +9,7 @@ public class UserCollection {
 	static private HashMap<Long, User> userCollection;
 
 	/**
-	 * 
+	 *
 	 * @param userID Identifier of User
 	 * @param user User Object (can be any subclass)
 	 */

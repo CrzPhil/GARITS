@@ -10,9 +10,10 @@ public class Accounts_Controller implements I_Accounts {
 	private final SQL_UserHelper helper = new SQL_UserHelper();
 	private final UserCollection collection = new UserCollection();
 
+	// Create user in database & in collection
 	public User createUser(String fname, String lname, String username, char[] password, String role, String mail, String rate) {
 		// Create the user in the Database
-		helper.createStaff(fname, lname, username, password, role, rate);
+		helper.createStaff(fname, lname, username, password, role, rate, mail);
 		long staffID;
 		String hashpass;
 
@@ -23,7 +24,7 @@ public class Accounts_Controller implements I_Accounts {
 				hashpass = helper.getPass(username);
 
 				// Create a local object & store object in collection
-				collection.addItem(staffID, new Administrator(staffID, username, null, hashpass, fname + " " + lname, Integer.parseInt(rate)));
+				collection.addItem(staffID, new Administrator(staffID, username, mail, hashpass, fname + " " + lname, Integer.parseInt(rate)));
 			}
 			case "Franchisee" -> {
 				// Query DB for ID & hashed pass
@@ -31,7 +32,7 @@ public class Accounts_Controller implements I_Accounts {
 				hashpass = helper.getPass(username);
 
 				// Create a local object & store object in collection
-				collection.addItem(staffID, new Franchisee(staffID, username, null, hashpass, fname + " " + lname));
+				collection.addItem(staffID, new Franchisee(staffID, username, mail, hashpass, fname + " " + lname));
 			}
 			case "Mechanic" -> {
 				// Query DB for ID & hashed pass
@@ -39,7 +40,7 @@ public class Accounts_Controller implements I_Accounts {
 				hashpass = helper.getPass(username);
 
 				// Create a local object & store object in collection
-				collection.addItem(staffID, new Mechanic(staffID, username, null, hashpass, fname + " " + lname));
+				collection.addItem(staffID, new Mechanic(staffID, username, mail, hashpass, fname + " " + lname));
 			}
 			case "Receptionist" -> {
 				// Query DB for ID & hashed pass
@@ -47,7 +48,7 @@ public class Accounts_Controller implements I_Accounts {
 				hashpass = helper.getPass(username);
 
 				// Create a local object & store object in collection
-				collection.addItem(staffID, new Receptionist(staffID, username, null, hashpass, fname + " " + lname));
+				collection.addItem(staffID, new Receptionist(staffID, username, mail, hashpass, fname + " " + lname));
 			}
 			case "Foreperson" -> {
 				// Query DB for ID & hashed pass
@@ -55,7 +56,7 @@ public class Accounts_Controller implements I_Accounts {
 				hashpass = helper.getPass(username);
 
 				// Create a local object & store object in collection
-				collection.addItem(staffID, new ForePerson(staffID, username, null, hashpass, fname + " " + lname));
+				collection.addItem(staffID, new ForePerson(staffID, username, mail, hashpass, fname + " " + lname));
 			}
 			default -> {
 			}

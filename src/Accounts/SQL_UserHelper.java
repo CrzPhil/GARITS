@@ -96,7 +96,7 @@ public class SQL_UserHelper extends Database_Controller {
 						name = rs.getString("firstName") + " " + rs.getString("lastName");
 						out[i] = new Administrator(rs.getInt("staffID"),
 								rs.getString("username"),
-								null, // We don't store Staff emails in DB
+								rs.getString("email"),
 								rs.getString("password"),
 								name,
 								rs.getInt("hourlyrate"));
@@ -243,18 +243,18 @@ public class SQL_UserHelper extends Database_Controller {
 	}
 
 	// Create a Staff account in the database
-	public void createStaff(String fname, String lname, String username, char[] password, String role, String rate) {
+	public void createStaff(String fname, String lname, String username, char[] password, String role, String rate, String mail) {
 		HashClass hasher = new HashClass();
 		String hashedpass = hasher.chartosha256(password);
 
-		String qur = String.format("INSERT INTO Staff(firstName, lastName, role, username, password, hourlyRate) VALUES('%s','%s','%s','%s', '%s', %d)",
+		String qur = String.format("INSERT INTO Staff(firstName, lastName, role, username, password, hourlyRate, email) VALUES('%s','%s','%s','%s', '%s', %d, '%s')",
 				fname,
 				lname,
 				role,
 				username,
 				hashedpass,
-				Integer.valueOf(rate));
-
+				Integer.valueOf(rate),
+				mail);
 		try {
 			Statement st = conn.createStatement();
 			st.executeUpdate(qur);
