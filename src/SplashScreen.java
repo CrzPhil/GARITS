@@ -16,7 +16,7 @@ public class SplashScreen extends JFrame {
         j.setLocationRelativeTo(null);
         j.setVisible(true);
         try {
-            sleep(3500);
+            sleep(500);
         } catch (InterruptedException interruptedException) {
             interruptedException.printStackTrace();
         }
