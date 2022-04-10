@@ -7,13 +7,13 @@ public class main {
 
     public static void main(String[] args) {
         //JobsMenuGUI.main();
-        AdminDashboardGUI.main();
+        //AdminDashboardGUI.main();
         //ManageDatabaseGUI.main();
         //CustomerAccountMenuGUI.main();
         //ViewJobsGUI.main();
         //ViewCustomerGUI.main();
         //CreateVehicleGUI.main(new Customer(1234567891, "x", true));
-       //CustomerAccountMenuGUI.main();
+       CustomerAccountMenuGUI.main();
         //StockReportGUI.main();
     }
 }
