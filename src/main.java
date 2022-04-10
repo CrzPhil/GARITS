@@ -9,8 +9,9 @@ public class main {
         //JobsMenuGUI.main();
         //AdminDashboardGUI.main();
         //ManageDatabaseGUI.main();
-        //CustomerAccountMenuGUI.main();
+        CustomerAccountMenuGUI.main();
+        //ViewJobsGUI.main();
         //ViewCustomerGUI.main();
-        CreateVehicleGUI.main(new Customer(1234567891, "x", true));
+        //CreateVehicleGUI.main(new Customer(1234567891, "x", true));
     }
 }

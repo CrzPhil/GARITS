@@ -1,12 +1,12 @@
 package Customers;
 
-import Customers.*;
-import Job.SQL_JobHelper;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Customer_Controller implements I_Customers {
 
-	private final SQL_VehicleHelper helper = new SQL_VehicleHelper();
-	private final SQL_JobHelper jobHelper = new SQL_JobHelper();
+	private final SQL_VehicleHelper vehicleHelper = new SQL_VehicleHelper();
+	private final SQL_CustomerHelper customerHelper = new SQL_CustomerHelper();
 
 	/**
 	 * 
@@ -31,12 +31,17 @@ public class Customer_Controller implements I_Customers {
 	}
 
 	public boolean vehicleExists(String regNo) {
-		return helper.vehicleExists(regNo);
+		return vehicleHelper.vehicleExists(regNo);
 	}
 
 	public boolean createVehicle(Vehicle vehicle) {
-		return helper.addVehicle(vehicle);
+		return vehicleHelper.addVehicle(vehicle);
 	}
+
+	public Customer[] getCustomers() {
+		return customerHelper.getCustomers();
+	}
+
 
 	public Customers.Vehicle getVehicle() {
 		// TODO - implement Customer_Controller.getVehicle
@@ -53,4 +58,33 @@ public class Customer_Controller implements I_Customers {
 		throw new UnsupportedOperationException();
 	}
 
+
+	// Pattern checker
+	private boolean checkRegex(String regex, String text) {
+		Pattern p = Pattern.compile(regex);
+		Matcher m = p.matcher(text);
+		return m.matches();
+	}
+
+	// Generic email filter
+	public boolean validateEmail(String email) {
+		String emailRegex = "^[\\w!#$%&’*+/=?`{|}~^-]+(?:\\.[\\w!#$%&’*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
+		return checkRegex(emailRegex, email);
+	}
+
+	// Phone filter
+	public boolean validatePhone(String phone) {
+		String phoneRegex = "^(\\+\\d{1,3}( )?)?((\\(\\d{1,3}\\))|\\d{1,3})[- .]?\\d{3,4}[- .]?\\d{4}$";
+		return checkRegex(phoneRegex, phone);
+	}
+
+	// Simple discount matcher
+	public boolean validateDiscount(String discount) {
+		String rateRegex = "^\\d+$";
+		return checkRegex(rateRegex, discount);
+	}
+
+	public boolean createCustomer(String fname, String lname, String address, String telephone, String email, String fax, int discount) {
+		return customerHelper.createCustomer(fname, lname, address, telephone, email, fax, discount);
+	}
 }
