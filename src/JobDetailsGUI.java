@@ -4,12 +4,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Objects;
+
 import Job.SQL_JobHelper;
 
 public class JobDetailsGUI extends JFrame{
     private JPanel Main;
     private JButton returnButton;
-    private JTextField statusField;
     private JTextField typeField;
     private JTextField durationField;
     private JTextField priceField;
@@ -22,6 +23,7 @@ public class JobDetailsGUI extends JFrame{
     private JButton saveChangesButton;
     private JLabel jobIDLabel;
     private JLabel idLabel;
+    private JComboBox statusBox;
     private static JobDetailsGUI j = new JobDetailsGUI();
     private Job job;
 
@@ -55,7 +57,8 @@ public class JobDetailsGUI extends JFrame{
                                 motField.getText(),
                                 Integer.parseInt(mileageField.getText()),
                                 Float.parseFloat(priceField.getText()),
-                                additionalField.getText())) {
+                                additionalField.getText(),
+                                (String) statusBox.getSelectedItem())) {
                             // Successful Job update
                             JOptionPane.showMessageDialog(null, "Job updated successfully.");
                             j.dispose();
@@ -117,7 +120,6 @@ public class JobDetailsGUI extends JFrame{
             jobIDLabel = new JLabel(String.valueOf(job.getJobID()));
 
             // Create text fields
-            statusField = new JTextField(job.getStatus());
             typeField = new JTextField(job.getJobType());
             priceField = new JTextField(String.valueOf(job.getPrice()));
             motField = new JTextField(job.getMotNO());
@@ -126,9 +128,21 @@ public class JobDetailsGUI extends JFrame{
             durationField = new JTextField(String.valueOf(job.getDuration()));
             requiredPartsField = new JTextField(job.getParts());
             mileageField = new JTextField(String.valueOf(job.getMileage()));
+
+            // Create combobox for status
+
+            // Configure which option to show
+            String otherOption;
+            if (Objects.equals(job.getStatus(), job.getStates()[0])) {
+                otherOption = job.getStates()[1];
+            } else {
+                otherOption = job.getStates()[0];
+            }
+
+            statusBox = new JComboBox<String>(new String[]{job.getStatus(), otherOption});
+
         } else {
             jobIDLabel = new JLabel();
-            statusField = new JTextField();
             typeField = new JTextField();
             priceField = new JTextField();
             motField = new JTextField();
@@ -137,6 +151,7 @@ public class JobDetailsGUI extends JFrame{
             durationField = new JTextField();
             requiredPartsField = new JTextField();
             mileageField = new JTextField();
+            statusBox = new JComboBox<String>();
         }
     }
 }

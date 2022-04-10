@@ -21,6 +21,8 @@ public class Job {
 	private float duration;
 	private int mileage;
 	private String additionalInfo;
+	// As stored in DB, states[0] -> Incomplete ; states[1] -> Complete
+	static private final String[] states = {"Incomplete", "Complete"};
 	private String status;
 
 	/**
@@ -35,7 +37,7 @@ public class Job {
 	 * @param mileage
 	 * @param additionalInfo
 	 */
-	public Job(int jobID, String jobType, float duration, String dates, String parts, String motNo, int mileage, float price, String additionalInfo) {
+	public Job(int jobID, String jobType, float duration, String dates, String parts, String motNo, int mileage, float price, String additionalInfo, String status) {
 		this.jobID = jobID;
 		this.jobType = jobType;
 		this.duration = duration;
@@ -45,7 +47,7 @@ public class Job {
 		this.mileage = mileage;
 		this.price = price;
 		this.additionalInfo = additionalInfo;
-		this.status = "Incomplete";
+		this.status = status;
 	}
 
     public Job() {
@@ -62,7 +64,7 @@ public class Job {
 
 	@Override
 	public String toString() {
-		return this.jobID + "    " + this.dates + "    " + this.jobType + "    ￡" + this.price;
+		return this.jobID + "    " + this.dates + "    " + this.jobType + "    ￡" + this.price + " " + this.status;
 	}
 
 	public void update_on_job() {
@@ -152,5 +154,9 @@ public class Job {
 
 	public Set<String> getJobTypes() {
 		return jobTypes;
+	}
+
+	static public String[] getStates() {
+		return states;
 	}
 }

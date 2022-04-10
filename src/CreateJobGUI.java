@@ -63,7 +63,7 @@ public class CreateJobGUI extends JFrame{
                     float price = Float.parseFloat(priceField.getText());
                     String additionalInfo = detailsField.getText();
 
-                    sqlJob.sendData(jobType, duration, dates, parts, motNo, mileage, price, additionalInfo);
+                    sqlJob.sendData(jobType, duration, dates, parts, motNo, mileage, price, additionalInfo, "Incomplete");
                     j.dispose();
                     JobsMenuGUI.main();
                 }

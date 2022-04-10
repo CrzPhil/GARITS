@@ -49,8 +49,8 @@ public class AdminDashboardGUI extends JFrame{
         });
     }
 
+    // TODO: Buttons are not clickable for some reason
     private void createUIComponents() {
-        // TODO: place custom component creation code here
         usersButton = new JButton();
         databaseButton = new JButton();
 
@@ -61,16 +61,16 @@ public class AdminDashboardGUI extends JFrame{
             databaseButton.setIcon(new ImageIcon(dtbImg));
         } catch (Exception ignored) {
         }
+
         // Make the rest of the button invisible
         usersButton.setBorder(null);
         usersButton.setBorderPainted(false);
-        usersButton.setBorder(null);
         usersButton.setMargin(new Insets(0, 0, 0, 0));
         usersButton.setContentAreaFilled(false);
         usersButton.setFocusPainted(false);
+
         databaseButton.setBorder(null);
         databaseButton.setBorderPainted(false);
-        databaseButton.setBorder(null);
         databaseButton.setMargin(new Insets(0, 0, 0, 0));
         databaseButton.setContentAreaFilled(false);
         databaseButton.setFocusPainted(false);
