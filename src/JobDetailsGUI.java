@@ -24,6 +24,7 @@ public class JobDetailsGUI extends JFrame{
     private JLabel jobIDLabel;
     private JLabel idLabel;
     private JComboBox statusBox;
+    private JComboBox jobTypeBox;
     private static JobDetailsGUI j = new JobDetailsGUI();
     private Job job;
 
@@ -38,19 +39,24 @@ public class JobDetailsGUI extends JFrame{
                 ViewJobsGUI.main();
             }
         });
+        // Commit changes to Database
         saveChangesButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                // Pop-up asking for confirmation
                 int confirm = JOptionPane.showConfirmDialog(null, "Are you sure you want to make these changes?", "Confirm changes", JOptionPane.YES_NO_OPTION);
+
                 if (confirm == JOptionPane.YES_OPTION) {
+                    // Check input
                     if (inputValid(typeField.getText(),
                             durationField.getText(),
                             mileageField.getText(),
                             priceField.getText())) {
+                        // Update row in database
                         SQL_JobHelper helper = new SQL_JobHelper();
                         if (helper.updateJob(
                                 job.getJobID(),
-                                typeField.getText(),
+                                (String) jobTypeBox.getSelectedItem(),
                                 Float.parseFloat(durationField.getText()),
                                 dateField.getText(),
                                 requiredPartsField.getText(),
@@ -76,6 +82,16 @@ public class JobDetailsGUI extends JFrame{
         });
     }
 
+    public JobDetailsGUI() {
+        returnButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                j.dispose();
+                ViewJobsGUI.main();
+            }
+        });
+    }
+
     private boolean inputValid(String type, String duration, String mileage, String price) {
         // Check if Type is valid
         if (!job.getJobTypes().contains(type)) {
@@ -92,15 +108,7 @@ public class JobDetailsGUI extends JFrame{
         return true;
     }
 
-    public JobDetailsGUI() {
-        returnButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                j.dispose();
-                ViewJobsGUI.main();
-            }
-        });
-    }
+
 
     public static void main(Job job){
         j.setContentPane(new JobDetailsGUI(job).Main);

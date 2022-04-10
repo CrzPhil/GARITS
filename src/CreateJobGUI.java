@@ -22,6 +22,7 @@ public class CreateJobGUI extends JFrame{
     private JTextField regNoField;
     private JButton finishButton;
     private JTextArea detailsField;
+    private JComboBox jobTypeBox;
     private static CreateJobGUI j = new CreateJobGUI();
 
     public CreateJobGUI() {
@@ -54,7 +55,7 @@ public class CreateJobGUI extends JFrame{
                 } else {
                     // TODO: Check if records are empty
                     SQL_JobHelper sqlJob = new SQL_JobHelper();
-                    String jobType = typeField.getText();
+                    String jobType = (String) jobTypeBox.getSelectedItem();
                     float duration = Float.parseFloat(durationField.getText());
                     String dates = dateField.getText();
                     String parts = partsField.getText();

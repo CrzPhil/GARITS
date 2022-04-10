@@ -1,40 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="UserAccountModifierGUI">
-  <grid id="27dc6" binding="Main" layout-manager="GridLayoutManager" row-count="8" column-count="8" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="EditVehicleGUI">
+  <grid id="27dc6" binding="Main" layout-manager="GridLayoutManager" row-count="9" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
-      <xy x="20" y="20" width="734" height="400"/>
+      <xy x="20" y="20" width="500" height="400"/>
     </constraints>
     <properties>
       <background color="-14666175"/>
-      <foreground color="-14666175"/>
     </properties>
     <border type="none"/>
     <children>
-      <hspacer id="be74e">
+      <component id="da0b" class="javax.swing.JLabel">
         <constraints>
-          <grid row="7" column="2" row-span="1" col-span="4" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-      </hspacer>
-      <component id="14158" class="javax.swing.JLabel" binding="titleLabel">
-        <constraints>
-          <grid row="0" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <background color="-1"/>
           <font name="Yu Gothic UI Semibold" size="24"/>
           <foreground color="-1"/>
-          <text value="User ID : 1240 ; John Barry"/>
+          <text value="Edit Vehicle"/>
         </properties>
       </component>
-      <component id="65d75" class="javax.swing.JTextField" binding="usernameField" custom-create="true">
+      <component id="d4f1d" class="javax.swing.JTextField" binding="regNoField" custom-create="true">
         <constraints>
           <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
           </grid>
         </constraints>
-        <properties/>
+        <properties>
+          <text value=""/>
+        </properties>
       </component>
-      <component id="a1f35" class="javax.swing.JTextField" binding="fnameField" custom-create="true">
+      <component id="780b7" class="javax.swing.JTextField" binding="makeField" custom-create="true">
         <constraints>
           <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -42,7 +39,7 @@
         </constraints>
         <properties/>
       </component>
-      <component id="8d095" class="javax.swing.JTextField" binding="lnameField" custom-create="true">
+      <component id="8282c" class="javax.swing.JTextField" binding="modelField" custom-create="true">
         <constraints>
           <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -50,7 +47,7 @@
         </constraints>
         <properties/>
       </component>
-      <component id="9b660" class="javax.swing.JTextField" binding="roleField" custom-create="true">
+      <component id="ca37b" class="javax.swing.JTextField" binding="engSerialField" custom-create="true">
         <constraints>
           <grid row="4" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -58,7 +55,7 @@
         </constraints>
         <properties/>
       </component>
-      <component id="cd92d" class="javax.swing.JTextField" binding="rateField" custom-create="true">
+      <component id="e8ba7" class="javax.swing.JTextField" binding="chassisNoField" custom-create="true">
         <constraints>
           <grid row="5" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -66,7 +63,7 @@
         </constraints>
         <properties/>
       </component>
-      <component id="262e6" class="javax.swing.JTextField" binding="emailField" custom-create="true">
+      <component id="32a6e" class="javax.swing.JTextField" binding="colourField" custom-create="true">
         <constraints>
           <grid row="6" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -74,18 +71,15 @@
         </constraints>
         <properties/>
       </component>
-      <component id="e03c6" class="javax.swing.JLabel">
+      <component id="5fbc5" class="javax.swing.JTextField" binding="motDateField" custom-create="true">
         <constraints>
-          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="7" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
         </constraints>
-        <properties>
-          <background color="-1"/>
-          <font name="Yu Gothic UI" size="14"/>
-          <foreground color="-1"/>
-          <text value="Username:"/>
-        </properties>
+        <properties/>
       </component>
-      <component id="b8d61" class="javax.swing.JLabel">
+      <component id="b7b15" class="javax.swing.JLabel">
         <constraints>
           <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -93,10 +87,21 @@
           <background color="-1"/>
           <font name="Yu Gothic UI" size="14"/>
           <foreground color="-1"/>
-          <text value="First Name:"/>
+          <text value="Make"/>
         </properties>
       </component>
-      <component id="d46f3" class="javax.swing.JLabel">
+      <component id="51b7b" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-1"/>
+          <font name="Yu Gothic UI" size="14"/>
+          <foreground color="-1"/>
+          <text value="Reg. No."/>
+        </properties>
+      </component>
+      <component id="abb9f" class="javax.swing.JLabel">
         <constraints>
           <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -104,10 +109,10 @@
           <background color="-1"/>
           <font name="Yu Gothic UI" size="14"/>
           <foreground color="-1"/>
-          <text value="Last Name:"/>
+          <text value="Model"/>
         </properties>
       </component>
-      <component id="fc1e9" class="javax.swing.JLabel">
+      <component id="f3cff" class="javax.swing.JLabel">
         <constraints>
           <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -115,10 +120,10 @@
           <background color="-1"/>
           <font name="Yu Gothic UI" size="14"/>
           <foreground color="-1"/>
-          <text value="Role: "/>
+          <text value="Eng. Serial"/>
         </properties>
       </component>
-      <component id="671aa" class="javax.swing.JLabel">
+      <component id="555a4" class="javax.swing.JLabel">
         <constraints>
           <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -126,10 +131,10 @@
           <background color="-1"/>
           <font name="Yu Gothic UI" size="14"/>
           <foreground color="-1"/>
-          <text value="Hourly Rate: "/>
+          <text value="Chassis No."/>
         </properties>
       </component>
-      <component id="5121c" class="javax.swing.JLabel">
+      <component id="ffeca" class="javax.swing.JLabel">
         <constraints>
           <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -137,44 +142,34 @@
           <background color="-1"/>
           <font name="Yu Gothic UI" size="14"/>
           <foreground color="-1"/>
-          <text value="Email: "/>
+          <text value="Colour"/>
         </properties>
       </component>
-      <hspacer id="becd">
+      <component id="22eb8" class="javax.swing.JLabel">
         <constraints>
-          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
-      </hspacer>
-      <hspacer id="d342f">
+        <properties>
+          <background color="-1"/>
+          <font name="Yu Gothic UI" size="14"/>
+          <foreground color="-1"/>
+          <text value="MoT Date"/>
+        </properties>
+      </component>
+      <component id="dace8" class="javax.swing.JButton" binding="returnButton" default-binding="true">
         <constraints>
-          <grid row="1" column="6" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-      </hspacer>
-      <component id="dc2e7" class="javax.swing.JButton" binding="deleteAccountButton" default-binding="true">
-        <constraints>
-          <grid row="4" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <background color="-1"/>
           <font name="Yu Gothic UI Semibold" size="14"/>
           <foreground color="-16777216"/>
-          <text value="Delete Account"/>
+          <text value="Return"/>
         </properties>
       </component>
-      <component id="42475" class="javax.swing.JButton" binding="changePasswordButton" default-binding="true">
+      <component id="5eaf2" class="javax.swing.JButton" binding="saveChangesButton">
         <constraints>
-          <grid row="5" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <background color="-1"/>
-          <font name="Yu Gothic UI Semibold" size="14"/>
-          <foreground color="-16777216"/>
-          <text value="Change Password"/>
-        </properties>
-      </component>
-      <component id="4a62f" class="javax.swing.JButton" binding="saveChangesButton" default-binding="true">
-        <constraints>
-          <grid row="6" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="8" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <background color="-1"/>
@@ -183,22 +178,22 @@
           <text value="Save Changes"/>
         </properties>
       </component>
-      <hspacer id="24b9d">
+      <component id="62ebb" class="javax.swing.JButton" binding="deleteButton">
         <constraints>
-          <grid row="3" column="7" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-      </hspacer>
-      <component id="52aa1" class="javax.swing.JButton" binding="returnButton" default-binding="true">
-        <constraints>
-          <grid row="0" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="8" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <background color="-1"/>
-          <font name="Yu Gothic UI Semibold" size="12"/>
+          <font name="Yu Gothic UI Semibold" size="14"/>
           <foreground color="-16777216"/>
-          <text value="Return"/>
+          <text value="Delete Vehicle"/>
         </properties>
       </component>
+      <hspacer id="ac103">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+      </hspacer>
     </children>
   </grid>
 </form>

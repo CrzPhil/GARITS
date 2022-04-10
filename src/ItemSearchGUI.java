@@ -41,13 +41,7 @@ public class ItemSearchGUI extends JFrame {
                 MainMenuGUI.main();
             }
         });
-        searchButton1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                j.dispose();
-                SearchResultsGUI.main();
-            }
-        });
+
     }
     public static void main(){
         j.setContentPane(new ItemSearchGUI().Main);

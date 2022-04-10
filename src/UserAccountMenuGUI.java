@@ -2,14 +2,11 @@ import javax.swing.*;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.DefaultTreeCellEditor;
-import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.TreeSelectionModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import Accounts.Administrator;
 import Accounts.SQL_UserHelper;
 import Accounts.User;
 
@@ -20,6 +17,7 @@ public class UserAccountMenuGUI extends JFrame{
     private JTree UserAccounts;
     private JButton createButton;
     private JLabel titleLabel;
+    private JButton deleteButton;
     private User selectedAccount;
     private static final UserAccountMenuGUI j = new UserAccountMenuGUI();
 
@@ -48,6 +46,12 @@ public class UserAccountMenuGUI extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 j.dispose();
                 UserAccountCreationGUI.main();
+            }
+        });
+        deleteButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this account?");
             }
         });
     }

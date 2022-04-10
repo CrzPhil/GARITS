@@ -56,7 +56,7 @@
         <properties>
           <font name="Yu Gothic UI Semibold" size="18"/>
           <foreground color="-1"/>
-          <text value="Current Jobs"/>
+          <text value="Current Jobs:"/>
         </properties>
       </component>
     </children>

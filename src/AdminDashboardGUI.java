@@ -19,7 +19,7 @@ public class AdminDashboardGUI extends JFrame{
         j.setContentPane(new AdminDashboardGUI().Main);
         j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         j.setTitle("Admin Dashboard");
-        j.setPreferredSize(new Dimension(1280,720));
+        j.setPreferredSize(new Dimension(800,480));
         j.pack();
         j.setLocationRelativeTo(null);
         j.setVisible(true);
@@ -49,7 +49,6 @@ public class AdminDashboardGUI extends JFrame{
         });
     }
 
-    // TODO: Buttons are not clickable for some reason
     private void createUIComponents() {
         usersButton = new JButton();
         databaseButton = new JButton("dbbutton");

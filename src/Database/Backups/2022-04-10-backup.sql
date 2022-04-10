@@ -71,38 +71,8 @@ CREATE TABLE `CompletedJobs` (
 
 LOCK TABLES `CompletedJobs` WRITE;
 /*!40000 ALTER TABLE `CompletedJobs` DISABLE KEYS */;
+INSERT INTO `CompletedJobs` VALUES (5,'MOT',155,'22/2/22','','54151561',14915,152,NULL,'',1);
 /*!40000 ALTER TABLE `CompletedJobs` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `Customer`
---
-
-DROP TABLE IF EXISTS `Customer`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `Customer` (
-  `customerID` int NOT NULL,
-  `firstName` varchar(50) NOT NULL,
-  `lastName` varchar(50) NOT NULL,
-  `dateIssued` date NOT NULL,
-  `address` varchar(255) NOT NULL,
-  `telephone` varchar(16) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `fax` varchar(12) NOT NULL,
-  `discount` int DEFAULT NULL,
-  PRIMARY KEY (`customerID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `Customer`
---
-
-LOCK TABLES `Customer` WRITE;
-/*!40000 ALTER TABLE `Customer` DISABLE KEYS */;
-INSERT INTO `Customer` VALUES (1234567891,'Bobby','Marley','2009-01-01','Oval Road 12, Camden Town','071723123','bob.marley@hoax.com','123121324',NULL);
-/*!40000 ALTER TABLE `Customer` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -118,7 +88,7 @@ CREATE TABLE `Customer_Addresses` (
   PRIMARY KEY (`CustomercustomerID`,`AddressesaddressID`),
   KEY `FKCustomer_A344860` (`AddressesaddressID`),
   CONSTRAINT `FKCustomer_A344860` FOREIGN KEY (`AddressesaddressID`) REFERENCES `Addresses` (`addressID`),
-  CONSTRAINT `FKCustomer_A798687` FOREIGN KEY (`CustomercustomerID`) REFERENCES `Customer` (`customerID`)
+  CONSTRAINT `FKCustomer_A798687` FOREIGN KEY (`CustomercustomerID`) REFERENCES `Customers` (`customerID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -129,6 +99,36 @@ CREATE TABLE `Customer_Addresses` (
 LOCK TABLES `Customer_Addresses` WRITE;
 /*!40000 ALTER TABLE `Customer_Addresses` DISABLE KEYS */;
 /*!40000 ALTER TABLE `Customer_Addresses` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `Customers`
+--
+
+DROP TABLE IF EXISTS `Customers`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `Customers` (
+  `customerID` int NOT NULL,
+  `firstName` varchar(50) NOT NULL,
+  `lastName` varchar(50) NOT NULL,
+  `address` varchar(255) NOT NULL,
+  `telephone` varchar(16) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `fax` varchar(12) NOT NULL,
+  `discount` int DEFAULT NULL,
+  PRIMARY KEY (`customerID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Customers`
+--
+
+LOCK TABLES `Customers` WRITE;
+/*!40000 ALTER TABLE `Customers` DISABLE KEYS */;
+INSERT INTO `Customers` VALUES (1234567891,'Bobby','Marley','Oval Road 12, Camden Town','071723123','bob.marley@hoax.com','123121324',NULL);
+/*!40000 ALTER TABLE `Customers` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -148,7 +148,7 @@ CREATE TABLE `Invoice_Reminder` (
   KEY `FKInvoice_Re719985` (`InvoicesinvoiceNo`),
   KEY `FKInvoice_Re929615` (`CustomercustomerID`),
   CONSTRAINT `FKInvoice_Re719985` FOREIGN KEY (`InvoicesinvoiceNo`) REFERENCES `Invoices` (`invoiceNo`),
-  CONSTRAINT `FKInvoice_Re929615` FOREIGN KEY (`CustomercustomerID`) REFERENCES `Customer` (`customerID`)
+  CONSTRAINT `FKInvoice_Re929615` FOREIGN KEY (`CustomercustomerID`) REFERENCES `Customers` (`customerID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -179,7 +179,7 @@ CREATE TABLE `Invoices` (
   KEY `FKInvoices366939` (`VehiclesregistrationNo`),
   KEY `FKInvoices906218` (`CustomercustomerID`),
   CONSTRAINT `FKInvoices366939` FOREIGN KEY (`VehiclesregistrationNo`) REFERENCES `Vehicles` (`registrationNo`),
-  CONSTRAINT `FKInvoices906218` FOREIGN KEY (`CustomercustomerID`) REFERENCES `Customer` (`customerID`)
+  CONSTRAINT `FKInvoices906218` FOREIGN KEY (`CustomercustomerID`) REFERENCES `Customers` (`customerID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -215,7 +215,7 @@ CREATE TABLE `JobSheets` (
   KEY `FKJobSheets434005` (`AddressesaddressID`),
   CONSTRAINT `FKJobSheets434005` FOREIGN KEY (`AddressesaddressID`) REFERENCES `Addresses` (`addressID`),
   CONSTRAINT `FKJobSheets707019` FOREIGN KEY (`VehiclesregistrationNo`) REFERENCES `Vehicles` (`registrationNo`),
-  CONSTRAINT `FKJobSheets991412` FOREIGN KEY (`CustomercustomerID`) REFERENCES `Customer` (`customerID`)
+  CONSTRAINT `FKJobSheets991412` FOREIGN KEY (`CustomercustomerID`) REFERENCES `Customers` (`customerID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -246,8 +246,9 @@ CREATE TABLE `Jobs` (
   `price` decimal(10,2) DEFAULT NULL,
   `additionalInfo` varchar(500) DEFAULT NULL,
   `status` tinyint(1) DEFAULT NULL,
+  `requiredJobs` varchar(500) DEFAULT NULL,
   PRIMARY KEY (`jobID`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -256,7 +257,7 @@ CREATE TABLE `Jobs` (
 
 LOCK TABLES `Jobs` WRITE;
 /*!40000 ALTER TABLE `Jobs` DISABLE KEYS */;
-INSERT INTO `Jobs` VALUES (1,'MOT',156,'23/03/22','Bulb','8161561',51261,12.66,'',0),(2,'Service',200,'08/04/2022','Grommet','',80873,80.12,'',1),(3,'MOT',50,'12/01/2022','','EC1AASF23',12314,70.00,'',1);
+INSERT INTO `Jobs` VALUES (1,'MOT',156,'23/03/22','Bulb','8161561',51261,12.66,'',0,NULL),(2,'Service',200,'08/04/2022','Grommet','',80873,80.12,'',1,NULL),(3,'MOT',50,'12/01/2022','','EC1AASF23',12314,70.00,'',1,NULL);
 /*!40000 ALTER TABLE `Jobs` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -277,7 +278,7 @@ CREATE TABLE `MOT_Reminder` (
   KEY `FKMOT_Remind682965` (`CustomercustomerID`),
   KEY `FKMOT_Remind381398` (`VehiclesregistrationNo`),
   CONSTRAINT `FKMOT_Remind381398` FOREIGN KEY (`VehiclesregistrationNo`) REFERENCES `Vehicles` (`registrationNo`),
-  CONSTRAINT `FKMOT_Remind682965` FOREIGN KEY (`CustomercustomerID`) REFERENCES `Customer` (`customerID`)
+  CONSTRAINT `FKMOT_Remind682965` FOREIGN KEY (`CustomercustomerID`) REFERENCES `Customers` (`customerID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -555,7 +556,7 @@ CREATE TABLE `Vehicles` (
   UNIQUE KEY `engSerial` (`engSerial`),
   UNIQUE KEY `chassisNo` (`chassisNo`),
   KEY `FKVehicles675159` (`CustomercustomerID`),
-  CONSTRAINT `FKVehicles675159` FOREIGN KEY (`CustomercustomerID`) REFERENCES `Customer` (`customerID`)
+  CONSTRAINT `FKVehicles675159` FOREIGN KEY (`CustomercustomerID`) REFERENCES `Customers` (`customerID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -565,7 +566,7 @@ CREATE TABLE `Vehicles` (
 
 LOCK TABLES `Vehicles` WRITE;
 /*!40000 ALTER TABLE `Vehicles` DISABLE KEYS */;
-INSERT INTO `Vehicles` VALUES ('EX68 ZJG','Ford','Focus','819765237J','X3246751','Pink','2022-01-01',1234567891),('TT11 OPI','Ford','Mondeo','567437965','34672876','Red','2022-01-02',1234567891);
+INSERT INTO `Vehicles` VALUES ('AX68 ZJG','Ford','Focus','812381283123J','X323124','Pink','2020-03-19',1234567891),('EX68 ZJG','Ford','Focus','819765237J','X3246751','Pink','2022-01-01',1234567891),('TT11 OPI','Ford','Mondeo','567437965','34672876','Red','2022-01-02',1234567891),('WR68 SAY','Ford','Mondeo','769342653','76354248','Red','2020-02-10',1234567891);
 /*!40000 ALTER TABLE `Vehicles` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -578,4 +579,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-04-10 12:34:23
+-- Dump completed on 2022-04-10 19:00:33

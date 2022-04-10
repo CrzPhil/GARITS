@@ -25,37 +25,54 @@ public class SQL_JobHelper extends Database_Controller {
 
 	// Update all values in row by jobID
 	// TODO: status -> tinyint
-	public boolean updateJob(long jobID, String jobType, float duration, String dates, String parts, String motNO, int mileage, float price, String additionalInfo, String status) {
+	public boolean updateJob(int jobID, String jobType, float duration, String dates, String parts, String motNO, int mileage, float price, String additionalInfo, String status) {
 		// Since we store status as a tinyint, 1 -> Complete 0 -> Incomplete
 		int jStatus;
 		if (Objects.equals(status, "Complete")) {
 			jStatus = 1;
+
+			// Update Row with new values
+			String deleteRow = String.format("DELETE FROM Jobs WHERE jobID = '%d'", jobID);
+			String sendJob = "INSERT INTO CompletedJobs (jobID, jobType, duration, dates, parts, motNo, mileage, price, additionalInfo, status)";
+			String sendValues = String.format(" VALUES ('%d', '%s', '%f', '%s', '%s', '%s', '%d', '%f', '%s', '%s')", jobID, jobType, duration, dates, parts, motNO, mileage, price, additionalInfo, jStatus);
+
+			try {
+				Statement st = conn.createStatement();
+				st.executeUpdate(deleteRow);
+				st.executeUpdate(sendJob + sendValues);
+				return true;
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return false;
+			}
+
 		} else {
 			jStatus = 0;
+			// Update Row with new values
+			String updateRow = String.format("UPDATE Jobs SET jobType = '%s', duration = %f, dates = '%s', parts = '%s', motNo = '%s', mileage = %d, price = %f, additionalInfo = '%s', status = %d WHERE jobID = %d",
+					jobType,
+					duration,
+					dates,
+					parts,
+					motNO,
+					mileage,
+					price,
+					additionalInfo,
+					jStatus,
+					jobID);
+			try {
+				Statement st = conn.createStatement();
+				st.executeUpdate(updateRow);
+				return true;
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return false;
+			}
 		}
-		// Update Row with new values
-		String updateRow = String.format("UPDATE Jobs SET jobType = '%s', duration = %f, dates = '%s', parts = '%s', motNo = '%s', mileage = %d, price = %f, additionalInfo = '%s', status = %d WHERE jobID = %d",
-				jobType,
-				duration,
-				dates,
-				parts,
-				motNO,
-				mileage,
-				price,
-				additionalInfo,
-				jStatus,
-				jobID);
-		try {
-			Statement st = conn.createStatement();
-			st.executeUpdate(updateRow);
-			return true;
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return false;
-		}
+
 	}
 
-	// TODO: Modify type
+	// TODO: Modify type / Add to controller
 	public Job[] sendData(String jobType, float duration, String dates, String parts, String motNO, int mileage, float price, String additionalInfo, String status){
 		// Since we store status as a tinyint, 1 -> Complete 0 -> Incomplete
 		int jStatus;

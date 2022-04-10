@@ -247,7 +247,8 @@ public class SQL_UserHelper extends Database_Controller {
 		HashClass hasher = new HashClass();
 		String hashedpass = hasher.chartosha256(password);
 
-		String qur = String.format("INSERT INTO Staff(firstName, lastName, role, username, password, hourlyRate, email) VALUES('%s','%s','%s','%s', '%s', %d, '%s')",
+		String qur = String.format("INSERT INTO Staff(firstName, lastName, role, username, password, hourlyRate, email)" +
+						" VALUES('%s','%s','%s','%s', '%s', %d, '%s')",
 				fname,
 				lname,
 				role,
@@ -269,7 +270,6 @@ public class SQL_UserHelper extends Database_Controller {
 				Statement st = conn.createStatement();
 				st.executeUpdate(qur);
 				st.close();
-
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
