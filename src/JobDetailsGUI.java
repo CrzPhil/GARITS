@@ -24,6 +24,7 @@ public class JobDetailsGUI extends JFrame{
     private JLabel jobIDLabel;
     private JLabel idLabel;
     private JComboBox statusBox;
+    private JComboBox jobTypeBox;
     private static JobDetailsGUI j = new JobDetailsGUI();
     private Job job;
 
@@ -50,7 +51,7 @@ public class JobDetailsGUI extends JFrame{
                         SQL_JobHelper helper = new SQL_JobHelper();
                         if (helper.updateJob(
                                 job.getJobID(),
-                                typeField.getText(),
+                                (String) jobTypeBox.getSelectedItem(),
                                 Float.parseFloat(durationField.getText()),
                                 dateField.getText(),
                                 requiredPartsField.getText(),
