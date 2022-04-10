@@ -20,11 +20,15 @@ public class CreateVehicleGUI extends JFrame {
     private JTextField colourField;
     private JButton discardChangesButton;
     private JButton addVehicleButton;
+    private JButton returnButton;
     private static CreateVehicleGUI j = new CreateVehicleGUI();
     private Customer customer;
     private final Customer_Controller controller = new Customer_Controller();
 
-    public CreateVehicleGUI() {}
+    public CreateVehicleGUI() {
+
+
+    }
 
     public CreateVehicleGUI(Customer customer) {
         this.customer = customer;
@@ -52,6 +56,13 @@ public class CreateVehicleGUI extends JFrame {
                                 "Date has to be in the format DD/MM/YYYY");
                     }
                 }
+            }
+        });
+        discardChangesButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                j.dispose();
+
             }
         });
     }
