@@ -116,6 +116,7 @@
         </constraints>
         <properties>
           <background color="-1"/>
+          <font name="Yu Gothic UI Semibold" size="12"/>
           <foreground color="-16777216"/>
           <hideActionText value="false"/>
           <text value="Create Staff Account"/>
@@ -127,6 +128,7 @@
         </constraints>
         <properties>
           <background color="-1"/>
+          <font name="Yu Gothic UI Semibold" size="12"/>
           <foreground color="-16777216"/>
           <text value="Return"/>
         </properties>
@@ -197,7 +199,7 @@
           <background color="-1"/>
           <font name="Yu Gothic UI" size="16"/>
           <foreground color="-1"/>
-          <text value="First Name"/>
+          <text value="First Name:"/>
         </properties>
       </component>
       <component id="38cb4" class="javax.swing.JLabel">
@@ -208,7 +210,7 @@
           <background color="-1"/>
           <font name="Yu Gothic UI" size="16"/>
           <foreground color="-1"/>
-          <text value="Last Name"/>
+          <text value="Last Name:"/>
         </properties>
       </component>
     </children>
