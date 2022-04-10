@@ -46,6 +46,7 @@ public class CreateVehicleGUI extends JFrame {
                     if (controller.createVehicle(newVehicle)) {
                         j.dispose();
                         JOptionPane.showMessageDialog(null, "Vehicle created successfully.");
+                        ViewCustomerGUI.main(customer);
                     } else {
                         JOptionPane.showMessageDialog(null, "Check your details again.\n" +
                                 "Date has to be in the format DD/MM/YYYY");

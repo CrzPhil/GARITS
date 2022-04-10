@@ -9,10 +9,11 @@ import java.sql.Statement;
 
 public class SQL_CustomerHelper extends Database_Controller {
 
-	public SQL_CustomerHelper() { this.conn = super.connectToDb();}
+	public SQL_CustomerHelper() {
+		this.conn = super.connectToDb();
+	}
 
 	/**
-	 * 
 	 * @param obj
 	 * @param command
 	 */
@@ -65,10 +66,33 @@ public class SQL_CustomerHelper extends Database_Controller {
 
 	public boolean createCustomer(String fname, String lname, String address, String telephone, String email, String fax, int discount) {
 		String qur = String.format("INSERT INTO Customers(firstName, lastName, address, telephone, email, fax, discount)" +
-				" VALUES('%s','%s','%s','%s','%s','%s',%d)", fname, lname, address, telephone, email, fax,discount);
+				" VALUES('%s','%s','%s','%s','%s','%s',%d)", fname, lname, address, telephone, email, fax, discount);
 		try {
 			Statement st = conn.createStatement();
 			st.executeUpdate(qur);
+			st.close();
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	// Update values for a customer (by customerID)
+	public boolean updateCustomer(String fname, String lname, String address, String telephone, String email, String fax, int discount, long customerID) {
+		String qur = String.format("UPDATE Customers SET firstName = '%s', lastName = '%s', address = '%s', telephone = '%s', email = '%s', fax = '%s', discount = %d WHERE customerID = %d",
+				fname,
+				lname,
+				address,
+				telephone,
+				email,
+				fax,
+				discount,
+				customerID);
+		try {
+			Statement st = conn.createStatement();
+			st.executeUpdate(qur);
+			st.close();
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -24,6 +24,13 @@ public class Vehicle {
 		this.customer = customer;
 	}
 
+	@Override
+	public String toString() {
+		return make + " " + model + " " + colour + " " + registrationNumber;
+	}
+
+	// Getters and Setters
+
 	public String getRegistrationNumber() {
 		return this.registrationNumber;
 	}

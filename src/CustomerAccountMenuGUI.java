@@ -34,6 +34,17 @@ public class CustomerAccountMenuGUI extends JFrame{
                 CustomerAccountCreationGUI.main();
             }
         });
+        inspectCustomerButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (selectedCustomer != null ) {
+                    j.dispose();
+                    ViewCustomerGUI.main(selectedCustomer);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Select a customer account first!");
+                }
+            }
+        });
     }
 
 

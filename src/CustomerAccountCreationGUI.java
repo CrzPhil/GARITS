@@ -42,9 +42,10 @@ public class CustomerAccountCreationGUI extends JFrame{
                 String discount = discountField.getText();
                 String fax = faxField.getText();
 
-                if (digestInfo(phone, mail, discount, fax)) {
+                Customer_Controller controller = new Customer_Controller();
+
+                if (controller.digestInfo(phone, mail, discount, fax)) {
                     // Create account + add to database
-                    Customer_Controller controller = new Customer_Controller();
                     controller.createCustomer(fname, lname, address, phone, mail, fax, Integer.parseInt(discount));
 
                     // Success popup
@@ -55,24 +56,6 @@ public class CustomerAccountCreationGUI extends JFrame{
                 }
             }
         });
-    }
-
-    // Method to validate user input; mostly regex, one query to the database to check for the username
-    private boolean digestInfo(String phone, String email, String discount, String fax) {
-        // Recycle email validation from Staff Accounts
-        Customer_Controller controller = new Customer_Controller();
-
-        if (!controller.validateEmail(email)) {
-            JOptionPane.showMessageDialog(null, "Please enter a valid email address.");
-            return false;
-        }
-
-        if (!controller.validatePhone(phone)) {
-            JOptionPane.showMessageDialog(null, "Please enter a valid phone number.");
-            return false;
-        }
-
-        return true;
     }
 
     public static void main() {

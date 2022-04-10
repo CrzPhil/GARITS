@@ -22,9 +22,41 @@ public class SQL_VehicleHelper extends Database_Controller {
 	}
 
 	// Return vehicle(s) corresponding to customer
-	public Vehicle[] getVehicles(long customerID) {
+	public Vehicle[] getVehicles(Customer customer) {
 		Vehicle[] out = null;
+		String sizequr = String.format("SELECT COUNT(*) AS Count FROM Vehicles WHERE CustomercustomerID = %d", customer.getCustomerID());
+		String qur = String.format("SELECT * FROM Vehicles WHERE CustomercustomerID = %d", customer.getCustomerID());
 
+		try {
+			Statement st = conn.createStatement();
+			ResultSet rs = st.executeQuery(sizequr);
+
+			// Get count for returned rows
+			rs.next();
+			int size = rs.getInt("Count");
+			rs.close();
+
+			out = new Vehicle[size];
+
+			rs = st.executeQuery(qur);
+
+			int i = 0;
+
+			while (rs.next()) {
+				out[i] = new Vehicle(
+						rs.getString("registrationNo"),
+						rs.getString("make"),
+						rs.getString("model"),
+						rs.getString("engSerial"),
+						rs.getString("chassisNo"),
+						rs.getString("colour"),
+						String.valueOf(rs.getDate("MoTDate")),
+						customer);
+				++i;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return out;
 	}
 
@@ -66,7 +98,6 @@ public class SQL_VehicleHelper extends Database_Controller {
 				vehicle.getCustomer().getCustomerID());
 
 		try {
-			System.out.println(addVehicle + sendValues);
 			Statement st = conn.createStatement();
 			st.executeUpdate(addVehicle + sendValues);
 			st.close();

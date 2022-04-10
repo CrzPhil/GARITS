@@ -39,15 +39,20 @@ public class JobDetailsGUI extends JFrame{
                 ViewJobsGUI.main();
             }
         });
+        // Commit changes to Database
         saveChangesButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                // Pop-up asking for confirmation
                 int confirm = JOptionPane.showConfirmDialog(null, "Are you sure you want to make these changes?", "Confirm changes", JOptionPane.YES_NO_OPTION);
+
                 if (confirm == JOptionPane.YES_OPTION) {
+                    // Check input
                     if (inputValid(typeField.getText(),
                             durationField.getText(),
                             mileageField.getText(),
                             priceField.getText())) {
+                        // Update row in database
                         SQL_JobHelper helper = new SQL_JobHelper();
                         if (helper.updateJob(
                                 job.getJobID(),

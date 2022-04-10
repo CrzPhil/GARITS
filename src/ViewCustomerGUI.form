@@ -22,7 +22,7 @@
         <properties/>
         <border type="none"/>
         <children>
-          <component id="f3e8f" class="javax.swing.JList" binding="vehicleList">
+          <component id="f3e8f" class="javax.swing.JList" binding="vehicleList" custom-create="true">
             <constraints/>
             <properties>
               <background color="-14658722"/>
@@ -31,7 +31,7 @@
           </component>
         </children>
       </scrollpane>
-      <component id="22c70" class="javax.swing.JTextField" binding="addressField">
+      <component id="22c70" class="javax.swing.JTextField" binding="addressField" custom-create="true">
         <constraints>
           <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -39,7 +39,7 @@
         </constraints>
         <properties/>
       </component>
-      <component id="e2aa5" class="javax.swing.JTextField" binding="telephoneField">
+      <component id="e2aa5" class="javax.swing.JTextField" binding="telephoneField" custom-create="true">
         <constraints>
           <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -47,7 +47,7 @@
         </constraints>
         <properties/>
       </component>
-      <component id="31852" class="javax.swing.JTextField" binding="emailField">
+      <component id="31852" class="javax.swing.JTextField" binding="emailField" custom-create="true">
         <constraints>
           <grid row="9" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -55,7 +55,7 @@
         </constraints>
         <properties/>
       </component>
-      <component id="88f4f" class="javax.swing.JTextField" binding="faxField">
+      <component id="88f4f" class="javax.swing.JTextField" binding="faxField" custom-create="true">
         <constraints>
           <grid row="11" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -108,7 +108,7 @@
           <text value="Address:"/>
         </properties>
       </component>
-      <component id="1d570" class="javax.swing.JTextField" binding="nameField">
+      <component id="1d570" class="javax.swing.JTextField" binding="nameField" custom-create="true">
         <constraints>
           <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -176,7 +176,7 @@
           <text value="Discount:"/>
         </properties>
       </component>
-      <component id="3777" class="javax.swing.JTextField" binding="discountField">
+      <component id="3777" class="javax.swing.JTextField" binding="discountField" custom-create="true">
         <constraints>
           <grid row="13" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -184,7 +184,7 @@
         </constraints>
         <properties/>
       </component>
-      <component id="ff794" class="javax.swing.JComboBox" binding="discountPlan">
+      <component id="ff794" class="javax.swing.JComboBox" binding="discountPlan" custom-create="true">
         <constraints>
           <grid row="13" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -232,7 +232,7 @@
           <text value="Customer:"/>
         </properties>
       </component>
-      <component id="81e3f" class="javax.swing.JLabel" binding="customerIDLabel">
+      <component id="81e3f" class="javax.swing.JLabel" binding="customerIDLabel" custom-create="true">
         <constraints>
           <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -240,7 +240,7 @@
           <background color="-1"/>
           <font name="Yu Gothic UI Semibold" size="24"/>
           <foreground color="-1"/>
-          <text value="Label"/>
+          <text value=""/>
         </properties>
       </component>
       <component id="3980b" class="javax.swing.JButton" binding="returnButton" default-binding="true">

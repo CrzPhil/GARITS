@@ -1,5 +1,6 @@
 package Customers;
 
+import javax.swing.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -84,7 +85,35 @@ public class Customer_Controller implements I_Customers {
 		return checkRegex(rateRegex, discount);
 	}
 
+	// Method to validate user input
+	public boolean digestInfo(String phone, String email, String discount, String fax) {
+		if (!validateEmail(email)) {
+			JOptionPane.showMessageDialog(null, "Please enter a valid email address.");
+			return false;
+		}
+
+		if (!validatePhone(phone)) {
+			JOptionPane.showMessageDialog(null, "Please enter a valid phone number.");
+			return false;
+		}
+
+		if (!validateDiscount(discount)) {
+			JOptionPane.showMessageDialog(null, "Please enter a valid discount integer.");
+			return false;
+		}
+
+		return true;
+	}
+
 	public boolean createCustomer(String fname, String lname, String address, String telephone, String email, String fax, int discount) {
 		return customerHelper.createCustomer(fname, lname, address, telephone, email, fax, discount);
+	}
+
+	public boolean updateCustomer(String fname, String lname, String address, String telephone, String email, String fax, int discount, long customerID) {
+		return customerHelper.updateCustomer(fname, lname, address, telephone, email, fax, discount, customerID);
+	}
+
+	public Vehicle[] getVehicles(Customer customer) {
+		return vehicleHelper.getVehicles(customer);
 	}
 }
