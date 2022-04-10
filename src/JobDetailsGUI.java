@@ -76,6 +76,16 @@ public class JobDetailsGUI extends JFrame{
         });
     }
 
+    public JobDetailsGUI() {
+        returnButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                j.dispose();
+                ViewJobsGUI.main();
+            }
+        });
+    }
+
     private boolean inputValid(String type, String duration, String mileage, String price) {
         // Check if Type is valid
         if (!job.getJobTypes().contains(type)) {
@@ -92,15 +102,7 @@ public class JobDetailsGUI extends JFrame{
         return true;
     }
 
-    public JobDetailsGUI() {
-        returnButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                j.dispose();
-                ViewJobsGUI.main();
-            }
-        });
-    }
+
 
     public static void main(Job job){
         j.setContentPane(new JobDetailsGUI(job).Main);

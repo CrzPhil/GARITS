@@ -12,6 +12,7 @@ public class CustomerAccountMenuGUI extends JFrame{
     private JButton returnButton;
     private JButton modifyAccountButton;
     private JTree CustomerAccounts;
+    private JButton createAccountButton;
     private static final CustomerAccountMenuGUI j = new CustomerAccountMenuGUI();
 
     public CustomerAccountMenuGUI() {

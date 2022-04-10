@@ -1,8 +1,12 @@
 package Customers;
 
 import Customers.*;
+import Job.SQL_JobHelper;
 
 public class Customer_Controller implements I_Customers {
+
+	private final SQL_VehicleHelper helper = new SQL_VehicleHelper();
+	private final SQL_JobHelper jobHelper = new SQL_JobHelper();
 
 	/**
 	 * 
@@ -21,9 +25,17 @@ public class Customer_Controller implements I_Customers {
 		throw new UnsupportedOperationException();
 	}
 
-	public Customers.Vehicle createVehicle() {
-		// TODO - implement Customer_Controller.createVehicle
-		throw new UnsupportedOperationException();
+	@Override
+	public Vehicle createVehicle() {
+		return null;
+	}
+
+	public boolean vehicleExists(String regNo) {
+		return helper.vehicleExists(regNo);
+	}
+
+	public boolean createVehicle(Vehicle vehicle) {
+		return helper.addVehicle(vehicle);
 	}
 
 	public Customers.Vehicle getVehicle() {

@@ -55,7 +55,7 @@ public class SQL_JobHelper extends Database_Controller {
 		}
 	}
 
-	// TODO: Modify type
+	// TODO: Modify type / Add to controller
 	public Job[] sendData(String jobType, float duration, String dates, String parts, String motNO, int mileage, float price, String additionalInfo, String status){
 		// Since we store status as a tinyint, 1 -> Complete 0 -> Incomplete
 		int jStatus;
