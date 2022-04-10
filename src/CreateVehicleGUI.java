@@ -62,6 +62,7 @@ public class CreateVehicleGUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 j.dispose();
+                ViewCustomerGUI.main(customer);
 
             }
         });
