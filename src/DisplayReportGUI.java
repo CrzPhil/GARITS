@@ -73,18 +73,20 @@ public class DisplayReportGUI extends JFrame {
         });
     }
 
-    // TODO: Closing report shouldn't close GARITS
+
+
     public static void main(){
     j.setContentPane(new DisplayReportGUI().main);
     j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     j.setTitle("Report");
-    j.setPreferredSize(new Dimension(700, 990));
+    //j.setPreferredSize(new Dimension(700, 990));
     j.pack();
     j.setLocationRelativeTo(null);
     // Make the report fit into the screen
-    j.setSize(new Dimension(new ImageIcon("src/Reports/preview_page1.png").getIconWidth(), new ImageIcon("src/Reports/preview_page1.png").getIconHeight()));
+    j.setSize(new Dimension(new ImageIcon("logo.png").getIconWidth(), new ImageIcon("logo.png").getIconHeight()));
     j.setVisible(true);
 }
+    private void createUIComponents() {ReportImage = new JLabel(new ImageIcon("logo.png"));}
 
-    private void createUIComponents() {ReportImage = new JLabel(new ImageIcon("src/Reports/preview_page1.png"));}
+
 }
