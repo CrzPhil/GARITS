@@ -7,7 +7,7 @@ public class main {
 
     public static void main(String[] args) {
         //JobsMenuGUI.main();
-        //AdminDashboardGUI.main();
+        AdminDashboardGUI.main();
         //ManageDatabaseGUI.main();
         //CustomerAccountMenuGUI.main();
         //ViewJobsGUI.main();

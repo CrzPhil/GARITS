@@ -49,7 +49,6 @@ public class AdminDashboardGUI extends JFrame{
         });
     }
 
-    // TODO: Buttons are not clickable for some reason
     private void createUIComponents() {
         usersButton = new JButton();
         databaseButton = new JButton("dbbutton");
