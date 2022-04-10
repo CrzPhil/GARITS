@@ -36,7 +36,7 @@ public class Customer_Controller implements I_Customers {
 	}
 
 	public boolean createVehicle(Vehicle vehicle) {
-		return vehicleHelper.addVehicle(vehicle);
+		return vehicleHelper.createVehicle(vehicle);
 	}
 
 	public Customer[] getCustomers() {
@@ -113,7 +113,19 @@ public class Customer_Controller implements I_Customers {
 		return customerHelper.updateCustomer(fname, lname, address, telephone, email, fax, discount, customerID);
 	}
 
+	public boolean deleteCustomer(Customer customer) {
+		return customerHelper.deleteCustomer(customer.getCustomerID());
+	}
+
 	public Vehicle[] getVehicles(Customer customer) {
 		return vehicleHelper.getVehicles(customer);
+	}
+
+	public boolean deleteVehicle(String regNo) {
+		return vehicleHelper.deleteVehicle(regNo);
+	}
+
+	public boolean updateVehicle(String regNo, String make, String model, String engSerial, String chassisNo, String colour, String motDate, long customerID) {
+		return vehicleHelper.updateVehicle(regNo, make, model, engSerial, chassisNo, colour, motDate, customerID);
 	}
 }

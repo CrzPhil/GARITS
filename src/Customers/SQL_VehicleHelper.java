@@ -1,7 +1,6 @@
 package Customers;
 
 import Database.Database_Controller;
-import Job.Job;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -83,7 +82,7 @@ public class SQL_VehicleHelper extends Database_Controller {
 		}
 	}
 
-	public boolean addVehicle(Vehicle vehicle) {
+	public boolean createVehicle(Vehicle vehicle) {
 		String addVehicle = "INSERT INTO Vehicles (registrationNo, make, model, engSerial, chassisNo, colour, MoTDate, CustomercustomerID)";
 		// Format date correctly (DD/MM/YYYY)
 		String datePart = "STR_TO_DATE('" + vehicle.getMotDate() + "', \"%d/%m/%Y\")";
@@ -109,4 +108,36 @@ public class SQL_VehicleHelper extends Database_Controller {
 		}
 	}
 
+	public boolean deleteVehicle(String reNo) {
+		String qur = String.format("DELETE FROM Vehicles WHERE registrationNo = '%s'", reNo);
+		try {
+			Statement st = conn.createStatement();
+			st.executeUpdate(qur);
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	public boolean updateVehicle(String regNo, String make, String model, String engSerial, String chassisNo, String colour, String motDate, long customerID) {
+		String datePart = "STR_TO_DATE('" + motDate + "', \"%Y-%m-%d\")";
+		String qur = String.format("UPDATE Vehicles SET registrationNo = '%s', make = '%s', model = '%s', engSerial = '%s', chassisNo = '%s', colour = '%s', MoTDate = %s WHERE CustomercustomerID = %d",
+				regNo,
+				make,
+				model,
+				engSerial,
+				chassisNo,
+				colour,
+				datePart,
+				customerID);
+		try {
+			Statement st = conn.createStatement();
+			st.executeUpdate(qur);
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
 }

@@ -64,6 +64,7 @@ public class SQL_CustomerHelper extends Database_Controller {
 		return out;
 	}
 
+	// Create customer
 	public boolean createCustomer(String fname, String lname, String address, String telephone, String email, String fax, int discount) {
 		String qur = String.format("INSERT INTO Customers(firstName, lastName, address, telephone, email, fax, discount)" +
 				" VALUES('%s','%s','%s','%s','%s','%s',%d)", fname, lname, address, telephone, email, fax, discount);
@@ -71,6 +72,22 @@ public class SQL_CustomerHelper extends Database_Controller {
 			Statement st = conn.createStatement();
 			st.executeUpdate(qur);
 			st.close();
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	// Delete customer by customerID
+	public boolean deleteCustomer(long customerID) {
+		String qur = "DELETE FROM Customers WHERE customerID = " + customerID;
+
+		try {
+			Statement st = conn.createStatement();
+			st.executeUpdate(qur);
+			st.close();
+
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
