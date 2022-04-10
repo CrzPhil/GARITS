@@ -22,7 +22,7 @@ public class AdminLoginGUI extends JFrame{
                     UserAccountMenuGUI.main();
                 } else {
                     // Error pop up for wrong password
-                    JOptionPane.showMessageDialog(null, "Wrong Password!");
+                    JOptionPane.showMessageDialog(null, "Please check you have entered the correct username and password.");
                 }
             }
         });
