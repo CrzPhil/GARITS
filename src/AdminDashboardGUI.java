@@ -52,11 +52,10 @@ public class AdminDashboardGUI extends JFrame{
     // TODO: Buttons are not clickable for some reason
     private void createUIComponents() {
         usersButton = new JButton();
-        databaseButton = new JButton();
-
+        databaseButton = new JButton("dbbutton");
         try {
-            Image img = ImageIO.read(new FileInputStream("data/usericon.png")).getScaledInstance(100, 100, Image.SCALE_DEFAULT);
-            Image dtbImg = ImageIO.read(new FileInputStream("data/databaseicon.png")).getScaledInstance(100, 100, Image.SCALE_DEFAULT);
+            Image img = ImageIO.read(new FileInputStream("data/userwhite.png")).getScaledInstance(100, 100, Image.SCALE_DEFAULT);
+            Image dtbImg = ImageIO.read(new FileInputStream("data/dbicon.png")).getScaledInstance(100, 100, Image.SCALE_DEFAULT);
             usersButton.setIcon(new ImageIcon(img));
             databaseButton.setIcon(new ImageIcon(dtbImg));
         } catch (Exception ignored) {
