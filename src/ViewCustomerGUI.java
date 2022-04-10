@@ -82,18 +82,14 @@ public class ViewCustomerGUI extends JFrame {
         });
         addVehicleButton.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e)
+            {
+                j.dispose();
                 CreateVehicleGUI.main(currentCustomer);
             }
         });
 
-        editVehicleButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                EditVehicleGUI.main();
-            }
-        });
-        /*deleteCustomerButton.addActionListener(new ActionListener() {
+        deleteCustomerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Customer_Controller controller = new Customer_Controller();
@@ -108,7 +104,18 @@ public class ViewCustomerGUI extends JFrame {
                     }
                 }
             }
-        }); */
+        });
+        editVehicleButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (selectedVehicle != null) {
+                    j.dispose();
+                    EditVehicleGUI.main(currentCustomer, selectedVehicle);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Select a vehicle first!");
+                }
+            }
+        });
     }
 
     public static void main(Customer customer){
