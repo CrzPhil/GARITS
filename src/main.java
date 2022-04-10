@@ -4,8 +4,8 @@ import java.io.InputStreamReader;
 public class main {
 
     public static void main(String[] args) {
-        JobsMenuGUI.main();
-
+        //JobsMenuGUI.main();
         //AdminDashboardGUI.main();
+        ManageDatabaseGUI.main();
     }
 }

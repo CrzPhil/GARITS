@@ -70,16 +70,19 @@ public class Database_Controller implements I_Database {
 
 		try {
 			// TODO: Windows/Version-specific
-			String cmd = "C:\\Program Files\\MySQL\\MySQL Server 8.0\\bin\\mysqldump.exe -uGARITS -pG@R!T$$$ -h176.58.124.119 GARITS > " +
-					cdir + "\\src\\Database\\Backups\\" + filename;
-			System.out.println(cmd);
-			Runtime rt = Runtime.getRuntime();
-			rt.exec(cmd);
-			return true;
+			String[] cmd = {"cmd", "/c", "C:\\Program Files\\MySQL\\MySQL Server 8.0\\bin\\mysqldump.exe", "-uGARITS", "-pG@R!T$$$", "-h176.58.124.119", "GARITS", ">", cdir + "\\src\\Database\\Backups\\" + filename};
+			ProcessBuilder pb = new ProcessBuilder(cmd);
+			pb.redirectErrorStream(true);
+			Process pr = pb.start();
+
+			pr.waitFor();
+			// 0 means success, anything else means it failed
+			return pr.exitValue() == 0;
+
 		} catch (Exception e) {
 			// Linux/Mac specific; MySQL has to be installed.
-			String cmd = "mysqldump -uGARITS -pG@R!T$$$ -h176.58.124.119 GARITS > " +
-					cdir + "/src/Database/Backups/" + filename;
+			String[] cmd = {"/bin/sh", "-c", "mysqldump", "-uGARITS", "-pG@R!T$$$", "-h176.58.124.119", "GARITS", ">", cdir + "/src/Database/Backups/" + filename};
+
 			Runtime rt = Runtime.getRuntime();
 			try {
 				rt.exec(cmd);
@@ -112,12 +115,16 @@ public class Database_Controller implements I_Database {
 
 		} catch (Exception e) {
 			// Linux/Mac specific; MySQL has to be installed.
-			String cmd = "/bin/sh -c mysql -uGARITS -pG@R!T$$$ -h176.58.124.119 GARITS < " + filePath;
-			Runtime rt = Runtime.getRuntime();
+			String[] cmd = {"/bin/sh", "-c", "mysqldump", "-uGARITS", "-pG@R!T$$$", "-h176.58.124.119", "GARITS", "<", filePath};
+			ProcessBuilder pb = new ProcessBuilder(cmd);
+			pb.redirectErrorStream(true);
+
 			try {
-				rt.exec(cmd);
-				return true;
-			} catch (IOException ex) {
+				Process pr = pb.start();
+				pr.waitFor();
+				// 0 means success, anything else means it failed
+				return pr.exitValue() == 0;
+			} catch (IOException | InterruptedException ex) {
 				ex.printStackTrace();
 				return false;
 			}
