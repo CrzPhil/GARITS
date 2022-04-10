@@ -37,6 +37,7 @@ public class ViewCustomerGUI extends JFrame {
     public ViewCustomerGUI(Customer selectedCustomer) {
         this.currentCustomer = selectedCustomer;
         customerIDLabel.setText(String.valueOf(currentCustomer.getCustomerID()));
+        createDropDown();
 
         returnButton.addActionListener(new ActionListener() {
             @Override
@@ -153,6 +154,26 @@ public class ViewCustomerGUI extends JFrame {
         });
     }
 
+    private void createDropDown() {
+        // Because we do everything for a nice UX :)
+        // Customer's discount plan should already be selected, and the other two should be options
+        String otherOption;
+        String otherotherOption;
+        if (Objects.equals(currentCustomer.getDiscountPlan(), Customer.plans[0])) {
+            otherOption = Customer.plans[1];
+            otherotherOption = Customer.plans[2];
+        } else if (Objects.equals(currentCustomer.getDiscountPlan(), Customer.plans[1])) {
+            otherOption = Customer.plans[0];
+            otherotherOption = Customer.plans[2];
+        } else {
+            otherOption = Customer.plans[0];
+            otherotherOption = Customer.plans[1];
+        }
+        discountPlan.addItem(currentCustomer.getDiscountPlan());
+        discountPlan.addItem(otherOption);
+        discountPlan.addItem(otherotherOption);
+    }
+
     private void createUIComponents() {
         if (currentCustomer != null) {
             customerIDLabel = new JLabel(String.valueOf(currentCustomer.getCustomerID()));
@@ -163,23 +184,8 @@ public class ViewCustomerGUI extends JFrame {
             faxField = new JTextField(currentCustomer.getFax());
             discountField = new JTextField(currentCustomer.getDiscount());
 
-            // Because we do everything for a nice UX :)
-            // Customer's discount plan should already be selected, and the other two should be options
-            String otherOption;
-            String otherotherOption;
-            if (Objects.equals(currentCustomer.getDiscountPlan(), Customer.plans[0])) {
-                otherOption = Customer.plans[1];
-                otherotherOption = Customer.plans[2];
-            } else if (Objects.equals(currentCustomer.getDiscountPlan(), Customer.plans[1])) {
-                otherOption = Customer.plans[0];
-                otherotherOption = Customer.plans[2];
-            } else {
-                otherOption = Customer.plans[0];
-                otherotherOption = Customer.plans[1];
-            }
-
-            discountPlan = new JComboBox<String>(new String[]{currentCustomer.getDiscountPlan(), otherOption, otherotherOption});
-
+            discountPlan = new JComboBox<String>();
+            createDropDown();
             createVehicleList();
         } else {
             customerIDLabel = new JLabel();
