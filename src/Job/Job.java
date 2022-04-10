@@ -1,35 +1,70 @@
 package Job;
 
-import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Job {
 
-	private long jobID;
-	private String name;
-	private boolean status;
-	private Date startDate;
-	private Date finishDate;
-	private double price;
-	private String jobDetails;
-	private SparePartsCollection partsNeed;
-	private double duration;
+
+
+	private int jobID;
+	private final Set<String> jobTypes =
+			Stream.of("MOT", "Service")
+					.collect(Collectors.toCollection(HashSet::new));
+	private String jobType;
+	private String dates;
+	private float price;
+	private String motNO;
+	private String parts;
+	private float duration;
+	private int mileage;
+	private String additionalInfo;
+	// As stored in DB, states[0] -> Incomplete ; states[1] -> Complete
+	static private final String[] states = {"Incomplete", "Complete"};
+	private String status;
 
 	/**
-	 * 
+	 *
 	 * @param jobID
-	 * @param name
-	 * @param status
-	 * @param startDate
-	 * @param finishDate
+	 * @param jobType
+	 * @param dates
 	 * @param price
-	 * @param jobDetails
-	 * @param partsNeed
+	 * @param motNo
+	 * @param parts
 	 * @param duration
+	 * @param mileage
+	 * @param additionalInfo
 	 */
-	public Job() {
-		// TODO - implement Job.Job
-		System.out.println("Default Constructor");
-		throw new UnsupportedOperationException();
+	public Job(int jobID, String jobType, float duration, String dates, String parts, String motNo, int mileage, float price, String additionalInfo, String status) {
+		this.jobID = jobID;
+		this.jobType = jobType;
+		this.duration = duration;
+		this.dates = dates;
+		this.parts = parts;
+		this.motNO = motNo;
+		this.mileage = mileage;
+		this.price = price;
+		this.additionalInfo = additionalInfo;
+		this.status = status;
+	}
+
+    public Job() {
+
+    }
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	@Override
+	public String toString() {
+		return this.jobID + "    " + this.dates + "    " + this.jobType + "    ￡" + this.price + " " + this.status;
 	}
 
 	public void update_on_job() {
@@ -42,93 +77,86 @@ public class Job {
 		throw new UnsupportedOperationException();
 	}
 
-	public long getJobID() {
-		return this.jobID;
-	}
 
-	/**
-	 * 
-	 * @param jobID
-	 */
-	public void setJobID(long jobID) {
-		this.jobID = jobID;
-	}
-
-	public String getName() {
-		return this.name;
-	}
-
-	/**
-	 * 
-	 * @param name
-	 */
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public boolean getStatus() {
-		return this.status;
-	}
-
-	/**
-	 * 
-	 * @param status
-	 */
-	public void setStatus(boolean status) {
-		this.status = status;
-	}
-
-	public Date getStartDate() {
-		return this.startDate;
-	}
-
-	/**
-	 * 
-	 * @param startDate
-	 */
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
-	}
-
-	public Date getFinishDate() {
-		return this.finishDate;
-	}
-
-	/**
-	 * 
-	 * @param finishDate
-	 */
-	public void setFinishDate(Date finishDate) {
-		this.finishDate = finishDate;
-	}
-
-	public double getPrice() {
-		return this.price;
-	}
-
-	/**
-	 * 
-	 * @param price
-	 */
-	public void setPrice(double price) {
-		this.price = price;
-	}
-
-	public String getJobDetails() {
-		return this.jobDetails;
-	}
-
-	/**
-	 * 
-	 * @param jobDetails
-	 */
-	public void setJobDetails(String jobDetails) {
-		this.jobDetails = jobDetails;
-	}
 
 	public void partsAvaliable() {
 		// TODO - implement Job.partsAvaliable
 		throw new UnsupportedOperationException();
 	}
 
+	public int getJobID() {
+		return jobID;
+	}
+
+	public String getJobType() {
+		return jobType;
+	}
+
+	public void setJobType(String jobType) {
+		this.jobType = jobType;
+	}
+
+	public String getDates() {
+		return dates;
+	}
+
+	public void setDates(String dates) {
+		this.dates = dates;
+	}
+
+	public float getPrice() {
+		return price;
+	}
+
+	public void setPrice(float price) {
+		this.price = price;
+	}
+
+	public String getMotNO() {
+		return motNO;
+	}
+
+	public void setMotNO(String motNO) {
+		this.motNO = motNO;
+	}
+
+	public String getParts() {
+		return parts;
+	}
+
+	public void setParts(String parts) {
+		this.parts = parts;
+	}
+
+	public float getDuration() {
+		return duration;
+	}
+
+	public void setDuration(float duration) {
+		this.duration = duration;
+	}
+
+	public int getMileage() {
+		return mileage;
+	}
+
+	public void setMileage(int mileage) {
+		this.mileage = mileage;
+	}
+
+	public String getAdditionalInfo() {
+		return additionalInfo;
+	}
+
+	public void setAdditionalInfo(String additionalInfo) {
+		this.additionalInfo = additionalInfo;
+	}
+
+	public Set<String> getJobTypes() {
+		return jobTypes;
+	}
+
+	static public String[] getStates() {
+		return states;
+	}
 }

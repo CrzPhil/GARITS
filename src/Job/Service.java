@@ -21,6 +21,7 @@ public class Service extends Job {
 	 * @param type
 	 */
 	public Service(String type) {
+		super();
 		// TODO - implement Service.Service
 		throw new UnsupportedOperationException();
 	}

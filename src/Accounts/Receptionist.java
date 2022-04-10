@@ -76,4 +76,7 @@ public class Receptionist extends User {
 		super(userID, username, email, password, name);
 	}
 
+	public String toString() {
+		return super.toString();
+	}
 }

@@ -5,6 +5,7 @@ import Job.*;
 import java.util.Date;
 
 public class Job_Controller implements I_Job {
+	private final SQL_JobHelper helper = new SQL_JobHelper();
 
 	/**
 	 * 
@@ -116,6 +117,10 @@ public class Job_Controller implements I_Job {
 	public boolean orderSparePart(long partID) {
 		// TODO - implement Job_Controller.orderSparePart
 		throw new UnsupportedOperationException();
+	}
+
+	public Job[] getJobs() {
+		return helper.getJobs();
 	}
 
 }

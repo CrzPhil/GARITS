@@ -61,4 +61,8 @@ public class Mechanic extends Accounts.User {
 		super(userID, username, email, password, name);
 	}
 
+	@Override
+	public String toString() {
+		return super.toString();
+	}
 }

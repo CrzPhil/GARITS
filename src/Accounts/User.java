@@ -37,14 +37,6 @@ public class User {
 		return this.userID;
 	}
 
-	/**
-	 * 
-	 * @param userID
-	 * New userID
-	 */
-	public void setUserID(long userID) {
-		this.userID = userID;
-	}
 
 	public String getUsername() {
 		return this.username;
@@ -98,4 +90,9 @@ public class User {
 		this.name = name;
 	}
 
+
+	@Override
+	public String toString() {
+		return name;
+	}
 }

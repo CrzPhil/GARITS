@@ -17,8 +17,13 @@ public class AdminLoginGUI extends JFrame{
             public void actionPerformed(ActionEvent e) {
 
                 String password = String.valueOf(txtPassword.getPassword());
-                j.dispose();
-                AccountMenuGUI.main();
+                if (password.equals("adminpass")) {
+                    j.dispose();
+                    UserAccountMenuGUI.main();
+                } else {
+                    // Error pop up for wrong password
+                    JOptionPane.showMessageDialog(null, "Wrong Password!");
+                }
             }
         });
         returnButton.addActionListener(new ActionListener() {

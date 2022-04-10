@@ -1,29 +1,28 @@
 package Accounts;
 
+import java.util.HashMap;
+
 public class UserCollection {
 
 	private int index = 0;
+	// Map userID to corresponding user
+	static private HashMap<Long, User> userCollection;
 
 	/**
-	 * 
-	 * @param userID
-	 * @param username
-	 * @param email
-	 * @param password
-	 * @param name
+	 *
+	 * @param userID Identifier of User
+	 * @param user User Object (can be any subclass)
 	 */
-	public void addItem(long userID, String username, String email, String password, String name) {
-		// TODO - implement UserCollection.addItem
-		throw new UnsupportedOperationException();
+	public void addItem(long userID, User user) {
+		userCollection.put(userID, user);
 	}
 
 	/**
 	 * 
 	 * @param userID
 	 */
-	public boolean removeItem(long userID) {
-		// TODO - implement UserCollection.removeItem
-		throw new UnsupportedOperationException();
+	public void removeItem(long userID) {
+		userCollection.remove(userID);
 	}
 
 	public int getIndex() {
@@ -39,8 +38,7 @@ public class UserCollection {
 	}
 
 	public UserCollection() {
-		// TODO - implement UserCollection.UserCollection
-		throw new UnsupportedOperationException();
+		userCollection = new HashMap<Long, User>();
 	}
 
 }

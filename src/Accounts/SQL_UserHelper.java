@@ -22,27 +22,256 @@ public class SQL_UserHelper extends Database_Controller {
 		return this.query;
 	}
 
-	public void getUser(String fname, String lname) {
-		System.out.println("Querying user " + fname + " " + lname + " ... ");
-		String qur = "SELECT * FROM Staff WHERE firstName LIKE \'" + fname + "\' OR lastName LIKE \'" + lname + "\'";
+	// Authentication function
+	public boolean compareCredentials(String username, String password) {
+		String qur = String.format("SELECT Count(*) AS Count FROM Staff WHERE username LIKE '%s' AND password LIKE '%s'", username, password);
+
+		boolean login = false;
 
 		try {
 			Statement st = conn.createStatement();
 			ResultSet rs = st.executeQuery(qur);
-			while (rs.next()) {
-				int s = rs.getInt("staffID");
-				String f = rs.getString("firstName");
-				String l = rs.getString("lastName");
-				String r = rs.getString("role");
-				String u = rs.getString("username");
-				String p = rs.getString("password");
-				int h = rs.getInt("hourlyRate");
-				System.out.println("");
-				System.out.println(f + " " + l + " " + r + " " + u + " " + p + " " + h);
-			}
+
+			rs.next();
+
+			login = rs.getInt("Count") == 1;
+
+			st.close();
+			rs.close();
 		} catch (SQLException ex) {
 			System.err.println(ex.getMessage());
 		}
+
+		return login;
 	}
 
+	// Get the role of a username -> used for privileges
+	public String getRole(String username) {
+		String qur = String.format("SELECT role FROM Staff WHERE username LIKE '%s'", username);
+		String role = null;
+
+		try {
+			Statement st = conn.createStatement();
+			ResultSet rs = st.executeQuery(qur);
+
+			rs.next();
+
+			role = rs.getString("role");
+
+			rs.close();
+			st.close();
+		} catch (SQLException ex) {
+			System.err.println(ex.getMessage());
+		}
+
+		return role;
+	}
+
+	// Get a user by role
+	public User[] getByRole(String role) {
+		String getsize = String.format("SELECT COUNT(*) AS Count FROM Staff WHERE role LIKE '%s'", role);
+		String qur = String.format("SELECT * FROM Staff WHERE role LIKE '%s'", role);
+		User[] out = null;
+		try {
+			Statement st = conn.createStatement();
+			ResultSet rs = st.executeQuery(getsize);
+
+			// Get count for the returned rows to match the array to that size (WIP)
+			rs.next();
+			int size = rs.getInt("Count");
+			rs.close();
+
+			out = new User[size];
+
+			// Get users
+			rs = st.executeQuery(qur);
+
+			int i = 0;
+			String name;
+
+			while (rs.next()) {
+				switch (role) {
+					case "Administrator" -> {
+						// Combine first and last name
+						name = rs.getString("firstName") + " " + rs.getString("lastName");
+						out[i] = new Administrator(rs.getInt("staffID"),
+								rs.getString("username"),
+								rs.getString("email"),
+								rs.getString("password"),
+								name,
+								rs.getInt("hourlyrate"));
+					}
+					case "Franchisee" -> {
+						// Combine first and last name
+						name = rs.getString("firstName") + " " + rs.getString("lastName");
+						out[i] = new Franchisee(rs.getInt("staffID"),
+								rs.getString("username"),
+								null, // We don't store Staff emails in DB
+								rs.getString("password"),
+								name);
+					}
+					case "Mechanic" -> {
+						// Combine first and last name
+						name = rs.getString("firstName") + " " + rs.getString("lastName");
+						out[i] = new Mechanic(rs.getInt("staffID"),
+								rs.getString("username"),
+								null, // We don't store Staff emails in DB
+								rs.getString("password"),
+								name);
+					}
+					case "Foreperson" -> {
+						// Combine first and last name
+						name = rs.getString("firstName") + " " + rs.getString("lastName");
+						out[i] = new ForePerson(rs.getInt("staffID"),
+								rs.getString("username"),
+								null, // We don't store Staff emails in DB
+								rs.getString("password"),
+								name);
+					}
+					case "Receptionist" -> {
+						// Combine first and last name
+						name = rs.getString("firstName") + " " + rs.getString("lastName");
+						out[i] = new Receptionist(rs.getInt("staffID"),
+								rs.getString("username"),
+								null, // We don't store Staff emails in DB
+								rs.getString("password"),
+								name);
+					}
+					default -> System.out.println("[DEBUG] Role not found!");
+				}
+				i++;
+			}
+			rs.close();
+		} catch (SQLException ex) {
+			System.err.println(ex.getMessage());
+		}
+		return out;
+	}
+
+	// Matches First name, last name, username for easy recognition; returns full name
+	public String getStaff(String any) {
+		String getsize = String.format("SELECT COUNT(*) AS Count FROM Staff WHERE firstName LIKE '%s' OR lastName LIKE '%s' OR username LIKE '%s'", any, any, any);
+		String qur = String.format("SELECT firstName, lastName FROM Staff WHERE firstName LIKE '%s' OR lastName LIKE '%s' OR username LIKE '%s'", any, any, any);
+
+		return getStaffName(getsize, qur);
+	}
+
+	// Get Staff by ID
+	public String getStaff(long staffID) {
+		String getsize = String.format("SELECT COUNT(*) AS Count FROM Staff WHERE staffID = %d", staffID);
+		String qur = String.format("SELECT firstName, lastName FROM Staff WHERE staffID = %d", staffID);
+
+		return getStaffName(getsize, qur);
+	}
+
+	// Get ID by username
+	public long getID(String username) {
+		String qur = String.format("SELECT staffID FROM Staff WHERE username LIKE '%s'", username);
+
+		try {
+			Statement st = conn.createStatement();
+			ResultSet rs = st.executeQuery(qur);
+
+			rs.next();
+
+			long id = rs.getLong("staffID");
+
+			rs.close();
+			st.close();
+
+			return id;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return 0;
+		}
+	}
+
+	// Get Hashed pass by username
+	public String getPass(String username) {
+		String qur = String.format("SELECT password FROM Staff WHERE username LIKE '%s'", username);
+
+		try {
+			Statement st = conn.createStatement();
+			ResultSet rs = st.executeQuery(qur);
+
+			rs.next();
+
+			String hashedpass = rs.getString("password");
+
+			rs.close();
+			st.close();
+
+			return hashedpass;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	private String getStaffName(String getsize, String qur) {
+		try {
+			Statement st = conn.createStatement();
+			ResultSet rs = st.executeQuery(getsize);
+
+			// Get count for the returned rows to match the array to that size (WIP)
+			rs.next();
+			int size = rs.getInt("Count");
+			rs.close();
+
+			String name = null;
+
+			rs = st.executeQuery(qur);
+
+			rs.next();
+
+			if (size == 1) {
+				name = rs.getString("firstName") + " ";
+				name += rs.getString("lastName");
+			}
+
+			rs.close();
+			st.close();
+
+			return name;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	// Create a Staff account in the database
+	public void createStaff(String fname, String lname, String username, char[] password, String role, String rate, String mail) {
+		HashClass hasher = new HashClass();
+		String hashedpass = hasher.chartosha256(password);
+
+		String qur = String.format("INSERT INTO Staff(firstName, lastName, role, username, password, hourlyRate, email) VALUES('%s','%s','%s','%s', '%s', %d, '%s')",
+				fname,
+				lname,
+				role,
+				username,
+				hashedpass,
+				Integer.valueOf(rate),
+				mail);
+		try {
+			Statement st = conn.createStatement();
+			st.executeUpdate(qur);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void deleteStaff(long userID) {
+			String qur = String.format("DELETE FROM Staff WHERE staffID = %d", userID);
+			try {
+				Statement st = conn.createStatement();
+				st.executeUpdate(qur);
+				st.close();
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 }

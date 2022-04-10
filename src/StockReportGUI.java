@@ -20,8 +20,25 @@ public class StockReportGUI extends JFrame{
         generateReportButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                j.dispose();
-                ReportsMenuGUI.main();
+                try {
+                    // Current working directory
+                    String cdir = System.getProperty("user.dir");
+
+                    // Python process
+                    ProcessBuilder pb = new ProcessBuilder("python3", cdir + "/src/Reports/reportgenerator.py");
+                    Process p = pb.start();
+
+                    // DEBUG ONLY
+                    // BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
+                    // System.out.println(in.readLine());
+
+                    DisplayReportGUI.main();
+
+                } catch (Exception ignore) {
+                    JOptionPane.showMessageDialog(null, "Something went wrong. Contact your administrator.");
+                }
+                // j.dispose();
+                // ReportsMenuGUI.main();
             }
         });
     }

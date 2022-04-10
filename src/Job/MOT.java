@@ -5,7 +5,7 @@ import java.util.Date;
 public class MOT extends Job {
 
 	private boolean pass;
-	private long mileage;
+	private int mileage;
 	private long MOTTestNumber;
 	private Date expiryDate;
 	private String testLocation;
@@ -24,7 +24,7 @@ public class MOT extends Job {
 		this.pass = pass;
 	}
 
-	public long getMileage() {
+	public int getMileage() {
 		return this.mileage;
 	}
 
@@ -32,7 +32,7 @@ public class MOT extends Job {
 	 * 
 	 * @param mileage
 	 */
-	public void setMileage(long mileage) {
+	public void setMileage(int mileage) {
 		this.mileage = mileage;
 	}
 

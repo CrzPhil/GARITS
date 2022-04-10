@@ -4,15 +4,8 @@ import Accounts.*;
 
 public interface I_Accounts {
 
-    /**
-     *
-     * @param userID
-     * @param username
-     * @param email
-     * @param password
-     * @param name
-     */
-    abstract Accounts.User createUser(long userID, String username, String email, String password, String name);
+
+    abstract Accounts.User createUser(String fname, String lname, String username, char[] password, String role, String mail, String rate);
 
     /**
      *
