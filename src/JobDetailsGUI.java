@@ -25,6 +25,7 @@ public class JobDetailsGUI extends JFrame{
     private JLabel idLabel;
     private JComboBox statusBox;
     private JComboBox jobTypeBox;
+    private JButton deleteButton;
     private static JobDetailsGUI j = new JobDetailsGUI();
     private Job job;
 
@@ -39,6 +40,31 @@ public class JobDetailsGUI extends JFrame{
                 ViewJobsGUI.main();
             }
         });
+
+        deleteButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Pop-up asking for confirmation
+                int confirm = JOptionPane.showConfirmDialog(null, "Are you sure you want to make these changes?", "Confirm changes", JOptionPane.YES_NO_OPTION);
+
+                if (confirm == JOptionPane.YES_OPTION) {
+                    // Check input
+                    // Update row in database
+                    SQL_JobHelper helper = new SQL_JobHelper();
+                    helper.deleteJob(job.getJobID());
+                    // Successful Job update
+                    JOptionPane.showMessageDialog(null, "Job Deleted successfully.");
+                    j.dispose();
+                    ViewJobsGUI.main();
+
+                    }
+                    // If input invalid
+                    else {
+                        JOptionPane.showMessageDialog(null, "Please verify your input and try again.");
+                    }
+                }
+        });
+
         // Commit changes to Database
         saveChangesButton.addActionListener(new ActionListener() {
             @Override

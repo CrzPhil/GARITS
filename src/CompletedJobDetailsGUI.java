@@ -1,4 +1,3 @@
-import Job.Job;
 import Job.CompletedJob;
 import Job.SQL_JobHelper;
 
@@ -25,6 +24,7 @@ public class CompletedJobDetailsGUI extends JFrame{
     private JLabel idLabel;
     private JComboBox statusBox;
     private JComboBox jobTypeBox;
+    private JButton deleteButton;
     private static CompletedJobDetailsGUI j = new CompletedJobDetailsGUI();
     private CompletedJob job;
 
@@ -37,6 +37,29 @@ public class CompletedJobDetailsGUI extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 j.dispose();
                 ViewCompletedJobsGUI.main();
+            }
+        });
+        deleteButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Pop-up asking for confirmation
+                int confirm = JOptionPane.showConfirmDialog(null, "Are you sure you want to make these changes?", "Confirm changes", JOptionPane.YES_NO_OPTION);
+
+                if (confirm == JOptionPane.YES_OPTION) {
+                    // Check input
+                    // Update row in database
+                    SQL_JobHelper helper = new SQL_JobHelper();
+                    helper.deleteCompletedJob(job.getJobID());
+                    // Successful Job update
+                    JOptionPane.showMessageDialog(null, "Job Deleted successfully.");
+                    j.dispose();
+                    ViewCompletedJobsGUI.main();
+
+                }
+                // If input invalid
+                else {
+                    JOptionPane.showMessageDialog(null, "Please verify your input and try again.");
+                }
             }
         });
         saveChangesButton.addActionListener(new ActionListener() {
