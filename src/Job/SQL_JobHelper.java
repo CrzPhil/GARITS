@@ -232,6 +232,28 @@ public class SQL_JobHelper extends Database_Controller {
 		return out;
 	}
 
+	public int getJobID(String jobType, float duration, String dates, String parts, String motNo, int mileage, float price, String additionalInfo, String completionStatus) {
+		String qur = String.format("SELECT jobID FROM Jobs WHERE jobType = '%s' AND duration = %f AND dates = '%s' AND motNo = '%s' AND mileage = %d AND price = %f AND additionalinfo = '%s' AND status = '%s'",
+				jobType,
+				duration,
+				dates,
+				motNo,
+				mileage,
+				price,
+				additionalInfo,
+				completionStatus);
+		try {
+			Statement st = conn.createStatement();
+			System.out.println("DEB: " + qur);
+			ResultSet rs = st.executeQuery(qur);
+			rs.next();
+			return rs.getInt("jobID");
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return 0;
+		}
+	}
+
 	public CompletedJob[] getCompletedJobs() {
 		CompletedJob[] out = null;
 
@@ -278,5 +300,16 @@ public class SQL_JobHelper extends Database_Controller {
 
 		this.closeConnection();
 		return out;
+	}
+
+	// Create a job-part entry in the Job_SpareParts Table
+	public void addToJob(int jobID, String partID) {
+		String qur = String.format("INSERT INTO Job_SpareParts(jobID, partCode) VALUES (%d,'%s')", jobID, partID);
+		try {
+			Statement st = conn.createStatement();
+			st.executeUpdate(qur);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 }

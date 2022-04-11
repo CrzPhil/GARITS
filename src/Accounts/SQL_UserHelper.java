@@ -245,7 +245,7 @@ public class SQL_UserHelper extends Database_Controller {
 	}
 
 	// Create a Staff account in the database
-	public void createStaff(String fname, String lname, String username, char[] password, String role, String mail, String rate) {
+	public void createStaff(String fname, String lname, String username, char[] password, String role, String rate, String mail) {
 		HashClass hasher = new HashClass();
 		String hashedpass = hasher.chartosha256(password);
 

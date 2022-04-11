@@ -122,6 +122,10 @@ public class Job_Controller implements I_Job {
 		return jobHelper.getJobs();
 	}
 
+	public int getJobID(String jobType, float duration, String dates, String parts, String motNo, int mileage, float price, String additionalInfo, String completionStatus) {
+		return jobHelper.getJobID(jobType, duration, dates, parts, motNo, mileage, price, additionalInfo, completionStatus);
+	}
+
 	public String[] getPartNames() {
 		return partsHelper.getPartNames();
 	}
@@ -132,5 +136,14 @@ public class Job_Controller implements I_Job {
 
 	public void updateStock(int stock, String partID) {
 		partsHelper.updateStock(stock, partID);
+	}
+
+	public void sendData(String jobType, float duration, String dates, String parts, String motNo, int mileage, float price, String additionalInfo, String completionStatus) {
+		jobHelper.sendData(jobType, duration, dates, parts, motNo, mileage, price, additionalInfo, "Incomplete");
+	}
+
+	// Create a job-part entry in the Job_SpareParts Table
+	public void addToJob(int jobID, String partID) {
+		jobHelper.addToJob(jobID, partID);
 	}
 }
