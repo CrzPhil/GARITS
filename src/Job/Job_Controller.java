@@ -129,4 +129,8 @@ public class Job_Controller implements I_Job {
 	public SparePart[] getAllParts() {
 		return partsHelper.getAllParts();
 	}
+
+	public void updateStock(int stock, String partID) {
+		partsHelper.updateStock(stock, partID);
+	}
 }

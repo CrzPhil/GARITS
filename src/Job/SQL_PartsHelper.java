@@ -153,4 +153,15 @@ public class SQL_PartsHelper extends Database_Controller {
 		this.closeConnection();
 		return out;
 	}
+
+	// Updates item stock by partID
+	public void updateStock(int stock, String partID) {
+		String qur = String.format("UPDATE SpareParts SET stock = %d WHERE code = '%s'", stock, partID);
+		try {
+			Statement st = conn.createStatement();
+			st.executeUpdate(qur);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }

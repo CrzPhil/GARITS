@@ -79,11 +79,40 @@ public class CreateJobGUI extends JFrame{
                 }
             }
         });
+        // TODO: Make this more readable
         addPartButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (partSelectBox.getSelectedItem() != null) {
-                    partModel.addElement((SparePart) partSelectBox.getSelectedItem());
+                    if (((SparePart) partSelectBox.getSelectedItem()).getStock() >= 1) {
+                        // Add Item to JList
+                        partModel.addElement((SparePart) partSelectBox.getSelectedItem());
+                        // Update part Object
+                        ((SparePart) partSelectBox.getSelectedItem()).setStock(((SparePart) partSelectBox.getSelectedItem()).getStock() - 1);
+                        // Update database
+                        Job_Controller controller = new Job_Controller();
+                        controller.updateStock(((SparePart) partSelectBox.getSelectedItem()).getStock(), ((SparePart)  partSelectBox.getSelectedItem()).getPartID());
+                    }
+                    // If Stock is less than one
+                    else {
+                        JOptionPane.showMessageDialog(null, "This item's stock is depleted.");
+                    }
+                }
+            }
+        });
+        deletePartButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (partList.getSelectedValue() != null) {
+                    ((SparePart) partList.getSelectedValue()).setStock(((SparePart) partList.getSelectedValue()).getStock() + 1);
+
+                    // Update database
+                    Job_Controller controller = new Job_Controller();
+                    controller.updateStock(((SparePart) partList.getSelectedValue()).getStock(), ((SparePart)  partList.getSelectedValue()).getPartID());
+
+                    // Remove item from list last, so that selectedValue doesn't move
+                    partModel.removeElement(partList.getSelectedValue());
+
                 }
             }
         });
@@ -109,8 +138,14 @@ public class CreateJobGUI extends JFrame{
     private void createUIComponents(){
         Job_Controller controller = new Job_Controller();
         jDateChooser = new JDateChooser();
+
+        // Configure List of added parts
         this.partModel = new DefaultListModel<SparePart>();
         partList = new JList<>(partModel);
+        partList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+        // Dropdown of possible parts to add to job
+        // TODO: filter this to become vehicle-specific (manufacturer/model)
         partSelectBox = new JComboBox<>(controller.getAllParts());
 }
 }
