@@ -13,7 +13,6 @@ public class JobSelectionGUI extends JFrame{
     private JButton incompButton;
     private JLabel CompLabel;
     private JButton CompButton;
-    private JButton logOutButton;
     private JButton returnButton;
     private JButton createButton;
     public static JobSelectionGUI j = new JobSelectionGUI();
@@ -50,13 +49,7 @@ public class JobSelectionGUI extends JFrame{
                 ViewCompletedJobsGUI.main();
             }
         });
-        logOutButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                j.dispose();
-                LoginGUI.main();
-            }
-        });
+
         createButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
