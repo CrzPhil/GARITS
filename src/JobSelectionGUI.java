@@ -34,6 +34,8 @@ public class JobSelectionGUI extends JFrame{
                 j.dispose();
                 if (LoginGUI.access == 'C') {
                     FranchiseeDashboardGUI.main();
+                } else if (LoginGUI.access == 'R'){
+                    ReceptionistDashboardGUI.main();
                 } else {
                     MainMenuGUI.main();
                 }

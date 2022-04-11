@@ -48,7 +48,12 @@ public class CreateJobGUI extends JFrame{
                 }
 
                 j.dispose();
-                JobSelectionGUI.main();
+                if (LoginGUI.access == 'F') {
+                    ForepersonDashboardGUI.main();
+                } else {
+                    JobSelectionGUI.main();
+                }
+
             }
         });
 
@@ -94,7 +99,11 @@ public class CreateJobGUI extends JFrame{
                     }
 
                     j.dispose();
-                    JobSelectionGUI.main();
+                    if (LoginGUI.access == 'F') {
+                        ForepersonDashboardGUI.main();
+                    } else {
+                        JobSelectionGUI.main();
+                    }
                 }
             }
         });

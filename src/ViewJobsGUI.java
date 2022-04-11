@@ -24,6 +24,8 @@ public class ViewJobsGUI extends JFrame{
                 j.dispose();
                 if (LoginGUI.access == 'M') {
                     MechanicDashboardGUI.main();
+                } else if (LoginGUI.access == 'F'){
+                    ForepersonDashboardGUI.main();
                 } else {
                     JobSelectionGUI.main();
                 }

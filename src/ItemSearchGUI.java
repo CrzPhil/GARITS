@@ -39,6 +39,8 @@ public class ItemSearchGUI extends JFrame {
             public void actionPerformed(ActionEvent e) {   j.dispose();
                 if (LoginGUI.access == 'C') {
                     FranchiseeDashboardGUI.main();
+                }else if (LoginGUI.access == 'R'){
+                    ReceptionistDashboardGUI.main();
                 } else {
                     MainMenuGUI.main();
                 }
