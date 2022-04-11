@@ -35,7 +35,10 @@ public class Customer {
 
 	@Override
 	public String toString() {
-		return this.name;
+		if (this.valuedCustomer)
+			return this.name + ": Valued";
+		else
+			return this.name + ": Casual";
 	}
 
 	// Getters and Setters

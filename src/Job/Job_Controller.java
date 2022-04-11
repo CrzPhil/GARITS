@@ -1,11 +1,10 @@
 package Job;
 
-import Job.*;
-
 import java.util.Date;
 
 public class Job_Controller implements I_Job {
-	private final SQL_JobHelper helper = new SQL_JobHelper();
+	private final SQL_JobHelper jobHelper = new SQL_JobHelper();
+	private final SQL_PartsHelper partsHelper = new SQL_PartsHelper();
 
 	/**
 	 * 
@@ -120,7 +119,18 @@ public class Job_Controller implements I_Job {
 	}
 
 	public Job[] getJobs() {
-		return helper.getJobs();
+		return jobHelper.getJobs();
 	}
 
+	public String[] getPartNames() {
+		return partsHelper.getPartNames();
+	}
+
+	public SparePart[] getAllParts() {
+		return partsHelper.getAllParts();
+	}
+
+	public void updateStock(int stock, String partID) {
+		partsHelper.updateStock(stock, partID);
+	}
 }

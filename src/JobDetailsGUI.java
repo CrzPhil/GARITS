@@ -25,12 +25,16 @@ public class JobDetailsGUI extends JFrame{
     private JLabel idLabel;
     private JComboBox statusBox;
     private JComboBox jobTypeBox;
+    private JButton deleteButton;
     private static JobDetailsGUI j = new JobDetailsGUI();
     private Job job;
 
     public JobDetailsGUI(Job job) {
         this.job = job;
         jobIDLabel.setText(String.valueOf(job.getJobID()));
+
+        // Have to call this here because it doesn't work in CreateUIComponents
+        setComboBox();
 
         returnButton.addActionListener(new ActionListener() {
             @Override
@@ -39,6 +43,31 @@ public class JobDetailsGUI extends JFrame{
                 ViewJobsGUI.main();
             }
         });
+
+        deleteButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Pop-up asking for confirmation
+                int confirm = JOptionPane.showConfirmDialog(null, "Are you sure you want to make these changes?", "Confirm changes", JOptionPane.YES_NO_OPTION);
+
+                if (confirm == JOptionPane.YES_OPTION) {
+                    // Check input
+                    // Update row in database
+                    SQL_JobHelper helper = new SQL_JobHelper();
+                    helper.deleteJob(job.getJobID());
+                    // Successful Job update
+                    JOptionPane.showMessageDialog(null, "Job Deleted successfully.");
+                    j.dispose();
+                    ViewJobsGUI.main();
+
+                    }
+                    // If input invalid
+                    else {
+                        JOptionPane.showMessageDialog(null, "Please verify your input and try again.");
+                    }
+                }
+        });
+
         // Commit changes to Database
         saveChangesButton.addActionListener(new ActionListener() {
             @Override
@@ -120,6 +149,27 @@ public class JobDetailsGUI extends JFrame{
         j.setVisible(true);
     }
 
+    private void setComboBox() {
+        // Configure which option to show
+        String other;
+        String otherother;
+        if (Objects.equals(job.getJobType(), Job.types[0])) {
+            other = Job.types[1];
+            otherother = Job.types[2];
+        }  else  if (Objects.equals(job.getJobType(), Job.types[1])) {
+            other = Job.types[0];
+            otherother = Job.types[2];
+        } else {
+            other = Job.types[0];
+            otherother = Job.types[1];
+        }
+
+        jobTypeBox.addItem(job.getJobType());
+        jobTypeBox.addItem(other);
+        jobTypeBox.addItem(otherother);
+
+    }
+
     // TODO: Registration Number ?
     private void createUIComponents() {
         if (job != null) {
@@ -141,13 +191,15 @@ public class JobDetailsGUI extends JFrame{
 
             // Configure which option to show
             String otherOption;
-            if (Objects.equals(job.getStatus(), job.getStates()[0])) {
-                otherOption = job.getStates()[1];
+            if (Objects.equals(job.getStatus(), Job.getStates()[0])) {
+                otherOption = Job.getStates()[1];
             } else {
-                otherOption = job.getStates()[0];
+                otherOption = Job.getStates()[0];
             }
 
-            statusBox = new JComboBox<String>(new String[]{job.getStatus(), otherOption});
+            statusBox = new JComboBox<>(new String[]{job.getStatus(), otherOption});
+
+            jobTypeBox = new JComboBox<String>();
 
         } else {
             jobIDLabel = new JLabel();
@@ -160,6 +212,7 @@ public class JobDetailsGUI extends JFrame{
             requiredPartsField = new JTextField();
             mileageField = new JTextField();
             statusBox = new JComboBox<String>();
+            jobTypeBox = new JComboBox<String>();
         }
     }
 }

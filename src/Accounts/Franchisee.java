@@ -79,4 +79,8 @@ public class Franchisee extends User {
 		return super.toString();
 	}
 
+	public String getInstanceClass() {
+		return "Franchisee";
+	}
+
 }

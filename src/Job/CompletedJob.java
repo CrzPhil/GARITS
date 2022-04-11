@@ -1,7 +1,15 @@
 package Job;
 
-public class CompletedJobs extends Job{
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+public class CompletedJob extends Job{
     private int jobID;
+    private final Set<String> jobTypes =
+            Stream.of("MOT", "Service", "Repair")
+                    .collect(Collectors.toCollection(HashSet::new));
     private String jobType;
     private String dates;
     private float price;
@@ -9,9 +17,11 @@ public class CompletedJobs extends Job{
     private String parts;
     private float duration;
     private int mileage;
-    private String requiredParts;
     private String additionalInfo;
-    private int status;
+    // As stored in DB, states[0] -> Incomplete ; states[1] -> Complete
+    static private final String[] states = {"Incomplete", "Complete"};
+    private String status;
+
 
     /**
      *
@@ -23,10 +33,9 @@ public class CompletedJobs extends Job{
      * @param parts
      * @param duration
      * @param mileage
-     * @param requiredParts
      * @param additionalInfo
      */
-    public CompletedJobs(int jobID, String jobType, float duration, String dates, String parts, String motNo, int mileage, float price, String requiredParts, String additionalInfo) {
+    public CompletedJob(int jobID, String jobType, float duration, String dates, String parts, String motNo, int mileage, float price, String additionalInfo, String status) {
         this.jobID = jobID;
         this.jobType = jobType;
         this.duration = duration;
@@ -35,14 +44,16 @@ public class CompletedJobs extends Job{
         this.motNO = motNo;
         this.mileage = mileage;
         this.price = price;
-        this.requiredParts = requiredParts;
         this.additionalInfo = additionalInfo;
-        this.status = 1;
+        this.status = status;
     }
+
+    public CompletedJob(){}
+
 
     @Override
     public String toString() {
-        return this.jobID + "    " + this.dates + "    " + this.jobType + "    ￡" + this.price;
+        return this.jobID + "    " + this.dates + "    " + this.jobType + "    ￡" + this.price + " " + this.status;
     }
 
     public int getJobID() {
@@ -103,14 +114,6 @@ public class CompletedJobs extends Job{
 
     public void setMileage(int mileage) {
         this.mileage = mileage;
-    }
-
-    public String getRequiredParts() {
-        return requiredParts;
-    }
-
-    public void setRequiredParts(String requiredParts) {
-        this.requiredParts = requiredParts;
     }
 
     public String getAdditionalInfo() {

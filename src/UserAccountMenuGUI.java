@@ -17,7 +17,6 @@ public class UserAccountMenuGUI extends JFrame{
     private JTree UserAccounts;
     private JButton createButton;
     private JLabel titleLabel;
-    private JButton deleteButton;
     private User selectedAccount;
     private static final UserAccountMenuGUI j = new UserAccountMenuGUI();
 
@@ -46,12 +45,6 @@ public class UserAccountMenuGUI extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 j.dispose();
                 UserAccountCreationGUI.main();
-            }
-        });
-        deleteButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this account?");
             }
         });
     }
@@ -85,9 +78,13 @@ public class UserAccountMenuGUI extends JFrame{
         SQL_UserHelper helper = new SQL_UserHelper();
         DefaultMutableTreeNode category;
 
+        // Create root Node for each role
         for (String role : roles) {
+            // Category name
             category = new DefaultMutableTreeNode(role + " Accounts");
             top.add(category);
+
+            // Get all the users of a certain role from the SQL helper
             User[] users = helper.getByRole(role);
             for (User user : users) {
                 category.add(new DefaultMutableTreeNode(user));

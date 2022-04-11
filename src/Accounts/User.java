@@ -95,4 +95,9 @@ public class User {
 	public String toString() {
 		return name;
 	}
+
+	// Helper function to determine Role when editing accounts
+	public String getInstanceClass() {
+		return "User";
+	}
 }

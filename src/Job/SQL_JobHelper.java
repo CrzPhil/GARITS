@@ -23,8 +23,94 @@ public class SQL_JobHelper extends Database_Controller {
 		return this.query;
 	}
 
+	public Job[] deleteJob(int JobID){
+		// Since we store status as a tinyint, 1 -> Complete 0 -> Incomplete
+		int jStatus;
+
+		String deleteJob = String.format("DELETE FROM Jobs WHERE jobID = '%d'", JobID);
+		Job[] out = null;
+
+		try {
+			Statement st = conn.createStatement();
+			st.executeUpdate(deleteJob);
+
+		} catch (SQLException ex) {
+			System.err.println(ex.getMessage());
+		}
+
+		return out;
+	}
+
+	public Job[] deleteCompletedJob(int JobID){
+		// Since we store status as a tinyint, 1 -> Complete 0 -> Incomplete
+		int jStatus;
+
+		String deleteJob = String.format("DELETE FROM CompletedJobs WHERE jobID = '%d'", JobID);
+		Job[] out = null;
+
+		try {
+			Statement st = conn.createStatement();
+			st.executeUpdate(deleteJob);
+
+		} catch (SQLException ex) {
+			System.err.println(ex.getMessage());
+		}
+
+		return out;
+	}
+
 	// Update all values in row by jobID
 	// TODO: status -> tinyint
+	public boolean updateCompletedJob(int jobID, String jobType, float duration, String dates, String parts, String motNO, int mileage, float price, String additionalInfo, String status) {
+		// Since we store status as a tinyint, 1 -> Complete 0 -> Incomplete
+		int jStatus;
+		if (Objects.equals(status, "Complete")) {
+			jStatus = 1;
+
+			// Update Row with new values
+			String updateRow = String.format("UPDATE CompletedJobs SET jobType = '%s', duration = %f, dates = '%s', parts = '%s', motNo = '%s', mileage = %d, price = %f, additionalInfo = '%s', status = %d WHERE jobID = %d",
+					jobType,
+					duration,
+					dates,
+					parts,
+					motNO,
+					mileage,
+					price,
+					additionalInfo,
+					jStatus,
+					jobID);
+			try {
+				Statement st = conn.createStatement();
+				st.executeUpdate(updateRow);
+				return true;
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return false;
+			}
+
+
+
+		} else {
+			jStatus = 0;
+
+			// Update Row with new values
+			String deleteRow = String.format("DELETE FROM CompletedJobs WHERE jobID = '%d'", jobID);
+			String sendJob = "INSERT INTO Jobs (jobID, jobType, duration, dates, parts, motNo, mileage, price, additionalInfo, status)";
+			String sendValues = String.format(" VALUES ('%d', '%s', '%f', '%s', '%s', '%s', '%d', '%f', '%s', '%s')", jobID, jobType, duration, dates, parts, motNO, mileage, price, additionalInfo, jStatus);
+
+			try {
+				Statement st = conn.createStatement();
+				st.executeUpdate(deleteRow);
+				st.executeUpdate(sendJob + sendValues);
+				return true;
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return false;
+			}
+		}
+
+	}
+
 	public boolean updateJob(int jobID, String jobType, float duration, String dates, String parts, String motNO, int mileage, float price, String additionalInfo, String status) {
 		// Since we store status as a tinyint, 1 -> Complete 0 -> Incomplete
 		int jStatus;
@@ -123,6 +209,54 @@ public class SQL_JobHelper extends Database_Controller {
 
 			while (rs.next()) {
 				out[i] = new Job(
+						rs.getInt("jobID"),
+						rs.getString("jobType"),
+						rs.getFloat("duration"),
+						rs.getString("dates"),
+						rs.getString("parts"),
+						rs.getString("motNo"),
+						rs.getInt("mileage"),
+						rs.getFloat("price"),
+						rs.getString("additionalInfo"),
+						Job.getStates()[rs.getInt("status")]
+				);
+				i++;
+			}
+			rs.close();
+			st.close();
+		} catch (SQLException ex) {
+			System.err.println(ex.getMessage());
+		}
+
+		this.closeConnection();
+		return out;
+	}
+
+	public CompletedJob[] getCompletedJobs() {
+		CompletedJob[] out = null;
+
+		// Order Jobs, starting from the most recent so it's listed at the top in the gui
+		String sizequr = "SELECT COUNT(*) AS Count FROM CompletedJobs ORDER BY jobID DESC";
+		String qur = "SELECT * FROM CompletedJobs";
+
+		try {
+			Statement st = conn.createStatement();
+			ResultSet rs = st.executeQuery(sizequr);
+
+			// Get count for returned rows
+			rs.next();
+			int size = rs.getInt("Count");
+			rs.close();
+
+			out = new CompletedJob[size];
+
+			// Get Job
+			rs = st.executeQuery(qur);
+
+			int i = 0;
+
+			while (rs.next()) {
+				out[i] = new CompletedJob(
 						rs.getInt("jobID"),
 						rs.getString("jobType"),
 						rs.getFloat("duration"),

@@ -79,7 +79,8 @@ public class UserAccountCreationGUI extends JFrame {
             return false;
         }
 
-        if (!controller.validatePassword(password)) {
+        // Password check disabled, as demo passwords are simple.
+/*        if (!controller.validatePassword(password)) {
             JOptionPane.showMessageDialog(null, "Check that your password: \n" +
                     "    contains at least 8 characters and at most 20 characters.\n" +
                     "    contains at least one digit.\n" +
@@ -88,7 +89,7 @@ public class UserAccountCreationGUI extends JFrame {
                     "    contains at least one special character which includes !@#$%&*()-+=^.\n" +
                     "    doesn’t contain any white space.");
             return false;
-        }
+        }*/
 
         if (!controller.validateEmail(mail)) {
             JOptionPane.showMessageDialog(null, "Please enter a valid email address.");

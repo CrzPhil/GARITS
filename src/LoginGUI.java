@@ -35,6 +35,18 @@ public class LoginGUI extends JFrame{
                         case "Administrator":
                             AdminDashboardGUI.main();
                             break;
+                        case "Foreman":
+                            ForepersonDashboardGUI.main();
+                            break;
+                        case "Mechanic":
+                            MechanicDashboardGUI.main();
+                            break;
+                        case "Franchisee":
+                            FranchiseeDashboardGUI.main();
+                            break;
+                        case "Receptionist":
+                            ReceptionistDashboardGUI.main();
+                            break;
                         default:
                             MainMenuGUI.main();
                             break;

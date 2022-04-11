@@ -10,9 +10,11 @@ public class Job {
 
 
 	private int jobID;
+	// TODO: Clean this spaghetti code up
 	private final Set<String> jobTypes =
-			Stream.of("MOT", "Service")
+			Stream.of("MOT", "Service", "Repair")
 					.collect(Collectors.toCollection(HashSet::new));
+	static public final String[] types = {"MOT", "Service", "Repair"};
 	private String jobType;
 	private String dates;
 	private float price;
@@ -50,9 +52,7 @@ public class Job {
 		this.status = status;
 	}
 
-    public Job() {
-
-    }
+    public Job() {}
 
 	public String getStatus() {
 		return status;

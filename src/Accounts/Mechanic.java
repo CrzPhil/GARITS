@@ -3,6 +3,13 @@ package Accounts;
 import Job.*;
 
 public class Mechanic extends Accounts.User {
+	private int hourlyRate;
+
+	public Mechanic(long userID, String username, String email, String password, String name, int hourlyRate) {
+		super(userID, username, email, password, name);
+		this.hourlyRate = hourlyRate;
+	}
+
 
 	public JobCollection viewJobSheet() {
 		// TODO - implement Mechanic.viewJobSheet
@@ -57,12 +64,20 @@ public class Mechanic extends Accounts.User {
 		throw new UnsupportedOperationException();
 	}
 
-	public Mechanic(long userID, String username, String email, String password, String name) {
-		super(userID, username, email, password, name);
-	}
-
 	@Override
 	public String toString() {
 		return super.toString();
+	}
+
+	public int getHourlyRate() {
+		return hourlyRate;
+	}
+
+	public void setHourlyRate(int hourlyRate) {
+		this.hourlyRate = hourlyRate;
+	}
+
+	public String getInstanceClass() {
+		return "Mechanic";
 	}
 }

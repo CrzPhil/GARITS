@@ -22,7 +22,7 @@ public class ViewJobsGUI extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 j.dispose();
-                JobsMenuGUI.main();
+                JobSelectionGUI.main();
             }
         });
         detailsButton.addActionListener(new ActionListener() {

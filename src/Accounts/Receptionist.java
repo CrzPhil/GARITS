@@ -79,4 +79,8 @@ public class Receptionist extends User {
 	public String toString() {
 		return super.toString();
 	}
+
+	public String getInstanceClass() {
+		return "Receptionist";
+	}
 }

@@ -18,12 +18,12 @@ public class DisplayReportGUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Clean up files, so that only pdf remains
-                String cdir = System.getProperty("user.dir");
+/*                String cdir = System.getProperty("user.dir");
                 File myObj = new File(cdir + "/src/Reports/preview_page1.png");
 
                 // If deletion does not happen (i.e if the user closes the program instead of returning,
                 // it is not critical, as it will be overwritten by the next report.
-                myObj.delete();
+                myObj.delete();*/
 
                 j.dispose();
             }
@@ -83,10 +83,12 @@ public class DisplayReportGUI extends JFrame {
     j.pack();
     j.setLocationRelativeTo(null);
     // Make the report fit into the screen
-    j.setSize(new Dimension(new ImageIcon("logo.png").getIconWidth(), new ImageIcon("logo.png").getIconHeight()));
+    j.setSize(new Dimension(new ImageIcon("src/Reports/preview_page1.png").getIconWidth(), new ImageIcon("src/Reports/preview_page1.png").getIconHeight()));
     j.setVisible(true);
 }
-    private void createUIComponents() {ReportImage = new JLabel(new ImageIcon("logo.png"));}
+    private void createUIComponents() {
+        ReportImage = new JLabel(new ImageIcon("src/Reports/preview_page1.png"));
+    }
 
 
 }

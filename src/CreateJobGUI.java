@@ -1,4 +1,7 @@
+import Job.Job_Controller;
 import Job.SQL_JobHelper;
+import Job.SparePart;
+import com.toedter.calendar.JDateChooser;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,14 +26,20 @@ public class CreateJobGUI extends JFrame{
     private JButton finishButton;
     private JTextArea detailsField;
     private JComboBox jobTypeBox;
+    private JDateChooser jDateChooser;
+    private JButton addPartButton;
+    private JButton deletePartButton;
+    private JList partList;
+    private JComboBox partSelectBox;
     private static CreateJobGUI j = new CreateJobGUI();
+    private DefaultListModel<SparePart> partModel;
 
     public CreateJobGUI() {
         returnButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 j.dispose();
-                JobsMenuGUI.main();
+                JobSelectionGUI.main();
             }
         });
 
@@ -57,7 +66,7 @@ public class CreateJobGUI extends JFrame{
                     SQL_JobHelper sqlJob = new SQL_JobHelper();
                     String jobType = (String) jobTypeBox.getSelectedItem();
                     float duration = Float.parseFloat(durationField.getText());
-                    String dates = dateField.getText();
+                    String dates = String.valueOf(jDateChooser.getDate());
                     String parts = partsField.getText();
                     String motNo = motField.getText();
                     int mileage = Integer.parseInt(mileageField.getText());
@@ -66,7 +75,44 @@ public class CreateJobGUI extends JFrame{
 
                     sqlJob.sendData(jobType, duration, dates, parts, motNo, mileage, price, additionalInfo, "Incomplete");
                     j.dispose();
-                    JobsMenuGUI.main();
+                    JobSelectionGUI.main();
+                }
+            }
+        });
+        // TODO: Make this more readable
+        addPartButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (partSelectBox.getSelectedItem() != null) {
+                    if (((SparePart) partSelectBox.getSelectedItem()).getStock() >= 1) {
+                        // Add Item to JList
+                        partModel.addElement((SparePart) partSelectBox.getSelectedItem());
+                        // Update part Object
+                        ((SparePart) partSelectBox.getSelectedItem()).setStock(((SparePart) partSelectBox.getSelectedItem()).getStock() - 1);
+                        // Update database
+                        Job_Controller controller = new Job_Controller();
+                        controller.updateStock(((SparePart) partSelectBox.getSelectedItem()).getStock(), ((SparePart)  partSelectBox.getSelectedItem()).getPartID());
+                    }
+                    // If Stock is less than one
+                    else {
+                        JOptionPane.showMessageDialog(null, "This item's stock is depleted.");
+                    }
+                }
+            }
+        });
+        deletePartButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (partList.getSelectedValue() != null) {
+                    ((SparePart) partList.getSelectedValue()).setStock(((SparePart) partList.getSelectedValue()).getStock() + 1);
+
+                    // Update database
+                    Job_Controller controller = new Job_Controller();
+                    controller.updateStock(((SparePart) partList.getSelectedValue()).getStock(), ((SparePart)  partList.getSelectedValue()).getPartID());
+
+                    // Remove item from list last, so that selectedValue doesn't move
+                    partModel.removeElement(partList.getSelectedValue());
+
                 }
             }
         });
@@ -89,4 +135,18 @@ public class CreateJobGUI extends JFrame{
         j.setLocationRelativeTo(null);
         j.setVisible(true);
     }
+    private void createUIComponents(){
+        Job_Controller controller = new Job_Controller();
+        jDateChooser = new JDateChooser();
+
+        // Configure List of added parts
+        this.partModel = new DefaultListModel<SparePart>();
+        partList = new JList<>(partModel);
+        partList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+        // Dropdown of possible parts to add to job
+        // TODO: filter this to become vehicle-specific (manufacturer/model)
+        partSelectBox = new JComboBox<>(controller.getAllParts());
 }
+}
+

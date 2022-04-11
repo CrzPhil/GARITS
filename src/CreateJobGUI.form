@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="CreateJobGUI">
-  <grid id="27dc6" binding="Main" layout-manager="GridLayoutManager" row-count="16" column-count="8" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+  <grid id="27dc6" binding="Main" layout-manager="GridLayoutManager" row-count="16" column-count="11" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
-      <xy x="20" y="20" width="878" height="444"/>
+      <xy x="20" y="20" width="1378" height="444"/>
     </constraints>
     <properties>
       <background color="-14666175"/>
@@ -36,17 +36,6 @@
           </grid>
         </constraints>
       </vspacer>
-      <component id="3519d" class="javax.swing.JButton" binding="returnButton" default-binding="true">
-        <constraints>
-          <grid row="1" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="5" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <background color="-1114625"/>
-          <font name="Yu Gothic UI Semibold" size="12"/>
-          <foreground color="-16777216"/>
-          <text value="Cancel and Return"/>
-        </properties>
-      </component>
       <vspacer id="4f147">
         <constraints>
           <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
@@ -94,17 +83,6 @@
           <grid row="15" column="3" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
       </hspacer>
-      <component id="f38b" class="javax.swing.JButton" binding="finishButton" default-binding="true">
-        <constraints>
-          <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <background color="-1114625"/>
-          <font name="Yu Gothic UI Semibold" size="12"/>
-          <foreground color="-16777216"/>
-          <text value="Confirm and Finish"/>
-        </properties>
-      </component>
       <component id="e61ee" class="javax.swing.JLabel">
         <constraints>
           <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
@@ -154,14 +132,6 @@
           <text value="Job Price"/>
         </properties>
       </component>
-      <component id="7ba99" class="javax.swing.JTextField" binding="dateField">
-        <constraints>
-          <grid row="14" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-            <preferred-size width="262" height="30"/>
-          </grid>
-        </constraints>
-        <properties/>
-      </component>
       <component id="6be09" class="javax.swing.JLabel">
         <constraints>
           <grid row="13" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
@@ -171,35 +141,6 @@
           <font name="Yu Gothic UI Semibold" size="14"/>
           <foreground color="-1114625"/>
           <text value="Job Dates"/>
-        </properties>
-      </component>
-      <component id="e3fe4" class="javax.swing.JTextField" binding="partsField">
-        <constraints>
-          <grid row="5" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-            <preferred-size width="262" height="30"/>
-          </grid>
-        </constraints>
-        <properties/>
-      </component>
-      <component id="4beb1" class="javax.swing.JLabel">
-        <constraints>
-          <grid row="4" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <background color="-1114625"/>
-          <font name="Yu Gothic UI Semibold" size="14"/>
-          <foreground color="-1114625"/>
-          <text value="Required Parts (If Needed)"/>
-        </properties>
-      </component>
-      <component id="f04e0" class="javax.swing.JTextField" binding="motField">
-        <constraints>
-          <grid row="8" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-            <preferred-size width="262" height="30"/>
-          </grid>
-        </constraints>
-        <properties>
-          <text value=""/>
         </properties>
       </component>
       <component id="a3b81" class="javax.swing.JLabel">
@@ -260,7 +201,7 @@
       </hspacer>
       <component id="138ae" class="javax.swing.JLabel">
         <constraints>
-          <grid row="4" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="4" column="9" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <background color="-1114625"/>
@@ -271,17 +212,17 @@
       </component>
       <hspacer id="9aae4">
         <constraints>
-          <grid row="6" column="7" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="6" column="10" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
       </hspacer>
       <vspacer id="80f70">
         <constraints>
-          <grid row="9" column="5" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+          <grid row="9" column="8" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
         </constraints>
       </vspacer>
       <component id="b2688" class="javax.swing.JTextArea" binding="detailsField">
         <constraints>
-          <grid row="5" column="6" row-span="10" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
+          <grid row="5" column="9" row-span="10" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="50"/>
           </grid>
         </constraints>
@@ -302,6 +243,107 @@
             <item value="Service"/>
             <item value="Repair"/>
           </model>
+        </properties>
+      </component>
+      <component id="8f6fa" class="com.toedter.calendar.JDateChooser" binding="jDateChooser" custom-create="true">
+        <constraints>
+          <grid row="14" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+      </component>
+      <component id="f04e0" class="javax.swing.JTextField" binding="motField">
+        <constraints>
+          <grid row="8" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="262" height="30"/>
+          </grid>
+        </constraints>
+        <properties>
+          <text value=""/>
+        </properties>
+      </component>
+      <scrollpane id="ac37e">
+        <constraints>
+          <grid row="5" column="5" row-span="10" col-span="2" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="5f2b5" class="javax.swing.JList" binding="partList" custom-create="true">
+            <constraints/>
+            <properties/>
+          </component>
+        </children>
+      </scrollpane>
+      <component id="dc4e8" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="4" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-1114625"/>
+          <font name="Yu Gothic UI Semibold" size="14"/>
+          <foreground color="-1114625"/>
+          <text value="Required Parts (If Needed)"/>
+        </properties>
+      </component>
+      <component id="2e832" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="4" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-1114625"/>
+          <font name="Yu Gothic UI Semibold" size="14"/>
+          <foreground color="-1114625"/>
+          <text value="Current Parts:"/>
+        </properties>
+      </component>
+      <component id="efa9c" class="javax.swing.JButton" binding="addPartButton" default-binding="true">
+        <constraints>
+          <grid row="5" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-1181441"/>
+          <enabled value="true"/>
+          <font name="Yu Gothic UI Semibold" size="12"/>
+          <foreground color="-16777216"/>
+          <text value="Add Part"/>
+        </properties>
+      </component>
+      <component id="ae070" class="javax.swing.JComboBox" binding="partSelectBox" custom-create="true">
+        <constraints>
+          <grid row="5" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+      </component>
+      <component id="f38b" class="javax.swing.JButton" binding="finishButton" default-binding="true">
+        <constraints>
+          <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-1114625"/>
+          <font name="Yu Gothic UI Semibold" size="12"/>
+          <foreground color="-16777216"/>
+          <text value="Confirm and Finish"/>
+        </properties>
+      </component>
+      <component id="3519d" class="javax.swing.JButton" binding="returnButton" default-binding="true">
+        <constraints>
+          <grid row="1" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="1" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-1114625"/>
+          <font name="Yu Gothic UI Semibold" size="12"/>
+          <foreground color="-16777216"/>
+          <text value="Cancel and Return"/>
+        </properties>
+      </component>
+      <component id="627d2" class="javax.swing.JButton" binding="deletePartButton" default-binding="true">
+        <constraints>
+          <grid row="15" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-1181441"/>
+          <font name="Yu Gothic UI Semibold" size="12"/>
+          <foreground color="-16777216"/>
+          <text value="Delete Part"/>
         </properties>
       </component>
     </children>
