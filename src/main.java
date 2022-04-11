@@ -17,7 +17,8 @@ public class main {
        // JobSelectionGUI.main();
         //CreateJobGUI.main();
         //FranchiseeDashboardGUI.main();
-       // MechanicDashboardGUI.main();
+       MechanicDashboardGUI.main();
         //ForepersonDashboardGUI.main();
+        //ReceptionistDashboardGUI.main();
     }
 }
