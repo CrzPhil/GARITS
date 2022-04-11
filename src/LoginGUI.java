@@ -16,6 +16,7 @@ public class LoginGUI extends JFrame{
     private JButton enterButton;
     private JButton administratorAccessButton;
     private static LoginGUI j = new LoginGUI();
+    public static char access;
 
     public LoginGUI() {
         enterButton.addActionListener(new ActionListener() {
@@ -30,22 +31,26 @@ public class LoginGUI extends JFrame{
                     String role = getRole(username);
                     j.dispose();
 
-                    // TODO: Different roles have access to different parts of GARITS
                     switch (role) {
                         case "Administrator":
                             AdminDashboardGUI.main();
+                            access = 'A';
                             break;
                         case "Foreman":
                             ForepersonDashboardGUI.main();
+                            access = 'F';
                             break;
                         case "Mechanic":
                             MechanicDashboardGUI.main();
+                            access = 'M';
                             break;
                         case "Franchisee":
                             FranchiseeDashboardGUI.main();
+                            access = 'C';
                             break;
                         case "Receptionist":
                             ReceptionistDashboardGUI.main();
+                            access = 'R';
                             break;
                         default:
                             MainMenuGUI.main();

@@ -22,7 +22,11 @@ public class ViewJobsGUI extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 j.dispose();
-                JobSelectionGUI.main();
+                if (LoginGUI.access == 'M') {
+                    MechanicDashboardGUI.main();
+                } else {
+                    JobSelectionGUI.main();
+                }
             }
         });
         detailsButton.addActionListener(new ActionListener() {
