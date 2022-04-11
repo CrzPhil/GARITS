@@ -30,7 +30,7 @@ public class CreateJobGUI extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 j.dispose();
-                JobsMenuGUI.main();
+                JobSelectionGUI.main();
             }
         });
 
@@ -66,7 +66,7 @@ public class CreateJobGUI extends JFrame{
 
                     sqlJob.sendData(jobType, duration, dates, parts, motNo, mileage, price, additionalInfo, "Incomplete");
                     j.dispose();
-                    JobsMenuGUI.main();
+                    JobSelectionGUI.main();
                 }
             }
         });
