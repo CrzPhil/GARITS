@@ -14,6 +14,7 @@ public class main {
         //CreateVehicleGUI.main(new Customer(1234567891, "x", true));
        //CustomerAccountMenuGUI.main();
         //StockReportGUI.main();
-        JobSelectionGUI.main();
+       // JobSelectionGUI.main();
+        CreateJobGUI.main();
     }
 }

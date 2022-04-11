@@ -1,4 +1,5 @@
 import Job.SQL_JobHelper;
+import com.toedter.calendar.JDateChooser;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,6 +24,7 @@ public class CreateJobGUI extends JFrame{
     private JButton finishButton;
     private JTextArea detailsField;
     private JComboBox jobTypeBox;
+    private JDateChooser jDateChooser;
     private static CreateJobGUI j = new CreateJobGUI();
 
     public CreateJobGUI() {
@@ -57,7 +59,7 @@ public class CreateJobGUI extends JFrame{
                     SQL_JobHelper sqlJob = new SQL_JobHelper();
                     String jobType = (String) jobTypeBox.getSelectedItem();
                     float duration = Float.parseFloat(durationField.getText());
-                    String dates = dateField.getText();
+                    String dates = String.valueOf(jDateChooser.getCalendar());
                     String parts = partsField.getText();
                     String motNo = motField.getText();
                     int mileage = Integer.parseInt(mileageField.getText());
@@ -70,6 +72,7 @@ public class CreateJobGUI extends JFrame{
                 }
             }
         });
+
     }
 
     // Check if things like price and duration are floats
@@ -89,4 +92,8 @@ public class CreateJobGUI extends JFrame{
         j.setLocationRelativeTo(null);
         j.setVisible(true);
     }
+private void createUIComponents(){
+        jDateChooser = new JDateChooser();
 }
+}
+
