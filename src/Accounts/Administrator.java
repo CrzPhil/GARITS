@@ -4,6 +4,10 @@ public class Administrator extends Accounts.User {
 
 	private int hourlyrate;
 
+	public Administrator(long userID, String username, String email, String password, String name) {
+		super(userID, username, email, password, name);
+	}
+
 	// Administrator method to create a new User - To be used in Account management
 	public Accounts.User createUserAccount(long userID, String username, String email, String password, String name) {
 		return new User(userID, username, email, password, name);
@@ -40,11 +44,6 @@ public class Administrator extends Accounts.User {
 		System.out.println(this.hourlyrate);
 	}
 
-	public Administrator(long userID, String username, String email, String password, String name, int hourlyrate) {
-		super(userID, username, email, password, name);
-		this.hourlyrate = hourlyrate;
-	}
-
 	public int getHourlyrate() {
 		return hourlyrate;
 	}
@@ -53,4 +52,7 @@ public class Administrator extends Accounts.User {
 		this.hourlyrate = hourlyrate;
 	}
 
+	public String getInstanceClass() {
+		return "Administrator";
+	}
 }

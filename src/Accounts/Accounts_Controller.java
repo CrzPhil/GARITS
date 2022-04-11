@@ -24,7 +24,7 @@ public class Accounts_Controller implements I_Accounts {
 				hashpass = helper.getPass(username);
 
 				// Create a local object & store object in collection
-				collection.addItem(staffID, new Administrator(staffID, username, mail, hashpass, fname + " " + lname, Integer.parseInt(rate)));
+				collection.addItem(staffID, new Administrator(staffID, username, mail, hashpass, fname + " " + lname));
 			}
 			case "Franchisee" -> {
 				// Query DB for ID & hashed pass
@@ -40,7 +40,7 @@ public class Accounts_Controller implements I_Accounts {
 				hashpass = helper.getPass(username);
 
 				// Create a local object & store object in collection
-				collection.addItem(staffID, new Mechanic(staffID, username, mail, hashpass, fname + " " + lname));
+				collection.addItem(staffID, new Mechanic(staffID, username, mail, hashpass, fname + " " + lname, Integer.parseInt(rate)));
 			}
 			case "Receptionist" -> {
 				// Query DB for ID & hashed pass
@@ -56,7 +56,7 @@ public class Accounts_Controller implements I_Accounts {
 				hashpass = helper.getPass(username);
 
 				// Create a local object & store object in collection
-				collection.addItem(staffID, new ForePerson(staffID, username, mail, hashpass, fname + " " + lname));
+				collection.addItem(staffID, new ForePerson(staffID, username, mail, hashpass, fname + " " + lname, Integer.parseInt(rate)));
 			}
 			default -> {
 			}
@@ -66,13 +66,9 @@ public class Accounts_Controller implements I_Accounts {
 		return null;
 	}
 
-	/**
-	 * 
-	 * @param userID
-	 */
-	public User modifyAccount(long userID) {
-		// TODO - implement Accounts_Controller.modifyAccount
-		throw new UnsupportedOperationException();
+	// Modify account in database & in collection
+	public boolean modifyAccount(String fname, String lname, String username, String role, String rate, String mail, long staffID) {
+		return helper.updateStaff(fname, lname, username, role, rate, mail, staffID);
 	}
 
 	/**
@@ -126,6 +122,7 @@ public class Accounts_Controller implements I_Accounts {
 	//    It contains at least one lower case alphabet.
 	//    It contains at least one special character which includes !@#$%&*()-+=^.
 	//    It doesn’t contain any white space.
+	//	  ! Demo values are way simpler than this, so this function will not be used !
 	public boolean validatePassword(String password) {
 		String passRegex = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&-+=()])(?=\\S+$).{8,20}$";
 		return checkRegex(passRegex, password);

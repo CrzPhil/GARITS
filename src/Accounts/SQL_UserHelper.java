@@ -98,15 +98,15 @@ public class SQL_UserHelper extends Database_Controller {
 								rs.getString("username"),
 								rs.getString("email"),
 								rs.getString("password"),
-								name,
-								rs.getInt("hourlyrate"));
+								name
+								);
 					}
 					case "Franchisee" -> {
 						// Combine first and last name
 						name = rs.getString("firstName") + " " + rs.getString("lastName");
 						out[i] = new Franchisee(rs.getInt("staffID"),
 								rs.getString("username"),
-								null, // We don't store Staff emails in DB
+								rs.getString("email"),
 								rs.getString("password"),
 								name);
 					}
@@ -115,25 +115,27 @@ public class SQL_UserHelper extends Database_Controller {
 						name = rs.getString("firstName") + " " + rs.getString("lastName");
 						out[i] = new Mechanic(rs.getInt("staffID"),
 								rs.getString("username"),
-								null, // We don't store Staff emails in DB
+								rs.getString("email"),
 								rs.getString("password"),
-								name);
+								name,
+								rs.getInt("hourlyRate"));
 					}
 					case "Foreperson" -> {
 						// Combine first and last name
 						name = rs.getString("firstName") + " " + rs.getString("lastName");
 						out[i] = new ForePerson(rs.getInt("staffID"),
 								rs.getString("username"),
-								null, // We don't store Staff emails in DB
+								rs.getString("email"),
 								rs.getString("password"),
-								name);
+								name,
+								rs.getInt("hourlyRate"));
 					}
 					case "Receptionist" -> {
 						// Combine first and last name
 						name = rs.getString("firstName") + " " + rs.getString("lastName");
 						out[i] = new Receptionist(rs.getInt("staffID"),
 								rs.getString("username"),
-								null, // We don't store Staff emails in DB
+								rs.getString("email"),
 								rs.getString("password"),
 								name);
 					}
@@ -243,7 +245,7 @@ public class SQL_UserHelper extends Database_Controller {
 	}
 
 	// Create a Staff account in the database
-	public void createStaff(String fname, String lname, String username, char[] password, String role, String rate, String mail) {
+	public void createStaff(String fname, String lname, String username, char[] password, String role, String mail, String rate) {
 		HashClass hasher = new HashClass();
 		String hashedpass = hasher.chartosha256(password);
 
@@ -274,4 +276,39 @@ public class SQL_UserHelper extends Database_Controller {
 				e.printStackTrace();
 			}
 		}
+
+	public boolean updateStaff(String fname, String lname, String username, String role, String rate, String mail, long staffID)	{
+		String qur;
+		if (rate.equals("NULL")) {
+			qur = String.format("UPDATE Staff SET firstName = '%s', lastName = '%s', role = '%s', username = '%s', hourlyRate = NULL, email = '%s' WHERE staffID = %d",
+					fname,
+					lname,
+					role,
+					username,
+					mail,
+					staffID);
+		} else {
+			qur = String.format("UPDATE Staff SET firstName = '%s', lastName = '%s', role = '%s', username = '%s', hourlyRate = %d, email = '%s' WHERE staffID = %d",
+					fname,
+					lname,
+					role,
+					username,
+					Integer.parseInt(rate),
+					mail,
+					staffID);
+		}
+		try {
+			Statement st = conn.createStatement();
+			st.executeUpdate(qur);
+			st.close();
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	public boolean updatePassword(String newpass) {
+		return false;
+	}
 }

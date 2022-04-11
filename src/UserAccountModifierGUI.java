@@ -1,5 +1,4 @@
-import Accounts.Accounts_Controller;
-import Accounts.User;
+import Accounts.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -46,7 +45,30 @@ public class UserAccountModifierGUI extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 int confirm = JOptionPane.showConfirmDialog(null, "Are you sure you want to make these changes?", "Confirm changes", JOptionPane.YES_NO_OPTION);
                 if (confirm == JOptionPane.YES_OPTION) {
-                    JOptionPane.showMessageDialog(null, "Changes made successfully.");
+                    Accounts_Controller controller = new Accounts_Controller();
+
+                    // Only mechanics and forepersons have rates, others will be NULL
+                    String rate;
+                    if (rateField.getText().equals("")) {
+                        rate = "NULL";
+                    } else {
+                        rate = rateField.getText();
+                    }
+
+                    if (controller.modifyAccount(
+                            fnameField.getText(),
+                            lnameField.getText(),
+                            usernameField.getText(),
+                            roleField.getText(),
+                            rate,
+                            emailField.getText(),
+                            account.getUserID())) {
+                        JOptionPane.showMessageDialog(null, "Changes made successfully.");
+                        j.dispose();
+                        UserAccountMenuGUI.main();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Something went wrong!\nDouble check your details.");
+                    }
                 }
             }
         });
@@ -72,7 +94,7 @@ public class UserAccountModifierGUI extends JFrame{
         return controller.removeAccount(account.getUserID());
     }
 
-    public static void main(User account){
+    public static void main(User account) {
         j.setContentPane(new UserAccountModifierGUI(account).Main);
         j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         j.setTitle("Making Account Changes");
@@ -89,8 +111,15 @@ public class UserAccountModifierGUI extends JFrame{
             // TODO: Improve split into fname and lname
             fnameField = new JTextField(this.account.getName().split(" ")[0]);
             lnameField = new JTextField(this.account.getName().split(" ")[1]);
-            roleField = new JTextField("");
-            rateField = new JTextField("");
+            roleField = new JTextField(this.account.getInstanceClass());
+            rateField = new JTextField();
+            if (this.account instanceof Mechanic) {
+                rateField.setText(String.valueOf(((Mechanic) this.account).getHourlyRate()));
+            } else if (this.account instanceof ForePerson) {
+                rateField.setText(String.valueOf(((ForePerson) this.account).getHourlyRate()));
+            } else {
+                rateField = new JTextField();
+            }
             emailField = new JTextField(this.account.getEmail());
         } else {
             usernameField = new JTextField();
