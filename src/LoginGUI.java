@@ -44,6 +44,9 @@ public class LoginGUI extends JFrame{
                         case "Franchisee":
                             FranchiseeDashboardGUI.main();
                             break;
+                        case "Receptionist":
+                            ReceptionistDashboardGUI.main();
+                            break;
                         default:
                             MainMenuGUI.main();
                             break;

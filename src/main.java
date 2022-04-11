@@ -19,5 +19,6 @@ public class main {
         //FranchiseeDashboardGUI.main();
        // MechanicDashboardGUI.main();
         //ForepersonDashboardGUI.main();
+        //ReceptionistDashboardGUI.main();
     }
 }
