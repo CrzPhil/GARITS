@@ -18,7 +18,7 @@
           <background color="-1"/>
           <font name="Yu Gothic UI" size="25"/>
           <foreground color="-1"/>
-          <text value="Complete Jobs"/>
+          <text value="Completed Jobs"/>
         </properties>
       </component>
       <component id="ea748" class="javax.swing.JLabel" binding="incomLabel">
