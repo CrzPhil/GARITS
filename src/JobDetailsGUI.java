@@ -33,6 +33,9 @@ public class JobDetailsGUI extends JFrame{
         this.job = job;
         jobIDLabel.setText(String.valueOf(job.getJobID()));
 
+        // Have to call this here because it doesn't work in CreateUIComponents
+        setComboBox();
+
         returnButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -146,6 +149,27 @@ public class JobDetailsGUI extends JFrame{
         j.setVisible(true);
     }
 
+    private void setComboBox() {
+        // Configure which option to show
+        String other;
+        String otherother;
+        if (Objects.equals(job.getJobType(), Job.types[0])) {
+            other = Job.types[1];
+            otherother = Job.types[2];
+        }  else  if (Objects.equals(job.getJobType(), Job.types[1])) {
+            other = Job.types[0];
+            otherother = Job.types[2];
+        } else {
+            other = Job.types[0];
+            otherother = Job.types[1];
+        }
+
+        jobTypeBox.addItem(job.getJobType());
+        jobTypeBox.addItem(other);
+        jobTypeBox.addItem(otherother);
+
+    }
+
     // TODO: Registration Number ?
     private void createUIComponents() {
         if (job != null) {
@@ -167,13 +191,15 @@ public class JobDetailsGUI extends JFrame{
 
             // Configure which option to show
             String otherOption;
-            if (Objects.equals(job.getStatus(), job.getStates()[0])) {
-                otherOption = job.getStates()[1];
+            if (Objects.equals(job.getStatus(), Job.getStates()[0])) {
+                otherOption = Job.getStates()[1];
             } else {
-                otherOption = job.getStates()[0];
+                otherOption = Job.getStates()[0];
             }
 
-            statusBox = new JComboBox<String>(new String[]{job.getStatus(), otherOption});
+            statusBox = new JComboBox<>(new String[]{job.getStatus(), otherOption});
+
+            jobTypeBox = new JComboBox<String>();
 
         } else {
             jobIDLabel = new JLabel();
@@ -186,6 +212,7 @@ public class JobDetailsGUI extends JFrame{
             requiredPartsField = new JTextField();
             mileageField = new JTextField();
             statusBox = new JComboBox<String>();
+            jobTypeBox = new JComboBox<String>();
         }
     }
 }

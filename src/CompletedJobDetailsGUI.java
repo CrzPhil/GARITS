@@ -1,4 +1,5 @@
 import Job.CompletedJob;
+import Job.Job;
 import Job.SQL_JobHelper;
 
 import javax.swing.*;
@@ -31,6 +32,7 @@ public class CompletedJobDetailsGUI extends JFrame{
     public CompletedJobDetailsGUI(CompletedJob job) {
         this.job = job;
         jobIDLabel.setText(String.valueOf(job.getJobID()));
+        setComboBox();
 
         returnButton.addActionListener(new ActionListener() {
             @Override
@@ -136,6 +138,27 @@ public class CompletedJobDetailsGUI extends JFrame{
         j.setVisible(true);
     }
 
+    private void setComboBox() {
+        // Configure which option to show
+        String other;
+        String otherother;
+        if (Objects.equals(job.getJobType(), Job.types[0])) {
+            other = Job.types[1];
+            otherother = Job.types[2];
+        }  else  if (Objects.equals(job.getJobType(), Job.types[1])) {
+            other = Job.types[0];
+            otherother = Job.types[2];
+        } else {
+            other = Job.types[0];
+            otherother = Job.types[1];
+        }
+
+        jobTypeBox.addItem(job.getJobType());
+        jobTypeBox.addItem(other);
+        jobTypeBox.addItem(otherother);
+
+    }
+
     // TODO: Registration Number ?
     private void createUIComponents() {
         if (job != null) {
@@ -153,14 +176,16 @@ public class CompletedJobDetailsGUI extends JFrame{
             requiredPartsField = new JTextField(job.getParts());
             mileageField = new JTextField(String.valueOf(job.getMileage()));
 
+            jobTypeBox = new JComboBox<String>();
+
             // Create combobox for status
 
             // Configure which option to show
             String otherOption;
-            if (Objects.equals(job.getStatus(), job.getStates()[0])) {
-                otherOption = job.getStates()[1];
+            if (Objects.equals(job.getStatus(), Job.getStates()[0])) {
+                otherOption = Job.getStates()[1];
             } else {
-                otherOption = job.getStates()[0];
+                otherOption = Job.getStates()[0];
             }
 
             statusBox = new JComboBox<String>(new String[]{job.getStatus(), otherOption});
@@ -176,6 +201,7 @@ public class CompletedJobDetailsGUI extends JFrame{
             requiredPartsField = new JTextField();
             mileageField = new JTextField();
             statusBox = new JComboBox<String>();
+            jobTypeBox = new JComboBox<String>();
         }
     }
 }
