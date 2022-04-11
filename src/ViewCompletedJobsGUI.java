@@ -1,5 +1,7 @@
 import Job.Job;
 import Job.Job_Controller;
+import Job.CompletedJob_Controller;
+import Job.CompletedJob;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -8,16 +10,16 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class ViewJobsGUI extends JFrame{
+public class ViewCompletedJobsGUI extends JFrame{
     private JPanel Main;
     private JButton returnButton;
     private JButton detailsButton;
     private JList jobList;
     private JLabel titleLabel;
-    private static ViewJobsGUI j = new ViewJobsGUI();
-    private Job selectedJob = null;
+    private static ViewCompletedJobsGUI j = new ViewCompletedJobsGUI();
+    private CompletedJob selectedJob = null;
 
-    public ViewJobsGUI() {
+    public ViewCompletedJobsGUI() {
         returnButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -31,7 +33,7 @@ public class ViewJobsGUI extends JFrame{
                 if (selectedJob != null) {
                     j.dispose();
                     // Pass the job to the next GUI
-                    JobDetailsGUI.main(selectedJob);
+                    CompletedJobDetailsGUI.main(selectedJob);
                 } else {
                     JOptionPane.showMessageDialog(null, "Select a job first!");
                 }
@@ -39,9 +41,9 @@ public class ViewJobsGUI extends JFrame{
         });
     }
     public static void main(){
-        j.setContentPane(new ViewJobsGUI().Main);
+        j.setContentPane(new ViewCompletedJobsGUI().Main);
         j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        j.setTitle("Jobs Library");
+        j.setTitle("Completed Jobs Library");
         j.setPreferredSize(new Dimension(800, 480));
         j.pack();
         j.setLocationRelativeTo(null);
@@ -49,13 +51,13 @@ public class ViewJobsGUI extends JFrame{
     }
 
     private void createUIComponents() {
-        Job_Controller controller = new Job_Controller();
-        Job[] jobs = controller.getJobs();
+        CompletedJob_Controller controller = new CompletedJob_Controller();
+        CompletedJob[] jobs = controller.getJobs();
 
-        DefaultListModel<Job> jobModel = new DefaultListModel<Job>();
+        DefaultListModel<CompletedJob> jobModel = new DefaultListModel<CompletedJob>();
 
         // Add jobs to model
-        for (Job job : jobs) {
+        for (CompletedJob job : jobs) {
             jobModel.addElement(job);
         }
 
@@ -70,7 +72,7 @@ public class ViewJobsGUI extends JFrame{
             @Override
             public void valueChanged(ListSelectionEvent e) {
                 if (!e.getValueIsAdjusting()) {
-                    selectedJob = (Job) jobList.getSelectedValue();
+                    selectedJob = (CompletedJob) jobList.getSelectedValue();
                 }
             }
         });

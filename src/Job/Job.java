@@ -11,7 +11,7 @@ public class Job {
 
 	private int jobID;
 	private final Set<String> jobTypes =
-			Stream.of("MOT", "Service")
+			Stream.of("MOT", "Service", "Repair")
 					.collect(Collectors.toCollection(HashSet::new));
 	private String jobType;
 	private String dates;
@@ -50,9 +50,7 @@ public class Job {
 		this.status = status;
 	}
 
-    public Job() {
-
-    }
+    public Job() {}
 
 	public String getStatus() {
 		return status;

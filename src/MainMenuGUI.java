@@ -32,7 +32,7 @@ public class MainMenuGUI extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 j.dispose();
-                JobsMenuGUI.main();
+                JobSelectionGUI.main();
             }
         });
         generateReportButton.addActionListener(new ActionListener() {
