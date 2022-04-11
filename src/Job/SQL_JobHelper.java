@@ -23,6 +23,42 @@ public class SQL_JobHelper extends Database_Controller {
 		return this.query;
 	}
 
+	public Job[] deleteJob(int JobID){
+		// Since we store status as a tinyint, 1 -> Complete 0 -> Incomplete
+		int jStatus;
+
+		String deleteJob = String.format("DELETE FROM Jobs WHERE jobID = '%d'", JobID);
+		Job[] out = null;
+
+		try {
+			Statement st = conn.createStatement();
+			st.executeUpdate(deleteJob);
+
+		} catch (SQLException ex) {
+			System.err.println(ex.getMessage());
+		}
+
+		return out;
+	}
+
+	public Job[] deleteCompletedJob(int JobID){
+		// Since we store status as a tinyint, 1 -> Complete 0 -> Incomplete
+		int jStatus;
+
+		String deleteJob = String.format("DELETE FROM CompletedJobs WHERE jobID = '%d'", JobID);
+		Job[] out = null;
+
+		try {
+			Statement st = conn.createStatement();
+			st.executeUpdate(deleteJob);
+
+		} catch (SQLException ex) {
+			System.err.println(ex.getMessage());
+		}
+
+		return out;
+	}
+
 	// Update all values in row by jobID
 	// TODO: status -> tinyint
 	public boolean updateCompletedJob(int jobID, String jobType, float duration, String dates, String parts, String motNO, int mileage, float price, String additionalInfo, String status) {
