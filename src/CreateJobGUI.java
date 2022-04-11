@@ -1,5 +1,6 @@
 import Job.Job_Controller;
 import Job.SQL_JobHelper;
+import Job.SparePart;
 import com.toedter.calendar.JDateChooser;
 
 import javax.swing.*;
@@ -31,6 +32,7 @@ public class CreateJobGUI extends JFrame{
     private JList partList;
     private JComboBox partSelectBox;
     private static CreateJobGUI j = new CreateJobGUI();
+    private DefaultListModel<SparePart> partModel;
 
     public CreateJobGUI() {
         returnButton.addActionListener(new ActionListener() {
@@ -77,7 +79,14 @@ public class CreateJobGUI extends JFrame{
                 }
             }
         });
-
+        addPartButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (partSelectBox.getSelectedItem() != null) {
+                    partModel.addElement((SparePart) partSelectBox.getSelectedItem());
+                }
+            }
+        });
     }
 
     // Check if things like price and duration are floats
@@ -100,7 +109,8 @@ public class CreateJobGUI extends JFrame{
     private void createUIComponents(){
         Job_Controller controller = new Job_Controller();
         jDateChooser = new JDateChooser();
-        partList = new JList<>();
+        this.partModel = new DefaultListModel<SparePart>();
+        partList = new JList<>(partModel);
         partSelectBox = new JComboBox<>(controller.getAllParts());
 }
 }
