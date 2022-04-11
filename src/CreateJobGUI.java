@@ -59,7 +59,7 @@ public class CreateJobGUI extends JFrame{
                     SQL_JobHelper sqlJob = new SQL_JobHelper();
                     String jobType = (String) jobTypeBox.getSelectedItem();
                     float duration = Float.parseFloat(durationField.getText());
-                    String dates = String.valueOf(jDateChooser.getCalendar());
+                    String dates = String.valueOf(jDateChooser.getDate());
                     String parts = partsField.getText();
                     String motNo = motField.getText();
                     int mileage = Integer.parseInt(mileageField.getText());
