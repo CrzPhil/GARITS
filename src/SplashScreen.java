@@ -11,6 +11,8 @@ public class SplashScreen extends JFrame {
         j.setContentPane(new SplashScreen().Main);
         j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         j.setTitle("GARITS");
+        Image icon = Toolkit.getDefaultToolkit().getImage("data/logo.png");
+        j.setIconImage(icon);
         j.setPreferredSize(new Dimension(800, 480));
         j.pack();
         j.setLocationRelativeTo(null);

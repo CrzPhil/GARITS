@@ -83,6 +83,8 @@ public class EditVehicleGUI extends JFrame {
         j.setContentPane(new EditVehicleGUI(customer, vehicle).Main);
         j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         j.setTitle("View Customer Account");
+        Image icon = Toolkit.getDefaultToolkit().getImage("data/logo.png");
+        j.setIconImage(icon);
         j.setPreferredSize(new Dimension(800, 600));
         j.pack();
         j.setLocationRelativeTo(null);

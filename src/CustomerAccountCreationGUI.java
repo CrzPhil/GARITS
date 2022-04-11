@@ -62,6 +62,8 @@ public class CustomerAccountCreationGUI extends JFrame{
         j.setContentPane(new CustomerAccountCreationGUI().Main);
         j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         j.setTitle("Create Customer Account");
+        Image icon = Toolkit.getDefaultToolkit().getImage("data/logo.png");
+        j.setIconImage(icon);
         j.setPreferredSize(new Dimension(800, 480));
         j.pack();
         j.setLocationRelativeTo(null);

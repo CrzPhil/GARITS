@@ -38,6 +38,8 @@ public class FranchiseeLoginGUI extends JFrame{
         j.setContentPane(new FranchiseeLoginGUI().Main);
         j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         j.setTitle("Please Enter Credentials.");
+        Image icon = Toolkit.getDefaultToolkit().getImage("data/logo.png");
+        j.setIconImage(icon);
         j.setPreferredSize(new Dimension(1280, 720));
         j.pack();
         j.setLocationRelativeTo(null);

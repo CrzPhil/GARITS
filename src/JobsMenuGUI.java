@@ -3,37 +3,40 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class VehicleReportGUI extends JFrame{
+public class JobsMenuGUI extends JFrame{
     private JPanel Main;
+    private JButton viewJobsButton;
+    private JButton createJobsButton;
     private JButton returnButton;
-    private JCheckBox monthlyCheckBox;
-    private JCheckBox perJobTypeCheckBox;
-    private JCheckBox overallCheckBox;
-    private JCheckBox perCustomerTypeCheckBox;
-    private JButton generateReportButton;
-    private static VehicleReportGUI j = new VehicleReportGUI();
+    private static JobsMenuGUI j = new JobsMenuGUI();
 
-    public VehicleReportGUI() {
+    public JobsMenuGUI() {
         returnButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 j.dispose();
-                ReportsMenuGUI.main();
+                MainMenuGUI.main();
             }
         });
-        generateReportButton.addActionListener(new ActionListener() {
+        viewJobsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               /* j.dispose();
-                ReportsMenuGUI.main(); */
-                DisplayReportGUI.main();
+                j.dispose();
+                ViewJobsGUI.main();
+            }
+        });
+        createJobsButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                j.dispose();
+                CreateJobGUI.main();
             }
         });
     }
     public static void main(){
-        j.setContentPane(new VehicleReportGUI().Main);
+        j.setContentPane(new JobsMenuGUI().Main);
         j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        j.setTitle("Generate Vehicle Quantity Report");
+        j.setTitle("Jobs Menu");
         Image icon = Toolkit.getDefaultToolkit().getImage("data/logo.png");
         j.setIconImage(icon);
         j.setPreferredSize(new Dimension(800,480));
@@ -41,5 +44,4 @@ public class VehicleReportGUI extends JFrame{
         j.setLocationRelativeTo(null);
         j.setVisible(true);
     }
-
 }

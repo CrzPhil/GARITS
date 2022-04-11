@@ -79,6 +79,8 @@ public class DisplayReportGUI extends JFrame {
     j.setContentPane(new DisplayReportGUI().main);
     j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     j.setTitle("Report");
+        Image icon = Toolkit.getDefaultToolkit().getImage("data/logo.png");
+        j.setIconImage(icon);
     //j.setPreferredSize(new Dimension(700, 990));
     j.pack();
     j.setLocationRelativeTo(null);

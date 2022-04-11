@@ -43,6 +43,8 @@ public class ViewCompletedJobsGUI extends JFrame{
         j.setContentPane(new ViewCompletedJobsGUI().Main);
         j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         j.setTitle("Completed Jobs Library");
+        Image icon = Toolkit.getDefaultToolkit().getImage("data/logo.png");
+        j.setIconImage(icon);
         j.setPreferredSize(new Dimension(800, 480));
         j.pack();
         j.setLocationRelativeTo(null);

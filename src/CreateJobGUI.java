@@ -162,6 +162,8 @@ public class CreateJobGUI extends JFrame{
         j.setContentPane(new CreateJobGUI().Main);
         j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         j.setTitle("Job Creation Menu");
+        Image icon = Toolkit.getDefaultToolkit().getImage("data/logo.png");
+        j.setIconImage(icon);
         j.setPreferredSize(new Dimension(1280,720));
         j.pack();
         j.setLocationRelativeTo(null);
