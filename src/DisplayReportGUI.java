@@ -83,10 +83,12 @@ public class DisplayReportGUI extends JFrame {
     j.pack();
     j.setLocationRelativeTo(null);
     // Make the report fit into the screen
-    j.setSize(new Dimension(new ImageIcon("logo.png").getIconWidth(), new ImageIcon("logo.png").getIconHeight()));
+    j.setSize(new Dimension(new ImageIcon("src/Reports/preview_page1.png").getIconWidth(), new ImageIcon("src/Reports/preview_page1.png").getIconHeight()));
     j.setVisible(true);
 }
-    private void createUIComponents() {ReportImage = new JLabel(new ImageIcon("logo.png"));}
+    private void createUIComponents() {
+        ReportImage = new JLabel(new ImageIcon("src/Reports/preview_page1.png"));
+    }
 
 
 }
