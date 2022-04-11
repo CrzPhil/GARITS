@@ -36,9 +36,12 @@ public class ItemSearchGUI extends JFrame {
 
         returnButton.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                j.dispose();
-                MainMenuGUI.main();
+            public void actionPerformed(ActionEvent e) {   j.dispose();
+                if (LoginGUI.access == 'C') {
+                    FranchiseeDashboardGUI.main();
+                } else {
+                    MainMenuGUI.main();
+                }
             }
         });
 

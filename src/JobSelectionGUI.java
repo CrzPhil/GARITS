@@ -32,7 +32,11 @@ public class JobSelectionGUI extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 j.dispose();
-                MainMenuGUI.main();
+                if (LoginGUI.access == 'C') {
+                    FranchiseeDashboardGUI.main();
+                } else {
+                    MainMenuGUI.main();
+                }
             }
         });
         incompButton.addActionListener(new ActionListener() {
