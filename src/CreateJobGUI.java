@@ -1,3 +1,4 @@
+import Job.Job_Controller;
 import Job.SQL_JobHelper;
 import com.toedter.calendar.JDateChooser;
 
@@ -25,6 +26,10 @@ public class CreateJobGUI extends JFrame{
     private JTextArea detailsField;
     private JComboBox jobTypeBox;
     private JDateChooser jDateChooser;
+    private JButton addPartButton;
+    private JButton deletePartButton;
+    private JList partList;
+    private JComboBox partSelectBox;
     private static CreateJobGUI j = new CreateJobGUI();
 
     public CreateJobGUI() {
@@ -92,8 +97,11 @@ public class CreateJobGUI extends JFrame{
         j.setLocationRelativeTo(null);
         j.setVisible(true);
     }
-private void createUIComponents(){
+    private void createUIComponents(){
+        Job_Controller controller = new Job_Controller();
         jDateChooser = new JDateChooser();
+        partList = new JList<>();
+        partSelectBox = new JComboBox<>(controller.getAllParts());
 }
 }
 

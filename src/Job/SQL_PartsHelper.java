@@ -22,6 +22,7 @@ public class SQL_PartsHelper extends Database_Controller {
 		throw new UnsupportedOperationException();
 	}
 
+	// Match string with either partName, partCode, or vehicleType; Makes for a generic search.
 	public SparePart[] getPartByIdName(String part) {
 		// TODO: Get rid of SQLi
 		String sizequr = String.format("SELECT COUNT(*) AS Count FROM SpareParts WHERE code LIKE '%s' OR partName LIKE '%s' OR vehicleType LIKE '%s'", part, part, part);
@@ -30,6 +31,7 @@ public class SQL_PartsHelper extends Database_Controller {
 		return getParts(sizequr, qur);
 	}
 
+	// Get all different types
 	public String[] getTypes() {
 		String[] out = null;
 
@@ -71,6 +73,46 @@ public class SQL_PartsHelper extends Database_Controller {
 		return out;
 	}
 
+	// Get all unique part names
+	public String[] getPartNames() {
+		String sizequr = "SELECT COUNT(DISTINCT partName) AS Count FROM SpareParts";
+		String qur = "SELECT DISTINCT partName FROM SpareParts";
+
+		String[] out;
+		try {
+			Statement st = conn.createStatement();
+			ResultSet rs = st.executeQuery(sizequr);
+
+			rs.next();
+			int size = rs.getInt("Count");
+			rs.close();
+
+			out = new String[size];
+
+			rs = st.executeQuery(qur);
+
+			int i = 0;
+
+			while (rs.next()) {
+				out[i] = rs.getString("partName");
+				++i;
+			}
+			return out;
+		} catch (SQLException ex) {
+			System.err.println(ex.getMessage());
+			return null;
+		}
+	}
+
+	// Get all parts
+	public SparePart[] getAllParts() {
+		String sizequr = "SELECT COUNT(*) AS Count FROM SpareParts";
+		String qur = "SELECT * FROM SpareParts";
+
+		return getParts(sizequr, qur);
+	}
+
+	// Get spare parts by certain query (Has to be SELECT * [...])
 	private SparePart[] getParts(String sizequr, String qur) {
 		SparePart[] out = null;
 

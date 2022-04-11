@@ -12,6 +12,30 @@ public class SparePart {
 	private int stock;
 	private double price;
 
+	/**
+	 *
+	 * @param partID
+	 * @param type
+	 * @param name
+	 * @param year
+	 */
+	public SparePart(String partID, String name, String manufacturer, String type, int year, int stock, double price) {
+		this.type = type;
+		this.name = name;
+		this.year = year;
+		this.manufacturer = manufacturer;
+		this.stock = stock;
+		this.price = price;
+		this.partID = partID;
+	}
+
+	// This is how spare parts will be displayed in the JLists
+	@Override
+	public String toString() {
+		return this.name + " " + this.manufacturer + " " +
+				this.type + " " + this.year + " ￡" + this.price + " Stock: " + this.stock;
+	}
+
 	public String getType() {
 		return type;
 	}
@@ -48,22 +72,6 @@ public class SparePart {
 		this.price = price;
 	}
 
-	/**
-	 * 
-	 * @param partID
-	 * @param type
-	 * @param name
-	 * @param year
-	 */
-	public SparePart(String partID, String name, String manufacturer, String type, int year, int stock, double price) {
-		this.type = type;
-		this.name = name;
-		this.year = year;
-		this.manufacturer = manufacturer;
-		this.stock = stock;
-		this.price = price;
-		this.partID = partID;
-	}
 
 	// Used when displaying Spare Parts in GUI, when creating the JTable
 	public String[] toData() {

@@ -1,5 +1,3 @@
-import Job.Job;
-import Job.Job_Controller;
 import Job.CompletedJob_Controller;
 import Job.CompletedJob;
 
@@ -16,6 +14,7 @@ public class ViewCompletedJobsGUI extends JFrame{
     private JButton detailsButton;
     private JList jobList;
     private JLabel titleLabel;
+    private JButton generateInvoiceButton;
     private static ViewCompletedJobsGUI j = new ViewCompletedJobsGUI();
     private CompletedJob selectedJob = null;
 
