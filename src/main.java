@@ -15,6 +15,7 @@ public class main {
        //CustomerAccountMenuGUI.main();
         //StockReportGUI.main();
        // JobSelectionGUI.main();
-        CreateJobGUI.main();
+        //CreateJobGUI.main();
+        FranchiseeDashboardGUI.main();
     }
 }

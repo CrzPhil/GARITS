@@ -32,17 +32,6 @@
           <text value="Incomplete Jobs"/>
         </properties>
       </component>
-      <component id="f9a17" class="javax.swing.JButton" binding="logOutButton" default-binding="true">
-        <constraints>
-          <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <background color="-1"/>
-          <font name="Yu Gothic UI Semibold" size="12"/>
-          <foreground color="-16777216"/>
-          <text value="Log Out"/>
-        </properties>
-      </component>
       <vspacer id="9fe61">
         <constraints>
           <grid row="5" column="2" row-span="1" col-span="2" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
@@ -67,17 +56,6 @@
           <enabled value="true"/>
           <foreground color="-1"/>
           <text value=""/>
-        </properties>
-      </component>
-      <component id="8c8d" class="javax.swing.JButton" binding="returnButton">
-        <constraints>
-          <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <background color="-1114625"/>
-          <font name="Yu Gothic UI Semibold" size="12"/>
-          <foreground color="-16777216"/>
-          <text value="Return"/>
         </properties>
       </component>
       <component id="f1ab8" class="javax.swing.JLabel">
@@ -125,6 +103,17 @@
           <text value="    Job Selection:"/>
           <verticalAlignment value="0"/>
           <verticalTextPosition value="0"/>
+        </properties>
+      </component>
+      <component id="8c8d" class="javax.swing.JButton" binding="returnButton">
+        <constraints>
+          <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-1114625"/>
+          <font name="Yu Gothic UI Semibold" size="12"/>
+          <foreground color="-16777216"/>
+          <text value="Return"/>
         </properties>
       </component>
     </children>
