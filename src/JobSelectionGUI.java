@@ -3,6 +3,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.FileInputStream;
 
 public class JobSelectionGUI extends JFrame{
@@ -14,6 +15,7 @@ public class JobSelectionGUI extends JFrame{
     private JButton CompButton;
     private JButton logOutButton;
     private JButton returnButton;
+    private JButton createButton;
     public static JobSelectionGUI j = new JobSelectionGUI();
 
     public static void main() {
@@ -55,16 +57,26 @@ public class JobSelectionGUI extends JFrame{
                 LoginGUI.main();
             }
         });
+        createButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                j.dispose();
+                CreateJobGUI.main();
+            }
+        });
     }
 
     private void createUIComponents() {
         incompButton = new JButton();
         CompButton = new JButton();
+        createButton = new JButton();
         try {
-            Image img = ImageIO.read(new FileInputStream("data/inProg.png")).getScaledInstance(100, 100, Image.SCALE_DEFAULT);
+            Image img = ImageIO.read(new FileInputStream("data/loading.png")).getScaledInstance(100, 100, Image.SCALE_DEFAULT);
             Image tImg = ImageIO.read(new FileInputStream("data/tick3.png")).getScaledInstance(100, 100, Image.SCALE_DEFAULT);
+            Image bImg = ImageIO.read(new FileInputStream("data/plus.png")).getScaledInstance(100, 100, Image.SCALE_DEFAULT);
             incompButton.setIcon(new ImageIcon(img));
             CompButton.setIcon(new ImageIcon(tImg));
+            createButton.setIcon(new ImageIcon(bImg));
         } catch (Exception ignored) {
         }
 
@@ -80,5 +92,11 @@ public class JobSelectionGUI extends JFrame{
         CompButton.setMargin(new Insets(0, 0, 0, 0));
         CompButton.setContentAreaFilled(false);
         CompButton.setFocusPainted(false);
+
+        createButton.setBorder(null);
+        createButton.setBorderPainted(false);
+        createButton.setMargin(new Insets(0, 0, 0, 0));
+        createButton.setContentAreaFilled(false);
+        createButton.setFocusPainted(false);
     }
 }
