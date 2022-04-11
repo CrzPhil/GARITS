@@ -16,10 +16,7 @@ public class CreateJobGUI extends JFrame{
     private JPanel Main;
     private JButton returnButton;
     private JTextField priceField;
-    private JTextField dateField;
-    private JTextField typeField;
     private JTextField durationField;
-    private JTextField partsField;
     private JTextField motField;
     private JTextField mileageField;
     private JTextField regNoField;
@@ -38,6 +35,18 @@ public class CreateJobGUI extends JFrame{
         returnButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
+                // Update database
+                Job_Controller controller = new Job_Controller();
+
+                // Release items that were in the list (incrementing their stock)
+                for(int i = 0; i< partList.getModel().getSize();i++){
+                    // Increment Object's Stock
+                    ((SparePart) partList.getModel().getElementAt(i)).setStock(((SparePart) partList.getModel().getElementAt(i)).getStock() + 1);
+                    // Increment DB's Stock
+                    controller.updateStock(((SparePart) partList.getModel().getElementAt(i)).getStock(), ((SparePart) partList.getModel().getElementAt(i)).getPartID());
+                }
+
                 j.dispose();
                 JobSelectionGUI.main();
             }
@@ -63,17 +72,27 @@ public class CreateJobGUI extends JFrame{
                     JOptionPane.showMessageDialog(null, "Duration is stored in hours, using the format: 1.5");
                 } else {
                     // TODO: Check if records are empty
-                    SQL_JobHelper sqlJob = new SQL_JobHelper();
+                    Job_Controller controller = new Job_Controller();
                     String jobType = (String) jobTypeBox.getSelectedItem();
                     float duration = Float.parseFloat(durationField.getText());
                     String dates = String.valueOf(jDateChooser.getDate());
-                    String parts = partsField.getText();
+                    String parts = "";
                     String motNo = motField.getText();
                     int mileage = Integer.parseInt(mileageField.getText());
                     float price = Float.parseFloat(priceField.getText());
                     String additionalInfo = detailsField.getText();
 
-                    sqlJob.sendData(jobType, duration, dates, parts, motNo, mileage, price, additionalInfo, "Incomplete");
+                    // Create Job in DB
+                    controller.sendData(jobType, duration, dates, parts, motNo, mileage, price, additionalInfo, "Incomplete");
+
+                    // Get ID of newly created Job
+                    int jobID = controller.getJobID(jobType, duration, dates, parts, motNo, mileage, price, additionalInfo, "Incomplete");
+
+                    // Add Parts to Job (Job_SpareParts)
+                    for(int i = 0; i< partList.getModel().getSize();i++){
+                        controller.addToJob(jobID, ((SparePart) partList.getModel().getElementAt(i)).getPartID());
+                    }
+
                     j.dispose();
                     JobSelectionGUI.main();
                 }
@@ -89,8 +108,10 @@ public class CreateJobGUI extends JFrame{
                         partModel.addElement((SparePart) partSelectBox.getSelectedItem());
                         // Update part Object
                         ((SparePart) partSelectBox.getSelectedItem()).setStock(((SparePart) partSelectBox.getSelectedItem()).getStock() - 1);
+
                         // Update database
                         Job_Controller controller = new Job_Controller();
+                        // Decrement stock
                         controller.updateStock(((SparePart) partSelectBox.getSelectedItem()).getStock(), ((SparePart)  partSelectBox.getSelectedItem()).getPartID());
                     }
                     // If Stock is less than one
@@ -104,9 +125,10 @@ public class CreateJobGUI extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (partList.getSelectedValue() != null) {
+                    // Increment Object's stock
                     ((SparePart) partList.getSelectedValue()).setStock(((SparePart) partList.getSelectedValue()).getStock() + 1);
 
-                    // Update database
+                    // Update database to Object's incremented stock
                     Job_Controller controller = new Job_Controller();
                     controller.updateStock(((SparePart) partList.getSelectedValue()).getStock(), ((SparePart)  partList.getSelectedValue()).getPartID());
 

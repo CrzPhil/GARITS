@@ -1,5 +1,6 @@
 package Job;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -26,6 +27,7 @@ public class Job {
 	// As stored in DB, states[0] -> Incomplete ; states[1] -> Complete
 	static private final String[] states = {"Incomplete", "Complete"};
 	private String status;
+	private HashMap<String, SparePart> spareParts;
 
 	/**
 	 *
