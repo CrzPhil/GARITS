@@ -16,6 +16,7 @@ public class main {
         //StockReportGUI.main();
        // JobSelectionGUI.main();
         //CreateJobGUI.main();
-        FranchiseeDashboardGUI.main();
+        //FranchiseeDashboardGUI.main();
+        MechanicDashboardGUI.main();
     }
 }

@@ -25,6 +25,7 @@ public class FranchiseeDashboardGUI extends JFrame{
         jobsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                j.dispose();
                 JobSelectionGUI.main();
 
             }
@@ -32,18 +33,21 @@ public class FranchiseeDashboardGUI extends JFrame{
         reportsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                j.dispose();
                 ReportsMenuGUI.main();
             }
         });
         spareButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                j.dispose();
                 ItemSearchGUI.main();
             }
         });
         customerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                j.dispose();
                 CustomerAccountMenuGUI.main();
             }
         });
