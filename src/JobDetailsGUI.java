@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 import Job.Job_Controller;
@@ -34,23 +36,53 @@ public class JobDetailsGUI extends JFrame{
     private JList partList;
     private static JobDetailsGUI j = new JobDetailsGUI();
     private DefaultListModel<SparePart> partModel;
+    // partID -> Part; This is a collection of the originally added parts, that already exist in the Job_SpareParts Table
+    private HashMap<Integer, SparePart> usedParts;
+    // Current job object being edited
     private Job job;
 
     public JobDetailsGUI(Job job) {
         this.job = job;
+        // Set the job ID Label (cannot be changed)
         jobIDLabel.setText(String.valueOf(job.getJobID()));
 
         // Have to call this here because it doesn't work in CreateUIComponents
         setComboBox();
 
+        // Create cache of used Parts
+        cacheParts();
+
+        // Cancel edit
         returnButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                // Restore cache state in Job_SpareParts table
+                Job_Controller controller = new Job_Controller();
+
+                // Iterate through items in List, releasing them from the HashMap (as they weren't deleted in the first place)
+                // Release items that were in the list (incrementing their stock)
+                for(int i = 0; i< partList.getModel().getSize();i++){
+                    SparePart tmp = ((SparePart) partList.getModel().getElementAt(i));
+                    // Increment Object's Stock
+                    tmp.setStock(tmp.getStock() + 1);
+                    // Increment DB's Stock
+                    controller.updateStock(tmp.getStock(), tmp.getPartCode());
+
+                    // Remove the part from the HashMap, as it does not have to be re-generated
+                    usedParts.remove(tmp.getPartID());
+                }
+
+                // All remaining items in HashMap have to be added to Job_SpareParts again
+                for (Map.Entry<Integer, SparePart> set : usedParts.entrySet()) {
+                    controller.addToJob(job.getJobID(), set.getValue().getPartCode());
+                }
+
                 j.dispose();
                 ViewJobsGUI.main();
             }
         });
 
+        // Delete JOB
         deleteButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -101,6 +133,21 @@ public class JobDetailsGUI extends JFrame{
                                 Float.parseFloat(priceField.getText()),
                                 additionalField.getText(),
                                 (String) statusBox.getSelectedItem())) {
+
+                            // Iterate through list for each Spare Part and add it to the job
+                            for(int i = 0; i< partList.getModel().getSize();i++) {
+                                // Current part in the list
+                                SparePart tmp = ((SparePart) partList.getModel().getElementAt(i));
+
+                                // Only if the part is NOT in the cache already, we add it to the job
+                                // This avoids duplication, if for instance we don't even change the parts used
+                                // This routine runs and sees that all parts in the list are already in the HashMap,
+                                // Therefore it does not add them to the DB.
+                                if (!usedParts.containsKey(tmp.getPartID())) {
+                                    helper.addToJob(job.getJobID(), tmp.getPartCode());
+                                }
+                            }
+
                             // Successful Job update
                             JOptionPane.showMessageDialog(null, "Job updated successfully.");
                             j.dispose();
@@ -116,7 +163,9 @@ public class JobDetailsGUI extends JFrame{
                 }
             }
         });
+
         // TODO: Make this more readable
+        // Add PART to LIST
         addPartButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -130,7 +179,7 @@ public class JobDetailsGUI extends JFrame{
                         // Update database
                         Job_Controller controller = new Job_Controller();
                         // Decrement stock
-                        controller.updateStock(((SparePart) partSelectBox.getSelectedItem()).getStock(), ((SparePart)  partSelectBox.getSelectedItem()).getPartID());
+                        controller.updateStock(((SparePart) partSelectBox.getSelectedItem()).getStock(), ((SparePart)  partSelectBox.getSelectedItem()).getPartCode());
                     }
                     // If Stock is less than one
                     else {
@@ -139,16 +188,26 @@ public class JobDetailsGUI extends JFrame{
                 }
             }
         });
+
+        // Delete PART from LIST
         deletePartButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (partList.getSelectedValue() != null) {
+                    // Current selected value in JList
+                    SparePart tmp = ((SparePart) partList.getSelectedValue());
                     // Increment Object's stock
-                    ((SparePart) partList.getSelectedValue()).setStock(((SparePart) partList.getSelectedValue()).getStock() + 1);
+                    tmp.setStock(tmp.getStock() + 1);
 
                     // Update database to Object's incremented stock
                     Job_Controller controller = new Job_Controller();
-                    controller.updateStock(((SparePart) partList.getSelectedValue()).getStock(), ((SparePart)  partList.getSelectedValue()).getPartID());
+                    controller.updateStock(tmp.getStock(), tmp.getPartCode());
+
+                    if (usedParts.containsKey(tmp.getPartID())) {
+                        // Deleting a value means we have to delete it from the Job_SpareParts, even if it gets added back again
+                        // If the job gets cancelled, we can just re-add them using the HashMap cache
+                        controller.deleteJobPart(tmp.getPartID());
+                    }
 
                     // Remove item from list last, so that selectedValue doesn't move
                     partModel.removeElement(partList.getSelectedValue());
@@ -158,6 +217,7 @@ public class JobDetailsGUI extends JFrame{
         });
     }
 
+    // Default constructor simply exists so the frame can be created in an empty state
     public JobDetailsGUI() {
         returnButton.addActionListener(new ActionListener() {
             @Override
@@ -168,6 +228,13 @@ public class JobDetailsGUI extends JFrame{
         });
     }
 
+    /**
+     * @param type Type specified in input field
+     * @param duration Duration specified in input field
+     * @param mileage Mileage specified in input field
+     * @param price Price specified in input field
+     * @return Whether user input is valid (bool)
+     */
     private boolean inputValid(String type, String duration, String mileage, String price) {
         // Check if Type is valid
         if (!job.getJobTypes().contains(type)) {
@@ -184,8 +251,6 @@ public class JobDetailsGUI extends JFrame{
         return true;
     }
 
-
-
     public static void main(Job job){
         j.setContentPane(new JobDetailsGUI(job).Main);
         j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -196,6 +261,9 @@ public class JobDetailsGUI extends JFrame{
         j.setVisible(true);
     }
 
+    /**
+     * Helper function to create Dropdown menu of spare parts.
+     */
     private void setComboBox() {
         // Configure which option to show
         String other;
@@ -215,6 +283,27 @@ public class JobDetailsGUI extends JFrame{
         jobTypeBox.addItem(other);
         jobTypeBox.addItem(otherother);
 
+    }
+
+    /**
+     * Add Parts originally assigned to job to the HashMap, so they can later be released/deleted/restored
+     * All SparePart objects in the hashmap usedParts exist in the Job_SparePart Table.
+     * If we alter the spare parts used on the job, and later save, we do not want to duplicate these already existing values.
+     * Same if we choose to delete the spare parts and then cancel the edit, we have to know what to restore.
+     */
+    private void cacheParts() {
+        Job_Controller controller = new Job_Controller();
+        SparePart[] parts = controller.getJobParts(this.job.getJobID());
+
+        // If we put this at the beginning of the program where usedParts is defined, nothing is rendered
+        // Most bizarre IntelliJ bug ever. Spent 2 hours trying to figure out what is causing the issue.
+        // And it is the creation of the hashmap.
+        usedParts =  new HashMap<Integer, SparePart>();
+
+        // Add part to hashmap
+        for (SparePart part : parts) {
+            usedParts.put(part.getPartID(), part);
+        }
     }
 
     // TODO: Registration Number ?
