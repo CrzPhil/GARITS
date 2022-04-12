@@ -91,6 +91,11 @@ public class UserAccountCreationGUI extends JFrame {
             return false;
         }*/
 
+        if (!controller.simplePasswordCheck(password)) {
+            JOptionPane.showMessageDialog(null, "Password has to be at least two characters with one uppercase letter.");
+            return false;
+        }
+
         if (!controller.validateEmail(mail)) {
             JOptionPane.showMessageDialog(null, "Please enter a valid email address.");
             return false;
