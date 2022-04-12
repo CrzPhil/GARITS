@@ -70,8 +70,8 @@ public class CreateJobGUI extends JFrame{
         regNoField.addKeyListener(new KeyAdapter() {
             public void keyTyped(KeyEvent f) {
                 char d = f.getKeyChar();
-                //all special characters, and letters not allowed on a reg plate
-                if( (d == '¬') || (d == '`') || (d == '!') || (d == '"') || (d == '£') || (d == 'F') || (d == '$') || (d == '%') || (d == '^') || (d == '&') || (d == '*') || (d == '(') || (d == ')') ||  (d == '-') ||(d == '_') || (d == '=') || (d == '+') ||  (d == '[') || (d == '{') || (d == ']') || (d == '}') || (d == ';') || (d == ':') || (d == '@') || (d == '#') || (d == '~') || (d == '|') || (d == ',') || (d == '<') || (d == '.') || (d == '>') ||(d == '/') || (d == 'I') || (d == 'i') || (d == 'O') || (d == 'o') || (d == 'z') || (d == 'Z') || (d== '?')){
+                //all special characters, and letters, not allowed on a reg plate
+                if( (d == '¬') || (d == '`') || (d == '!') || (d == '"') || (d == '£') || (d == '$') || (d == '%') || (d == '^') || (d == '&') || (d == '*') || (d == '(') || (d == ')') ||  (d == '-') ||(d == '_') || (d == '=') || (d == '+') ||  (d == '[') || (d == '{') || (d == ']') || (d == '}') || (d == ';') || (d == ':') || (d == '@') || (d == '#') || (d == '~') || (d == '|') || (d == ',') || (d == '<') || (d == '.') || (d == '>') ||(d == '/') || (d == 'I') || (d == 'i') || (d == 'O') || (d == 'o') || (d == 'z') || (d == 'Z') || (d== '?')){
                     f.consume();
                     JOptionPane.showMessageDialog(null, "Invalid Registration Character Used!");
                 }
