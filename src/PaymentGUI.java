@@ -29,16 +29,16 @@ public class PaymentGUI extends JFrame {
         payButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (nameField.getText().length() < 5) {
-                    JOptionPane.showMessageDialog(null, "Name too short.");
+                if (nameField.getText().isEmpty() || (numberField.getText().isEmpty()) || (dateField.getText().isEmpty()) || (cvvField.getText().isEmpty())) {
+                    JOptionPane.showMessageDialog(null, "Required field missing.");
                 } else if (numberField.getText().length() < 16) {
                     JOptionPane.showMessageDialog(null, "Card number too short.");
                 } else if (dateField.getText().length() < 5) {
                     JOptionPane.showMessageDialog(null, "Date invalid.");
                 } else if (cvvField.getText().length() < 3) {
                     JOptionPane.showMessageDialog(null, "CVV invalid.");
-                } else if (nameField.getText().isEmpty() || (numberField.getText().isEmpty()) || (dateField.getText().isEmpty()) || (cvvField.getText().isEmpty())) {
-                    JOptionPane.showMessageDialog(null, "Required field missing.");
+                } else if (nameField.getText().length() < 5) {
+                    JOptionPane.showMessageDialog(null, "Name too short.");
                 } else {
                     JOptionPane.showMessageDialog(null, "Payment Successful!");
                     try {
