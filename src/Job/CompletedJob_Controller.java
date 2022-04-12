@@ -122,8 +122,8 @@ public class CompletedJob_Controller implements I_Job {
     }
 
     // Send job creation data
-    public void sendData(String jobType, float duration, String dates, String parts, String motNo, int mileage, float price, String additionalInfo, String completionStatus) {
-        helper.sendData(jobType, duration, dates, parts, motNo, mileage, price, additionalInfo, "Incomplete");
+    public void sendData(String jobType, float duration, String dates, String parts, String motNo, int mileage, float price, String additionalInfo, String completionStatus, String regNo) {
+        helper.sendData(jobType, duration, dates, parts, motNo, mileage, price, additionalInfo, "Incomplete", regNo);
     }
 
     public SparePart[] getAllParts() {
