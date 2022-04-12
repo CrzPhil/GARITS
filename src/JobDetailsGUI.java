@@ -310,6 +310,14 @@ public class JobDetailsGUI extends JFrame{
         for (SparePart part : parts) {
             usedParts.put(part.getPartID(), part);
         }
+
+        if (this.job.getStatus().equals("Complete")) {
+            statusBox.addItem("Complete");
+            statusBox.addItem("Incomplete");
+        } else {
+            statusBox.addItem("Incomplete");
+            statusBox.addItem("Complete");
+        }
     }
 
     // TODO: Registration Number ?
