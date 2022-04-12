@@ -133,6 +133,11 @@ public class Accounts_Controller implements I_Accounts {
 		return checkRegex(passRegex, password);
 	}
 
+	public boolean validateName(String name) {
+		String nameRegex = "(?i)[a-z](.{1,}[a-z])?";
+		return checkRegex(nameRegex, name);
+	}
+
 	// Simple comparison against a set of Roles
 	// TODO: Make some sort of check to see what roles exist
 	public boolean validateRole(String role) {

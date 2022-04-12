@@ -119,8 +119,8 @@ public class SQL_JobHelper extends Database_Controller {
 
 			// Update Row with new values
 			String deleteRow = String.format("DELETE FROM Jobs WHERE jobID = '%d'", jobID);
-			String sendJob = "INSERT INTO CompletedJobs (jobID, jobType, duration, dates, parts, motNo, mileage, price, additionalInfo, status, registrationNo)";
-			String sendValues = String.format(" VALUES ('%d', '%s', '%f', '%s', '%s', '%s', '%d', '%f', '%s')", jobID, jobType, duration, dates, parts, motNO, mileage, price, additionalInfo, jStatus);
+			String sendJob = "INSERT INTO CompletedJobs (jobID, jobType, duration, dates, parts, motNo, mileage, price, additionalInfo, status)";
+			String sendValues = String.format(" VALUES ('%d', '%s', '%f', '%s', '%s', '%s', '%d', '%f', '%s', '%s')", jobID, jobType, duration, dates, parts, motNO, mileage, price, additionalInfo, jStatus);
 
 			try {
 				Statement st = conn.createStatement();
