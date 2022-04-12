@@ -41,9 +41,9 @@ public class CompletedJobDetailsGUI extends JFrame{
     // partID -> Part; This is a collection of the originally added parts, that already exist in the Job_SpareParts Table
     private HashMap<Integer, SparePart> usedParts;
     // Current job object being edited
-    private CompletedJob job;
+    private Job job;
 
-    public CompletedJobDetailsGUI(CompletedJob job) {
+    public CompletedJobDetailsGUI(Job job) {
         this.job = job;
         jobIDLabel.setText(String.valueOf(job.getJobID()));
         regNoLabel.setText(job.getRegNo());
@@ -132,7 +132,7 @@ public class CompletedJobDetailsGUI extends JFrame{
                                 Float.parseFloat(priceField.getText()),
                                 additionalField.getText(),
                                 (String) statusBox.getSelectedItem(),
-                                job.getRegNo())) {
+                                regNoLabel.getText())) {
 
                             // Iterate through list for each Spare Part and add it to the job
                             for(int i = 0; i< partList.getModel().getSize();i++) {
@@ -242,7 +242,7 @@ public class CompletedJobDetailsGUI extends JFrame{
         });
     }
 
-    public static void main(CompletedJob job){
+    public static void main(Job job){
         j.setContentPane(new CompletedJobDetailsGUI(job).Main);
         j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         j.setTitle("Chosen Completed Job Details");

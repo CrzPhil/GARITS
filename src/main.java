@@ -7,11 +7,9 @@ public class main {
 
     public static void main(String[] args) {
         //JobSelectionGUI.main();
-        //JobDetailsGUI.main();
+        ViewJobsGUI.main();
         //CreateJobGUI.main();
         //UserAccountCreationGUI.main();
-        //ViewCompletedJobsGUI.main();
-        JobSelectionGUI.main();
-
+        //CustomerAccountMenuGUI.main();
     }
 }

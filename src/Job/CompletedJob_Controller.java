@@ -147,8 +147,8 @@ public class CompletedJob_Controller implements I_Job {
         partsHelper.deleteJobPart(partID);
     }
 
-    public CompletedJob[] getJobs() {
+/*    public CompletedJob[] getJobs() {
         return helper.getCompletedJobs();
-    }
+    }*/
 
 }

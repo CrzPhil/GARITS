@@ -111,29 +111,16 @@ public class SQL_JobHelper extends Database_Controller {
 
 	}
 
+	// Update job with new values
 	public boolean updateJob(int jobID, String jobType, float duration, String dates, String parts, String motNO, int mileage, float price, String additionalInfo, String status, String regNo) {
 		// Since we store status as a tinyint, 1 -> Complete 0 -> Incomplete
 		int jStatus;
 		if (Objects.equals(status, "Complete")) {
 			jStatus = 1;
 
-			// Update Row with new values
-			String deleteRow = String.format("DELETE FROM Jobs WHERE jobID = '%d'", jobID);
-			String sendJob = "INSERT INTO CompletedJobs (jobID, jobType, duration, dates, parts, motNo, mileage, price, additionalInfo, status, registrationNo)";
-			String sendValues = String.format(" VALUES ('%d', '%s', '%f', '%s', '%s', '%s', '%d', '%f', '%s', '%s', '%s')", jobID, jobType, duration, dates, parts, motNO, mileage, price, additionalInfo, jStatus, regNo);
-
-			try {
-				Statement st = conn.createStatement();
-				st.executeUpdate(deleteRow);
-				st.executeUpdate(sendJob + sendValues);
-				return true;
-			} catch (SQLException e) {
-				e.printStackTrace();
-				return false;
-			}
-
 		} else {
 			jStatus = 0;
+		}
 			// Update Row with new values
 			String updateRow = String.format("UPDATE Jobs SET jobType = '%s', duration = %f, dates = '%s', parts = '%s', motNo = '%s', mileage = %d, price = %f, additionalInfo = '%s', status = %d WHERE jobID = %d",
 					jobType,
@@ -150,13 +137,13 @@ public class SQL_JobHelper extends Database_Controller {
 				Statement st = conn.createStatement();
 				st.executeUpdate(updateRow);
 				return true;
+
 			} catch (SQLException e) {
 				e.printStackTrace();
 				return false;
 			}
-		}
-
 	}
+
 
 	// TODO: Modify type / Add to controller
 	public Job[] sendData(String jobType, float duration, String dates, String parts, String motNO, int mileage, float price, String additionalInfo, String status, String regNo){
@@ -199,8 +186,59 @@ public class SQL_JobHelper extends Database_Controller {
 		Job[] out = null;
 
 		// Order Jobs, starting from the most recent so it's listed at the top in the gui
-		String sizequr = "SELECT COUNT(*) AS Count FROM Jobs ORDER BY jobID DESC";
-		String qur = "SELECT * FROM Jobs";
+		String sizequr = "SELECT COUNT(*) AS Count FROM Jobs WHERE status = 0 ORDER BY jobID DESC";
+		String qur = "SELECT * FROM Jobs WHERE status = 0";
+
+		try {
+			Statement st = conn.createStatement();
+			ResultSet rs = st.executeQuery(sizequr);
+
+			// Get count for returned rows
+			rs.next();
+			int size = rs.getInt("Count");
+			rs.close();
+
+			out = new Job[size];
+
+			// Get Job
+			rs = st.executeQuery(qur);
+
+			int i = 0;
+
+			while (rs.next()) {
+				out[i] = new Job(
+						rs.getInt("jobID"),
+						rs.getString("jobType"),
+						rs.getFloat("duration"),
+						rs.getString("dates"),
+						rs.getString("parts"),
+						rs.getString("motNo"),
+						rs.getInt("mileage"),
+						rs.getFloat("price"),
+						rs.getString("additionalInfo"),
+						Job.getStates()[rs.getInt("status")],
+						rs.getString("registrationNo")
+				);
+				i++;
+			}
+			rs.close();
+			st.close();
+		} catch (SQLException ex) {
+			System.err.println(ex.getMessage());
+		}
+
+		this.closeConnection();
+		return out;
+	}
+
+	// Get Completed jobs from database
+	public Job[] getCompletedJobs() {
+		Job[] out = null;
+
+		// Order Jobs, starting from the most recent so it's listed at the top in the gui
+		String sizequr = "SELECT COUNT(*) AS Count FROM Jobs WHERE status = 1 ORDER BY jobID DESC";
+		// Status = 1 means job is complete
+		String qur = "SELECT * FROM Jobs WHERE status = 1";
 
 		try {
 			Statement st = conn.createStatement();
@@ -288,7 +326,7 @@ public class SQL_JobHelper extends Database_Controller {
 		}
 	}
 
-	public CompletedJob[] getCompletedJobs() {
+	/*public CompletedJob[] getCompletedJobs() {
 		CompletedJob[] out = null;
 
 		// Order Jobs, starting from the most recent so it's listed at the top in the gui
@@ -335,7 +373,7 @@ public class SQL_JobHelper extends Database_Controller {
 
 		this.closeConnection();
 		return out;
-	}
+	}*/
 
 	// Create a job-part entry in the Job_SpareParts Table
 	public void addToJob(int jobID, String partCode) {

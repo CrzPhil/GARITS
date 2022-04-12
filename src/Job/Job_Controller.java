@@ -122,6 +122,10 @@ public class Job_Controller implements I_Job {
 		return jobHelper.getJobs();
 	}
 
+	public Job[] getCompletedJobs() {
+		return jobHelper.getCompletedJobs();
+	}
+
 	public int getJobID(String jobType, float duration, String dates, String parts, String motNo, int mileage, float price, String additionalInfo, String completionStatus, String regNo) {
 		return jobHelper.getJobID(jobType, duration, dates, parts, motNo, mileage, price, additionalInfo, completionStatus, regNo);
 	}
