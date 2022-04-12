@@ -133,7 +133,8 @@ public class JobDetailsGUI extends JFrame{
                                 Integer.parseInt(mileageField.getText()),
                                 Float.parseFloat(priceField.getText()),
                                 additionalField.getText(),
-                                (String) statusBox.getSelectedItem())) {
+                                (String) statusBox.getSelectedItem(),
+                                regNoLabel.getText())) {
 
                             // Iterate through list for each Spare Part and add it to the job
                             for(int i = 0; i< partList.getModel().getSize();i++) {
