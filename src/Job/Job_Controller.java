@@ -138,10 +138,15 @@ public class Job_Controller implements I_Job {
 		partsHelper.updateStock(stock, partID);
 	}
 
+	// Send job creation data
 	public void sendData(String jobType, float duration, String dates, String parts, String motNo, int mileage, float price, String additionalInfo, String completionStatus) {
 		jobHelper.sendData(jobType, duration, dates, parts, motNo, mileage, price, additionalInfo, "Incomplete");
 	}
 
+	// Get all parts assigned to a job
+	public SparePart[] getJobParts(int jobID) {
+		return partsHelper.getJobParts(jobID);
+	}
 	// Create a job-part entry in the Job_SpareParts Table
 	public void addToJob(int jobID, String partID) {
 		jobHelper.addToJob(jobID, partID);

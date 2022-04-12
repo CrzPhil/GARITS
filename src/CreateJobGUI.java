@@ -157,6 +157,7 @@ public class CreateJobGUI extends JFrame{
         return m.matches();
     }
 
+    // TODO: What happens to the added spare parts if the application is closed?
     public static void main(){
         j.setContentPane(new CreateJobGUI().Main);
         j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
