@@ -34,6 +34,7 @@ public class JobDetailsGUI extends JFrame{
     private JButton addPartButton;
     private JButton deletePartButton;
     private JList partList;
+    private JLabel regNoLabel;
     private static JobDetailsGUI j = new JobDetailsGUI();
     private DefaultListModel<SparePart> partModel;
     // partID -> Part; This is a collection of the originally added parts, that already exist in the Job_SpareParts Table
@@ -45,7 +46,7 @@ public class JobDetailsGUI extends JFrame{
         this.job = job;
         // Set the job ID Label (cannot be changed)
         jobIDLabel.setText(String.valueOf(job.getJobID()));
-
+        regNoLabel.setText(job.getRegNo());
         // Have to call this here because it doesn't work in CreateUIComponents
         setComboBox();
 
@@ -319,7 +320,7 @@ public class JobDetailsGUI extends JFrame{
             typeField = new JTextField(job.getJobType());
             priceField = new JTextField(String.valueOf(job.getPrice()));
             motField = new JTextField(job.getMotNO());
-            regNoField = new JTextField();
+            regNoLabel = new JLabel(job.getRegNo());
             dateField = new JTextField(job.getDates());
             durationField = new JTextField(String.valueOf(job.getDuration()));
             requiredPartsField = new JTextField(job.getParts());
@@ -366,7 +367,7 @@ public class JobDetailsGUI extends JFrame{
             typeField = new JTextField();
             priceField = new JTextField();
             motField = new JTextField();
-            regNoField = new JTextField();
+            regNoLabel = new JLabel();
             dateField = new JTextField();
             durationField = new JTextField();
             requiredPartsField = new JTextField();
