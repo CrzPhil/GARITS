@@ -38,6 +38,12 @@ public class ViewCompletedJobsGUI extends JFrame{
                 }
             }
         });
+        generateInvoiceButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               DisplayInvoiceGUI.main();
+            }
+        });
     }
     public static void main(){
         j.setContentPane(new ViewCompletedJobsGUI().Main);
