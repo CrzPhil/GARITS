@@ -31,6 +31,7 @@ public class SQL_PartsHelper extends Database_Controller {
 		return getParts(sizequr, qur);
 	}
 
+
 	// Get all different types
 	public String[] getTypes() {
 		String[] out = null;
