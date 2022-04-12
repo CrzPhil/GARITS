@@ -4,12 +4,18 @@ import Job.*;
 
 public class Mechanic extends Accounts.User {
 	private int hourlyRate;
+	private long userID;
 
 	public Mechanic(long userID, String username, String email, String password, String name, int hourlyRate) {
 		super(userID, username, email, password, name);
 		this.hourlyRate = hourlyRate;
+		this.userID = userID;
 	}
 
+	@Override
+	public long getUserID() {
+		return userID;
+	}
 
 	public JobCollection viewJobSheet() {
 		// TODO - implement Mechanic.viewJobSheet

@@ -62,6 +62,16 @@ public class UserAccountCreationGUI extends JFrame {
     private boolean digestInfo(String rate, String username, char[] pass, char[] confirmpass, String mail, String role) {
         Accounts_Controller controller = new Accounts_Controller();
 
+        if (!controller.validateName(firstNameField.getText())) {
+            JOptionPane.showMessageDialog(null, "First name is not valid.");
+            return false;
+        }
+
+        if (!controller.validateName(lastNameField.getText())) {
+            JOptionPane.showMessageDialog(null, "Last name is not valid.");
+            return false;
+        }
+
         if (!controller.validateUsername(username)) {
             JOptionPane.showMessageDialog(null, "Username has to start with a letter and be between 5 and 29 characters. No special characters allowed.");
             return false;

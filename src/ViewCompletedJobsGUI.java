@@ -1,5 +1,7 @@
-import Job.CompletedJob_Controller;
-import Job.CompletedJob;
+/*import Job.CompletedJob_Controller;
+import Job.CompletedJob;*/
+import Job.Job;
+import Job.Job_Controller;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -15,8 +17,9 @@ public class ViewCompletedJobsGUI extends JFrame{
     private JList jobList;
     private JLabel titleLabel;
     private JButton generateInvoiceButton;
+    private JButton makePaymentButton;
     private static ViewCompletedJobsGUI j = new ViewCompletedJobsGUI();
-    private CompletedJob selectedJob = null;
+    private Job selectedJob = null;
 
     public ViewCompletedJobsGUI() {
         returnButton.addActionListener(new ActionListener() {
@@ -32,10 +35,22 @@ public class ViewCompletedJobsGUI extends JFrame{
                 if (selectedJob != null) {
                     j.dispose();
                     // Pass the job to the next GUI
-                    CompletedJobDetailsGUI.main(selectedJob);
+                    JobDetailsGUI.main(selectedJob);
                 } else {
                     JOptionPane.showMessageDialog(null, "Select a job first!");
                 }
+            }
+        });
+        generateInvoiceButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               DisplayInvoiceGUI.main();
+            }
+        });
+        makePaymentButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                PaymentGUI.main();
             }
         });
     }
@@ -52,13 +67,13 @@ public class ViewCompletedJobsGUI extends JFrame{
     }
 
     private void createUIComponents() {
-        CompletedJob_Controller controller = new CompletedJob_Controller();
-        CompletedJob[] jobs = controller.getJobs();
+        Job_Controller controller = new Job_Controller();
+        Job[] jobs = controller.getCompletedJobs();
 
-        DefaultListModel<CompletedJob> jobModel = new DefaultListModel<CompletedJob>();
+        DefaultListModel<Job> jobModel = new DefaultListModel<Job>();
 
         // Add jobs to model
-        for (CompletedJob job : jobs) {
+        for (Job job : jobs) {
             jobModel.addElement(job);
         }
 
@@ -73,7 +88,7 @@ public class ViewCompletedJobsGUI extends JFrame{
             @Override
             public void valueChanged(ListSelectionEvent e) {
                 if (!e.getValueIsAdjusting()) {
-                    selectedJob = (CompletedJob) jobList.getSelectedValue();
+                    selectedJob = (Job) jobList.getSelectedValue();
                 }
             }
         });

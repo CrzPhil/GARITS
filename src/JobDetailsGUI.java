@@ -1,3 +1,6 @@
+import Accounts.Accounts_Controller;
+import Accounts.Mechanic;
+import Accounts.User;
 import Job.Job;
 
 import javax.swing.*;
@@ -35,6 +38,8 @@ public class JobDetailsGUI extends JFrame{
     private JButton deletePartButton;
     private JList partList;
     private JLabel regNoLabel;
+    private JComboBox mechanicBox;
+    private JLabel mechanicLabel;
     private static JobDetailsGUI j = new JobDetailsGUI();
     private DefaultListModel<SparePart> partModel;
     // partID -> Part; This is a collection of the originally added parts, that already exist in the Job_SpareParts Table
@@ -133,7 +138,8 @@ public class JobDetailsGUI extends JFrame{
                                 Integer.parseInt(mileageField.getText()),
                                 Float.parseFloat(priceField.getText()),
                                 additionalField.getText(),
-                                (String) statusBox.getSelectedItem())) {
+                                (String) statusBox.getSelectedItem(),
+                                ((User) mechanicBox.getSelectedItem()).getUserID())) {
 
                             // Iterate through list for each Spare Part and add it to the job
                             for(int i = 0; i< partList.getModel().getSize();i++) {
@@ -307,6 +313,14 @@ public class JobDetailsGUI extends JFrame{
         for (SparePart part : parts) {
             usedParts.put(part.getPartID(), part);
         }
+
+        if (this.job.getStatus().equals("Complete")) {
+            statusBox.addItem("Complete");
+            statusBox.addItem("Incomplete");
+        } else {
+            statusBox.addItem("Incomplete");
+            statusBox.addItem("Complete");
+        }
     }
 
     // TODO: Registration Number ?
@@ -361,6 +375,9 @@ public class JobDetailsGUI extends JFrame{
             // TODO: filter this to become vehicle-specific (manufacturer/model)
             partSelectBox = new JComboBox<>(controller.getAllParts());
 
+            Accounts_Controller accountController = new Accounts_Controller();
+            mechanicBox = new JComboBox<User>(accountController.getMechanics());
+
         }
         else {
             jobIDLabel = new JLabel();
@@ -376,6 +393,7 @@ public class JobDetailsGUI extends JFrame{
             jobTypeBox = new JComboBox<String>();
             partList = new JList();
             partSelectBox = new JComboBox();
+            mechanicBox = new JComboBox();
         }
     }
 }

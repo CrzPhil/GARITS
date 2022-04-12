@@ -67,6 +67,23 @@ public class CreateJobGUI extends JFrame{
             }
         });
 
+        regNoField.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent f) {
+                char d = f.getKeyChar();
+                //all special characters, and letters, not allowed on a reg plate
+                if( (d == '¬') || (d == '`') || (d == '!') || (d == '"') || (d == '£') || (d == '$') || (d == '%') || (d == '^') || (d == '&') || (d == '*') || (d == '(') || (d == ')') ||  (d == '-') ||(d == '_') || (d == '=') || (d == '+') ||  (d == '[') || (d == '{') || (d == ']') || (d == '}') || (d == ';') || (d == ':') || (d == '@') || (d == '#') || (d == '~') || (d == '|') || (d == ',') || (d == '<') || (d == '.') || (d == '>') ||(d == '/') || (d == 'I') || (d == 'i') || (d == 'O') || (d == 'o') || (d == 'z') || (d == 'Z') || (d== '?')){
+                    f.consume();
+                    JOptionPane.showMessageDialog(null, "Invalid Registration Character Used!");
+                }
+                if( (regNoField.getText().length() > 8)){
+                    f.consume();
+                    JOptionPane.showMessageDialog(null, "Registration Number Too Long!");
+                }
+            }
+        });
+
+
+
         finishButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -147,6 +164,7 @@ public class CreateJobGUI extends JFrame{
                 }
             }
         });
+
     }
 
     // Check if things like price and duration are floats

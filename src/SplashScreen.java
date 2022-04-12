@@ -1,10 +1,13 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.io.FileInputStream;
 
 import static java.lang.Thread.sleep;
 
 public class SplashScreen extends JFrame {
     private JPanel Main;
+    private JLabel logoLabel;
 
     public static void main(String args[]) {
         SplashScreen j = new SplashScreen();
@@ -18,11 +21,20 @@ public class SplashScreen extends JFrame {
         j.setLocationRelativeTo(null);
         j.setVisible(true);
         try {
-            sleep(500);
+            sleep(1500);
         } catch (InterruptedException interruptedException) {
             interruptedException.printStackTrace();
         }
         j.dispose();
         LoginGUI.main();
+    }
+
+    private void createUIComponents() {
+        logoLabel = new JLabel();
+        try {
+            Image img = ImageIO.read(new FileInputStream("data/logo.png")).getScaledInstance(250, 150, Image.SCALE_DEFAULT);
+            logoLabel.setIcon(new ImageIcon(img));
+        } catch (Exception ignored) {
+        }
     }
 }

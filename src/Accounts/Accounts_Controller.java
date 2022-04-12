@@ -133,6 +133,11 @@ public class Accounts_Controller implements I_Accounts {
 		return checkRegex(passRegex, password);
 	}
 
+	public boolean validateName(String name) {
+		String nameRegex = "(?i)[a-z](.{1,}[a-z])?";
+		return checkRegex(nameRegex, name);
+	}
+
 	// Simple comparison against a set of Roles
 	// TODO: Make some sort of check to see what roles exist
 	public boolean validateRole(String role) {
@@ -146,5 +151,10 @@ public class Accounts_Controller implements I_Accounts {
 	public boolean validateRate(String rate) {
 		String rateRegex = "^[1-9]\\d*$";
 		return checkRegex(rateRegex, rate);
+	}
+
+	// Return all mechanics
+	public User[] getMechanics() {
+		return helper.getByRole("Mechanic");
 	}
 }
