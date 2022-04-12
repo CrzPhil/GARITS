@@ -1,10 +1,11 @@
 package Job;
 
-import java.util.Date;
-
 public class SparePart {
 
-	private String partID;
+	// ID when used in unison with a Job
+	private int partID;
+	// Code identifier of a part
+	private String partCode;
 	private String type;
 	private String manufacturer;
 	private String name;
@@ -14,19 +15,31 @@ public class SparePart {
 
 	/**
 	 *
-	 * @param partID
+	 * @param partCode
 	 * @param type
 	 * @param name
 	 * @param year
 	 */
-	public SparePart(String partID, String name, String manufacturer, String type, int year, int stock, double price) {
+	public SparePart(String partCode, String name, String manufacturer, String type, int year, int stock, double price) {
 		this.type = type;
 		this.name = name;
 		this.year = year;
 		this.manufacturer = manufacturer;
 		this.stock = stock;
 		this.price = price;
+		this.partCode = partCode;
+	}
+
+	// Second constructor for when used in unison with a job.
+	public SparePart(int partID, String partCode, String name, String manufacturer, String type, int year, int stock, double price) {
 		this.partID = partID;
+		this.type = type;
+		this.name = name;
+		this.year = year;
+		this.manufacturer = manufacturer;
+		this.stock = stock;
+		this.price = price;
+		this.partCode = partCode;
 	}
 
 	// This is how spare parts will be displayed in the JLists
@@ -75,7 +88,7 @@ public class SparePart {
 
 	// Used when displaying Spare Parts in GUI, when creating the JTable
 	public String[] toData() {
-		return new String[]{this.partID, this.name, this.manufacturer, this.type, String.valueOf(this.year), String.valueOf(this.stock), String.valueOf(this.price)};
+		return new String[]{this.partCode, this.name, this.manufacturer, this.type, String.valueOf(this.year), String.valueOf(this.stock), String.valueOf(this.price)};
 	}
 
 	public boolean orderPart() {
@@ -103,16 +116,16 @@ public class SparePart {
 		throw new UnsupportedOperationException();
 	}
 
-	public String getPartID() {
-		return this.partID;
+	public String getPartCode() {
+		return this.partCode;
 	}
 
 	/**
 	 * 
-	 * @param partID
+	 * @param partCode
 	 */
-	public void setPartID(String partID) {
-		this.partID = partID;
+	public void setPartCode(String partCode) {
+		this.partCode = partCode;
 	}
 
 	/**
@@ -139,4 +152,7 @@ public class SparePart {
 		this.year = year;
 	}
 
+	public int getPartID() {
+		return partID;
+	}
 }

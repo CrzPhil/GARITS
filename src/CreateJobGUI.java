@@ -1,5 +1,4 @@
 import Job.Job_Controller;
-import Job.SQL_JobHelper;
 import Job.SparePart;
 import com.toedter.calendar.JDateChooser;
 
@@ -41,10 +40,11 @@ public class CreateJobGUI extends JFrame{
 
                 // Release items that were in the list (incrementing their stock)
                 for(int i = 0; i< partList.getModel().getSize();i++){
+                    SparePart tmp = ((SparePart) partList.getModel().getElementAt(i));
                     // Increment Object's Stock
-                    ((SparePart) partList.getModel().getElementAt(i)).setStock(((SparePart) partList.getModel().getElementAt(i)).getStock() + 1);
+                    tmp.setStock(tmp.getStock() + 1);
                     // Increment DB's Stock
-                    controller.updateStock(((SparePart) partList.getModel().getElementAt(i)).getStock(), ((SparePart) partList.getModel().getElementAt(i)).getPartID());
+                    controller.updateStock(tmp.getStock(), tmp.getPartCode());
                 }
 
                 j.dispose();
@@ -93,9 +93,9 @@ public class CreateJobGUI extends JFrame{
                     // Get ID of newly created Job
                     int jobID = controller.getJobID(jobType, duration, dates, parts, motNo, mileage, price, additionalInfo, "Incomplete");
 
-                    // Add Parts to Job (Job_SpareParts)
+                    // Add Parts from List to Job (Job_SpareParts)
                     for(int i = 0; i< partList.getModel().getSize();i++){
-                        controller.addToJob(jobID, ((SparePart) partList.getModel().getElementAt(i)).getPartID());
+                        controller.addToJob(jobID, ((SparePart) partList.getModel().getElementAt(i)).getPartCode());
                     }
 
                     j.dispose();
@@ -121,7 +121,7 @@ public class CreateJobGUI extends JFrame{
                         // Update database
                         Job_Controller controller = new Job_Controller();
                         // Decrement stock
-                        controller.updateStock(((SparePart) partSelectBox.getSelectedItem()).getStock(), ((SparePart)  partSelectBox.getSelectedItem()).getPartID());
+                        controller.updateStock(((SparePart) partSelectBox.getSelectedItem()).getStock(), ((SparePart)  partSelectBox.getSelectedItem()).getPartCode());
                     }
                     // If Stock is less than one
                     else {
@@ -139,7 +139,7 @@ public class CreateJobGUI extends JFrame{
 
                     // Update database to Object's incremented stock
                     Job_Controller controller = new Job_Controller();
-                    controller.updateStock(((SparePart) partList.getSelectedValue()).getStock(), ((SparePart)  partList.getSelectedValue()).getPartID());
+                    controller.updateStock(((SparePart) partList.getSelectedValue()).getStock(), ((SparePart)  partList.getSelectedValue()).getPartCode());
 
                     // Remove item from list last, so that selectedValue doesn't move
                     partModel.removeElement(partList.getSelectedValue());

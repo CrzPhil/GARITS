@@ -168,7 +168,7 @@ public class SQL_PartsHelper extends Database_Controller {
 	// Get all parts used on a job (from Job_SpareParts) using jobID
 	public SparePart[] getJobParts(int jobID) {
 		String sizequr = "SELECT COUNT(*) AS Count FROM SpareParts t1 INNER JOIN Job_SpareParts JSP on t1.code = JSP.partCode WHERE jobID = " + jobID;
-		String qur = "SELECT t1.* FROM SpareParts t1 INNER JOIN Job_SpareParts JSP on t1.code = JSP.partCode WHERE jobID = " + jobID;
+		String qur = "SELECT JSP.ID, t1.* FROM SpareParts t1 INNER JOIN Job_SpareParts JSP on t1.code = JSP.partCode WHERE jobID = " + jobID;
 
 		SparePart[] out;
 
@@ -188,6 +188,7 @@ public class SQL_PartsHelper extends Database_Controller {
 
 			while (rs.next()) {
 				out[i] = new SparePart(
+						rs.getInt("ID"),
 						rs.getString("code"),
 						rs.getString("partName"),
 						rs.getString("manufacturer"),
@@ -202,6 +203,17 @@ public class SQL_PartsHelper extends Database_Controller {
 		} catch (SQLException ex) {
 			System.err.println(ex.getMessage());
 			return null;
+		}
+	}
+
+	// Delete a Part that's assigned to a job (from Job_SpareParts) using partID
+	public void deleteJobPart(int partID) {
+		String qur = "DELETE FROM Job_SpareParts WHERE ID = " + partID;
+		try {
+			Statement st = conn.createStatement();
+			st.executeUpdate(qur);
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 	}
 }

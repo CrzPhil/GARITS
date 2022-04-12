@@ -27,6 +27,7 @@ public class Job {
 	// As stored in DB, states[0] -> Incomplete ; states[1] -> Complete
 	static private final String[] states = {"Incomplete", "Complete"};
 	private String status;
+	// partID -> SparePart
 	private HashMap<String, SparePart> spareParts;
 
 	/**

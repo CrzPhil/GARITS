@@ -134,8 +134,8 @@ public class Job_Controller implements I_Job {
 		return partsHelper.getAllParts();
 	}
 
-	public void updateStock(int stock, String partID) {
-		partsHelper.updateStock(stock, partID);
+	public void updateStock(int stock, String partCode) {
+		partsHelper.updateStock(stock, partCode);
 	}
 
 	// Send job creation data
@@ -150,5 +150,10 @@ public class Job_Controller implements I_Job {
 	// Create a job-part entry in the Job_SpareParts Table
 	public void addToJob(int jobID, String partID) {
 		jobHelper.addToJob(jobID, partID);
+	}
+
+	// Delete part from job
+	public void deleteJobPart(int partID) {
+		partsHelper.deleteJobPart(partID);
 	}
 }

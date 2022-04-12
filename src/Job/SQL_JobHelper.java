@@ -303,8 +303,8 @@ public class SQL_JobHelper extends Database_Controller {
 	}
 
 	// Create a job-part entry in the Job_SpareParts Table
-	public void addToJob(int jobID, String partID) {
-		String qur = String.format("INSERT INTO Job_SpareParts(jobID, partCode) VALUES (%d,'%s')", jobID, partID);
+	public void addToJob(int jobID, String partCode) {
+		String qur = String.format("INSERT INTO Job_SpareParts(jobID, partCode) VALUES (%d,'%s')", jobID, partCode);
 		try {
 			Statement st = conn.createStatement();
 			st.executeUpdate(qur);
