@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class CompletedJob_Controller implements I_Job {
     private final SQL_JobHelper helper = new SQL_JobHelper();
+    private final SQL_PartsHelper partsHelper = new SQL_PartsHelper();
 
     /**
      *
@@ -29,6 +30,9 @@ public class CompletedJob_Controller implements I_Job {
     public CompletedJob getJob(long jobID) {
         // TODO - implement Job_Controller.getJob
         throw new UnsupportedOperationException();
+    }
+    public int getJobID(String jobType, float duration, String dates, String parts, String motNo, int mileage, float price, String additionalInfo, String completionStatus) {
+        return helper.getCompletedJobID(jobType, duration, dates, parts, motNo, mileage, price, additionalInfo, completionStatus);
     }
 
     /**
@@ -115,6 +119,32 @@ public class CompletedJob_Controller implements I_Job {
     public boolean orderSparePart(long partID) {
         // TODO - implement Job_Controller.orderSparePart
         throw new UnsupportedOperationException();
+    }
+
+    // Send job creation data
+    public void sendData(String jobType, float duration, String dates, String parts, String motNo, int mileage, float price, String additionalInfo, String completionStatus, String regNo) {
+        helper.sendData(jobType, duration, dates, parts, motNo, mileage, price, additionalInfo, "Incomplete", regNo);
+    }
+
+    public SparePart[] getAllParts() {
+        return partsHelper.getAllParts();
+    }
+
+    public void updateStock(int stock, String partCode) {
+        partsHelper.updateStock(stock, partCode);
+    }
+    // Get all parts assigned to a job
+    public SparePart[] getJobParts(int jobID) {
+        return partsHelper.getJobParts(jobID);
+    }
+    // Create a job-part entry in the Job_SpareParts Table
+    public void addToJob(int jobID, String partID) {
+        helper.addToJob(jobID, partID);
+    }
+
+    // Delete part from job
+    public void deleteJobPart(int partID) {
+        partsHelper.deleteJobPart(partID);
     }
 
     public CompletedJob[] getJobs() {

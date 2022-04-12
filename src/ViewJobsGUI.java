@@ -24,6 +24,8 @@ public class ViewJobsGUI extends JFrame{
                 j.dispose();
                 if (LoginGUI.access == 'M') {
                     MechanicDashboardGUI.main();
+                } else if (LoginGUI.access == 'F'){
+                    ForepersonDashboardGUI.main();
                 } else {
                     JobSelectionGUI.main();
                 }
@@ -46,7 +48,9 @@ public class ViewJobsGUI extends JFrame{
         j.setContentPane(new ViewJobsGUI().Main);
         j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         j.setTitle("Jobs Library");
-        j.setPreferredSize(new Dimension(800, 480));
+        Image icon = Toolkit.getDefaultToolkit().getImage("data/logo.png");
+        j.setIconImage(icon);
+        j.setPreferredSize(new Dimension(1000, 480));
         j.pack();
         j.setLocationRelativeTo(null);
         j.setVisible(true);

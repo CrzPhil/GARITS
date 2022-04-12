@@ -25,7 +25,11 @@ public class JobReportGUI extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 /*j.dispose();
                 ReportsMenuGUI.main(); */
-                DisplayReportGUI.main();
+                if(!(perJobTypeCheckBox.isSelected()) && !(overallCheckBox.isSelected()) && !(perMechanicCheckBox.isSelected())){
+                    JOptionPane.showMessageDialog(null, "Select one of the options");
+                }else{
+                    DisplayReportGUI.main();
+                }
             }
         });
     }
@@ -33,6 +37,8 @@ public class JobReportGUI extends JFrame{
         j.setContentPane(new JobReportGUI().Main);
         j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         j.setTitle("Generate Price/Time Report");
+        Image icon = Toolkit.getDefaultToolkit().getImage("data/logo.png");
+        j.setIconImage(icon);
         j.setPreferredSize(new Dimension(800,480));
         j.pack();
         j.setLocationRelativeTo(null);

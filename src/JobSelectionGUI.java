@@ -21,6 +21,8 @@ public class JobSelectionGUI extends JFrame{
         j.setContentPane(new JobSelectionGUI().Main);
         j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         j.setTitle("Job Selection");
+        Image icon = Toolkit.getDefaultToolkit().getImage("data/logo.png");
+        j.setIconImage(icon);
         j.setPreferredSize(new Dimension(800,480));
         j.pack();
         j.setLocationRelativeTo(null);
@@ -34,6 +36,8 @@ public class JobSelectionGUI extends JFrame{
                 j.dispose();
                 if (LoginGUI.access == 'C') {
                     FranchiseeDashboardGUI.main();
+                } else if (LoginGUI.access == 'R'){
+                    ReceptionistDashboardGUI.main();
                 } else {
                     MainMenuGUI.main();
                 }

@@ -91,6 +91,11 @@ public class UserAccountCreationGUI extends JFrame {
             return false;
         }*/
 
+        if (!controller.simplePasswordCheck(password)) {
+            JOptionPane.showMessageDialog(null, "Password has to be at least two characters with one uppercase letter.");
+            return false;
+        }
+
         if (!controller.validateEmail(mail)) {
             JOptionPane.showMessageDialog(null, "Please enter a valid email address.");
             return false;
@@ -113,6 +118,8 @@ public class UserAccountCreationGUI extends JFrame {
         j.setContentPane(new UserAccountCreationGUI().Main);
         j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         j.setTitle("Create Staff Account");
+        Image icon = Toolkit.getDefaultToolkit().getImage("data/logo.png");
+        j.setIconImage(icon);
         j.setPreferredSize(new Dimension(800, 480));
         j.pack();
         j.setLocationRelativeTo(null);

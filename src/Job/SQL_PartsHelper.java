@@ -31,6 +31,7 @@ public class SQL_PartsHelper extends Database_Controller {
 		return getParts(sizequr, qur);
 	}
 
+
 	// Get all different types
 	public String[] getTypes() {
 		String[] out = null;
@@ -157,6 +158,58 @@ public class SQL_PartsHelper extends Database_Controller {
 	// Updates item stock by partID
 	public void updateStock(int stock, String partID) {
 		String qur = String.format("UPDATE SpareParts SET stock = %d WHERE code = '%s'", stock, partID);
+		try {
+			Statement st = conn.createStatement();
+			st.executeUpdate(qur);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	// Get all parts used on a job (from Job_SpareParts) using jobID
+	public SparePart[] getJobParts(int jobID) {
+		String sizequr = "SELECT COUNT(*) AS Count FROM SpareParts t1 INNER JOIN Job_SpareParts JSP on t1.code = JSP.partCode WHERE jobID = " + jobID;
+		String qur = "SELECT JSP.ID, t1.* FROM SpareParts t1 INNER JOIN Job_SpareParts JSP on t1.code = JSP.partCode WHERE jobID = " + jobID;
+
+		SparePart[] out;
+
+		try {
+			Statement st = conn.createStatement();
+			ResultSet rs = st.executeQuery(sizequr);
+
+			rs.next();
+			int size = rs.getInt("Count");
+			rs.close();
+
+			out = new SparePart[size];
+
+			rs = st.executeQuery(qur);
+
+			int i = 0;
+
+			while (rs.next()) {
+				out[i] = new SparePart(
+						rs.getInt("ID"),
+						rs.getString("code"),
+						rs.getString("partName"),
+						rs.getString("manufacturer"),
+						rs.getString("vehicleType"),
+						rs.getInt("year"),
+						rs.getInt("stock"),
+						rs.getDouble("price")
+				);
+				++i;
+			}
+			return out;
+		} catch (SQLException ex) {
+			System.err.println(ex.getMessage());
+			return null;
+		}
+	}
+
+	// Delete a Part that's assigned to a job (from Job_SpareParts) using partID
+	public void deleteJobPart(int partID) {
+		String qur = "DELETE FROM Job_SpareParts WHERE ID = " + partID;
 		try {
 			Statement st = conn.createStatement();
 			st.executeUpdate(qur);

@@ -122,8 +122,8 @@ public class Job_Controller implements I_Job {
 		return jobHelper.getJobs();
 	}
 
-	public int getJobID(String jobType, float duration, String dates, String parts, String motNo, int mileage, float price, String additionalInfo, String completionStatus) {
-		return jobHelper.getJobID(jobType, duration, dates, parts, motNo, mileage, price, additionalInfo, completionStatus);
+	public int getJobID(String jobType, float duration, String dates, String parts, String motNo, int mileage, float price, String additionalInfo, String completionStatus, String regNo) {
+		return jobHelper.getJobID(jobType, duration, dates, parts, motNo, mileage, price, additionalInfo, completionStatus, regNo);
 	}
 
 	public String[] getPartNames() {
@@ -134,16 +134,27 @@ public class Job_Controller implements I_Job {
 		return partsHelper.getAllParts();
 	}
 
-	public void updateStock(int stock, String partID) {
-		partsHelper.updateStock(stock, partID);
+	public void updateStock(int stock, String partCode) {
+		partsHelper.updateStock(stock, partCode);
 	}
 
-	public void sendData(String jobType, float duration, String dates, String parts, String motNo, int mileage, float price, String additionalInfo, String completionStatus) {
-		jobHelper.sendData(jobType, duration, dates, parts, motNo, mileage, price, additionalInfo, "Incomplete");
+	// Send job creation data
+	public void sendData(String jobType, float duration, String dates, String parts, String motNo, int mileage, float price, String additionalInfo, String completionStatus, String regNo) {
+		jobHelper.sendData(jobType, duration, dates, parts, motNo, mileage, price, additionalInfo, "Incomplete", regNo);
+	}
+
+	// Get all parts assigned to a job
+	public SparePart[] getJobParts(int jobID) {
+		return partsHelper.getJobParts(jobID);
 	}
 
 	// Create a job-part entry in the Job_SpareParts Table
 	public void addToJob(int jobID, String partID) {
 		jobHelper.addToJob(jobID, partID);
+	}
+
+	// Delete part from job
+	public void deleteJobPart(int partID) {
+		partsHelper.deleteJobPart(partID);
 	}
 }

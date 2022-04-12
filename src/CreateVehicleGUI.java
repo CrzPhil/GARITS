@@ -73,6 +73,8 @@ public class CreateVehicleGUI extends JFrame {
         j.setContentPane(new CreateVehicleGUI(customer).Main);
         j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         j.setTitle("Add Vehicle to Customer");
+        Image icon = Toolkit.getDefaultToolkit().getImage("data/logo.png");
+        j.setIconImage(icon);
         j.setPreferredSize(new Dimension(800, 600));
         j.pack();
         j.setLocationRelativeTo(null);

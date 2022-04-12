@@ -26,7 +26,11 @@ public class VehicleReportGUI extends JFrame{
             public void actionPerformed(ActionEvent e) {
                /* j.dispose();
                 ReportsMenuGUI.main(); */
-                DisplayReportGUI.main();
+                if(!(monthlyCheckBox.isSelected()) && !(perJobTypeCheckBox.isSelected()) && !(overallCheckBox.isSelected()) && !(perCustomerTypeCheckBox.isSelected())){
+                    JOptionPane.showMessageDialog(null, "Select one of the options");
+                }else{
+                    DisplayReportGUI.main();
+                }
             }
         });
     }
@@ -34,6 +38,8 @@ public class VehicleReportGUI extends JFrame{
         j.setContentPane(new VehicleReportGUI().Main);
         j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         j.setTitle("Generate Vehicle Quantity Report");
+        Image icon = Toolkit.getDefaultToolkit().getImage("data/logo.png");
+        j.setIconImage(icon);
         j.setPreferredSize(new Dimension(800,480));
         j.pack();
         j.setLocationRelativeTo(null);

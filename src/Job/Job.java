@@ -27,7 +27,9 @@ public class Job {
 	// As stored in DB, states[0] -> Incomplete ; states[1] -> Complete
 	static private final String[] states = {"Incomplete", "Complete"};
 	private String status;
+	// partID -> SparePart
 	private HashMap<String, SparePart> spareParts;
+	private String regNo;
 
 	/**
 	 *
@@ -41,7 +43,7 @@ public class Job {
 	 * @param mileage
 	 * @param additionalInfo
 	 */
-	public Job(int jobID, String jobType, float duration, String dates, String parts, String motNo, int mileage, float price, String additionalInfo, String status) {
+	public Job(int jobID, String jobType, float duration, String dates, String parts, String motNo, int mileage, float price, String additionalInfo, String status, String regNo) {
 		this.jobID = jobID;
 		this.jobType = jobType;
 		this.duration = duration;
@@ -52,9 +54,14 @@ public class Job {
 		this.price = price;
 		this.additionalInfo = additionalInfo;
 		this.status = status;
+		this.regNo = regNo;
 	}
 
     public Job() {}
+
+	public String getRegNo() {
+		return regNo;
+	}
 
 	public String getStatus() {
 		return status;

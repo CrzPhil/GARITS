@@ -119,8 +119,8 @@ public class SQL_JobHelper extends Database_Controller {
 
 			// Update Row with new values
 			String deleteRow = String.format("DELETE FROM Jobs WHERE jobID = '%d'", jobID);
-			String sendJob = "INSERT INTO CompletedJobs (jobID, jobType, duration, dates, parts, motNo, mileage, price, additionalInfo, status)";
-			String sendValues = String.format(" VALUES ('%d', '%s', '%f', '%s', '%s', '%s', '%d', '%f', '%s', '%s')", jobID, jobType, duration, dates, parts, motNO, mileage, price, additionalInfo, jStatus);
+			String sendJob = "INSERT INTO CompletedJobs (jobID, jobType, duration, dates, parts, motNo, mileage, price, additionalInfo, status, registrationNo)";
+			String sendValues = String.format(" VALUES ('%d', '%s', '%f', '%s', '%s', '%s', '%d', '%f', '%s')", jobID, jobType, duration, dates, parts, motNO, mileage, price, additionalInfo, jStatus);
 
 			try {
 				Statement st = conn.createStatement();
@@ -159,7 +159,7 @@ public class SQL_JobHelper extends Database_Controller {
 	}
 
 	// TODO: Modify type / Add to controller
-	public Job[] sendData(String jobType, float duration, String dates, String parts, String motNO, int mileage, float price, String additionalInfo, String status){
+	public Job[] sendData(String jobType, float duration, String dates, String parts, String motNO, int mileage, float price, String additionalInfo, String status, String regNo){
 		// Since we store status as a tinyint, 1 -> Complete 0 -> Incomplete
 		int jStatus;
 		if (Objects.equals(status, "Complete")) {
@@ -168,8 +168,19 @@ public class SQL_JobHelper extends Database_Controller {
 			jStatus = 0;
 		}
 
-		String sendJob = "INSERT INTO Jobs (jobType, duration, dates, parts, motNo, mileage, price, additionalInfo, status)";
-		String sendValues = String.format(" VALUES ('%s', '%f', '%s', '%s', '%s', '%d', '%f', '%s', '%s')", jobType, duration, dates, parts, motNO, mileage, price, additionalInfo, jStatus);
+		String sendJob = "INSERT INTO Jobs (jobType, duration, dates, parts, motNo, mileage, price, additionalInfo, status, registrationNo)";
+		String sendValues = String.format(" VALUES ('%s', '%f', '%s', '%s', '%s', '%d', '%f', '%s', '%s', '%s')",
+				jobType,
+				duration,
+				dates,
+				parts,
+				motNO,
+				mileage,
+				price,
+				additionalInfo,
+				jStatus,
+				regNo);
+
 		Job[] out = null;
 
 		try {
@@ -218,7 +229,8 @@ public class SQL_JobHelper extends Database_Controller {
 						rs.getInt("mileage"),
 						rs.getFloat("price"),
 						rs.getString("additionalInfo"),
-						Job.getStates()[rs.getInt("status")]
+						Job.getStates()[rs.getInt("status")],
+						rs.getString("registrationNo")
 				);
 				i++;
 			}
@@ -232,8 +244,30 @@ public class SQL_JobHelper extends Database_Controller {
 		return out;
 	}
 
-	public int getJobID(String jobType, float duration, String dates, String parts, String motNo, int mileage, float price, String additionalInfo, String completionStatus) {
-		String qur = String.format("SELECT jobID FROM Jobs WHERE jobType = '%s' AND duration = %f AND dates = '%s' AND motNo = '%s' AND mileage = %d AND price = %f AND additionalinfo = '%s' AND status = '%s'",
+	public int getJobID(String jobType, float duration, String dates, String parts, String motNo, int mileage, float price, String additionalInfo, String completionStatus, String regNo) {
+		String qur = String.format("SELECT jobID FROM Jobs WHERE jobType = '%s' AND duration = %f AND dates = '%s' AND motNo = '%s' AND mileage = %d AND price = %f AND additionalinfo = '%s' AND status = '%s' AND registrationNo = '%s'",
+				jobType,
+				duration,
+				dates,
+				motNo,
+				mileage,
+				price,
+				additionalInfo,
+				completionStatus,
+				regNo);
+		try {
+			Statement st = conn.createStatement();
+			ResultSet rs = st.executeQuery(qur);
+			rs.next();
+			return rs.getInt("jobID");
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return 0;
+		}
+	}
+
+	public int getCompletedJobID(String jobType, float duration, String dates, String parts, String motNo, int mileage, float price, String additionalInfo, String completionStatus) {
+		String qur = String.format("SELECT jobID FROM CompletedJobs WHERE jobType = '%s' AND duration = %f AND dates = '%s' AND motNo = '%s' AND mileage = %d AND price = %f AND additionalinfo = '%s' AND status = '%s'",
 				jobType,
 				duration,
 				dates,
@@ -288,7 +322,8 @@ public class SQL_JobHelper extends Database_Controller {
 						rs.getInt("mileage"),
 						rs.getFloat("price"),
 						rs.getString("additionalInfo"),
-						Job.getStates()[rs.getInt("status")]
+						Job.getStates()[rs.getInt("status")],
+						rs.getString("registrationNo")
 				);
 				i++;
 			}
@@ -303,8 +338,8 @@ public class SQL_JobHelper extends Database_Controller {
 	}
 
 	// Create a job-part entry in the Job_SpareParts Table
-	public void addToJob(int jobID, String partID) {
-		String qur = String.format("INSERT INTO Job_SpareParts(jobID, partCode) VALUES (%d,'%s')", jobID, partID);
+	public void addToJob(int jobID, String partCode) {
+		String qur = String.format("INSERT INTO Job_SpareParts(jobID, partCode) VALUES (%d,'%s')", jobID, partCode);
 		try {
 			Statement st = conn.createStatement();
 			st.executeUpdate(qur);

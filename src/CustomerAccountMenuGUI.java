@@ -25,6 +25,8 @@ public class CustomerAccountMenuGUI extends JFrame{
             public void actionPerformed(ActionEvent e) {   j.dispose();
                 if (LoginGUI.access == 'C') {
                     FranchiseeDashboardGUI.main();
+                } else if (LoginGUI.access == 'R'){
+                    ReceptionistDashboardGUI.main();
                 } else {
                     MainMenuGUI.main();
                 }
@@ -55,6 +57,8 @@ public class CustomerAccountMenuGUI extends JFrame{
         j.setContentPane(new CustomerAccountMenuGUI().Main);
         j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         j.setTitle("Customer Account Library");
+        Image icon = Toolkit.getDefaultToolkit().getImage("data/logo.png");
+        j.setIconImage(icon);
         j.setPreferredSize(new Dimension(800,600));
         j.pack();
         j.setLocationRelativeTo(null);
