@@ -17,6 +17,7 @@ public class CompletedJob extends Job{
     private String parts;
     private float duration;
     private int mileage;
+    private String regNo;
     private String additionalInfo;
     // As stored in DB, states[0] -> Incomplete ; states[1] -> Complete
     static private final String[] states = {"Incomplete", "Complete"};
@@ -35,7 +36,7 @@ public class CompletedJob extends Job{
      * @param mileage
      * @param additionalInfo
      */
-    public CompletedJob(int jobID, String jobType, float duration, String dates, String parts, String motNo, int mileage, float price, String additionalInfo, String status) {
+    public CompletedJob(int jobID, String jobType, float duration, String dates, String parts, String motNo, int mileage, float price, String additionalInfo, String status, String regNo) {
         this.jobID = jobID;
         this.jobType = jobType;
         this.duration = duration;
@@ -46,10 +47,15 @@ public class CompletedJob extends Job{
         this.price = price;
         this.additionalInfo = additionalInfo;
         this.status = status;
+        this.regNo = regNo;
     }
 
     public CompletedJob(){}
 
+    @Override
+    public String getRegNo() {
+        return this.regNo;
+    }
 
     @Override
     public String toString() {

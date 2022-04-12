@@ -24,6 +24,7 @@ public class Job {
 	private float duration;
 	private int mileage;
 	private String additionalInfo;
+	private String regNo;
 	// As stored in DB, states[0] -> Incomplete ; states[1] -> Complete
 	static private final String[] states = {"Incomplete", "Complete"};
 	private String status;
@@ -42,7 +43,7 @@ public class Job {
 	 * @param mileage
 	 * @param additionalInfo
 	 */
-	public Job(int jobID, String jobType, float duration, String dates, String parts, String motNo, int mileage, float price, String additionalInfo, String status) {
+	public Job(int jobID, String jobType, float duration, String dates, String parts, String motNo, int mileage, float price, String additionalInfo, String status, String regNo) {
 		this.jobID = jobID;
 		this.jobType = jobType;
 		this.duration = duration;
@@ -53,6 +54,7 @@ public class Job {
 		this.price = price;
 		this.additionalInfo = additionalInfo;
 		this.status = status;
+		this.regNo = regNo;
 	}
 
     public Job() {}
@@ -87,6 +89,19 @@ public class Job {
 		throw new UnsupportedOperationException();
 	}
 
+
+	public String getRegNo() {
+		return regNo;
+	}
+
+	public void setRegNo(String regNo) {
+		this.regNo = regNo;
+	}
+
+	public HashMap<String, SparePart> getSpareParts() {
+		return spareParts;
+	}
+	
 	public int getJobID() {
 		return jobID;
 	}

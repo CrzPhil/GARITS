@@ -100,26 +100,6 @@
           <grid row="5" column="3" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
         </constraints>
       </vspacer>
-      <component id="1f846" class="javax.swing.JLabel">
-        <constraints>
-          <grid row="2" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <background color="-1114625"/>
-          <font name="Yu Gothic UI Semibold" size="14"/>
-          <foreground color="-1114625"/>
-          <labelFor value=""/>
-          <text value="Price"/>
-        </properties>
-      </component>
-      <component id="9cb" class="javax.swing.JTextField" binding="priceField" custom-create="true">
-        <constraints>
-          <grid row="3" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="-1"/>
-          </grid>
-        </constraints>
-        <properties/>
-      </component>
       <component id="53720" class="javax.swing.JLabel">
         <constraints>
           <grid row="4" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
@@ -232,25 +212,6 @@
         </constraints>
         <properties/>
       </component>
-      <component id="4e20d" class="javax.swing.JTextField" binding="regNoField" custom-create="true">
-        <constraints>
-          <grid row="5" column="6" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="-1"/>
-          </grid>
-        </constraints>
-        <properties/>
-      </component>
-      <component id="c977d" class="javax.swing.JLabel">
-        <constraints>
-          <grid row="4" column="6" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <background color="-1114625"/>
-          <font name="Yu Gothic UI Semibold" size="14"/>
-          <foreground color="-1114625"/>
-          <text value="Registration Number"/>
-        </properties>
-      </component>
       <component id="11d63" class="javax.swing.JLabel">
         <constraints>
           <grid row="7" column="6" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
@@ -335,6 +296,49 @@
         </constraints>
         <properties>
           <text value="Delete Job"/>
+        </properties>
+      </component>
+      <component id="1f846" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="4" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-1114625"/>
+          <font name="Yu Gothic UI Semibold" size="14"/>
+          <foreground color="-1114625"/>
+          <labelFor value=""/>
+          <text value="Price"/>
+        </properties>
+      </component>
+      <component id="34326" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="2" column="4" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-1114625"/>
+          <font name="Yu Gothic UI Semibold" size="14"/>
+          <foreground color="-1114625"/>
+          <text value="Registration Number"/>
+        </properties>
+      </component>
+      <component id="940a1" class="javax.swing.JTextField" binding="priceField" custom-create="true">
+        <constraints>
+          <grid row="5" column="6" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties/>
+      </component>
+      <component id="70c6c" class="javax.swing.JLabel" binding="regNoLabel" custom-create="true">
+        <constraints>
+          <grid row="3" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-1"/>
+          <enabled value="true"/>
+          <font name="Yu Gothic UI Semibold" size="14"/>
+          <foreground color="-1181441"/>
+          <text value=""/>
         </properties>
       </component>
     </children>

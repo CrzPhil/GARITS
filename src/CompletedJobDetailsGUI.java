@@ -18,7 +18,6 @@ public class CompletedJobDetailsGUI extends JFrame{
     private JTextField requiredPartsField;
     private JTextField mileageField;
     private JTextField motField;
-    private JTextField regNoField;
     private JTextArea additionalField;
     private JButton saveChangesButton;
     private JLabel jobIDLabel;
@@ -26,12 +25,14 @@ public class CompletedJobDetailsGUI extends JFrame{
     private JComboBox statusBox;
     private JComboBox jobTypeBox;
     private JButton deleteButton;
+    private JLabel regNoLabel;
     private static CompletedJobDetailsGUI j = new CompletedJobDetailsGUI();
     private CompletedJob job;
 
     public CompletedJobDetailsGUI(CompletedJob job) {
         this.job = job;
         jobIDLabel.setText(String.valueOf(job.getJobID()));
+        regNoLabel.setText(job.getRegNo());
         setComboBox();
 
         returnButton.addActionListener(new ActionListener() {
@@ -172,7 +173,7 @@ public class CompletedJobDetailsGUI extends JFrame{
             typeField = new JTextField(job.getJobType());
             priceField = new JTextField(String.valueOf(job.getPrice()));
             motField = new JTextField(job.getMotNO());
-            regNoField = new JTextField();
+            regNoLabel = new JLabel(job.getRegNo());
             dateField = new JTextField(job.getDates());
             durationField = new JTextField(String.valueOf(job.getDuration()));
             requiredPartsField = new JTextField(job.getParts());
@@ -197,7 +198,7 @@ public class CompletedJobDetailsGUI extends JFrame{
             typeField = new JTextField();
             priceField = new JTextField();
             motField = new JTextField();
-            regNoField = new JTextField();
+            regNoLabel = new JLabel();
             dateField = new JTextField();
             durationField = new JTextField();
             requiredPartsField = new JTextField();

@@ -86,12 +86,13 @@ public class CreateJobGUI extends JFrame{
                     int mileage = Integer.parseInt(mileageField.getText());
                     float price = Float.parseFloat(priceField.getText());
                     String additionalInfo = detailsField.getText();
+                    String regNo = regNoField.getText();
 
                     // Create Job in DB
-                    controller.sendData(jobType, duration, dates, parts, motNo, mileage, price, additionalInfo, "Incomplete");
+                    controller.sendData(jobType, duration, dates, parts, motNo, mileage, price, additionalInfo, "Incomplete", regNo);
 
                     // Get ID of newly created Job
-                    int jobID = controller.getJobID(jobType, duration, dates, parts, motNo, mileage, price, additionalInfo, "Incomplete");
+                    int jobID = controller.getJobID(jobType, duration, dates, parts, motNo, mileage, price, additionalInfo, "Incomplete", regNo);
 
                     // Add Parts from List to Job (Job_SpareParts)
                     for(int i = 0; i< partList.getModel().getSize();i++){
