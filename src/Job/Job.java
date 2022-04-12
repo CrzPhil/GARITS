@@ -24,12 +24,12 @@ public class Job {
 	private float duration;
 	private int mileage;
 	private String additionalInfo;
-	private String regNo;
 	// As stored in DB, states[0] -> Incomplete ; states[1] -> Complete
 	static private final String[] states = {"Incomplete", "Complete"};
 	private String status;
 	// partID -> SparePart
 	private HashMap<String, SparePart> spareParts;
+	private String regNo;
 
 	/**
 	 *
@@ -58,6 +58,10 @@ public class Job {
 	}
 
     public Job() {}
+
+	public String getRegNo() {
+		return regNo;
+	}
 
 	public String getStatus() {
 		return status;
@@ -89,19 +93,6 @@ public class Job {
 		throw new UnsupportedOperationException();
 	}
 
-
-	public String getRegNo() {
-		return regNo;
-	}
-
-	public void setRegNo(String regNo) {
-		this.regNo = regNo;
-	}
-
-	public HashMap<String, SparePart> getSpareParts() {
-		return spareParts;
-	}
-	
 	public int getJobID() {
 		return jobID;
 	}

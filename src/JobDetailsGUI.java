@@ -22,6 +22,7 @@ public class JobDetailsGUI extends JFrame{
     private JTextField requiredPartsField;
     private JTextField mileageField;
     private JTextField motField;
+    private JTextField regNoField;
     private JTextArea additionalField;
     private JButton saveChangesButton;
     private JLabel jobIDLabel;
@@ -33,7 +34,6 @@ public class JobDetailsGUI extends JFrame{
     private JButton addPartButton;
     private JButton deletePartButton;
     private JList partList;
-    private JLabel regNoLabel;
     private static JobDetailsGUI j = new JobDetailsGUI();
     private DefaultListModel<SparePart> partModel;
     // partID -> Part; This is a collection of the originally added parts, that already exist in the Job_SpareParts Table
@@ -45,7 +45,6 @@ public class JobDetailsGUI extends JFrame{
         this.job = job;
         // Set the job ID Label (cannot be changed)
         jobIDLabel.setText(String.valueOf(job.getJobID()));
-        regNoLabel.setText(job.getRegNo());
 
         // Have to call this here because it doesn't work in CreateUIComponents
         setComboBox();
@@ -109,7 +108,6 @@ public class JobDetailsGUI extends JFrame{
         });
 
         // Commit changes to Database
-        // TODO: Registration Number validation
         saveChangesButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -310,6 +308,7 @@ public class JobDetailsGUI extends JFrame{
         }
     }
 
+    // TODO: Registration Number ?
     private void createUIComponents() {
         if (job != null) {
             // For some reason label does not get updated here, and we have to repeat this in the constructor
@@ -320,7 +319,7 @@ public class JobDetailsGUI extends JFrame{
             typeField = new JTextField(job.getJobType());
             priceField = new JTextField(String.valueOf(job.getPrice()));
             motField = new JTextField(job.getMotNO());
-            regNoLabel = new JLabel(job.getRegNo());
+            regNoField = new JTextField();
             dateField = new JTextField(job.getDates());
             durationField = new JTextField(String.valueOf(job.getDuration()));
             requiredPartsField = new JTextField(job.getParts());
@@ -367,7 +366,7 @@ public class JobDetailsGUI extends JFrame{
             typeField = new JTextField();
             priceField = new JTextField();
             motField = new JTextField();
-            regNoLabel = new JLabel();
+            regNoField = new JTextField();
             dateField = new JTextField();
             durationField = new JTextField();
             requiredPartsField = new JTextField();

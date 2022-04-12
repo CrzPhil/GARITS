@@ -17,11 +17,11 @@ public class CompletedJob extends Job{
     private String parts;
     private float duration;
     private int mileage;
-    private String regNo;
     private String additionalInfo;
     // As stored in DB, states[0] -> Incomplete ; states[1] -> Complete
     static private final String[] states = {"Incomplete", "Complete"};
     private String status;
+    private String regNo;
 
 
     /**
@@ -52,9 +52,8 @@ public class CompletedJob extends Job{
 
     public CompletedJob(){}
 
-    @Override
     public String getRegNo() {
-        return this.regNo;
+        return regNo;
     }
 
     @Override

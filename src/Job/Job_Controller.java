@@ -147,6 +147,7 @@ public class Job_Controller implements I_Job {
 	public SparePart[] getJobParts(int jobID) {
 		return partsHelper.getJobParts(jobID);
 	}
+
 	// Create a job-part entry in the Job_SpareParts Table
 	public void addToJob(int jobID, String partID) {
 		jobHelper.addToJob(jobID, partID);
