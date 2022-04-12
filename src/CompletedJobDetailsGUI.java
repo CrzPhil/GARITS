@@ -35,6 +35,7 @@ public class CompletedJobDetailsGUI extends JFrame{
     private JButton deletePartButton;
     private JList partList;
     private JLabel regNoLabel;
+    private JComboBox mechanicBox;
     private static CompletedJobDetailsGUI j = new CompletedJobDetailsGUI();
     private DefaultListModel<SparePart> partModel;
     // partID -> Part; This is a collection of the originally added parts, that already exist in the Job_SpareParts Table
