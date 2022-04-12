@@ -378,13 +378,13 @@
           <text value=""/>
         </properties>
       </component>
-      <component id="bcbb2" class="javax.swing.JComboBox" binding="comboBox1" default-binding="true">
+      <component id="bcbb2" class="javax.swing.JComboBox" binding="mechanicBox" custom-create="true">
         <constraints>
           <grid row="11" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties/>
       </component>
-      <component id="2f534" class="javax.swing.JLabel" binding="mechanicBox">
+      <component id="2f534" class="javax.swing.JLabel" binding="mechanicLabel">
         <constraints>
           <grid row="10" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>

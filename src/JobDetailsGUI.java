@@ -1,3 +1,6 @@
+import Accounts.Accounts_Controller;
+import Accounts.Mechanic;
+import Accounts.User;
 import Job.Job;
 
 import javax.swing.*;
@@ -35,8 +38,8 @@ public class JobDetailsGUI extends JFrame{
     private JButton deletePartButton;
     private JList partList;
     private JLabel regNoLabel;
-    private JComboBox comboBox1;
-    private JLabel mechanicBox;
+    private JComboBox mechanicBox;
+    private JLabel mechanicLabel;
     private static JobDetailsGUI j = new JobDetailsGUI();
     private DefaultListModel<SparePart> partModel;
     // partID -> Part; This is a collection of the originally added parts, that already exist in the Job_SpareParts Table
@@ -136,7 +139,7 @@ public class JobDetailsGUI extends JFrame{
                                 Float.parseFloat(priceField.getText()),
                                 additionalField.getText(),
                                 (String) statusBox.getSelectedItem(),
-                                regNoLabel.getText())) {
+                                ((User) mechanicBox.getSelectedItem()).getUserID())) {
 
                             // Iterate through list for each Spare Part and add it to the job
                             for(int i = 0; i< partList.getModel().getSize();i++) {
@@ -372,6 +375,9 @@ public class JobDetailsGUI extends JFrame{
             // TODO: filter this to become vehicle-specific (manufacturer/model)
             partSelectBox = new JComboBox<>(controller.getAllParts());
 
+            Accounts_Controller accountController = new Accounts_Controller();
+            mechanicBox = new JComboBox<User>(accountController.getMechanics());
+
         }
         else {
             jobIDLabel = new JLabel();
@@ -387,6 +393,7 @@ public class JobDetailsGUI extends JFrame{
             jobTypeBox = new JComboBox<String>();
             partList = new JList();
             partSelectBox = new JComboBox();
+            mechanicBox = new JComboBox();
         }
     }
 }

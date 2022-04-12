@@ -112,7 +112,7 @@ public class SQL_JobHelper extends Database_Controller {
 	}
 
 	// Update job with new values
-	public boolean updateJob(int jobID, String jobType, float duration, String dates, String parts, String motNO, int mileage, float price, String additionalInfo, String status, String regNo) {
+	public boolean updateJob(int jobID, String jobType, float duration, String dates, String parts, String motNO, int mileage, float price, String additionalInfo, String status, long mechanicID) {
 		// Since we store status as a tinyint, 1 -> Complete 0 -> Incomplete
 		int jStatus;
 		if (Objects.equals(status, "Complete")) {
@@ -122,7 +122,7 @@ public class SQL_JobHelper extends Database_Controller {
 			jStatus = 0;
 		}
 			// Update Row with new values
-			String updateRow = String.format("UPDATE Jobs SET jobType = '%s', duration = %f, dates = '%s', parts = '%s', motNo = '%s', mileage = %d, price = %f, additionalInfo = '%s', status = %d WHERE jobID = %d",
+			String updateRow = String.format("UPDATE Jobs SET jobType = '%s', duration = %f, dates = '%s', parts = '%s', motNo = '%s', mileage = %d, price = %f, additionalInfo = '%s', status = %d, mechanicID = %d WHERE jobID = %d",
 					jobType,
 					duration,
 					dates,
@@ -132,6 +132,7 @@ public class SQL_JobHelper extends Database_Controller {
 					price,
 					additionalInfo,
 					jStatus,
+					mechanicID,
 					jobID);
 			try {
 				Statement st = conn.createStatement();
@@ -146,7 +147,7 @@ public class SQL_JobHelper extends Database_Controller {
 
 
 	// TODO: Modify type / Add to controller
-	public Job[] sendData(String jobType, float duration, String dates, String parts, String motNO, int mileage, float price, String additionalInfo, String status, String regNo){
+	public Job[] createJob(String jobType, float duration, String dates, String parts, String motNO, int mileage, float price, String additionalInfo, String status, String regNo){
 		// Since we store status as a tinyint, 1 -> Complete 0 -> Incomplete
 		int jStatus;
 		if (Objects.equals(status, "Complete")) {

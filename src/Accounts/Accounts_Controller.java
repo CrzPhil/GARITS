@@ -152,4 +152,9 @@ public class Accounts_Controller implements I_Accounts {
 		String rateRegex = "^[1-9]\\d*$";
 		return checkRegex(rateRegex, rate);
 	}
+
+	// Return all mechanics
+	public User[] getMechanics() {
+		return helper.getByRole("Mechanic");
+	}
 }
