@@ -26,7 +26,11 @@ public class VehicleReportGUI extends JFrame{
             public void actionPerformed(ActionEvent e) {
                /* j.dispose();
                 ReportsMenuGUI.main(); */
-                DisplayReportGUI.main();
+                if(!(monthlyCheckBox.isSelected()) && !(perJobTypeCheckBox.isSelected()) && !(overallCheckBox.isSelected()) && !(perCustomerTypeCheckBox.isSelected())){
+                    JOptionPane.showMessageDialog(null, "Select one of the options");
+                }else{
+                    DisplayReportGUI.main();
+                }
             }
         });
     }

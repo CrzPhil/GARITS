@@ -25,7 +25,11 @@ public class JobReportGUI extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 /*j.dispose();
                 ReportsMenuGUI.main(); */
-                DisplayReportGUI.main();
+                if(!(perJobTypeCheckBox.isSelected()) && !(overallCheckBox.isSelected()) && !(perMechanicCheckBox.isSelected())){
+                    JOptionPane.showMessageDialog(null, "Select one of the options");
+                }else{
+                    DisplayReportGUI.main();
+                }
             }
         });
     }
