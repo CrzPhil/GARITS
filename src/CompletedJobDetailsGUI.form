@@ -361,9 +361,9 @@
         </constraints>
         <properties/>
       </component>
-      <component id="17d31" class="javax.swing.JLabel" binding="regNoLabel" custom-create="true">
+      <component id="6a18b" class="javax.swing.JLabel" binding="regNoLabel" custom-create="true">
         <constraints>
-          <grid row="3" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="10" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <background color="-1"/>
