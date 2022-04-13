@@ -1,7 +1,7 @@
 public class main {
 
     public static void main(String[] args) {
-        //JobSelectionGUI.main();
+        JobSelectionGUI.main();
         //ViewCompletedJobsGUI.main();
         //MechanicDashboardGUI.main();
         //ReceptionistDashboardGUI.main();
@@ -11,6 +11,6 @@ public class main {
         //CreateJobGUI.main();
         //ReportsMenuGUI.main();
         //ManageDatabaseGUI.main();
-        JobReportGUI.main();
+        //JobReportGUI.main();
     }
 }

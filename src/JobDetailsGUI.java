@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-public class JobDetailsGUI extends JFrame{
+public class JobDetailsGUI extends JFrame {
     private JPanel Main;
     private JButton returnButton;
     private JTextField typeField;
@@ -64,7 +64,7 @@ public class JobDetailsGUI extends JFrame{
 
                 // Iterate through items in List, releasing them from the HashMap (as they weren't deleted in the first place)
                 // Release items that were in the list (incrementing their stock)
-                for(int i = 0; i< partList.getModel().getSize();i++){
+                for (int i = 0; i < partList.getModel().getSize(); i++) {
                     SparePart tmp = ((SparePart) partList.getModel().getElementAt(i));
                     // Increment Object's Stock
                     tmp.setStock(tmp.getStock() + 1);
@@ -81,7 +81,10 @@ public class JobDetailsGUI extends JFrame{
                 }
 
                 j.dispose();
-                ViewJobsGUI.main();
+                if (ViewCompletedJobsGUI.ja == 1) {
+                    ViewCompletedJobsGUI.main();
+                } else if (ViewCompletedJobsGUI.ja == 0)
+                    ViewJobsGUI.main();
             }
         });
 
@@ -102,12 +105,12 @@ public class JobDetailsGUI extends JFrame{
                     j.dispose();
                     ViewJobsGUI.main();
 
-                    }
-                    // If input invalid
-                    else {
-                        JOptionPane.showMessageDialog(null, "Please verify your input and try again.");
-                    }
                 }
+                // If input invalid
+                else {
+                    JOptionPane.showMessageDialog(null, "Please verify your input and try again.");
+                }
+            }
         });
 
         // Commit changes to Database
@@ -138,7 +141,7 @@ public class JobDetailsGUI extends JFrame{
                                 ((User) mechanicBox.getSelectedItem()).getUserID())) {
 
                             // Iterate through list for each Spare Part and add it to the job
-                            for(int i = 0; i< partList.getModel().getSize();i++) {
+                            for (int i = 0; i < partList.getModel().getSize(); i++) {
                                 // Current part in the list
                                 SparePart tmp = ((SparePart) partList.getModel().getElementAt(i));
 
@@ -182,7 +185,7 @@ public class JobDetailsGUI extends JFrame{
                         // Update database
                         Job_Controller controller = new Job_Controller();
                         // Decrement stock
-                        controller.updateStock(((SparePart) partSelectBox.getSelectedItem()).getStock(), ((SparePart)  partSelectBox.getSelectedItem()).getPartCode());
+                        controller.updateStock(((SparePart) partSelectBox.getSelectedItem()).getStock(), ((SparePart) partSelectBox.getSelectedItem()).getPartCode());
                     }
                     // If Stock is less than one
                     else {
@@ -232,10 +235,10 @@ public class JobDetailsGUI extends JFrame{
     }
 
     /**
-     * @param type Type specified in input field
+     * @param type     Type specified in input field
      * @param duration Duration specified in input field
-     * @param mileage Mileage specified in input field
-     * @param price Price specified in input field
+     * @param mileage  Mileage specified in input field
+     * @param price    Price specified in input field
      * @return Whether user input is valid (bool)
      */
     private boolean inputValid(String type, String duration, String mileage, String price) {
@@ -254,13 +257,13 @@ public class JobDetailsGUI extends JFrame{
         return true;
     }
 
-    public static void main(Job job){
+    public static void main(Job job) {
         j.setContentPane(new JobDetailsGUI(job).Main);
         j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         j.setTitle("Chosen Job Details");
         Image icon = Toolkit.getDefaultToolkit().getImage("data/logo.png");
         j.setIconImage(icon);
-        j.setPreferredSize(new Dimension(1000,480));
+        j.setPreferredSize(new Dimension(1000, 480));
         j.pack();
         j.setLocationRelativeTo(null);
         j.setVisible(true);
@@ -276,7 +279,7 @@ public class JobDetailsGUI extends JFrame{
         if (Objects.equals(job.getJobType(), Job.types[0])) {
             other = Job.types[1];
             otherother = Job.types[2];
-        }  else  if (Objects.equals(job.getJobType(), Job.types[1])) {
+        } else if (Objects.equals(job.getJobType(), Job.types[1])) {
             other = Job.types[0];
             otherother = Job.types[2];
         } else {
@@ -303,7 +306,7 @@ public class JobDetailsGUI extends JFrame{
         // If we put this at the beginning of the program where usedParts is defined, nothing is rendered
         // Most bizarre IntelliJ bug ever. Spent 2 hours trying to figure out what is causing the issue.
         // And it is the creation of the hashmap.
-        usedParts =  new HashMap<Integer, SparePart>();
+        usedParts = new HashMap<Integer, SparePart>();
 
         // Add part to hashmap
         for (SparePart part : parts) {
@@ -373,8 +376,7 @@ public class JobDetailsGUI extends JFrame{
             Accounts_Controller accountController = new Accounts_Controller();
             mechanicBox = new JComboBox<User>(accountController.getMechanics());
 
-        }
-        else {
+        } else {
             jobIDLabel = new JLabel();
             typeField = new JTextField();
             priceField = new JTextField();

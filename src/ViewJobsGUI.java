@@ -54,6 +54,7 @@ public class ViewJobsGUI extends JFrame{
         j.pack();
         j.setLocationRelativeTo(null);
         j.setVisible(true);
+        ViewCompletedJobsGUI.ja = 0;
     }
 
     private void createUIComponents() {

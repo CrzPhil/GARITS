@@ -21,6 +21,7 @@ public class ViewCompletedJobsGUI extends JFrame{
     private JButton makePaymentButton;
     private static ViewCompletedJobsGUI j = new ViewCompletedJobsGUI();
     private Job selectedJob = null;
+    public static int ja;
 
     public ViewCompletedJobsGUI() {
         returnButton.addActionListener(new ActionListener() {
@@ -81,6 +82,7 @@ public class ViewCompletedJobsGUI extends JFrame{
         j.pack();
         j.setLocationRelativeTo(null);
         j.setVisible(true);
+        ja = 1;
     }
 
     private void createUIComponents() {
