@@ -20,7 +20,6 @@ public class Job {
 	private String dates;
 	private float price;
 	private String motNO;
-	private String parts;
 	private float duration;
 	private int mileage;
 	private String additionalInfo;
@@ -38,17 +37,15 @@ public class Job {
 	 * @param dates
 	 * @param price
 	 * @param motNo
-	 * @param parts
 	 * @param duration
 	 * @param mileage
 	 * @param additionalInfo
 	 */
-	public Job(int jobID, String jobType, float duration, String dates, String parts, String motNo, int mileage, float price, String additionalInfo, String status, String regNo) {
+	public Job(int jobID, String jobType, float duration, String dates, String motNo, int mileage, float price, String additionalInfo, String status, String regNo) {
 		this.jobID = jobID;
 		this.jobType = jobType;
 		this.duration = duration;
 		this.dates = dates;
-		this.parts = parts;
 		this.motNO = motNo;
 		this.mileage = mileage;
 		this.price = price;
@@ -127,14 +124,6 @@ public class Job {
 
 	public void setMotNO(String motNO) {
 		this.motNO = motNO;
-	}
-
-	public String getParts() {
-		return parts;
-	}
-
-	public void setParts(String parts) {
-		this.parts = parts;
 	}
 
 	public float getDuration() {

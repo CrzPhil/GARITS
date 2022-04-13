@@ -20,7 +20,6 @@ public class JobDetailsGUI extends JFrame{
     private JTextField durationField;
     private JTextField priceField;
     private JTextField dateField;
-    private JTextField requiredPartsField;
     private JTextField mileageField;
     private JTextField motField;
     private JTextField regNoField;
@@ -131,7 +130,6 @@ public class JobDetailsGUI extends JFrame{
                                 (String) jobTypeBox.getSelectedItem(),
                                 Float.parseFloat(durationField.getText()),
                                 dateField.getText(),
-                                requiredPartsField.getText(),
                                 motField.getText(),
                                 Integer.parseInt(mileageField.getText()),
                                 Float.parseFloat(priceField.getText()),
@@ -335,7 +333,6 @@ public class JobDetailsGUI extends JFrame{
             regNoLabel = new JLabel(job.getRegNo());
             dateField = new JTextField(job.getDates());
             durationField = new JTextField(String.valueOf(job.getDuration()));
-            requiredPartsField = new JTextField(job.getParts());
             mileageField = new JTextField(String.valueOf(job.getMileage()));
 
             // Create combobox for status
@@ -385,7 +382,6 @@ public class JobDetailsGUI extends JFrame{
             regNoLabel = new JLabel();
             dateField = new JTextField();
             durationField = new JTextField();
-            requiredPartsField = new JTextField();
             mileageField = new JTextField();
             statusBox = new JComboBox<String>();
             jobTypeBox = new JComboBox<String>();
