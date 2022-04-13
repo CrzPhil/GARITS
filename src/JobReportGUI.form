@@ -79,7 +79,7 @@
           <text value="Generate Report"/>
         </properties>
       </component>
-      <component id="d903b" class="javax.swing.JCheckBox" binding="overallCheckBox" default-binding="true">
+      <component id="d903b" class="javax.swing.JCheckBox" binding="overallCheckBox" custom-create="true" default-binding="true">
         <constraints>
           <grid row="3" column="5" row-span="2" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>

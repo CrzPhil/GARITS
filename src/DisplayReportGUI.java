@@ -13,7 +13,14 @@ public class DisplayReportGUI extends JFrame {
     private JLabel ReportImage;
     private static DisplayReportGUI j = new DisplayReportGUI();
 
-    public DisplayReportGUI() {
+    private String filepath;
+    private String filename;
+
+    public DisplayReportGUI() {}
+
+    public DisplayReportGUI(String filepath, String filename) {
+        this.filename = filename;
+        this.filepath = filepath;
         closeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -44,11 +51,11 @@ public class DisplayReportGUI extends JFrame {
                         // TODO: taken from https://stackoverflow.com/questions/1146153/copying-files-from-one-directory-to-another-in-java
                         try {
                             // Get python-generated report pdf file
-                            String filename = java.time.LocalDate.now() + "-report.pdf";
-                            String cdir = System.getProperty("user.dir");
+                            //String filename = java.time.LocalDate.now() + "-report.pdf";
+                            //String cdir = System.getProperty("user.dir");
 
                             // Copy bits from pdf
-                            in = new FileInputStream(cdir + "/src/Reports/" + filename);
+                            in = new FileInputStream( filepath + '/' + filename);
                             // Outstream to write file to new directory
                             OutputStream out = new FileOutputStream(fileChooser.getSelectedFile() + "/" + filename);
 
@@ -76,21 +83,21 @@ public class DisplayReportGUI extends JFrame {
 
 
 
-    public static void main(){
-    j.setContentPane(new DisplayReportGUI().main);
-    j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    j.setTitle("Report");
-        Image icon = Toolkit.getDefaultToolkit().getImage("data/logo.png");
-        j.setIconImage(icon);
-    //j.setPreferredSize(new Dimension(700, 990));
-    j.pack();
-    j.setLocationRelativeTo(null);
-    // Make the report fit into the screen
-    j.setSize(new Dimension(new ImageIcon("src/Reports/preview_page1.png").getIconWidth(), new ImageIcon("src/Reports/preview_page1.png").getIconHeight()));
-    j.setVisible(true);
+    public static void main(String filepath, String filename){
+        j.setContentPane(new DisplayReportGUI(filepath, filename).main);
+        j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        j.setTitle("Report");
+            Image icon = Toolkit.getDefaultToolkit().getImage("data/logo.png");
+            j.setIconImage(icon);
+        //j.setPreferredSize(new Dimension(700, 990));
+        j.pack();
+        j.setLocationRelativeTo(null);
+        // Make the report fit into the screen
+        j.setSize(new Dimension(new ImageIcon(filepath + "/preview_page1.png").getIconWidth(), new ImageIcon(filepath + "/preview_page1.png").getIconHeight()));
+        j.setVisible(true);
 }
     private void createUIComponents() {
-        ReportImage = new JLabel(new ImageIcon("src/Reports/preview_page1.png"));
+        ReportImage = new JLabel(new ImageIcon(filepath + "/preview_page1.png"));
     }
 
 

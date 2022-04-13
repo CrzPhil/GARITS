@@ -25,14 +25,15 @@ public class StockReportGUI extends JFrame{
                     String cdir = System.getProperty("user.dir");
 
                     // Python process
-                    ProcessBuilder pb = new ProcessBuilder("python3", cdir + "/src/Reports/reportgenerator.py");
+                    ProcessBuilder pb = new ProcessBuilder("python3", cdir + "/src/Reports/PartsReport/reportgenerator.py");
                     Process p = pb.start();
 
                     // DEBUG ONLY
                     // BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
                     // System.out.println(in.readLine());
+                    String filename = java.time.LocalDate.now() + "-report.pdf";
 
-                    DisplayReportGUI.main();
+                    DisplayReportGUI.main(cdir + "/src/Reports/PartsReport", filename);
 
                 } catch (Exception ignore) {
                     JOptionPane.showMessageDialog(null, "Something went wrong. Contact your administrator.");

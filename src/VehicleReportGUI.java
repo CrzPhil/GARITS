@@ -37,7 +37,7 @@ public class VehicleReportGUI extends JFrame{
                 }else if (!(perJobTypeCheckBox.isSelected()) && !(perCustomerTypeCheckBox.isSelected())){
                     JOptionPane.showMessageDialog(null, "Select a filter option.");
                 }else{
-                    DisplayReportGUI.main();
+                    //DisplayReportGUI.main();
                 }
             }
         });

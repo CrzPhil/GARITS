@@ -22,13 +22,32 @@ public class JobReportGUI extends JFrame{
         generateReportButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if((overallCheckBox.isSelected())){
-                    JOptionPane.showMessageDialog(null, "Overall report chosen.");
-                    //enter code for overall report generation
-                    DisplayReportGUI.main();
-                }else{
-                    DisplayReportGUI.main();
-                }
+                    try {
+                        // Current working directory
+                        String cdir = System.getProperty("user.dir");
+
+                        String type;
+                        if (overallCheckBox.isSelected()) {
+                            type = "Overall";
+                        } else {
+                            type = String.valueOf(jobTypeBox.getSelectedItem());
+                        }
+
+                        // Python process, passing type (Overall OR MOT/Service/Repair) to program
+                        ProcessBuilder pb = new ProcessBuilder("python3", cdir + "/src/Reports/JobReport/jobreportgenerator.py", type);
+                        Process p = pb.start();
+                        p.waitFor();
+
+                        // DEBUG ONLY
+                        //BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
+                        //System.out.println(in.readLine());
+
+                        String filename = java.time.LocalDate.now() + "-" + type + "-jobReport.pdf";
+                        DisplayReportGUI.main(cdir + "/src/Reports/JobReport", filename);
+                    } catch (Exception ignore) {
+                        JOptionPane.showMessageDialog(null, "Something went wrong. Contact your administrator.");
+                    }
+
             }
         });
         jobTypeBox.addItem("MOT");
@@ -45,5 +64,9 @@ public class JobReportGUI extends JFrame{
         j.pack();
         j.setLocationRelativeTo(null);
         j.setVisible(true);
+    }
+
+    private void createUIComponents() {
+        overallCheckBox = new JCheckBox();
     }
 }
