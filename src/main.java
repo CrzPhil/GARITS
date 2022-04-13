@@ -9,6 +9,8 @@ public class main {
         //CustomerAccountMenuGUI.main();
         //UserAccountMenuGUI.main();
         //CreateJobGUI.main();
-        ReportsMenuGUI.main();
+        //ReportsMenuGUI.main();
+        //ManageDatabaseGUI.main();
+        JobReportGUI.main();
     }
 }
