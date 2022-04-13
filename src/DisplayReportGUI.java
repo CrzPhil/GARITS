@@ -17,6 +17,7 @@ public class DisplayReportGUI extends JFrame {
         closeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                // TODO: Decide what to do here
                 // Clean up files, so that only pdf remains
 /*                String cdir = System.getProperty("user.dir");
                 File myObj = new File(cdir + "/src/Reports/preview_page1.png");

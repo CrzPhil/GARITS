@@ -1,5 +1,6 @@
 /*import Job.CompletedJob_Controller;
 import Job.CompletedJob;*/
+
 import Job.Job;
 import Job.Job_Controller;
 
@@ -44,7 +45,23 @@ public class ViewCompletedJobsGUI extends JFrame{
         generateInvoiceButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               DisplayInvoiceGUI.main();
+                try {
+                    // Current working directory
+                    String cdir = System.getProperty("user.dir");
+
+                    // Python process
+                    ProcessBuilder pb = new ProcessBuilder("python3", cdir + "/src/Invoices/invoicegenerator.py", String.valueOf(selectedJob.getJobID()));
+                    Process p = pb.start();
+
+                    // DEBUG ONLY
+                    //BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
+                    //System.out.println(in.readLine());
+
+                    DisplayInvoiceGUI.main(selectedJob);
+
+                } catch (Exception ignore) {
+                    JOptionPane.showMessageDialog(null, "Something went wrong. Contact your administrator.");
+                }
             }
         });
         makePaymentButton.addActionListener(new ActionListener() {

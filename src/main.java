@@ -2,10 +2,10 @@ public class main {
 
     public static void main(String[] args) {
         //JobSelectionGUI.main();
-        //ViewJobsGUI.main();
+        ViewCompletedJobsGUI.main();
         //MechanicDashboardGUI.main();
         //ReceptionistDashboardGUI.main();
         //ItemSearchGUI.main();
-        UserAccountMenuGUI.main();
+        //UserAccountMenuGUI.main();
     }
 }
