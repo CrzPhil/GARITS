@@ -3,6 +3,7 @@ package Customers;
 import Database.Database_Controller;
 import Job.Job;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -29,8 +30,8 @@ public class SQL_CustomerHelper extends Database_Controller {
 		String qur = "SELECT * FROM Customers";
 
 		try {
-			Statement st = conn.createStatement();
-			ResultSet rs = st.executeQuery(sizequr);
+			PreparedStatement pSt = conn.prepareStatement(sizequr);
+			ResultSet rs = pSt.executeQuery();
 
 			// Get count for returned rows
 			rs.next();
@@ -39,7 +40,7 @@ public class SQL_CustomerHelper extends Database_Controller {
 
 			out = new Customer[size];
 
-			rs = st.executeQuery(qur);
+			rs = pSt.executeQuery(qur);
 
 			int i = 0;
 
@@ -66,12 +67,18 @@ public class SQL_CustomerHelper extends Database_Controller {
 
 	// Create customer
 	public boolean createCustomer(String fname, String lname, String address, String telephone, String email, String fax, int discount) {
-		String qur = String.format("INSERT INTO Customers(firstName, lastName, address, telephone, email, fax, discount)" +
-				" VALUES('%s','%s','%s','%s','%s','%s',%d)", fname, lname, address, telephone, email, fax, discount);
 		try {
-			Statement st = conn.createStatement();
-			st.executeUpdate(qur);
-			st.close();
+			//SQL sanitization to prevent SQL injection attacks
+			PreparedStatement pSt;
+			pSt = conn.prepareStatement("INSERT INTO Customers(firstName, lastName, address, telephone, email, fax, discount)" + " VALUES(?, ?, ?, ?, ?, ?, ?)");
+			pSt.setString(1, fname);
+			pSt.setString(2, lname);
+			pSt.setString(3, address);
+			pSt.setString(4, telephone);
+			pSt.setString(5, email);
+			pSt.setString(6, fax);
+			pSt.setInt(7, discount);
+			pSt.executeUpdate();
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -81,12 +88,13 @@ public class SQL_CustomerHelper extends Database_Controller {
 
 	// Delete customer by customerID
 	public boolean deleteCustomer(long customerID) {
-		String qur = "DELETE FROM Customers WHERE customerID = " + customerID;
 
 		try {
-			Statement st = conn.createStatement();
-			st.executeUpdate(qur);
-			st.close();
+			//SQL sanitization to prevent SQL injection attacks
+			PreparedStatement pSt;
+			pSt = conn.prepareStatement("DELETE FROM Customers WHERE customerID = ?");
+			pSt.setLong(1, customerID);
+			pSt.executeUpdate();
 
 			return true;
 		} catch (SQLException e) {
@@ -97,19 +105,20 @@ public class SQL_CustomerHelper extends Database_Controller {
 
 	// Update values for a customer (by customerID)
 	public boolean updateCustomer(String fname, String lname, String address, String telephone, String email, String fax, int discount, long customerID) {
-		String qur = String.format("UPDATE Customers SET firstName = '%s', lastName = '%s', address = '%s', telephone = '%s', email = '%s', fax = '%s', discount = %d WHERE customerID = %d",
-				fname,
-				lname,
-				address,
-				telephone,
-				email,
-				fax,
-				discount,
-				customerID);
 		try {
-			Statement st = conn.createStatement();
-			st.executeUpdate(qur);
-			st.close();
+			//SQL sanitization to prevent SQL injection attacks
+			PreparedStatement pSt;
+			pSt = conn.prepareStatement("UPDATE Customers SET firstName = ?, lastName = ?, address = ?, telephone = ?, email = ?, fax = ?, discount = ? WHERE customerID = ?");
+			pSt.setString(1, fname);
+			pSt.setString(2, lname);
+			pSt.setString(3, address);
+			pSt.setString(4, telephone);
+			pSt.setString(5, email);
+			pSt.setString(6, fax);
+			pSt.setInt(7, discount);
+			pSt.setLong(8, customerID);
+			pSt.executeUpdate();
+
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
