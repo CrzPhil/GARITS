@@ -87,10 +87,6 @@ public class Customer_Controller implements I_Customers {
 
 	// Method to validate user input
 	public boolean digestInfo(String phone, String email, String discount, String fax) {
-		if (!validateEmail(email)) {
-			JOptionPane.showMessageDialog(null, "Please enter a valid email address.");
-			return false;
-		}
 
 		if (!validatePhone(phone)) {
 			JOptionPane.showMessageDialog(null, "Please enter a valid phone number.");
