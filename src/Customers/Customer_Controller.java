@@ -125,7 +125,7 @@ public class Customer_Controller implements I_Customers {
 		return vehicleHelper.deleteVehicle(regNo);
 	}
 
-	public boolean updateVehicle(String regNo, String make, String model, String engSerial, String chassisNo, String colour, String motDate, long customerID) {
-		return vehicleHelper.updateVehicle(regNo, make, model, engSerial, chassisNo, colour, motDate, customerID);
+	public boolean updateVehicle(String oldRegNo, String regNo, String make, String model, String engSerial, String chassisNo, String colour, String motDate, long customerID) {
+		return vehicleHelper.updateVehicle(oldRegNo, regNo, make, model, engSerial, chassisNo, colour, motDate, customerID);
 	}
 }

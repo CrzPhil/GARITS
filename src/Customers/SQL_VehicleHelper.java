@@ -122,12 +122,12 @@ public class SQL_VehicleHelper extends Database_Controller {
 		}
 	}
 
-	public boolean updateVehicle(String regNo, String make, String model, String engSerial, String chassisNo, String colour, String motDate, long customerID) {
+	public boolean updateVehicle(String oldRegNo, String regNo, String make, String model, String engSerial, String chassisNo, String colour, String motDate, long customerID) {
 		String datePart = "STR_TO_DATE(\"" + motDate + "\", \"%Y-%m-%d\")";
 		try {
 			//SQL sanitization to prevent SQL injection attacks
 			PreparedStatement pSt;
-			pSt = conn.prepareStatement("UPDATE Vehicles SET registrationNo = ?, make = ?, model = ?, engSerial = ?, chassisNo = ?, colour = ?, MoTDate = " + datePart + " WHERE CustomercustomerID = ?");
+			pSt = conn.prepareStatement("UPDATE Vehicles SET registrationNo = ?, make = ?, model = ?, engSerial = ?, chassisNo = ?, colour = ?, MoTDate = " + datePart + " WHERE CustomercustomerID = ? AND registrationNo = ?");
 			pSt.setString(1, regNo);
 			pSt.setString(2, make);
 			pSt.setString(3, model);
@@ -135,6 +135,7 @@ public class SQL_VehicleHelper extends Database_Controller {
 			pSt.setString(5, chassisNo);
 			pSt.setString(6, colour);
 			pSt.setLong(7, customerID);
+			pSt.setString(8, regNo);
 
 			pSt.executeUpdate();
 

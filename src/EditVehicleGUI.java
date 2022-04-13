@@ -60,7 +60,8 @@ public class EditVehicleGUI extends JFrame {
                 int confirm = JOptionPane.showConfirmDialog(null, "Are you sure you want to save these changes?", "Confirm changes",JOptionPane.YES_NO_OPTION);
                 if (confirm == JOptionPane.YES_OPTION) {
                     Customer_Controller controller = new Customer_Controller();
-                    if (controller.updateVehicle(regNoField.getText(),
+                    if (controller.updateVehicle(vehicle.getRegistrationNumber(),
+                            regNoField.getText(),
                             makeField.getText(),
                             modelField.getText(),
                             engSerialField.getText(),
