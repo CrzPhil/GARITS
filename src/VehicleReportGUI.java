@@ -27,7 +27,15 @@ public class VehicleReportGUI extends JFrame{
                /* j.dispose();
                 ReportsMenuGUI.main(); */
                 if(!(monthlyCheckBox.isSelected()) && !(perJobTypeCheckBox.isSelected()) && !(overallCheckBox.isSelected()) && !(perCustomerTypeCheckBox.isSelected())){
-                    JOptionPane.showMessageDialog(null, "Select one of the options");
+                    JOptionPane.showMessageDialog(null, "Select a filter and timeframe option.");
+                }else if ((overallCheckBox.isSelected()) && (monthlyCheckBox.isSelected())){
+                    JOptionPane.showMessageDialog(null, "Select only one timeframe option.");
+                }else if ((perJobTypeCheckBox.isSelected()) && (perCustomerTypeCheckBox.isSelected())){
+                    JOptionPane.showMessageDialog(null, "Select only one filter option.");
+                }else if (!(overallCheckBox.isSelected()) && !(monthlyCheckBox.isSelected())){
+                    JOptionPane.showMessageDialog(null, "Select a timeframe option.");
+                }else if (!(perJobTypeCheckBox.isSelected()) && !(perCustomerTypeCheckBox.isSelected())){
+                    JOptionPane.showMessageDialog(null, "Select a filter option.");
                 }else{
                     DisplayReportGUI.main();
                 }

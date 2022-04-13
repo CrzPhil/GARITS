@@ -6,8 +6,9 @@ public class main {
         //MechanicDashboardGUI.main();
         //ReceptionistDashboardGUI.main();
         //ItemSearchGUI.main();
-        CustomerAccountMenuGUI.main();
+        //CustomerAccountMenuGUI.main();
         //UserAccountMenuGUI.main();
         //CreateJobGUI.main();
+        ReportsMenuGUI.main();
     }
 }

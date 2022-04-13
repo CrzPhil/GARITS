@@ -26,7 +26,15 @@ public class JobReportGUI extends JFrame{
                 /*j.dispose();
                 ReportsMenuGUI.main(); */
                 if(!(perJobTypeCheckBox.isSelected()) && !(overallCheckBox.isSelected()) && !(perMechanicCheckBox.isSelected())){
-                    JOptionPane.showMessageDialog(null, "Select one of the options");
+                    JOptionPane.showMessageDialog(null, "Select one of the options.");
+                }else if ((perJobTypeCheckBox.isSelected()) && (overallCheckBox.isSelected()) && (perMechanicCheckBox.isSelected())){
+                    JOptionPane.showMessageDialog(null, "Select only one of the options.");
+                }else if ((perJobTypeCheckBox.isSelected()) && (overallCheckBox.isSelected())){
+                    JOptionPane.showMessageDialog(null, "Select only one of the options.");
+                }  else if ((perJobTypeCheckBox.isSelected()) && (perMechanicCheckBox.isSelected())) {
+                    JOptionPane.showMessageDialog(null, "Select only one of the options.");
+                }  else if ((overallCheckBox.isSelected()) && (perMechanicCheckBox.isSelected())) {
+                    JOptionPane.showMessageDialog(null, "Select only one of the options.");
                 }else{
                     DisplayReportGUI.main();
                 }
