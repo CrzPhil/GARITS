@@ -14,6 +14,7 @@ public class ItemSearchGUI extends JFrame {
     private JComboBox typeBox;
     private JButton returnButton;
     private JButton newSparePartButton;
+    private JButton searchAllButton;
     private static ItemSearchGUI j = new ItemSearchGUI();
 
     public ItemSearchGUI() {
@@ -31,6 +32,15 @@ public class ItemSearchGUI extends JFrame {
 
                 else
                     SearchResultsGUI.main();
+            }
+        });
+
+        searchAllButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                j.dispose();
+                SearchResultsGUI.main();
             }
         });
 

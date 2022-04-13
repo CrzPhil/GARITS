@@ -182,6 +182,9 @@ public class SearchResultsGUI extends JFrame{
     // Get All parts by previous' GUI's search parameter
     private SparePart[] getParts() {
         SQL_PartsHelper helper = new SQL_PartsHelper();
+        if(partName == null){
+            return helper.getAllParts();
+        }
         return helper.getPartByIdName(this.partName);
     }
 
