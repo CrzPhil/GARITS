@@ -1,3 +1,5 @@
+import GUIs.ForepersonDashboardGUI;
+
 public class main {
 
     public static void main(String[] args) {

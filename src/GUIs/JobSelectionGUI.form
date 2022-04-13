@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="GUIs.JobSelectionGUI">
+  <grid id="27dc6" binding="Main" layout-manager="GridLayoutManager" row-count="7" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="0" left="0" bottom="0" right="0"/>
+    <constraints>
+      <xy x="20" y="20" width="614" height="400"/>
+    </constraints>
+    <properties>
+      <background color="-14666175"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <component id="b7fc4" class="javax.swing.JLabel" binding="CompLabel">
+        <constraints>
+          <grid row="2" column="2" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-1"/>
+          <font name="Yu Gothic UI" size="25"/>
+          <foreground color="-1"/>
+          <text value="Completed Jobs"/>
+        </properties>
+      </component>
+      <component id="ea748" class="javax.swing.JLabel" binding="incomLabel">
+        <constraints>
+          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-1"/>
+          <font name="Yu Gothic UI" size="25"/>
+          <foreground color="-1"/>
+          <text value="Incomplete Jobs"/>
+        </properties>
+      </component>
+      <vspacer id="9fe61">
+        <constraints>
+          <grid row="5" column="2" row-span="1" col-span="2" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+        </constraints>
+      </vspacer>
+      <component id="3ce58" class="javax.swing.JButton" binding="CompButton" custom-create="true">
+        <constraints>
+          <grid row="4" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-1"/>
+          <enabled value="true"/>
+          <text value=""/>
+        </properties>
+      </component>
+      <component id="3655a" class="javax.swing.JButton" binding="incompButton" custom-create="true">
+        <constraints>
+          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-1"/>
+          <enabled value="true"/>
+          <foreground color="-1"/>
+          <text value=""/>
+        </properties>
+      </component>
+      <component id="f1ab8" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-1114625"/>
+          <font name="Yu Gothic UI" size="25"/>
+          <foreground color="-1114625"/>
+          <text value="Create Job"/>
+        </properties>
+      </component>
+      <component id="dcc4d" class="javax.swing.JButton" binding="createButton" custom-create="true">
+        <constraints>
+          <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-14666175"/>
+          <foreground color="-14666175"/>
+          <hideActionText value="false"/>
+          <text value=""/>
+        </properties>
+      </component>
+      <vspacer id="7c35f">
+        <constraints>
+          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+        </constraints>
+      </vspacer>
+      <vspacer id="9e2da">
+        <constraints>
+          <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+        </constraints>
+      </vspacer>
+      <component id="6abc8" class="javax.swing.JLabel" binding="titleLabel">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="196" height="110"/>
+          </grid>
+        </constraints>
+        <properties>
+          <background color="-1"/>
+          <font name="Yu Gothic UI Semibold" size="32"/>
+          <foreground color="-1"/>
+          <text value="    Job Selection:"/>
+          <verticalAlignment value="0"/>
+          <verticalTextPosition value="0"/>
+        </properties>
+      </component>
+      <component id="8c8d" class="javax.swing.JButton" binding="returnButton">
+        <constraints>
+          <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-1114625"/>
+          <font name="Yu Gothic UI Semibold" size="12"/>
+          <foreground color="-16777216"/>
+          <text value="Return"/>
+        </properties>
+      </component>
+    </children>
+  </grid>
+</form>
