@@ -1,13 +1,10 @@
 package Job;
 
 import Database.Database_Controller;
-import com.mysql.cj.x.protobuf.MysqlxPrepare;
 
-import javax.xml.transform.Result;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.Objects;
 
 public class SQL_JobHelper extends Database_Controller {
@@ -48,7 +45,7 @@ public class SQL_JobHelper extends Database_Controller {
 	}
 
 	// Update job with new values
-	public boolean updateJob(int jobID, String jobType, float duration, String dates, String parts, String motNO, int mileage, float price, String additionalInfo, String status, long mechanicID) {
+	public boolean updateJob(int jobID, String jobType, float duration, String dates, String motNO, int mileage, float price, String additionalInfo, String status, long mechanicID) {
 		// Since we store status as a tinyint, 1 -> Complete 0 -> Incomplete
 		int jStatus;
 		if (Objects.equals(status, "Complete")) {
@@ -60,18 +57,17 @@ public class SQL_JobHelper extends Database_Controller {
 			try {
 				//SQL sanitization to prevent SQL injection attacks
 				PreparedStatement pSt;
-				pSt = conn.prepareStatement("UPDATE Jobs SET jobType = ?, duration = ?, dates = ?, parts = ?, motNo = ?, mileage = ?, price = ?, additionalInfo = ?, status = ?, mechanicID = ? WHERE jobID = ?");
+				pSt = conn.prepareStatement("UPDATE Jobs SET jobType = ?, duration = ?, dates = ?, motNo = ?, mileage = ?, price = ?, additionalInfo = ?, status = ?, mechanicID = ? WHERE jobID = ?");
 				pSt.setString(1, jobType);
 				pSt.setFloat(2, duration);
 				pSt.setString(3, dates);
-				pSt.setString(4, parts);
-				pSt.setString(5, motNO);
-				pSt.setInt(6, mileage);
-				pSt.setFloat(7, price);
-				pSt.setString(8, additionalInfo);
-				pSt.setInt(9, jStatus);
-				pSt.setLong(10, mechanicID);
-				pSt.setInt(11, jobID);
+				pSt.setString(4, motNO);
+				pSt.setInt(5, mileage);
+				pSt.setFloat(6, price);
+				pSt.setString(7, additionalInfo);
+				pSt.setInt(8, jStatus);
+				pSt.setLong(9, mechanicID);
+				pSt.setInt(10, jobID);
 
 				pSt.executeUpdate();
 				return true;
@@ -84,7 +80,7 @@ public class SQL_JobHelper extends Database_Controller {
 
 
 	// TODO: Modify type / Add to controller
-	public Job[] createJob(String jobType, float duration, String dates, String parts, String motNO, int mileage, String additionalInfo, String status, String regNo){
+	public Job[] createJob(String jobType, float duration, String dates, String motNO, int mileage, String additionalInfo, String status, String regNo){
 		// Since we store status as a tinyint, 1 -> Complete 0 -> Incomplete
 		int jStatus;
 		if (Objects.equals(status, "Complete")) {
@@ -98,16 +94,15 @@ public class SQL_JobHelper extends Database_Controller {
 		try {
 			//SQL sanitization to prevent SQL injection attacks
 			PreparedStatement pSt;
-			pSt = conn.prepareStatement("INSERT INTO Jobs (jobType, duration, dates, parts, motNo, mileage, additionalInfo, status, registrationNo)" + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+			pSt = conn.prepareStatement("INSERT INTO Jobs (jobType, duration, dates, motNo, mileage, additionalInfo, status, registrationNo)" + " VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
 			pSt.setString(1, jobType);
 			pSt.setFloat(2, duration);
 			pSt.setString(3, dates);
-			pSt.setString(4, parts);
-			pSt.setString(5, motNO);
-			pSt.setInt(6, mileage);
-			pSt.setString(7, additionalInfo);
-			pSt.setInt(8, jStatus);
-			pSt.setString(9, regNo);
+			pSt.setString(4, motNO);
+			pSt.setInt(5, mileage);
+			pSt.setString(6, additionalInfo);
+			pSt.setInt(7, jStatus);
+			pSt.setString(8, regNo);
 			pSt.executeUpdate();
 
 		} catch (SQLException ex) {
@@ -148,7 +143,6 @@ public class SQL_JobHelper extends Database_Controller {
 						rs.getString("jobType"),
 						rs.getFloat("duration"),
 						rs.getString("dates"),
-						rs.getString("parts"),
 						rs.getString("motNo"),
 						rs.getInt("mileage"),
 						rs.getFloat("price"),
@@ -199,7 +193,6 @@ public class SQL_JobHelper extends Database_Controller {
 						rs.getString("jobType"),
 						rs.getFloat("duration"),
 						rs.getString("dates"),
-						rs.getString("parts"),
 						rs.getString("motNo"),
 						rs.getInt("mileage"),
 						rs.getFloat("price"),
@@ -219,7 +212,7 @@ public class SQL_JobHelper extends Database_Controller {
 		return out;
 	}
 
-	public int getJobID(String jobType, float duration, String dates, String parts, String motNo, int mileage, String additionalInfo, String completionStatus, String regNo) {
+	public int getJobID(String jobType, float duration, String dates, String motNo, int mileage, String additionalInfo, String completionStatus, String regNo) {
 		String qur = String.format("SELECT jobID FROM Jobs WHERE jobType = '%s' AND duration = %f AND dates = '%s' AND motNo = '%s' AND mileage = %d AND additionalinfo = '%s' AND status = '%s' AND registrationNo = '%s'",
 				jobType,
 				duration,

@@ -52,6 +52,7 @@ tail = """
         <br><br><br><br><br> Yours sincerely,
         <br><br><br><br>G. Lancaster
     </div>
+
 </body>
 
 </html>
@@ -187,7 +188,7 @@ def generateTable(parts):
                 <td>{part[1]}</td>
                 <td>{part[2]}</td>
             </tr>"""
-        tail = """
+    tail = """
                     <tr>
                 <td>
                     <td>
@@ -341,7 +342,7 @@ def main(jobID):
     makeInvoice(jobID, head, addr, name, invoiceNo, vehicleDetails, jobDetails, table, labour, total, tail)
     
     # clean up html file
-    os.remove("invoice.html")
+    os.remove(f"{os.path.dirname(__file__)}/invoice.html")
 
 
 if __name__ == "__main__":
