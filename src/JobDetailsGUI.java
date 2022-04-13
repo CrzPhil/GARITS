@@ -157,6 +157,9 @@ public class JobDetailsGUI extends JFrame {
                             // Successful Job update
                             JOptionPane.showMessageDialog(null, "Job updated successfully.");
                             j.dispose();
+                            if(LoginGUI.access=='F'){
+                                ViewJobsGUI.main();
+                            }else
                             JobSelectionGUI.main();
                         } else {
                             JOptionPane.showMessageDialog(null, "Something went wrong.\n Double-check your values.");

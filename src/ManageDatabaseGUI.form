@@ -19,7 +19,7 @@
           <enabled value="true"/>
           <font name="Yu Gothic UI Semibold" size="36"/>
           <foreground color="-1"/>
-          <text value="Manage Database"/>
+          <text value="Manage Database."/>
         </properties>
       </component>
       <hspacer id="8029f">

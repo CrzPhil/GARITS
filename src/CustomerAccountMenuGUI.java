@@ -11,9 +11,7 @@ import java.awt.event.ActionListener;
 public class CustomerAccountMenuGUI extends JFrame{
     private JPanel Main;
     private JList customerList;
-    private JButton searchForNameButton;
     private JButton inspectCustomerButton;
-    private JTextField textField1;
     private JButton returnButton;
     private JButton addCustomerButton;
     private static final CustomerAccountMenuGUI j = new CustomerAccountMenuGUI();

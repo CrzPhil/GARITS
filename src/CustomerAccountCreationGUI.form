@@ -3,7 +3,7 @@
   <grid id="27dc6" binding="Main" layout-manager="GridLayoutManager" row-count="9" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
-      <xy x="20" y="20" width="512" height="400"/>
+      <xy x="20" y="20" width="532" height="400"/>
     </constraints>
     <properties>
       <background color="-14666175"/>
@@ -17,9 +17,9 @@
           </grid>
         </constraints>
         <properties>
-          <font name="Yu Gothic UI Semibold" size="24"/>
+          <font name="Yu Gothic UI Semibold" size="28"/>
           <foreground color="-1"/>
-          <text value="Create Customer Account"/>
+          <text value="Create Customer Account."/>
         </properties>
       </component>
       <component id="609a0" class="javax.swing.JTextField" binding="fnameField">
@@ -88,7 +88,7 @@
           <background color="-1"/>
           <font name="Yu Gothic UI" size="16"/>
           <foreground color="-1"/>
-          <text value="Last Name"/>
+          <text value="Last Name:"/>
         </properties>
       </component>
       <component id="891b2" class="javax.swing.JLabel">
@@ -99,7 +99,7 @@
           <background color="-1"/>
           <font name="Yu Gothic UI" size="16"/>
           <foreground color="-1"/>
-          <text value="First Name"/>
+          <text value="First Name:"/>
         </properties>
       </component>
       <component id="a27f0" class="javax.swing.JLabel">
@@ -109,7 +109,7 @@
         <properties>
           <font name="Yu Gothic UI" size="16"/>
           <foreground color="-1"/>
-          <text value="Email"/>
+          <text value="Email:"/>
         </properties>
       </component>
       <component id="936be" class="javax.swing.JLabel">
@@ -119,7 +119,7 @@
         <properties>
           <font name="Yu Gothic UI" size="16"/>
           <foreground color="-1"/>
-          <text value="Address"/>
+          <text value="Address:"/>
         </properties>
       </component>
       <component id="65cd0" class="javax.swing.JLabel">
@@ -129,7 +129,7 @@
         <properties>
           <font name="Yu Gothic UI" size="16"/>
           <foreground color="-1"/>
-          <text value="Telephone"/>
+          <text value="Telephone:"/>
         </properties>
       </component>
       <component id="1ec87" class="javax.swing.JLabel">
@@ -139,7 +139,7 @@
         <properties>
           <font name="Yu Gothic UI" size="16"/>
           <foreground color="-1"/>
-          <text value="Fax"/>
+          <text value="Fax:"/>
         </properties>
       </component>
       <component id="9336e" class="javax.swing.JLabel">
@@ -149,7 +149,7 @@
         <properties>
           <font name="Yu Gothic UI" size="16"/>
           <foreground color="-1"/>
-          <text value="Discount"/>
+          <text value="Discount:"/>
         </properties>
       </component>
       <hspacer id="cf99a">
@@ -168,21 +168,28 @@
         </constraints>
         <properties>
           <background color="-1"/>
+          <font name="Yu Gothic UI Semibold" size="12"/>
           <foreground color="-16777216"/>
           <text value="Return"/>
         </properties>
       </component>
       <component id="88ef2" class="javax.swing.JButton" binding="createStaffAccountButton" default-binding="true">
         <constraints>
-          <grid row="8" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="8" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <background color="-1"/>
+          <font name="Yu Gothic UI Semibold" size="14"/>
           <foreground color="-16777216"/>
           <hideActionText value="false"/>
-          <text value="Create Customer Account"/>
+          <text value="Finish"/>
         </properties>
       </component>
+      <hspacer id="2dfff">
+        <constraints>
+          <grid row="3" column="3" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+      </hspacer>
     </children>
   </grid>
 </form>
