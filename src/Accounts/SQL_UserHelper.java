@@ -308,7 +308,20 @@ public class SQL_UserHelper extends Database_Controller {
 		}
 	}
 
-	public boolean updatePassword(String newpass) {
-		return false;
+	public boolean updatePassword(long staffID, char[] newpass) {
+		HashClass hasher = new HashClass();
+		String hashedpass = hasher.chartosha256(newpass);
+
+		String qur = String.format("UPDATE Staff SET password = '%s' WHERE staffID = %d", hashedpass, staffID);
+
+		try {
+			Statement st = conn.createStatement();
+			st.executeUpdate(qur);
+			return true;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 }
