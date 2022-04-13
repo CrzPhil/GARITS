@@ -33,7 +33,7 @@
         </constraints>
         <properties>
           <background color="-14666175"/>
-          <font name="Yu Gothic UI Semibold" size="14"/>
+          <font name="Yu Gothic UI Semibold" size="16"/>
           <foreground color="-1114625"/>
           <hideActionText value="true"/>
           <text value="Monthly"/>
@@ -45,7 +45,7 @@
         </constraints>
         <properties>
           <background color="-14666175"/>
-          <font name="Yu Gothic UI Semibold" size="14"/>
+          <font name="Yu Gothic UI Semibold" size="16"/>
           <foreground color="-1114625"/>
           <text value="Per Job Type"/>
         </properties>
@@ -56,7 +56,7 @@
         </constraints>
         <properties>
           <background color="-14666175"/>
-          <font name="Yu Gothic UI Semibold" size="14"/>
+          <font name="Yu Gothic UI Semibold" size="16"/>
           <foreground color="-1"/>
           <text value="Overall"/>
         </properties>
@@ -67,7 +67,7 @@
         </constraints>
         <properties>
           <background color="-14666175"/>
-          <font name="Yu Gothic UI Semibold" size="14"/>
+          <font name="Yu Gothic UI Semibold" size="16"/>
           <foreground color="-1"/>
           <text value="Per Customer Type"/>
         </properties>
@@ -131,7 +131,7 @@
         </constraints>
         <properties>
           <background color="-14666175"/>
-          <font name="Yu Gothic UI Semibold" size="16"/>
+          <font name="Yu Gothic UI Semibold" size="26"/>
           <foreground color="-1114625"/>
           <text value="     Select Parameters:"/>
         </properties>
