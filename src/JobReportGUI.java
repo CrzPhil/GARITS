@@ -6,10 +6,9 @@ import java.awt.event.ActionListener;
 public class JobReportGUI extends JFrame{
     private JPanel Main;
     private JButton returnButton;
-    private JCheckBox perJobTypeCheckBox;
     private JCheckBox overallCheckBox;
-    private JCheckBox perMechanicCheckBox;
     private JButton generateReportButton;
+    private JComboBox jobTypeBox;
     private static JobReportGUI j = new JobReportGUI();
 
     public JobReportGUI() {
@@ -23,23 +22,18 @@ public class JobReportGUI extends JFrame{
         generateReportButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                /*j.dispose();
-                ReportsMenuGUI.main(); */
-                if(!(perJobTypeCheckBox.isSelected()) && !(overallCheckBox.isSelected()) && !(perMechanicCheckBox.isSelected())){
-                    JOptionPane.showMessageDialog(null, "Select one of the options.");
-                }else if ((perJobTypeCheckBox.isSelected()) && (overallCheckBox.isSelected()) && (perMechanicCheckBox.isSelected())){
-                    JOptionPane.showMessageDialog(null, "Select only one of the options.");
-                }else if ((perJobTypeCheckBox.isSelected()) && (overallCheckBox.isSelected())){
-                    JOptionPane.showMessageDialog(null, "Select only one of the options.");
-                }  else if ((perJobTypeCheckBox.isSelected()) && (perMechanicCheckBox.isSelected())) {
-                    JOptionPane.showMessageDialog(null, "Select only one of the options.");
-                }  else if ((overallCheckBox.isSelected()) && (perMechanicCheckBox.isSelected())) {
-                    JOptionPane.showMessageDialog(null, "Select only one of the options.");
+                if((overallCheckBox.isSelected())){
+                    JOptionPane.showMessageDialog(null, "Overall report chosen.");
+                    //enter code for overall report generation
+                    DisplayReportGUI.main();
                 }else{
                     DisplayReportGUI.main();
                 }
             }
         });
+        jobTypeBox.addItem("MOT");
+        jobTypeBox.addItem("Service");
+        jobTypeBox.addItem("Repair");
     }
     public static void main(){
         j.setContentPane(new JobReportGUI().Main);

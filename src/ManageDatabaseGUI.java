@@ -1,11 +1,13 @@
 import Database.Database_Controller;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.filechooser.FileSystemView;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileInputStream;
 
 public class ManageDatabaseGUI extends JFrame {
     private JPanel Main;
@@ -71,9 +73,32 @@ public class ManageDatabaseGUI extends JFrame {
         j.setTitle("Manage Database");
         Image icon = Toolkit.getDefaultToolkit().getImage("data/logo.png");
         j.setIconImage(icon);
-        j.setPreferredSize(new Dimension(1280,720));
+        j.setPreferredSize(new Dimension(800,480));
         j.pack();
         j.setLocationRelativeTo(null);
         j.setVisible(true);
+    }
+
+    private void createUIComponents() {
+        backupButton = new JButton();
+        restoreButton = new JButton();
+        try {
+            Image bImg = ImageIO.read(new FileInputStream("data/backup.png")).getScaledInstance(150, 150, Image.SCALE_DEFAULT);
+            Image nImg = ImageIO.read(new FileInputStream("data/restore.png")).getScaledInstance(100, 100, Image.SCALE_DEFAULT);
+            backupButton.setIcon(new ImageIcon(bImg));
+            restoreButton.setIcon(new ImageIcon(nImg));
+        } catch (Exception ignored) {
+        }
+        backupButton.setBorder(null);
+        backupButton.setBorderPainted(false);
+        backupButton.setMargin(new Insets(0, 0, 0, 0));
+        backupButton.setContentAreaFilled(false);
+        backupButton.setFocusPainted(false);
+
+        restoreButton.setBorder(null);
+        restoreButton.setBorderPainted(false);
+        restoreButton.setMargin(new Insets(0, 0, 0, 0));
+        restoreButton.setContentAreaFilled(false);
+        restoreButton.setFocusPainted(false);
     }
 }
