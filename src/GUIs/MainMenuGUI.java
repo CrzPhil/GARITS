@@ -48,7 +48,7 @@ public class MainMenuGUI extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 j.dispose();
-                FranchiseeLoginGUI.main();
+                CustomerAccountMenuGUI.main();
             }
         });
     }
