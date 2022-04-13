@@ -2,6 +2,7 @@ package Job;
 
 import Database.Database_Controller;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -33,19 +34,20 @@ public class SQL_PartsHelper extends Database_Controller {
 
 	// Create new spare part with custom stock in DB
 	public boolean createSparePart(String code, String name, String make, String model, int year, int stock, float price, int threshold) {
-		String qur = String.format("INSERT INTO SpareParts VALUES ('%s','%s','%s','%s',%d,%d,%f,%d)",
-				code,
-				name,
-				make,
-				model,
-				year,
-				stock,
-				price,
-				threshold);
 
 			try {
-				Statement st = conn.createStatement();
-				st.executeUpdate(qur);
+				//SQL sanitization to prevent SQL injection attacks
+				PreparedStatement pSt;
+				pSt = conn.prepareStatement("INSERT INTO SpareParts VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+				pSt.setString(1, code);
+				pSt.setString(2, name);
+				pSt.setString(3, make);
+				pSt.setString(4, model);
+				pSt.setInt(5, year);
+				pSt.setInt(6, stock);
+				pSt.setFloat(7, price);
+				pSt.setInt(8, threshold);
+				pSt.executeUpdate();
 				return true;
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -58,8 +60,8 @@ public class SQL_PartsHelper extends Database_Controller {
 	public boolean getCode(String code) {
 		String qur = String.format("SELECT COUNT(*) AS Count FROM SpareParts WHERE code = '%s'", code);
 		try {
-			Statement st = conn.createStatement();
-			ResultSet rs = st.executeQuery(qur);
+			PreparedStatement pSt = conn.prepareStatement(qur);
+			ResultSet rs = pSt.executeQuery();
 
 			rs.next();
 
@@ -82,8 +84,8 @@ public class SQL_PartsHelper extends Database_Controller {
 		String qur = "SELECT DISTINCT vehicleType FROM SpareParts";
 
 		try {
-			Statement st = conn.createStatement();
-			ResultSet rs = st.executeQuery(sizequr);
+			PreparedStatement pSt = conn.prepareStatement(sizequr);
+			ResultSet rs = pSt.executeQuery();
 
 			// Get count for returned rows
 			rs.next();
@@ -94,7 +96,7 @@ public class SQL_PartsHelper extends Database_Controller {
 			out = new String[size+1];
 
 			// Get spare parts
-			rs = st.executeQuery(qur);
+			rs = pSt.executeQuery(qur);
 
 			out[0] = "";
 
@@ -107,7 +109,7 @@ public class SQL_PartsHelper extends Database_Controller {
 			}
 
 			rs.close();
-			st.close();
+			pSt.close();
 
 		} catch (SQLException ex) {
 			System.err.println(ex.getMessage());
@@ -123,8 +125,8 @@ public class SQL_PartsHelper extends Database_Controller {
 
 		String[] out;
 		try {
-			Statement st = conn.createStatement();
-			ResultSet rs = st.executeQuery(sizequr);
+			PreparedStatement pSt = conn.prepareStatement(sizequr);
+			ResultSet rs = pSt.executeQuery();
 
 			rs.next();
 			int size = rs.getInt("Count");
@@ -132,7 +134,7 @@ public class SQL_PartsHelper extends Database_Controller {
 
 			out = new String[size];
 
-			rs = st.executeQuery(qur);
+			rs = pSt.executeQuery(qur);
 
 			int i = 0;
 
@@ -163,8 +165,8 @@ public class SQL_PartsHelper extends Database_Controller {
 
 		try {
 			// Get Vehicle make / model
-			Statement st = conn.createStatement();
-			ResultSet rs = st.executeQuery(vehicTypeQur);
+			PreparedStatement pSt = conn.prepareStatement(vehicTypeQur);
+			ResultSet rs = pSt.executeQuery();
 			rs.next();
 
 			String make = rs.getString("make");
@@ -193,8 +195,8 @@ public class SQL_PartsHelper extends Database_Controller {
 		SparePart[] out = null;
 
 		try {
-			Statement st = conn.createStatement();
-			ResultSet rs = st.executeQuery(sizequr);
+			PreparedStatement pSt = conn.prepareStatement(sizequr);
+			ResultSet rs = pSt.executeQuery();
 
 			// Get count for returned rows
 			rs.next();
@@ -204,7 +206,7 @@ public class SQL_PartsHelper extends Database_Controller {
 			out = new SparePart[size];
 
 			// Get spare parts
-			rs = st.executeQuery(qur);
+			rs = pSt.executeQuery(qur);
 
 			int i = 0;
 
@@ -222,7 +224,7 @@ public class SQL_PartsHelper extends Database_Controller {
 				i++;
 			}
 			rs.close();
-			st.close();
+			pSt.close();
 		} catch (SQLException ex) {
 			System.err.println(ex.getMessage());
 		}
@@ -233,10 +235,13 @@ public class SQL_PartsHelper extends Database_Controller {
 
 	// Updates item stock by partID
 	public void updateStock(int stock, String partID) {
-		String qur = String.format("UPDATE SpareParts SET stock = %d WHERE code = '%s'", stock, partID);
 		try {
-			Statement st = conn.createStatement();
-			st.executeUpdate(qur);
+			//SQL sanitization to prevent SQL injection attacks
+			PreparedStatement pSt;
+			pSt = conn.prepareStatement("UPDATE SpareParts SET stock = ? WHERE code = ?");
+			pSt.setInt(1, stock);
+			pSt.setString(2, partID);
+			pSt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -250,8 +255,8 @@ public class SQL_PartsHelper extends Database_Controller {
 		SparePart[] out;
 
 		try {
-			Statement st = conn.createStatement();
-			ResultSet rs = st.executeQuery(sizequr);
+			PreparedStatement pSt = conn.prepareStatement(sizequr);
+			ResultSet rs = pSt.executeQuery();
 
 			rs.next();
 			int size = rs.getInt("Count");
@@ -259,7 +264,7 @@ public class SQL_PartsHelper extends Database_Controller {
 
 			out = new SparePart[size];
 
-			rs = st.executeQuery(qur);
+			rs = pSt.executeQuery(qur);
 
 			int i = 0;
 
@@ -285,10 +290,12 @@ public class SQL_PartsHelper extends Database_Controller {
 
 	// Delete a Part that's assigned to a job (from Job_SpareParts) using partID
 	public void deleteJobPart(int partID) {
-		String qur = "DELETE FROM Job_SpareParts WHERE ID = " + partID;
 		try {
-			Statement st = conn.createStatement();
-			st.executeUpdate(qur);
+			//SQL sanitization to prevent SQL injection attacks
+			PreparedStatement pSt;
+			pSt = conn.prepareStatement("DELETE FROM Job_SpareParts WHERE ID = ?");
+			pSt.setInt(1, partID);
+			pSt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -296,18 +303,19 @@ public class SQL_PartsHelper extends Database_Controller {
 
 	// Update method for part editing gui
 	public boolean updateSparePart(String code, String name, String make, String model, int year, int stock, float price, int threshold) {
-		String qur = String.format("UPDATE SpareParts SET partName = '%s', manufacturer = '%s', vehicleType = '%s', year = %d, stock = %d, price = %f, threshold = %d WHERE code = '%s'",
-				name,
-				make,
-				model,
-				year,
-				stock,
-				price,
-				threshold,
-				code);
 		try {
-			Statement st = conn.createStatement();
-			st.executeUpdate(qur);
+			//SQL sanitization to prevent SQL injection attacks
+			PreparedStatement pSt;
+			pSt = conn.prepareStatement("INSERT INTO Vehicles (registrationNo, make, model, engSerial, chassisNo, colour, MoTDate, CustomercustomerID)" + " VALUES (?,?,?, ?, ?, ?, ?,?)");
+			pSt.setString(1, name);
+			pSt.setString(2, make);
+			pSt.setString(3, model);
+			pSt.setInt(4, year);
+			pSt.setInt(5, stock);
+			pSt.setFloat(6, price);
+			pSt.setInt(7, threshold);
+			pSt.setString(8, code);
+			pSt.executeUpdate();
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
