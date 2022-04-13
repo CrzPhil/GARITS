@@ -1,7 +1,10 @@
 package Job;
 
 import Database.Database_Controller;
+import com.mysql.cj.x.protobuf.MysqlxPrepare;
 
+import javax.xml.transform.Result;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -27,88 +30,21 @@ public class SQL_JobHelper extends Database_Controller {
 		// Since we store status as a tinyint, 1 -> Complete 0 -> Incomplete
 		int jStatus;
 
-		String deleteJob = String.format("DELETE FROM Jobs WHERE jobID = '%d'", JobID);
+
 		Job[] out = null;
 
 		try {
-			Statement st = conn.createStatement();
-			st.executeUpdate(deleteJob);
+			//SQL sanitization to prevent SQL injection attacks
+			PreparedStatement pSt;
+			pSt = conn.prepareStatement("delete from Jobs where jobID = ?");
+			pSt.setInt(1, JobID);
+			pSt.executeUpdate();
 
 		} catch (SQLException ex) {
 			System.err.println(ex.getMessage());
 		}
 
 		return out;
-	}
-
-	public Job[] deleteCompletedJob(int JobID){
-		// Since we store status as a tinyint, 1 -> Complete 0 -> Incomplete
-		int jStatus;
-
-		String deleteJob = String.format("DELETE FROM CompletedJobs WHERE jobID = '%d'", JobID);
-		Job[] out = null;
-
-		try {
-			Statement st = conn.createStatement();
-			st.executeUpdate(deleteJob);
-
-		} catch (SQLException ex) {
-			System.err.println(ex.getMessage());
-		}
-
-		return out;
-	}
-
-	// Update all values in row by jobID
-	// TODO: status -> tinyint
-	public boolean updateCompletedJob(int jobID, String jobType, float duration, String dates, String parts, String motNO, int mileage, float price, String additionalInfo, String status) {
-		// Since we store status as a tinyint, 1 -> Complete 0 -> Incomplete
-		int jStatus;
-		if (Objects.equals(status, "Complete")) {
-			jStatus = 1;
-
-			// Update Row with new values
-			String updateRow = String.format("UPDATE CompletedJobs SET jobType = '%s', duration = %f, dates = '%s', parts = '%s', motNo = '%s', mileage = %d, price = %f, additionalInfo = '%s', status = %d WHERE jobID = %d",
-					jobType,
-					duration,
-					dates,
-					parts,
-					motNO,
-					mileage,
-					price,
-					additionalInfo,
-					jStatus,
-					jobID);
-			try {
-				Statement st = conn.createStatement();
-				st.executeUpdate(updateRow);
-				return true;
-			} catch (SQLException e) {
-				e.printStackTrace();
-				return false;
-			}
-
-
-
-		} else {
-			jStatus = 0;
-
-			// Update Row with new values
-			String deleteRow = String.format("DELETE FROM CompletedJobs WHERE jobID = '%d'", jobID);
-			String sendJob = "INSERT INTO Jobs (jobID, jobType, duration, dates, parts, motNo, mileage, price, additionalInfo, status)";
-			String sendValues = String.format(" VALUES ('%d', '%s', '%f', '%s', '%s', '%s', '%d', '%f', '%s', '%s')", jobID, jobType, duration, dates, parts, motNO, mileage, price, additionalInfo, jStatus);
-
-			try {
-				Statement st = conn.createStatement();
-				st.executeUpdate(deleteRow);
-				st.executeUpdate(sendJob + sendValues);
-				return true;
-			} catch (SQLException e) {
-				e.printStackTrace();
-				return false;
-			}
-		}
-
 	}
 
 	// Update job with new values
@@ -121,22 +57,23 @@ public class SQL_JobHelper extends Database_Controller {
 		} else {
 			jStatus = 0;
 		}
-			// Update Row with new values
-			String updateRow = String.format("UPDATE Jobs SET jobType = '%s', duration = %f, dates = '%s', parts = '%s', motNo = '%s', mileage = %d, price = %f, additionalInfo = '%s', status = %d, mechanicID = %d WHERE jobID = %d",
-					jobType,
-					duration,
-					dates,
-					parts,
-					motNO,
-					mileage,
-					price,
-					additionalInfo,
-					jStatus,
-					mechanicID,
-					jobID);
 			try {
-				Statement st = conn.createStatement();
-				st.executeUpdate(updateRow);
+				//SQL sanitization to prevent SQL injection attacks
+				PreparedStatement pSt;
+				pSt = conn.prepareStatement("UPDATE Jobs SET jobType = ?, duration = ?, dates = ?, parts = ?, motNo = ?, mileage = ?, price = ?, additionalInfo = ?, status = ?, mechanicID = ? WHERE jobID = ?");
+				pSt.setString(1, jobType);
+				pSt.setFloat(2, duration);
+				pSt.setString(3, dates);
+				pSt.setString(4, parts);
+				pSt.setString(5, motNO);
+				pSt.setInt(6, mileage);
+				pSt.setFloat(7, price);
+				pSt.setString(8, additionalInfo);
+				pSt.setInt(9, jStatus);
+				pSt.setLong(10, mechanicID);
+				pSt.setInt(11, jobID);
+
+				pSt.executeUpdate();
 				return true;
 
 			} catch (SQLException e) {
@@ -156,24 +93,23 @@ public class SQL_JobHelper extends Database_Controller {
 			jStatus = 0;
 		}
 
-		String sendJob = "INSERT INTO Jobs (jobType, duration, dates, parts, motNo, mileage, price, additionalInfo, status, registrationNo)";
-		String sendValues = String.format(" VALUES ('%s', '%f', '%s', '%s', '%s', '%d', '%f', '%s', '%s', '%s')",
-				jobType,
-				duration,
-				dates,
-				parts,
-				motNO,
-				mileage,
-				price,
-				additionalInfo,
-				jStatus,
-				regNo);
-
 		Job[] out = null;
 
 		try {
-			Statement st = conn.createStatement();
-			st.executeUpdate(sendJob + sendValues);
+			//SQL sanitization to prevent SQL injection attacks
+			PreparedStatement pSt;
+			pSt = conn.prepareStatement("INSERT INTO Jobs (jobType, duration, dates, parts, motNo, mileage, price, additionalInfo, status, registrationNo)" + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+			pSt.setString(1, jobType);
+			pSt.setFloat(2, duration);
+			pSt.setString(3, dates);
+			pSt.setString(4, parts);
+			pSt.setString(5, motNO);
+			pSt.setInt(6, mileage);
+			pSt.setFloat(7, price);
+			pSt.setString(8, additionalInfo);
+			pSt.setInt(9, jStatus);
+			pSt.setString(10, regNo);
+			pSt.executeUpdate();
 
 		} catch (SQLException ex) {
 			System.err.println(ex.getMessage());
@@ -191,8 +127,9 @@ public class SQL_JobHelper extends Database_Controller {
 		String qur = "SELECT * FROM Jobs WHERE status = 0";
 
 		try {
-			Statement st = conn.createStatement();
-			ResultSet rs = st.executeQuery(sizequr);
+			//SQL sanitization to prevent SQL injection attacks
+			PreparedStatement pSt = conn.prepareStatement(sizequr);
+			ResultSet rs = pSt.executeQuery();
 
 			// Get count for returned rows
 			rs.next();
@@ -202,7 +139,7 @@ public class SQL_JobHelper extends Database_Controller {
 			out = new Job[size];
 
 			// Get Job
-			rs = st.executeQuery(qur);
+			rs = pSt.executeQuery(qur);
 
 			int i = 0;
 
@@ -223,7 +160,7 @@ public class SQL_JobHelper extends Database_Controller {
 				i++;
 			}
 			rs.close();
-			st.close();
+			pSt.close();
 		} catch (SQLException ex) {
 			System.err.println(ex.getMessage());
 		}
@@ -242,8 +179,8 @@ public class SQL_JobHelper extends Database_Controller {
 		String qur = "SELECT * FROM Jobs WHERE status = 1";
 
 		try {
-			Statement st = conn.createStatement();
-			ResultSet rs = st.executeQuery(sizequr);
+			PreparedStatement pSt = conn.prepareStatement(sizequr);
+			ResultSet rs = pSt.executeQuery();
 
 			// Get count for returned rows
 			rs.next();
@@ -253,7 +190,7 @@ public class SQL_JobHelper extends Database_Controller {
 			out = new Job[size];
 
 			// Get Job
-			rs = st.executeQuery(qur);
+			rs = pSt.executeQuery(qur);
 
 			int i = 0;
 
@@ -274,7 +211,7 @@ public class SQL_JobHelper extends Database_Controller {
 				i++;
 			}
 			rs.close();
-			st.close();
+			pSt.close();
 		} catch (SQLException ex) {
 			System.err.println(ex.getMessage());
 		}
@@ -307,10 +244,14 @@ public class SQL_JobHelper extends Database_Controller {
 
 	// Create a job-part entry in the Job_SpareParts Table
 	public void addToJob(int jobID, String partCode) {
-		String qur = String.format("INSERT INTO Job_SpareParts(jobID, partCode) VALUES (%d,'%s')", jobID, partCode);
 		try {
-			Statement st = conn.createStatement();
-			st.executeUpdate(qur);
+			//SQL sanitization to prevent SQL injection attacks
+			PreparedStatement pSt;
+			pSt = conn.prepareStatement("INSERT INTO Job_SpareParts(jobID, partCode) VALUES (?,?)");
+			pSt.setInt(1, jobID);
+			pSt.setString(2, partCode);
+			pSt.executeUpdate();
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

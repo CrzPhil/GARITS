@@ -1,19 +1,22 @@
 import Accounts.HashClass;
 import Accounts.SQL_UserHelper;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileInputStream;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-public class LoginGUI extends JFrame{
+public class LoginGUI extends JFrame {
     public JPanel Main;
     private JPasswordField txtPassword;
     private JTextField txtUsername;
     private JButton enterButton;
+    private JLabel logoLabel;
     private JButton administratorAccessButton;
     private static LoginGUI j = new LoginGUI();
     public static char access;
@@ -89,7 +92,7 @@ public class LoginGUI extends JFrame{
         return role;
     }
 
-    public static void main(){
+    public static void main() {
 
         j.setContentPane(new LoginGUI().Main);
         j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -101,4 +104,5 @@ public class LoginGUI extends JFrame{
         j.setLocationRelativeTo(null);
         j.setVisible(true);
     }
+
 }

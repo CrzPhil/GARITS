@@ -63,12 +63,12 @@ public class UserAccountCreationGUI extends JFrame {
         Accounts_Controller controller = new Accounts_Controller();
 
         if (!controller.validateName(firstNameField.getText())) {
-            JOptionPane.showMessageDialog(null, "First name is not valid.");
+            JOptionPane.showMessageDialog(null, "Please include first name.");
             return false;
         }
 
         if (!controller.validateName(lastNameField.getText())) {
-            JOptionPane.showMessageDialog(null, "Last name is not valid.");
+            JOptionPane.showMessageDialog(null, "Please include last name.");
             return false;
         }
 

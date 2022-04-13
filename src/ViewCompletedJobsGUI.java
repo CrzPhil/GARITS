@@ -17,6 +17,7 @@ public class ViewCompletedJobsGUI extends JFrame{
     private JList jobList;
     private JLabel titleLabel;
     private JButton generateInvoiceButton;
+    private JButton makePaymentButton;
     private static ViewCompletedJobsGUI j = new ViewCompletedJobsGUI();
     private Job selectedJob = null;
 
@@ -44,6 +45,12 @@ public class ViewCompletedJobsGUI extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                DisplayInvoiceGUI.main();
+            }
+        });
+        makePaymentButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                PaymentGUI.main();
             }
         });
     }
