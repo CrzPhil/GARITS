@@ -39,7 +39,7 @@ public class LoginGUI extends JFrame {
                             AdminDashboardGUI.main();
                             access = 'A';
                             break;
-                        case "Foreman":
+                        case "Foreperson":
                             ForepersonDashboardGUI.main();
                             access = 'F';
                             break;
