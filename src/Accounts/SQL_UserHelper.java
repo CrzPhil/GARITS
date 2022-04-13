@@ -2,6 +2,7 @@ package Accounts;
 
 import Database.Database_Controller;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -29,14 +30,14 @@ public class SQL_UserHelper extends Database_Controller {
 		boolean login = false;
 
 		try {
-			Statement st = conn.createStatement();
-			ResultSet rs = st.executeQuery(qur);
+			PreparedStatement pSt = conn.prepareStatement(qur);
+			ResultSet rs = pSt.executeQuery();
 
 			rs.next();
 
 			login = rs.getInt("Count") == 1;
 
-			st.close();
+			pSt.close();
 			rs.close();
 		} catch (SQLException ex) {
 			System.err.println(ex.getMessage());
@@ -51,15 +52,15 @@ public class SQL_UserHelper extends Database_Controller {
 		String role = null;
 
 		try {
-			Statement st = conn.createStatement();
-			ResultSet rs = st.executeQuery(qur);
+			PreparedStatement pSt = conn.prepareStatement(qur);
+			ResultSet rs = pSt.executeQuery();
 
 			rs.next();
 
 			role = rs.getString("role");
 
 			rs.close();
-			st.close();
+			pSt.close();
 		} catch (SQLException ex) {
 			System.err.println(ex.getMessage());
 		}
@@ -73,8 +74,8 @@ public class SQL_UserHelper extends Database_Controller {
 		String qur = String.format("SELECT * FROM Staff WHERE role LIKE '%s'", role);
 		User[] out = null;
 		try {
-			Statement st = conn.createStatement();
-			ResultSet rs = st.executeQuery(getsize);
+			PreparedStatement pSt = conn.prepareStatement(getsize);
+			ResultSet rs = pSt.executeQuery();
 
 			// Get count for the returned rows to match the array to that size (WIP)
 			rs.next();
@@ -84,7 +85,7 @@ public class SQL_UserHelper extends Database_Controller {
 			out = new User[size];
 
 			// Get users
-			rs = st.executeQuery(qur);
+			rs = pSt.executeQuery(qur);
 
 			int i = 0;
 			String name;
@@ -171,15 +172,15 @@ public class SQL_UserHelper extends Database_Controller {
 		String qur = String.format("SELECT staffID FROM Staff WHERE username LIKE '%s'", username);
 
 		try {
-			Statement st = conn.createStatement();
-			ResultSet rs = st.executeQuery(qur);
+			PreparedStatement pSt = conn.prepareStatement(qur);
+			ResultSet rs = pSt.executeQuery();
 
 			rs.next();
 
 			long id = rs.getLong("staffID");
 
 			rs.close();
-			st.close();
+			pSt.close();
 
 			return id;
 
@@ -194,15 +195,15 @@ public class SQL_UserHelper extends Database_Controller {
 		String qur = String.format("SELECT password FROM Staff WHERE username LIKE '%s'", username);
 
 		try {
-			Statement st = conn.createStatement();
-			ResultSet rs = st.executeQuery(qur);
+			PreparedStatement pSt = conn.prepareStatement(qur);
+			ResultSet rs = pSt.executeQuery();
 
 			rs.next();
 
 			String hashedpass = rs.getString("password");
 
 			rs.close();
-			st.close();
+			pSt.close();
 
 			return hashedpass;
 
@@ -214,8 +215,8 @@ public class SQL_UserHelper extends Database_Controller {
 
 	private String getStaffName(String getsize, String qur) {
 		try {
-			Statement st = conn.createStatement();
-			ResultSet rs = st.executeQuery(getsize);
+			PreparedStatement pSt = conn.prepareStatement(getsize);
+			ResultSet rs = pSt.executeQuery();
 
 			// Get count for the returned rows to match the array to that size (WIP)
 			rs.next();
@@ -224,7 +225,7 @@ public class SQL_UserHelper extends Database_Controller {
 
 			String name = null;
 
-			rs = st.executeQuery(qur);
+			rs = pSt.executeQuery(qur);
 
 			rs.next();
 
@@ -234,7 +235,7 @@ public class SQL_UserHelper extends Database_Controller {
 			}
 
 			rs.close();
-			st.close();
+			pSt.close();
 
 			return name;
 
@@ -249,18 +250,17 @@ public class SQL_UserHelper extends Database_Controller {
 		HashClass hasher = new HashClass();
 		String hashedpass = hasher.chartosha256(password);
 
-		String qur = String.format("INSERT INTO Staff(firstName, lastName, role, username, password, hourlyRate, email)" +
-						" VALUES('%s','%s','%s','%s', '%s', %d, '%s')",
-				fname,
-				lname,
-				role,
-				username,
-				hashedpass,
-				Integer.valueOf(rate),
-				mail);
 		try {
-			Statement st = conn.createStatement();
-			st.executeUpdate(qur);
+			PreparedStatement pSt;
+			pSt = conn.prepareStatement("INSERT INTO Staff(firstName, lastName, role, username, password, hourlyRate, email)" + " VALUES(?, ?, ?, ?, ?, ?, ?)");
+			pSt.setString(1, fname);
+			pSt.setString(2, lname);
+			pSt.setString(3, role);
+			pSt.setString(4, username);
+			pSt.setString(5, hashedpass);
+			pSt.setInt(6, Integer.valueOf(rate));
+			pSt.setString(7, mail);
+			pSt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -269,9 +269,11 @@ public class SQL_UserHelper extends Database_Controller {
 	public void deleteStaff(long userID) {
 			String qur = String.format("DELETE FROM Staff WHERE staffID = %d", userID);
 			try {
-				Statement st = conn.createStatement();
-				st.executeUpdate(qur);
-				st.close();
+				//SQL sanitization to prevent SQL injection attacks
+				PreparedStatement pSt;
+				pSt = conn.prepareStatement("DELETE FROM Staff WHERE staffID = ?");
+				pSt.setLong(1, userID);
+				pSt.executeUpdate();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -280,32 +282,42 @@ public class SQL_UserHelper extends Database_Controller {
 	public boolean updateStaff(String fname, String lname, String username, String role, String rate, String mail, long staffID)	{
 		String qur;
 		if (rate.equals("NULL")) {
-			qur = String.format("UPDATE Staff SET firstName = '%s', lastName = '%s', role = '%s', username = '%s', hourlyRate = NULL, email = '%s' WHERE staffID = %d",
-					fname,
-					lname,
-					role,
-					username,
-					mail,
-					staffID);
+			try {
+				PreparedStatement pSt;
+				pSt = conn.prepareStatement("UPDATE Staff SET firstName = ?, lastName = ?, role = ?, username = ?, hourlyRate = NULL, email = ? WHERE staffID = ?");
+				pSt.setString(1, fname);
+				pSt.setString(2, lname);
+				pSt.setString(3, role);
+				pSt.setString(4, username);
+				pSt.setString(5, mail);
+				pSt.setLong(6, staffID);
+				pSt.executeUpdate();
+
+				return true;
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return false;
+			}
 		} else {
-			qur = String.format("UPDATE Staff SET firstName = '%s', lastName = '%s', role = '%s', username = '%s', hourlyRate = %d, email = '%s' WHERE staffID = %d",
-					fname,
-					lname,
-					role,
-					username,
-					Integer.parseInt(rate),
-					mail,
-					staffID);
+			try {
+				PreparedStatement pSt;
+				pSt = conn.prepareStatement("UPDATE Staff SET firstName = ?, lastName = ?, role = ?, username = ?, hourlyRate = ?, email = ? WHERE staffID = ?");
+				pSt.setString(1, fname);
+				pSt.setString(2, lname);
+				pSt.setString(3, role);
+				pSt.setString(4, username);
+				pSt.setInt(5, Integer.parseInt(rate));
+				pSt.setString(6, mail);
+				pSt.setLong(7, staffID);
+				pSt.executeUpdate();
+
+				return true;
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return false;
+			}
 		}
-		try {
-			Statement st = conn.createStatement();
-			st.executeUpdate(qur);
-			st.close();
-			return true;
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return false;
-		}
+
 	}
 
 	public boolean updatePassword(long staffID, char[] newpass) {
@@ -315,8 +327,12 @@ public class SQL_UserHelper extends Database_Controller {
 		String qur = String.format("UPDATE Staff SET password = '%s' WHERE staffID = %d", hashedpass, staffID);
 
 		try {
-			Statement st = conn.createStatement();
-			st.executeUpdate(qur);
+			//SQL sanitization to prevent SQL injection attacks
+			PreparedStatement pSt;
+			pSt = conn.prepareStatement("UPDATE Staff SET password = ? WHERE staffID = ?");
+			pSt.setString(1, hashedpass);
+			pSt.setLong(2, staffID);
+			pSt.executeUpdate();
 			return true;
 
 		} catch (SQLException e) {

@@ -2,6 +2,7 @@ package Customers;
 
 import Database.Database_Controller;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -27,8 +28,8 @@ public class SQL_VehicleHelper extends Database_Controller {
 		String qur = String.format("SELECT * FROM Vehicles WHERE CustomercustomerID = %d", customer.getCustomerID());
 
 		try {
-			Statement st = conn.createStatement();
-			ResultSet rs = st.executeQuery(sizequr);
+			PreparedStatement pSt = conn.prepareStatement(sizequr);
+			ResultSet rs = pSt.executeQuery();
 
 			// Get count for returned rows
 			rs.next();
@@ -37,7 +38,7 @@ public class SQL_VehicleHelper extends Database_Controller {
 
 			out = new Vehicle[size];
 
-			rs = st.executeQuery(qur);
+			rs = pSt.executeQuery(qur);
 
 			int i = 0;
 
@@ -64,8 +65,8 @@ public class SQL_VehicleHelper extends Database_Controller {
 		String qur = String.format("SELECT COUNT(*) AS Count FROM Vehicles WHERE registrationNo = '%s'", regNo);
 		boolean exists = false;
 		try {
-			Statement st = conn.createStatement();
-			ResultSet rs = st.executeQuery(qur);
+			PreparedStatement pSt = conn.prepareStatement(qur);
+			ResultSet rs = pSt.executeQuery();
 			rs.next();
 
 			if (rs.getInt("Count") == 1) {
@@ -73,7 +74,7 @@ public class SQL_VehicleHelper extends Database_Controller {
 			}
 
 			rs.close();
-			st.close();
+			pSt.close();
 
 			return exists;
 		} catch (SQLException e) {
@@ -83,23 +84,23 @@ public class SQL_VehicleHelper extends Database_Controller {
 	}
 
 	public boolean createVehicle(Vehicle vehicle) {
-		String addVehicle = "INSERT INTO Vehicles (registrationNo, make, model, engSerial, chassisNo, colour, MoTDate, CustomercustomerID)";
 		// Format date correctly (DD/MM/YYYY)
 		String datePart = "STR_TO_DATE('" + vehicle.getMotDate() + "', \"%d/%m/%Y\")";
-		String sendValues = String.format(" VALUES ('%s','%s','%s','%s','%s','%s', %s,%d)",
-				vehicle.getRegistrationNumber(),
-				vehicle.getMake(),
-				vehicle.getModel(),
-				vehicle.getEngSerial(),
-				vehicle.getChassisNumber(),
-				vehicle.getColour(),
-				datePart,
-				vehicle.getCustomer().getCustomerID());
 
 		try {
-			Statement st = conn.createStatement();
-			st.executeUpdate(addVehicle + sendValues);
-			st.close();
+			//SQL sanitization to prevent SQL injection attacks
+			PreparedStatement pSt;
+			pSt = conn.prepareStatement("INSERT INTO Vehicles (registrationNo, make, model, engSerial, chassisNo, colour, MoTDate, CustomercustomerID)" + " VALUES (?,?,?, ?, ?, ?, ?,?)");
+			pSt.setString(1, vehicle.getRegistrationNumber());
+			pSt.setString(2, vehicle.getMake());
+			pSt.setString(3, vehicle.getModel());
+			pSt.setString(4, vehicle.getEngSerial());
+			pSt.setString(5, vehicle.getChassisNumber());
+			pSt.setString(6, vehicle.getColour());
+			pSt.setString(7, datePart);
+			pSt.setLong(8, vehicle.getCustomer().getCustomerID());
+			pSt.executeUpdate();
+
 			return true;
 
 		} catch (SQLException ex) {
@@ -109,10 +110,13 @@ public class SQL_VehicleHelper extends Database_Controller {
 	}
 
 	public boolean deleteVehicle(String reNo) {
-		String qur = String.format("DELETE FROM Vehicles WHERE registrationNo = '%s'", reNo);
 		try {
-			Statement st = conn.createStatement();
-			st.executeUpdate(qur);
+			//SQL sanitization to prevent SQL injection attacks
+			PreparedStatement pSt;
+			pSt = conn.prepareStatement("DELETE FROM Vehicles WHERE registrationNo = ?");
+			pSt.setString(1, reNo);
+			pSt.executeUpdate();
+
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -122,18 +126,20 @@ public class SQL_VehicleHelper extends Database_Controller {
 
 	public boolean updateVehicle(String regNo, String make, String model, String engSerial, String chassisNo, String colour, String motDate, long customerID) {
 		String datePart = "STR_TO_DATE('" + motDate + "', \"%Y-%m-%d\")";
-		String qur = String.format("UPDATE Vehicles SET registrationNo = '%s', make = '%s', model = '%s', engSerial = '%s', chassisNo = '%s', colour = '%s', MoTDate = %s WHERE CustomercustomerID = %d",
-				regNo,
-				make,
-				model,
-				engSerial,
-				chassisNo,
-				colour,
-				datePart,
-				customerID);
 		try {
-			Statement st = conn.createStatement();
-			st.executeUpdate(qur);
+			//SQL sanitization to prevent SQL injection attacks
+			PreparedStatement pSt;
+			pSt = conn.prepareStatement("UPDATE Vehicles SET registrationNo = ?, make = ?, model = ?, engSerial = ?, chassisNo = ?, colour = ?, MoTDate = ? WHERE CustomercustomerID = ?");
+			pSt.setString(1, regNo);
+			pSt.setString(2, make);
+			pSt.setString(3, model);
+			pSt.setString(4, engSerial);
+			pSt.setString(5, chassisNo);
+			pSt.setString(6, colour);
+			pSt.setString(7, datePart);
+			pSt.setLong(8, customerID);
+			pSt.executeUpdate();
+
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
