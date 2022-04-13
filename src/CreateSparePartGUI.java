@@ -114,7 +114,7 @@ public class CreateSparePartGUI extends JFrame {
     public static void main(){
         j.setContentPane(new CreateSparePartGUI().Main);
         j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        j.setTitle("Job Creation Menu");
+        j.setTitle("Spare Part Creation Menu");
         Image icon = Toolkit.getDefaultToolkit().getImage("data/logo.png");
         j.setIconImage(icon);
         j.setPreferredSize(new Dimension(800,480));

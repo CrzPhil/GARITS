@@ -12,6 +12,7 @@ public class SparePart {
 	private int year;
 	private int stock;
 	private double price;
+	private int threshold;
 
 	/**
 	 *
@@ -20,7 +21,7 @@ public class SparePart {
 	 * @param name
 	 * @param year
 	 */
-	public SparePart(String partCode, String name, String manufacturer, String type, int year, int stock, double price) {
+	public SparePart(String partCode, String name, String manufacturer, String type, int year, int stock, double price, int threshold) {
 		this.type = type;
 		this.name = name;
 		this.year = year;
@@ -28,6 +29,7 @@ public class SparePart {
 		this.stock = stock;
 		this.price = price;
 		this.partCode = partCode;
+		this.threshold = threshold;
 	}
 
 	// Second constructor for when used in unison with a job.
@@ -47,6 +49,14 @@ public class SparePart {
 	public String toString() {
 		return this.name + " " + this.manufacturer + " " +
 				this.type + " " + this.year + " ￡" + this.price + " Stock: " + this.stock;
+	}
+
+	public int getThreshold() {
+		return threshold;
+	}
+
+	public void setThreshold(int threshold) {
+		this.threshold = threshold;
 	}
 
 	public String getType() {
@@ -88,7 +98,7 @@ public class SparePart {
 
 	// Used when displaying Spare Parts in GUI, when creating the JTable
 	public String[] toData() {
-		return new String[]{this.partCode, this.name, this.manufacturer, this.type, String.valueOf(this.year), String.valueOf(this.stock), String.valueOf(this.price)};
+		return new String[]{this.partCode, this.name, this.manufacturer, this.type, String.valueOf(this.year), String.valueOf(this.stock), String.valueOf(this.price), String.valueOf(this.threshold)};
 	}
 
 	public boolean orderPart() {

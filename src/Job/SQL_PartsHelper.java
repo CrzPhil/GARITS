@@ -183,7 +183,8 @@ public class SQL_PartsHelper extends Database_Controller {
 						rs.getString("vehicleType"),
 						rs.getInt("year"),
 						rs.getInt("stock"),
-						rs.getDouble("price")
+						rs.getDouble("price"),
+						rs.getInt("threshold")
 				);
 				i++;
 			}

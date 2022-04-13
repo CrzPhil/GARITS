@@ -1,15 +1,20 @@
+import Job.SQL_PartsHelper;
+import Job.SparePart;
+
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import Job.SQL_PartsHelper;
-import Job.SparePart;
 
 public class SearchResultsGUI extends JFrame{
     JPanel Main;
     private JButton returnButton;
     private JTable resultTable;
     private JScrollPane scrollPane;
+    private JButton editItemButton;
+    private JButton incrementStockButton;
+    private JButton decrementStockButton;
     private static SearchResultsGUI j = new SearchResultsGUI();
     private String partName;
     private String typeName;
@@ -40,6 +45,29 @@ public class SearchResultsGUI extends JFrame{
 
             }
         });
+
+        editItemButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int row = resultTable.getSelectedRow();
+                // If nothing is selected, getSelectedRow() returns -1
+                if (row != -1) {
+                    // Call edit GUI with selected row's details
+                    EditSparePartGUI.main(new SparePart(
+                            resultTable.getModel().getValueAt(row, 0).toString(),
+                            resultTable.getModel().getValueAt(row, 1).toString(),
+                            resultTable.getModel().getValueAt(row, 2).toString(),
+                            resultTable.getModel().getValueAt(row, 3).toString(),
+                            Integer.parseInt(resultTable.getModel().getValueAt(row, 4).toString()),
+                            Integer.parseInt(resultTable.getModel().getValueAt(row, 5).toString()),
+                            Float.parseFloat(resultTable.getModel().getValueAt(row, 6).toString()),
+                            Integer.parseInt(resultTable.getModel().getValueAt(row, 7).toString())));
+                    j.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Select a part first!");
+                }
+            }
+        });
     }
 
     public static void main(){
@@ -65,8 +93,8 @@ public class SearchResultsGUI extends JFrame{
     }
 
     private String[][] prepareData(SparePart[] data) {
-        // 7 is attribute count of a spare part
-        String[][] out = new String[data.length][7] ;
+        // 8 is attribute count of a spare part
+        String[][] out = new String[data.length][8] ;
         int i = 0;
         for (SparePart part : data) {
             out[i] = part.toData();
@@ -85,19 +113,30 @@ public class SearchResultsGUI extends JFrame{
                 "Vehicle Type",
                 "Year",
                 "Stock",
-                "Price"
+                "Price",
+                "Threshold"
         };
         SparePart[] data = getParts();
 
-        resultTable = new JTable(prepareData(data), columnNames);
+        //instance table model -> Disable editable cells.
+        DefaultTableModel tableModel = new DefaultTableModel(prepareData(data), columnNames) {
+
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                //all cells false
+                return false;
+            }
+        };
+        resultTable = new JTable();
+        resultTable.setModel(tableModel);
 
         scrollPane = new JScrollPane(resultTable);
         resultTable.setFillsViewportHeight(true);
     }
 
+    // Get All parts by previous' GUI's search parameter
     private SparePart[] getParts() {
         SQL_PartsHelper helper = new SQL_PartsHelper();
-        // TODO: Get text from previous Panel and search accordingly
         return helper.getPartByIdName(this.partName);
     }
 
