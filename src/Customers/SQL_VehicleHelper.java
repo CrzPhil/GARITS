@@ -135,7 +135,6 @@ public class SQL_VehicleHelper extends Database_Controller {
 			pSt.setString(5, chassisNo);
 			pSt.setString(6, colour);
 			pSt.setLong(7, customerID);
-			System.out.println(pSt);
 
 			pSt.executeUpdate();
 
