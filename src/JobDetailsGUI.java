@@ -373,13 +373,6 @@ public class JobDetailsGUI extends JFrame{
             // TODO: filter this to become vehicle-specific (manufacturer/model)
             partSelectBox = new JComboBox<>(controller.getSpecificParts(job.getRegNo()));
 
-            SparePart[] test = controller.getAllParts();
-            if (test != null) {
-                for (SparePart t : test) {
-                    System.out.println(t.getPartCode());
-                }
-            }
-
             Accounts_Controller accountController = new Accounts_Controller();
             mechanicBox = new JComboBox<User>(accountController.getMechanics());
 
