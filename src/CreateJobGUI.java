@@ -87,40 +87,31 @@ public class CreateJobGUI extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                if (!checkNumber(priceField.getText())) {
-                    JOptionPane.showMessageDialog(null, "Price has to be in the format: 12.34");
-                } else if (!checkNumber(durationField.getText())) {
-                    JOptionPane.showMessageDialog(null, "Duration is stored in hours, using the format: 1.5");
-                } else {
-                    // TODO: Check if records are empty
-                    Job_Controller controller = new Job_Controller();
-                    String jobType = (String) jobTypeBox.getSelectedItem();
-                    float duration = Float.parseFloat(durationField.getText());
-                    String dates = String.valueOf(jDateChooser.getDate());
-                    String parts = "";
-                    String motNo = motField.getText();
-                    int mileage = Integer.parseInt(mileageField.getText());
-                    float price = Float.parseFloat(priceField.getText());
-                    String additionalInfo = detailsField.getText();
 
-                    // Create Job in DB
-                    controller.sendData(jobType, duration, dates, parts, motNo, mileage, price, additionalInfo, "Incomplete", regNoField.getText());
-
-                    // Get ID of newly created Job
-                    int jobID = controller.getJobID(jobType, duration, dates, parts, motNo, mileage, price, additionalInfo, "Incomplete", regNoField.getText());
-
-                    // Add Parts from List to Job (Job_SpareParts)
-                    for(int i = 0; i< partList.getModel().getSize();i++){
-                        controller.addToJob(jobID, ((SparePart) partList.getModel().getElementAt(i)).getPartCode());
-                    }
-
-                    j.dispose();
-                    if (LoginGUI.access == 'F') {
-                        ForepersonDashboardGUI.main();
-                    } else {
-                        JobSelectionGUI.main();
-                    }
+                // TODO: Check if records are empty
+                Job_Controller controller = new Job_Controller();
+                String jobType = (String) jobTypeBox.getSelectedItem();
+                float duration = Float.parseFloat(durationField.getText());
+                String dates = String.valueOf(jDateChooser.getDate());
+                String parts = "";
+                String motNo = motField.getText();
+                int mileage = Integer.parseInt(mileageField.getText());
+                String additionalInfo = detailsField.getText();
+                // Create Job in DB
+                controller.sendData(jobType, duration, dates, parts, motNo, mileage, additionalInfo, "Incomplete", regNoField.getText());
+                // Get ID of newly created Job
+                int jobID = controller.getJobID(jobType, duration, dates, parts, motNo, mileage, additionalInfo, "Incomplete", regNoField.getText());
+                // Add Parts from List to Job (Job_SpareParts)
+                for(int i = 0; i< partList.getModel().getSize();i++){
+                    controller.addToJob(jobID, ((SparePart) partList.getModel().getElementAt(i)).getPartCode());
                 }
+                j.dispose();
+                if (LoginGUI.access == 'F') {
+                    ForepersonDashboardGUI.main();
+                } else {
+                    JobSelectionGUI.main();
+                }
+
             }
         });
         // TODO: Make this more readable

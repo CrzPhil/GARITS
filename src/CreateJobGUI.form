@@ -113,25 +113,6 @@
           <text value="Job Duration"/>
         </properties>
       </component>
-      <component id="a8fb6" class="javax.swing.JTextField" binding="priceField">
-        <constraints>
-          <grid row="11" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-            <preferred-size width="262" height="30"/>
-          </grid>
-        </constraints>
-        <properties/>
-      </component>
-      <component id="2feb4" class="javax.swing.JLabel">
-        <constraints>
-          <grid row="10" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <background color="-1114625"/>
-          <font name="Yu Gothic UI Semibold" size="14"/>
-          <foreground color="-1114625"/>
-          <text value="Job Price"/>
-        </properties>
-      </component>
       <component id="6be09" class="javax.swing.JLabel">
         <constraints>
           <grid row="13" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
@@ -171,27 +152,6 @@
           <font name="Yu Gothic UI Semibold" size="14"/>
           <foreground color="-1114625"/>
           <text value="Mileage"/>
-        </properties>
-      </component>
-      <component id="9cb8d" class="javax.swing.JTextField" binding="regNoField">
-        <constraints>
-          <grid row="14" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="3" indent="0" use-parent-layout="false">
-            <preferred-size width="262" height="30"/>
-          </grid>
-        </constraints>
-        <properties>
-          <text value=""/>
-        </properties>
-      </component>
-      <component id="5894b" class="javax.swing.JLabel">
-        <constraints>
-          <grid row="13" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <background color="-1114625"/>
-          <font name="Yu Gothic UI Semibold" size="14"/>
-          <foreground color="-1114625"/>
-          <text value="Registration Number"/>
         </properties>
       </component>
       <hspacer id="f6e6f">
@@ -346,6 +306,27 @@
           <font name="Yu Gothic UI Semibold" size="12"/>
           <foreground color="-16777216"/>
           <text value="Delete Part"/>
+        </properties>
+      </component>
+      <component id="5894b" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="10" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-1114625"/>
+          <font name="Yu Gothic UI Semibold" size="14"/>
+          <foreground color="-1114625"/>
+          <text value="Registration Number"/>
+        </properties>
+      </component>
+      <component id="9cb8d" class="javax.swing.JTextField" binding="regNoField">
+        <constraints>
+          <grid row="11" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="3" indent="0" use-parent-layout="false">
+            <preferred-size width="262" height="30"/>
+          </grid>
+        </constraints>
+        <properties>
+          <text value=""/>
         </properties>
       </component>
     </children>

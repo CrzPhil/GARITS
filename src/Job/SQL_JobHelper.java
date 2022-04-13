@@ -84,7 +84,7 @@ public class SQL_JobHelper extends Database_Controller {
 
 
 	// TODO: Modify type / Add to controller
-	public Job[] createJob(String jobType, float duration, String dates, String parts, String motNO, int mileage, float price, String additionalInfo, String status, String regNo){
+	public Job[] createJob(String jobType, float duration, String dates, String parts, String motNO, int mileage, String additionalInfo, String status, String regNo){
 		// Since we store status as a tinyint, 1 -> Complete 0 -> Incomplete
 		int jStatus;
 		if (Objects.equals(status, "Complete")) {
@@ -98,17 +98,16 @@ public class SQL_JobHelper extends Database_Controller {
 		try {
 			//SQL sanitization to prevent SQL injection attacks
 			PreparedStatement pSt;
-			pSt = conn.prepareStatement("INSERT INTO Jobs (jobType, duration, dates, parts, motNo, mileage, price, additionalInfo, status, registrationNo)" + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+			pSt = conn.prepareStatement("INSERT INTO Jobs (jobType, duration, dates, parts, motNo, mileage, additionalInfo, status, registrationNo)" + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
 			pSt.setString(1, jobType);
 			pSt.setFloat(2, duration);
 			pSt.setString(3, dates);
 			pSt.setString(4, parts);
 			pSt.setString(5, motNO);
 			pSt.setInt(6, mileage);
-			pSt.setFloat(7, price);
-			pSt.setString(8, additionalInfo);
-			pSt.setInt(9, jStatus);
-			pSt.setString(10, regNo);
+			pSt.setString(7, additionalInfo);
+			pSt.setInt(8, jStatus);
+			pSt.setString(9, regNo);
 			pSt.executeUpdate();
 
 		} catch (SQLException ex) {
@@ -220,20 +219,19 @@ public class SQL_JobHelper extends Database_Controller {
 		return out;
 	}
 
-	public int getJobID(String jobType, float duration, String dates, String parts, String motNo, int mileage, float price, String additionalInfo, String completionStatus, String regNo) {
-		String qur = String.format("SELECT jobID FROM Jobs WHERE jobType = '%s' AND duration = %f AND dates = '%s' AND motNo = '%s' AND mileage = %d AND price = %f AND additionalinfo = '%s' AND status = '%s' AND registrationNo = '%s'",
+	public int getJobID(String jobType, float duration, String dates, String parts, String motNo, int mileage, String additionalInfo, String completionStatus, String regNo) {
+		String qur = String.format("SELECT jobID FROM Jobs WHERE jobType = '%s' AND duration = %f AND dates = '%s' AND motNo = '%s' AND mileage = %d AND additionalinfo = '%s' AND status = '%s' AND registrationNo = '%s'",
 				jobType,
 				duration,
 				dates,
 				motNo,
 				mileage,
-				price,
 				additionalInfo,
 				completionStatus,
 				regNo);
 		try {
-			Statement st = conn.createStatement();
-			ResultSet rs = st.executeQuery(qur);
+			PreparedStatement pSt = conn.prepareStatement(qur);
+			ResultSet rs = pSt.executeQuery();
 			rs.next();
 			return rs.getInt("jobID");
 		} catch (SQLException e) {

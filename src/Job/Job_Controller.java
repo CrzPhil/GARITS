@@ -126,8 +126,8 @@ public class Job_Controller implements I_Job {
 		return jobHelper.getCompletedJobs();
 	}
 
-	public int getJobID(String jobType, float duration, String dates, String parts, String motNo, int mileage, float price, String additionalInfo, String completionStatus, String regNo) {
-		return jobHelper.getJobID(jobType, duration, dates, parts, motNo, mileage, price, additionalInfo, completionStatus, regNo);
+	public int getJobID(String jobType, float duration, String dates, String parts, String motNo, int mileage, String additionalInfo, String completionStatus, String regNo) {
+		return jobHelper.getJobID(jobType, duration, dates, parts, motNo, mileage, additionalInfo, completionStatus, regNo);
 	}
 
 	public String[] getPartNames() {
@@ -148,8 +148,8 @@ public class Job_Controller implements I_Job {
 	}
 
 	// Send job creation data
-	public void sendData(String jobType, float duration, String dates, String parts, String motNo, int mileage, float price, String additionalInfo, String completionStatus, String regNo) {
-		jobHelper.createJob(jobType, duration, dates, parts, motNo, mileage, price, additionalInfo, "Incomplete", regNo);
+	public void sendData(String jobType, float duration, String dates, String parts, String motNo, int mileage, String additionalInfo, String completionStatus, String regNo) {
+		jobHelper.createJob(jobType, duration, dates, parts, motNo, mileage, additionalInfo, "Incomplete", regNo);
 	}
 
 	// Get all parts assigned to a job
