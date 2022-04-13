@@ -4,7 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Objects;
 
 public class ItemSearchGUI extends JFrame {
     private JTextField txtPartName;
@@ -14,6 +13,7 @@ public class ItemSearchGUI extends JFrame {
     private JPanel Main;
     private JComboBox typeBox;
     private JButton returnButton;
+    private JButton newSparePartButton;
     private static ItemSearchGUI j = new ItemSearchGUI();
 
     public ItemSearchGUI() {
@@ -47,6 +47,13 @@ public class ItemSearchGUI extends JFrame {
             }
         });
 
+        newSparePartButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                j.dispose();
+                CreateSparePartGUI.main();
+            }
+        });
     }
     public static void main(){
         j.setContentPane(new ItemSearchGUI().Main);

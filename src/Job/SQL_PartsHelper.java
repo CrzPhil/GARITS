@@ -31,6 +31,48 @@ public class SQL_PartsHelper extends Database_Controller {
 		return getParts(sizequr, qur);
 	}
 
+	// Create new spare part with custom stock in DB
+	public boolean createSparePart(String code, String name, String make, String model, int year, int stock, float price, int threshold) {
+		String qur = String.format("INSERT INTO SpareParts VALUES ('%s','%s','%s','%s',%d,%d,%f,%d)",
+				code,
+				name,
+				make,
+				model,
+				year,
+				stock,
+				price,
+				threshold);
+
+			try {
+				Statement st = conn.createStatement();
+				st.executeUpdate(qur);
+				return true;
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return false;
+			}
+
+	}
+
+	// Check if code already exists
+	public boolean getCode(String code) {
+		String qur = String.format("SELECT COUNT(*) AS Count FROM SpareParts WHERE code = '%s'", code);
+		try {
+			Statement st = conn.createStatement();
+			ResultSet rs = st.executeQuery(qur);
+
+			rs.next();
+
+			// If part exists return true
+			if (rs.getInt("Count") == 1) {
+				return true;
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
 
 	// Get all different types
 	public String[] getTypes() {
