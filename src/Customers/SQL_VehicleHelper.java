@@ -89,15 +89,14 @@ public class SQL_VehicleHelper extends Database_Controller {
 		try {
 			//SQL sanitization to prevent SQL injection attacks
 			PreparedStatement pSt;
-			pSt = conn.prepareStatement("INSERT INTO Vehicles (registrationNo, make, model, engSerial, chassisNo, colour, MoTDate, CustomercustomerID)" + " VALUES (?,?,?, ?, ?, ?, ?,?)");
+			pSt = conn.prepareStatement("INSERT INTO Vehicles (registrationNo, make, model, engSerial, chassisNo, colour, MoTDate, CustomercustomerID)" + " VALUES (?,?,?, ?, ?, ?, "+ datePart+",?)");
 			pSt.setString(1, vehicle.getRegistrationNumber());
 			pSt.setString(2, vehicle.getMake());
 			pSt.setString(3, vehicle.getModel());
 			pSt.setString(4, vehicle.getEngSerial());
 			pSt.setString(5, vehicle.getChassisNumber());
 			pSt.setString(6, vehicle.getColour());
-			pSt.setString(7, datePart);
-			pSt.setLong(8, vehicle.getCustomer().getCustomerID());
+			pSt.setLong(7, vehicle.getCustomer().getCustomerID());
 			pSt.executeUpdate();
 
 			return true;
