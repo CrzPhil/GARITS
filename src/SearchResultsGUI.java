@@ -68,6 +68,51 @@ public class SearchResultsGUI extends JFrame{
                 }
             }
         });
+
+        incrementStockButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int row = resultTable.getSelectedRow();
+                // If nothing is selected, getSelectedRow() returns -1
+                if (row != -1) {
+                    // Update Table
+                    resultTable.getModel().setValueAt(Integer.parseInt(resultTable.getModel().getValueAt(row, 5).toString()) + 1,
+                            row,
+                            5);
+                    SQL_PartsHelper helper = new SQL_PartsHelper();
+                    // Update DB using current stock and partCode
+                    helper.updateStock(Integer.parseInt(resultTable.getModel().getValueAt(row, 5).toString()),
+                            resultTable.getModel().getValueAt(row, 0).toString());
+                } else {
+                    JOptionPane.showMessageDialog(null, "Select a part first!");
+                }
+            }
+        });
+
+        decrementStockButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int row = resultTable.getSelectedRow();
+                // If nothing is selected, getSelectedRow() returns -1
+                if (row != -1) {
+                    SQL_PartsHelper helper = new SQL_PartsHelper();
+                    if (Integer.parseInt(resultTable.getModel().getValueAt(row, 5).toString()) <= 0) {
+                        JOptionPane.showMessageDialog(null, "Stock depleted!");
+                    } else {
+                        // Update Table
+                        resultTable.getModel().setValueAt(Integer.parseInt(resultTable.getModel().getValueAt(row, 5).toString()) - 1,
+                                row,
+                                5);
+
+                        // Update DB using current stock and partCode
+                        helper.updateStock(Integer.parseInt(resultTable.getModel().getValueAt(row, 5).toString()),
+                                resultTable.getModel().getValueAt(row, 0).toString());
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Select a part first!");
+                }
+            }
+        });
     }
 
     public static void main(){
