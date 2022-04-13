@@ -18,7 +18,7 @@
           <background color="-1"/>
           <font name="Yu Gothic UI Semibold" size="24"/>
           <foreground color="-1"/>
-          <text value="Edit Vehicle"/>
+          <text value="Edit Vehicle:"/>
         </properties>
       </component>
       <component id="d4f1d" class="javax.swing.JTextField" binding="regNoField" custom-create="true">

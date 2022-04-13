@@ -22,17 +22,6 @@
           <text value="Add Vehicle to Customer: "/>
         </properties>
       </component>
-      <component id="79faf" class="javax.swing.JLabel" binding="customerNameLabel" custom-create="true">
-        <constraints>
-          <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <background color="-1"/>
-          <font name="Yu Gothic UI Semibold" size="24"/>
-          <foreground color="-1"/>
-          <text value="CustomerName"/>
-        </properties>
-      </component>
       <component id="d54d7" class="javax.swing.JTextField" binding="regNoField">
         <constraints>
           <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
