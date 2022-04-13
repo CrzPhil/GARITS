@@ -105,8 +105,10 @@ public class JobDetailsGUI extends JFrame {
                     // Successful Job update
                     JOptionPane.showMessageDialog(null, "Job Deleted successfully.");
                     j.dispose();
-                    ViewJobsGUI.main();
-
+                    if(ViewCompletedJobsGUI.ja==1){
+                        ViewCompletedJobsGUI.main();
+                    }else if(ViewCompletedJobsGUI.ja==0)
+                        ViewJobsGUI.main();
                 }
                 // If input invalid
                 else {
@@ -159,10 +161,10 @@ public class JobDetailsGUI extends JFrame {
                             // Successful Job update
                             JOptionPane.showMessageDialog(null, "Job updated successfully.");
                             j.dispose();
-                            if(LoginGUI.access=='F'){
+                            if(ViewCompletedJobsGUI.ja==1){
+                                ViewCompletedJobsGUI.main();
+                            }else if(ViewCompletedJobsGUI.ja==0)
                                 ViewJobsGUI.main();
-                            }else
-                            JobSelectionGUI.main();
                         } else {
                             JOptionPane.showMessageDialog(null, "Something went wrong.\n Double-check your values.");
                         }
