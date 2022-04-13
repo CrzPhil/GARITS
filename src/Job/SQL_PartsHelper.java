@@ -260,4 +260,25 @@ public class SQL_PartsHelper extends Database_Controller {
 			e.printStackTrace();
 		}
 	}
+
+	// Update method for part editing gui
+	public boolean updateSparePart(String code, String name, String make, String model, int year, int stock, float price, int threshold) {
+		String qur = String.format("UPDATE SpareParts SET partName = '%s', manufacturer = '%s', vehicleType = '%s', year = %d, stock = %d, price = %f, threshold = %d WHERE code = '%s'",
+				name,
+				make,
+				model,
+				year,
+				stock,
+				price,
+				threshold,
+				code);
+		try {
+			Statement st = conn.createStatement();
+			st.executeUpdate(qur);
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
 }
