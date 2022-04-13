@@ -82,7 +82,7 @@
           <background color="-1114625"/>
           <font name="Yu Gothic UI Semibold" size="14"/>
           <foreground color="-1114625"/>
-          <text value="Name"/>
+          <text value="Name:"/>
         </properties>
       </component>
       <component id="cc9f0" class="javax.swing.JLabel">
@@ -93,7 +93,7 @@
           <background color="-1114625"/>
           <font name="Yu Gothic UI Semibold" size="14"/>
           <foreground color="-1114625"/>
-          <text value="Make"/>
+          <text value="Make:"/>
         </properties>
       </component>
       <component id="3c066" class="javax.swing.JLabel">
@@ -104,7 +104,7 @@
           <background color="-1114625"/>
           <font name="Yu Gothic UI Semibold" size="14"/>
           <foreground color="-1114625"/>
-          <text value="Model"/>
+          <text value="Model:"/>
         </properties>
       </component>
       <component id="4febb" class="javax.swing.JLabel">
@@ -115,7 +115,7 @@
           <background color="-1114625"/>
           <font name="Yu Gothic UI Semibold" size="14"/>
           <foreground color="-1114625"/>
-          <text value="Year"/>
+          <text value="Year:"/>
         </properties>
       </component>
       <component id="4d113" class="javax.swing.JLabel">
@@ -126,7 +126,7 @@
           <background color="-1114625"/>
           <font name="Yu Gothic UI Semibold" size="14"/>
           <foreground color="-1114625"/>
-          <text value="Stock"/>
+          <text value="Stock:"/>
         </properties>
       </component>
       <component id="6bbc6" class="javax.swing.JLabel">
@@ -137,7 +137,7 @@
           <background color="-1114625"/>
           <font name="Yu Gothic UI Semibold" size="14"/>
           <foreground color="-1114625"/>
-          <text value="Price"/>
+          <text value="Price:"/>
         </properties>
       </component>
       <component id="3a8e2" class="javax.swing.JLabel">
@@ -148,7 +148,7 @@
           <background color="-1114625"/>
           <font name="Yu Gothic UI Semibold" size="14"/>
           <foreground color="-1114625"/>
-          <text value="Threshold"/>
+          <text value="Threshold:"/>
         </properties>
       </component>
       <component id="1cda5" class="javax.swing.JLabel">
@@ -159,7 +159,7 @@
           <background color="-1114625"/>
           <font name="Yu Gothic UI Semibold" size="14"/>
           <foreground color="-1114625"/>
-          <text value="Code"/>
+          <text value="Code:"/>
         </properties>
       </component>
       <component id="a57c7" class="javax.swing.JLabel" binding="createPartTitle">
@@ -168,7 +168,7 @@
         </constraints>
         <properties>
           <background color="-1114625"/>
-          <font name="Yu Gothic UI Semibold" size="20"/>
+          <font name="Yu Gothic UI Semibold" size="24"/>
           <foreground color="-1114625"/>
           <text value="Create Spare Part"/>
         </properties>
