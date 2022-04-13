@@ -5,7 +5,6 @@ import Database.Database_Controller;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 public class SQL_VehicleHelper extends Database_Controller {
 
@@ -125,19 +124,20 @@ public class SQL_VehicleHelper extends Database_Controller {
 	}
 
 	public boolean updateVehicle(String regNo, String make, String model, String engSerial, String chassisNo, String colour, String motDate, long customerID) {
-		String datePart = "STR_TO_DATE('" + motDate + "', \"%Y-%m-%d\")";
+		String datePart = "STR_TO_DATE(\"" + motDate + "\", \"%Y-%m-%d\")";
 		try {
 			//SQL sanitization to prevent SQL injection attacks
 			PreparedStatement pSt;
-			pSt = conn.prepareStatement("UPDATE Vehicles SET registrationNo = ?, make = ?, model = ?, engSerial = ?, chassisNo = ?, colour = ?, MoTDate = ? WHERE CustomercustomerID = ?");
+			pSt = conn.prepareStatement("UPDATE Vehicles SET registrationNo = ?, make = ?, model = ?, engSerial = ?, chassisNo = ?, colour = ?, MoTDate = " + datePart + " WHERE CustomercustomerID = ?");
 			pSt.setString(1, regNo);
 			pSt.setString(2, make);
 			pSt.setString(3, model);
 			pSt.setString(4, engSerial);
 			pSt.setString(5, chassisNo);
 			pSt.setString(6, colour);
-			pSt.setString(7, datePart);
-			pSt.setLong(8, customerID);
+			pSt.setLong(7, customerID);
+			System.out.println(pSt);
+
 			pSt.executeUpdate();
 
 			return true;
