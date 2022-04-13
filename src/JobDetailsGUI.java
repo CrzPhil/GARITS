@@ -1,7 +1,9 @@
 import Accounts.Accounts_Controller;
-import Accounts.Mechanic;
 import Accounts.User;
 import Job.Job;
+import Job.Job_Controller;
+import Job.SQL_JobHelper;
+import Job.SparePart;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,10 +12,6 @@ import java.awt.event.ActionListener;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-
-import Job.Job_Controller;
-import Job.SparePart;
-import Job.SQL_JobHelper;
 
 public class JobDetailsGUI extends JFrame{
     private JPanel Main;
@@ -373,7 +371,14 @@ public class JobDetailsGUI extends JFrame{
 
             // Dropdown of possible parts to add to job
             // TODO: filter this to become vehicle-specific (manufacturer/model)
-            partSelectBox = new JComboBox<>(controller.getAllParts());
+            partSelectBox = new JComboBox<>(controller.getSpecificParts(job.getRegNo()));
+
+            SparePart[] test = controller.getAllParts();
+            if (test != null) {
+                for (SparePart t : test) {
+                    System.out.println(t.getPartCode());
+                }
+            }
 
             Accounts_Controller accountController = new Accounts_Controller();
             mechanicBox = new JComboBox<User>(accountController.getMechanics());

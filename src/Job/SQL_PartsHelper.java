@@ -155,6 +155,39 @@ public class SQL_PartsHelper extends Database_Controller {
 		return getParts(sizequr, qur);
 	}
 
+	// Get all spare parts relating to the Vehicle type/make
+	public SparePart[] getSpecificParts(String regNo) {
+		SparePart[] out = null;
+		// Query to get vehicle type and make from regNo
+		String vehicTypeQur = String.format("SELECT make, model FROM Vehicles WHERE registrationNO = '%s'", regNo);
+
+		try {
+			// Get Vehicle make / model
+			Statement st = conn.createStatement();
+			ResultSet rs = st.executeQuery(vehicTypeQur);
+			rs.next();
+
+			String make = rs.getString("make");
+			String model = rs.getString("model");
+
+			// Get Parts corresponding to that make / model
+			String sizequr = String.format("SELECT COUNT(*) AS Count FROM SpareParts WHERE (manufacturer = '%s' OR manufacturer = 'All') AND (vehicleType = '%s' OR vehicleType = 'All')",
+					make,
+					model);
+			String qur = String.format("SELECT * FROM SpareParts WHERE (manufacturer = '%s' OR manufacturer = 'All') AND (vehicleType = '%s' OR vehicleType = 'All')",
+					make,
+					model);
+
+			out = getParts(sizequr, qur);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+
+		return out;
+	}
+
 	// Get spare parts by certain query (Has to be SELECT * [...])
 	private SparePart[] getParts(String sizequr, String qur) {
 		SparePart[] out = null;

@@ -31,6 +31,7 @@ public class CreateJobGUI extends JFrame{
     private DefaultListModel<SparePart> partModel;
 
     public CreateJobGUI() {
+        configureList();
         returnButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -81,8 +82,6 @@ public class CreateJobGUI extends JFrame{
                 }
             }
         });
-
-
 
         finishButton.addActionListener(new ActionListener() {
             @Override
@@ -187,9 +186,18 @@ public class CreateJobGUI extends JFrame{
         j.setLocationRelativeTo(null);
         j.setVisible(true);
     }
-    private void createUIComponents(){
+
+    // Need to use this method because intelliJ's createUIcomponents causes issues as always
+    private void configureList() {
         Job_Controller controller = new Job_Controller();
+        SparePart[] parts = controller.getAllParts();
+
+        DefaultComboBoxModel<SparePart> model = new DefaultComboBoxModel<SparePart>(parts);
+        partSelectBox.setModel(model);
+    }
+    private void createUIComponents(){
         jDateChooser = new JDateChooser();
+
 
         // Configure List of added parts
         this.partModel = new DefaultListModel<SparePart>();
@@ -198,7 +206,9 @@ public class CreateJobGUI extends JFrame{
 
         // Dropdown of possible parts to add to job
         // TODO: filter this to become vehicle-specific (manufacturer/model)
-        partSelectBox = new JComboBox<>(controller.getAllParts());
-}
+
+        partSelectBox = new JComboBox<>();
+
+    }
 }
 

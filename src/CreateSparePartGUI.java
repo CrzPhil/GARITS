@@ -48,6 +48,13 @@ public class CreateSparePartGUI extends JFrame {
                 }
             }
         });
+        returnButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                j.dispose();
+                ItemSearchGUI.main();
+            }
+        });
     }
 
     private boolean validateInput(String code, String name,String make,String model,String year,String stock,String price,String threshold) {

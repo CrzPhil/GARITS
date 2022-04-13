@@ -138,6 +138,11 @@ public class Job_Controller implements I_Job {
 		return partsHelper.getAllParts();
 	}
 
+	// Get all spare parts relating to the Vehicle type/make
+	public SparePart[] getSpecificParts(String regNo) {
+		return partsHelper.getSpecificParts(regNo);
+	}
+
 	public void updateStock(int stock, String partCode) {
 		partsHelper.updateStock(stock, partCode);
 	}
@@ -161,4 +166,5 @@ public class Job_Controller implements I_Job {
 	public void deleteJobPart(int partID) {
 		partsHelper.deleteJobPart(partID);
 	}
+
 }
