@@ -32,29 +32,27 @@ public class LoginGUI extends JFrame {
                     j.dispose();
 
                     switch (role) {
-                        case "Administrator":
+                        case "Administrator" -> {
                             AdminDashboardGUI.main();
                             access = 'A';
-                            break;
-                        case "Foreperson":
+                        }
+                        case "Foreperson" -> {
                             ForepersonDashboardGUI.main();
                             access = 'F';
-                            break;
-                        case "Mechanic":
+                        }
+                        case "Mechanic" -> {
                             MechanicDashboardGUI.main();
                             access = 'M';
-                            break;
-                        case "Franchisee":
+                        }
+                        case "Franchisee" -> {
                             FranchiseeDashboardGUI.main();
                             access = 'C';
-                            break;
-                        case "Receptionist":
+                        }
+                        case "Receptionist" -> {
                             ReceptionistDashboardGUI.main();
                             access = 'R';
-                            break;
-                        default:
-                            MainMenuGUI.main();
-                            break;
+                        }
+                        default -> MainMenuGUI.main();
                     }
                 } else {
                     // Error pop up for wrong password
@@ -78,7 +76,11 @@ public class LoginGUI extends JFrame {
         return login;
     }
 
-    // Get the role of a given username
+    /**
+     * Get role of a username do determine Privileges
+     * @param username username
+     * @return String Role
+     */
     private String getRole(String username) {
         SQL_UserHelper helper = new SQL_UserHelper();
         String role = helper.getRole(username);

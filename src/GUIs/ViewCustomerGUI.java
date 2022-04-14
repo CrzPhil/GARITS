@@ -63,7 +63,6 @@ public class ViewCustomerGUI extends JFrame {
                             discountField.getText(),
                             faxField.getText())) {
 
-                        // TODO: Once discount plans work (valued customer etc) implement updating in Database for the JBox
                         if (controller.updateCustomer(nameField.getText().split("\\s+")[0],
                                 nameField.getText().split("\\s+")[1],
                                 addressField.getText(),
@@ -133,6 +132,9 @@ public class ViewCustomerGUI extends JFrame {
         j.setVisible(true);
     }
 
+    /**
+     * Create JList of Vehicles per Customer
+     */
     private void createVehicleList() {
         Customer_Controller controller = new Customer_Controller();
         Vehicle[] vehicles = controller.getVehicles(this.currentCustomer);
@@ -158,6 +160,9 @@ public class ViewCustomerGUI extends JFrame {
         });
     }
 
+    /**
+     * Create the dropdown menu, setting the current discount-plan as the first option.
+     */
     private void createDropDown() {
         // Because we do everything for a nice UX :)
         // Customer's discount plan should already be selected, and the other two should be options

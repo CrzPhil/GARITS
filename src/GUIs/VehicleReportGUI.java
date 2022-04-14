@@ -26,8 +26,6 @@ public class VehicleReportGUI extends JFrame{
         generateReportButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               /* j.dispose();
-                ReportsMenuGUI.main(); */
                 if(!(monthlyCheckBox.isSelected()) && !(perJobTypeCheckBox.isSelected()) && !(overallCheckBox.isSelected()) && !(perCustomerTypeCheckBox.isSelected())){
                     JOptionPane.showMessageDialog(null, "Select a filter and timeframe option.");
                 }else if ((overallCheckBox.isSelected()) && (monthlyCheckBox.isSelected())){

@@ -166,7 +166,6 @@ public class CreateJobGUI extends JFrame{
         return m.matches();
     }
 
-    // TODO: What happens to the added spare parts if the application is closed?
     public static void main(){
         j.setContentPane(new CreateJobGUI().Main);
         j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -190,15 +189,12 @@ public class CreateJobGUI extends JFrame{
     private void createUIComponents(){
         jDateChooser = new JDateChooser();
 
-
         // Configure List of added parts
         this.partModel = new DefaultListModel<SparePart>();
         partList = new JList<>(partModel);
         partList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
         // Dropdown of possible parts to add to job
-        // TODO: filter this to become vehicle-specific (manufacturer/model)
-
         partSelectBox = new JComboBox<>();
 
     }

@@ -51,6 +51,9 @@ public class UserAccountMenuGUI extends JFrame{
         });
     }
 
+    /**
+     * Draw The Tree of Users with Roles as Nodes
+     */
     private void drawTree() {
         DefaultMutableTreeNode top = new DefaultMutableTreeNode("Users");
         createNodes(top);
@@ -75,6 +78,10 @@ public class UserAccountMenuGUI extends JFrame{
         });
     }
 
+    /**
+     * Create Nodes for each role
+     * @param top Root Node
+     */
     private void createNodes(DefaultMutableTreeNode top) {
         String[] roles = {"Administrator", "Franchisee", "Mechanic", "Foreperson", "Receptionist"};
         SQL_UserHelper helper = new SQL_UserHelper();
@@ -109,7 +116,6 @@ public class UserAccountMenuGUI extends JFrame{
     }
 
     private void createUIComponents() {
-        // TODO: place custom component creation code here
         drawTree();
     }
 }

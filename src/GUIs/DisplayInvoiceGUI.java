@@ -39,10 +39,14 @@ public class DisplayInvoiceGUI extends JFrame{
                     if (fileChooser.getSelectedFile().isDirectory()) {
                         InputStream in = null;
 
-                        // TODO: taken from https://stackoverflow.com/questions/1146153/copying-files-from-one-directory-to-another-in-java
+                        // CREDIT: How to copy-and-paste files using in/out streams taken from
+                        // https://stackoverflow.com/questions/1146153/copying-files-from-one-directory-to-another-in-java
+                        //
+                        // All report/invoice generation code, however, is OURS
+
                         try {
                             // Get python-generated report pdf file
-                            String filename = String.valueOf(job.getJobID()) + "-invoice.pdf";
+                            String filename = job.getJobID() + "-invoice.pdf";
                             String cdir = System.getProperty("user.dir");
 
                             // Copy bits from pdf

@@ -129,6 +129,11 @@ public class UserAccountModifierGUI extends JFrame{
         });
     }
 
+    /**
+     * Delete account
+     * @param account User account
+     * @return whether deletion was successful
+     */
     private boolean deleteAccount(User account) {
         Accounts_Controller controller = new Accounts_Controller();
         return controller.removeAccount(account.getUserID());
@@ -147,11 +152,9 @@ public class UserAccountModifierGUI extends JFrame{
     }
 
     private void createUIComponents() {
-        // TODO: place custom component creation code here
         if (this.account != null) {
             userIDTitle = new JLabel(String.valueOf(this.account.getUserID()));
             usernameField = new JTextField(this.account.getUsername());
-            // TODO: Improve split into fname and lname
             fnameField = new JTextField(this.account.getName().split(" ")[0]);
             lnameField = new JTextField(this.account.getName().split(" ")[1]);
             roleField = new JTextField(this.account.getInstanceClass());

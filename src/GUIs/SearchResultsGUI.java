@@ -207,6 +207,11 @@ public class SearchResultsGUI extends JFrame{
         j.setVisible(true);
     }
 
+    /**
+     * Prepare Data for JTable
+     * @param data SparePart Array
+     * @return String 2d-array
+     */
     private String[][] prepareData(SparePart[] data) {
         // 8 is attribute count of a spare part
         String[][] out = new String[data.length][8] ;
@@ -220,6 +225,9 @@ public class SearchResultsGUI extends JFrame{
         return out;
     }
 
+    /**
+     * Generate JTable
+     */
     private void generateTable() {
         String[] columnNames = {
                 "Part ID",
@@ -250,7 +258,10 @@ public class SearchResultsGUI extends JFrame{
         resultTable.setFillsViewportHeight(true);
     }
 
-    // Get All parts by previous' GUI's search parameter
+    /**
+     * Get All parts by previous' GUI's search parameter
+     * @return SparePart array
+     */
     private SparePart[] getParts() {
         SQL_PartsHelper helper = new SQL_PartsHelper();
         if(partName == null){

@@ -16,26 +16,15 @@ public class DisplayReportGUI extends JFrame {
     private static DisplayReportGUI j = new DisplayReportGUI();
 
     private String filepath;
-    private String filename;
 
     public DisplayReportGUI() {
     }
 
     public DisplayReportGUI(String filepath, String filename) {
-        this.filename = filename;
         this.filepath = filepath;
         closeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO: Decide what to do here
-                // Clean up files, so that only pdf remains
-/*                File img = new File(filepath + "/preview_page1.png");
-
-                // If deletion does not happen (i.e if the user closes the program instead of returning,
-                // it is not critical, as it will be overwritten by the next report.
-                if (img.delete()) {
-                    System.out.println("file deleted.");
-                }*/
 
                 j.dispose();
             }
@@ -52,12 +41,12 @@ public class DisplayReportGUI extends JFrame {
                     if (fileChooser.getSelectedFile().isDirectory()) {
                         InputStream in = null;
 
-                        // TODO: taken from https://stackoverflow.com/questions/1146153/copying-files-from-one-directory-to-another-in-java
-                        try {
-                            // Get python-generated report pdf file
-                            //String filename = java.time.LocalDate.now() + "-report.pdf";
-                            //String cdir = System.getProperty("user.dir");
+                        // CREDIT: How to copy-and-paste files using in/out streams taken from
+                        // https://stackoverflow.com/questions/1146153/copying-files-from-one-directory-to-another-in-java
+                        //
+                        // All report/invoice generation code, however, is OURS
 
+                        try {
                             // Copy bits from pdf
                             in = new FileInputStream(filepath + '/' + filename);
                             // Outstream to write file to new directory

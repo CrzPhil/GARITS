@@ -18,18 +18,6 @@ public class JobSelectionGUI extends JFrame{
     private JButton createButton;
     public static JobSelectionGUI j = new JobSelectionGUI();
 
-    public static void main() {
-        j.setContentPane(new JobSelectionGUI().Main);
-        j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        j.setTitle("Job Selection");
-        Image icon = FindImages.getImageLogo();
-        j.setIconImage(icon);
-        j.setPreferredSize(new Dimension(800,480));
-        j.pack();
-        j.setLocationRelativeTo(null);
-        j.setVisible(true);
-    }
-
     public JobSelectionGUI() {
         returnButton.addActionListener(new ActionListener() {
             @Override
@@ -66,6 +54,18 @@ public class JobSelectionGUI extends JFrame{
                 CreateJobGUI.main();
             }
         });
+    }
+
+    public static void main() {
+        j.setContentPane(new JobSelectionGUI().Main);
+        j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        j.setTitle("Job Selection");
+        Image icon = FindImages.getImageLogo();
+        j.setIconImage(icon);
+        j.setPreferredSize(new Dimension(800,480));
+        j.pack();
+        j.setLocationRelativeTo(null);
+        j.setVisible(true);
     }
 
     private void createUIComponents() {

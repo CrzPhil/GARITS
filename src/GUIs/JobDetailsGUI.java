@@ -329,7 +329,6 @@ public class JobDetailsGUI extends JFrame {
         }
     }
 
-    // TODO: Registration Number ?
     private void createUIComponents() {
         if (job != null) {
             // For some reason label does not get updated here, and we have to repeat this in the constructor
