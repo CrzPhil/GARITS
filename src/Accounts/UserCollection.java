@@ -19,18 +19,6 @@ public class UserCollection {
 
 	/**
 	 * 
-	 * @param userID
-	 */
-	public void removeItem(long userID) {
-		userCollection.remove(userID);
-	}
-
-	public int getIndex() {
-		return this.index;
-	}
-
-	/**
-	 * 
 	 * @param index
 	 */
 	public void setIndex(int index) {

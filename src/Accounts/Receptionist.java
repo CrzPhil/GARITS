@@ -1,10 +1,5 @@
 package Accounts;
 
-import Database.Alert;
-import Job.*;
-import Customers.*;
-import Payment.*;
-
 public class Receptionist extends User {
 
 	public Receptionist(long userID, String username, String email, String password, String name) {
