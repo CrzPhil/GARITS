@@ -21,6 +21,7 @@ public class AdminDashboardGUI extends JFrame{
         j.setContentPane(new AdminDashboardGUI().Main);
         j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         j.setTitle("Admin Dashboard");
+
         Image icon = FindImages.getImageLogo();
         j.setIconImage(icon);
         j.setPreferredSize(new Dimension(800,480));
