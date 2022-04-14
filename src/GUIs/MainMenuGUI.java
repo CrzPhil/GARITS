@@ -57,7 +57,7 @@ public class MainMenuGUI extends JFrame{
         j.setContentPane(new MainMenuGUI().Main);
         j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         j.setTitle("Main Menu");
-        Image icon = Toolkit.getDefaultToolkit().getImage("data/logo.png");
+        Image icon = FindImages.getImageLogo();
         j.setIconImage(icon);
         j.setPreferredSize(new Dimension(1280,720));
         j.pack();

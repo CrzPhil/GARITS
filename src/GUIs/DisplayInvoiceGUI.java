@@ -76,7 +76,7 @@ public class DisplayInvoiceGUI extends JFrame{
         j.setContentPane(new DisplayInvoiceGUI(job).main);
         j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         j.setTitle("Invoice");
-        Image icon = Toolkit.getDefaultToolkit().getImage("data/logo.png");
+        Image icon = FindImages.getImageLogo();
         j.setIconImage(icon);
         j.pack();
         j.setLocationRelativeTo(null);

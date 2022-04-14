@@ -34,6 +34,8 @@ public class MechanicDashboardGUI extends JFrame{
         j.setContentPane(new MechanicDashboardGUI().main);
         j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         j.setTitle("Mechanic Dashboard");
+        Image icon = FindImages.getImageLogo();
+        j.setIconImage(icon);
         j.setPreferredSize(new Dimension(800,480));
         j.pack();
         j.setLocationRelativeTo(null);
@@ -43,7 +45,7 @@ public class MechanicDashboardGUI extends JFrame{
     private void createUIComponents() {
         jobsButton  = new JButton();
         try {
-            Image jImg = ImageIO.read(new FileInputStream("data/job.png")).getScaledInstance(175, 175, Image.SCALE_DEFAULT);
+            Image jImg = FindImages.getImageDisplay("job").getScaledInstance(175, 175, Image.SCALE_DEFAULT);
             jobsButton.setIcon(new ImageIcon(jImg));
         } catch (Exception ignored) {}
         jobsButton.setBorder(null);

@@ -18,7 +18,8 @@ public class DisplayReportGUI extends JFrame {
     private String filepath;
     private String filename;
 
-    public DisplayReportGUI() {}
+    public DisplayReportGUI() {
+    }
 
     public DisplayReportGUI(String filepath, String filename) {
         this.filename = filename;
@@ -57,7 +58,7 @@ public class DisplayReportGUI extends JFrame {
                             //String cdir = System.getProperty("user.dir");
 
                             // Copy bits from pdf
-                            in = new FileInputStream( filepath + '/' + filename);
+                            in = new FileInputStream(filepath + '/' + filename);
                             // Outstream to write file to new directory
                             OutputStream out = new FileOutputStream(fileChooser.getSelectedFile() + "/" + filename);
 
@@ -84,20 +85,20 @@ public class DisplayReportGUI extends JFrame {
     }
 
 
-
-    public static void main(String filepath, String filename){
+    public static void main(String filepath, String filename) {
         j.setContentPane(new DisplayReportGUI(filepath, filename).main);
         j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         j.setTitle("Report");
-            Image icon = Toolkit.getDefaultToolkit().getImage("data/logo.png");
-            j.setIconImage(icon);
+        Image icon = FindImages.getImageLogo();
+        j.setIconImage(icon);
         //j.setPreferredSize(new Dimension(700, 990));
         j.pack();
         j.setLocationRelativeTo(null);
         // Make the report fit into the screen
         j.setSize(new Dimension(new ImageIcon(filepath + "/preview_page1.png").getIconWidth(), new ImageIcon(filepath + "/preview_page1.png").getIconHeight()));
         j.setVisible(true);
-}
+    }
+
     private void createUIComponents() {
         ReportImage = new JLabel(new ImageIcon(filepath + "/preview_page1.png"));
     }

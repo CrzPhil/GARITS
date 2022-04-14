@@ -94,7 +94,7 @@ public class LoginGUI extends JFrame {
         j.setContentPane(new LoginGUI().Main);
         j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         j.setTitle("Please Enter Credentials.");
-        Image icon = Toolkit.getDefaultToolkit().getImage("data/logo.png");
+        Image icon = FindImages.getImageLogo();
         j.setIconImage(icon);
         j.setPreferredSize(new Dimension(1280, 720));
         j.pack();
