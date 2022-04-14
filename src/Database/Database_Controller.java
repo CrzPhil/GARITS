@@ -35,7 +35,7 @@ public class Database_Controller implements I_Database {
 		try {
 			// IP + Database name
 			String url = "jdbc:mysql://176.58.124.119:3306/GARITS";
-
+			//String url = "jdbc:mysql//127.0.0.1:3306/GARITS";
 			// Username + Password
 			conn = DriverManager.getConnection(url, "GARITS", "G@R!T$$$");
 

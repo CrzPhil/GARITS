@@ -306,7 +306,7 @@ public class SQL_PartsHelper extends Database_Controller {
 		try {
 			//SQL sanitization to prevent SQL injection attacks
 			PreparedStatement pSt;
-			pSt = conn.prepareStatement("INSERT INTO Vehicles (registrationNo, make, model, engSerial, chassisNo, colour, MoTDate, CustomercustomerID)" + " VALUES (?,?,?, ?, ?, ?, ?,?)");
+			pSt = conn.prepareStatement("UPDATE SpareParts SET partName = ?, manufacturer = ?, vehicleType = ?, year = ?, stock = ?, price = ?, threshold = ? WHERE code = '" + code +"'");
 			pSt.setString(1, name);
 			pSt.setString(2, make);
 			pSt.setString(3, model);
@@ -314,7 +314,6 @@ public class SQL_PartsHelper extends Database_Controller {
 			pSt.setInt(5, stock);
 			pSt.setFloat(6, price);
 			pSt.setInt(7, threshold);
-			pSt.setString(8, code);
 			pSt.executeUpdate();
 			return true;
 		} catch (SQLException e) {

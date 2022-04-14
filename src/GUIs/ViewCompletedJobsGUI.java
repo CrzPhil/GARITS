@@ -54,6 +54,8 @@ public class ViewCompletedJobsGUI extends JFrame{
                     ProcessBuilder pb = new ProcessBuilder("python3", cdir + "/src/Invoices/invoicegenerator.py", String.valueOf(selectedJob.getJobID()));
                     Process p = pb.start();
 
+                    p.waitFor();
+
                     // DEBUG ONLY
                     //BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
                     //System.out.println(in.readLine());
