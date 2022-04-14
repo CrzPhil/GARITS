@@ -268,7 +268,7 @@ public class JobDetailsGUI extends JFrame {
         j.setContentPane(new JobDetailsGUI(job).Main);
         j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         j.setTitle("Chosen Job Details");
-        Image icon = Toolkit.getDefaultToolkit().getImage("data/logo.png");
+        Image icon = FindImages.getImageLogo();
         j.setIconImage(icon);
         j.setPreferredSize(new Dimension(1000, 480));
         j.pack();

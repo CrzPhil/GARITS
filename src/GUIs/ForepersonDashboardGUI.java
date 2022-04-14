@@ -43,6 +43,8 @@ public class ForepersonDashboardGUI extends JFrame {
         j.setContentPane(new ForepersonDashboardGUI().main);
         j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         j.setTitle("Foreperson Dashboard");
+        Image icon = FindImages.getImageLogo();
+        j.setIconImage(icon);
         j.setPreferredSize(new Dimension(800,480));
         j.pack();
         j.setLocationRelativeTo(null);
@@ -54,8 +56,8 @@ public class ForepersonDashboardGUI extends JFrame {
         createJobButton = new JButton();
         mechanicButton = new JButton();
         try {
-            Image jImg = ImageIO.read(new FileInputStream("data/plus.png")).getScaledInstance(150, 150, Image.SCALE_DEFAULT);
-            Image mImg = ImageIO.read(new FileInputStream("data/mechanic.png")).getScaledInstance(150, 150, Image.SCALE_DEFAULT);
+            Image jImg = FindImages.getImageDisplay("plus").getScaledInstance(150, 150, Image.SCALE_DEFAULT);
+            Image mImg = FindImages.getImageDisplay("mechanic").getScaledInstance(150, 150, Image.SCALE_DEFAULT);
             createJobButton.setIcon(new ImageIcon(jImg));
             mechanicButton.setIcon(new ImageIcon(mImg));
         } catch (Exception ignored) {}

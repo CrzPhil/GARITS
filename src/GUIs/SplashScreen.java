@@ -1,10 +1,7 @@
 package GUIs;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.io.FileInputStream;
-import java.net.URL;
 
 import static java.lang.Thread.sleep;
 
@@ -19,7 +16,7 @@ public class SplashScreen extends JFrame {
         j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         j.setTitle("GARITS");
 
-        Image icon = Toolkit.getDefaultToolkit().getImage(FindImages.getUrlForImage("logo", SplashScreen.class));
+        Image icon = FindImages.getImageLogo();
         j.setIconImage(icon);
         j.setPreferredSize(new Dimension(800, 480));
         j.pack();
@@ -38,7 +35,7 @@ public class SplashScreen extends JFrame {
     private void createUIComponents() {
         logoLabel = new JLabel();
         try {
-            Image icon = Toolkit.getDefaultToolkit().getImage(FindImages.getUrlForImage("logo", SplashScreen.class)).getScaledInstance(250, 150, Image.SCALE_DEFAULT);
+            Image icon = FindImages.getImageDisplay("logo").getScaledInstance(250, 150, Image.SCALE_DEFAULT);
             logoLabel.setIcon(new ImageIcon(icon));
         } catch (Exception ignored) {
         }

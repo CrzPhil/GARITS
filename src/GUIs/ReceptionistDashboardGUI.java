@@ -50,6 +50,8 @@ public class ReceptionistDashboardGUI extends JFrame{
         j.setContentPane(new ReceptionistDashboardGUI().main);
         j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         j.setTitle("Receptionist Dashboard");
+        Image icon = FindImages.getImageLogo();
+        j.setIconImage(icon);
         j.setPreferredSize(new Dimension(800,480));
         j.pack();
         j.setLocationRelativeTo(null);
@@ -61,9 +63,9 @@ public class ReceptionistDashboardGUI extends JFrame{
         stockButton = new JButton();
         customerButton = new JButton();
         try {
-            Image jImg = ImageIO.read(new FileInputStream("data/job.png")).getScaledInstance(150, 150, Image.SCALE_DEFAULT);
-            Image sImg = ImageIO.read(new FileInputStream("data/part.png")).getScaledInstance(150, 150, Image.SCALE_DEFAULT);
-            Image cImg = ImageIO.read(new FileInputStream("data/userwhite.png")).getScaledInstance(150, 150, Image.SCALE_DEFAULT);
+            Image jImg = FindImages.getImageDisplay("job").getScaledInstance(150, 150, Image.SCALE_DEFAULT);
+            Image sImg = FindImages.getImageDisplay("part").getScaledInstance(150, 150, Image.SCALE_DEFAULT);
+            Image cImg = FindImages.getImageDisplay("userwhite").getScaledInstance(150, 150, Image.SCALE_DEFAULT);
             jobsButton.setIcon(new ImageIcon(jImg));
             stockButton.setIcon(new ImageIcon(sImg));
             customerButton.setIcon(new ImageIcon(cImg));

@@ -50,7 +50,7 @@ public class ReportsMenuGUI extends JFrame{
         j.setContentPane(new ReportsMenuGUI().Main);
         j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         j.setTitle("Report Menu");
-        Image icon = Toolkit.getDefaultToolkit().getImage("data/logo.png");
+        Image icon = FindImages.getImageLogo();
         j.setIconImage(icon);
         j.setPreferredSize(new Dimension(800,480));
         j.pack();

@@ -130,7 +130,7 @@ public class SearchResultsGUI extends JFrame{
     private static void createFrame() {
         j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         j.setTitle("Search results");
-        Image icon = Toolkit.getDefaultToolkit().getImage("data/logo.png");
+        Image icon = FindImages.getImageLogo();
         j.setIconImage(icon);
         j.setPreferredSize(new Dimension(800,480));
         j.Main.setOpaque(true);

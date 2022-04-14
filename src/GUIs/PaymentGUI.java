@@ -110,6 +110,8 @@ public class PaymentGUI extends JFrame {
         j.setContentPane(new PaymentGUI().main);
         j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         j.setTitle("Enter details to make payment.");
+        Image icon = FindImages.getImageLogo();
+        j.setIconImage(icon);
         j.setPreferredSize(new Dimension(800, 480));
         j.pack();
         j.setLocationRelativeTo(null);
@@ -119,7 +121,7 @@ public class PaymentGUI extends JFrame {
     private void createUIComponents() {
         payButton = new JButton();
         try {
-            Image pImg = ImageIO.read(new FileInputStream("data/pay.png")).getScaledInstance(100, 100, Image.SCALE_DEFAULT);
+            Image pImg = FindImages.getImageDisplay("pay").getScaledInstance(100, 100, Image.SCALE_DEFAULT);
             payButton.setIcon(new ImageIcon(pImg));
         } catch (Exception ignored) {
         }

@@ -60,7 +60,7 @@ public class JobReportGUI extends JFrame{
         j.setContentPane(new JobReportGUI().Main);
         j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         j.setTitle("Generate Price/Time Report");
-        Image icon = Toolkit.getDefaultToolkit().getImage("data/logo.png");
+        Image icon = FindImages.getImageLogo();
         j.setIconImage(icon);
         j.setPreferredSize(new Dimension(800,480));
         j.pack();

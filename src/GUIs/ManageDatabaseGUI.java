@@ -72,7 +72,7 @@ public class ManageDatabaseGUI extends JFrame {
         j.setContentPane(new ManageDatabaseGUI().Main);
         j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         j.setTitle("Manage Database");
-        Image icon = Toolkit.getDefaultToolkit().getImage("data/logo.png");
+        Image icon = FindImages.getImageLogo();
         j.setIconImage(icon);
         j.setPreferredSize(new Dimension(800,480));
         j.pack();
@@ -84,8 +84,8 @@ public class ManageDatabaseGUI extends JFrame {
         backupButton = new JButton();
         restoreButton = new JButton();
         try {
-            Image bImg = ImageIO.read(new FileInputStream("data/backup.png")).getScaledInstance(150, 150, Image.SCALE_DEFAULT);
-            Image nImg = ImageIO.read(new FileInputStream("data/restore.png")).getScaledInstance(100, 100, Image.SCALE_DEFAULT);
+            Image bImg = FindImages.getImageDisplay("backup").getScaledInstance(150, 150, Image.SCALE_DEFAULT);
+            Image nImg = FindImages.getImageDisplay("restore").getScaledInstance(100, 100, Image.SCALE_DEFAULT);
             backupButton.setIcon(new ImageIcon(bImg));
             restoreButton.setIcon(new ImageIcon(nImg));
         } catch (Exception ignored) {

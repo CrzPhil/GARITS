@@ -48,7 +48,7 @@ public class VehicleReportGUI extends JFrame{
         j.setContentPane(new VehicleReportGUI().Main);
         j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         j.setTitle("Generate Vehicle Quantity Report");
-        Image icon = Toolkit.getDefaultToolkit().getImage("data/logo.png");
+        Image icon = FindImages.getImageLogo();
         j.setIconImage(icon);
         j.setPreferredSize(new Dimension(800,480));
         j.pack();
