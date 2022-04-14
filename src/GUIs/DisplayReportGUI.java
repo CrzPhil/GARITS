@@ -29,12 +29,13 @@ public class DisplayReportGUI extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 // TODO: Decide what to do here
                 // Clean up files, so that only pdf remains
-/*                String cdir = System.getProperty("user.dir");
-                File myObj = new File(cdir + "/src/Reports/preview_page1.png");
+/*                File img = new File(filepath + "/preview_page1.png");
 
                 // If deletion does not happen (i.e if the user closes the program instead of returning,
                 // it is not critical, as it will be overwritten by the next report.
-                myObj.delete();*/
+                if (img.delete()) {
+                    System.out.println("file deleted.");
+                }*/
 
                 j.dispose();
             }
