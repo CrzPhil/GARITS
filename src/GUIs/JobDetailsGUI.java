@@ -177,22 +177,22 @@ public class JobDetailsGUI extends JFrame {
             }
         });
 
-        // TODO: Make this more readable
         // Add PART to LIST
         addPartButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (partSelectBox.getSelectedItem() != null) {
-                    if (((SparePart) partSelectBox.getSelectedItem()).getStock() >= 1) {
+                    SparePart selected = ((SparePart) partSelectBox.getSelectedItem());
+                    if (selected.getStock() >= 1) {
                         // Add Item to JList
-                        partModel.addElement((SparePart) partSelectBox.getSelectedItem());
+                        partModel.addElement(selected);
                         // Update part Object
-                        ((SparePart) partSelectBox.getSelectedItem()).setStock(((SparePart) partSelectBox.getSelectedItem()).getStock() - 1);
+                        (selected).setStock(selected.getStock() - 1);
 
                         // Update database
                         Job_Controller controller = new Job_Controller();
                         // Decrement stock
-                        controller.updateStock(((SparePart) partSelectBox.getSelectedItem()).getStock(), ((SparePart) partSelectBox.getSelectedItem()).getPartCode());
+                        controller.updateStock(selected.getStock(), selected.getPartCode());
                     }
                     // If Stock is less than one
                     else {
