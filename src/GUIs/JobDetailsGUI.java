@@ -270,7 +270,7 @@ public class JobDetailsGUI extends JFrame {
         j.setTitle("Chosen Job Details");
         Image icon = FindImages.getImageLogo();
         j.setIconImage(icon);
-        j.setPreferredSize(new Dimension(1000, 480));
+        j.setPreferredSize(new Dimension(1200, 480));
         j.pack();
         j.setLocationRelativeTo(null);
         j.setVisible(true);
