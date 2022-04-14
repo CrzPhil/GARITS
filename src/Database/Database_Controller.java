@@ -67,7 +67,6 @@ public class Database_Controller implements I_Database {
 		String filename = java.time.LocalDate.now() + "-backup.sql";
 
 		try {
-			// TODO: Windows/Version-specific
 			String[] cmd = {"cmd", "/c", "C:\\Program Files\\MySQL\\MySQL Server 8.0\\bin\\mysqldump.exe", "-uGARITS", "-pG@R!T$$$", "-h176.58.124.119", "GARITS", ">", cdir + "\\src\\Database\\Backups\\" + filename};
 			ProcessBuilder pb = new ProcessBuilder(cmd);
 			pb.redirectErrorStream(true);
@@ -100,7 +99,6 @@ public class Database_Controller implements I_Database {
 	 */
 	public boolean restoreDatabase(String filePath) {
 		try {
-			// TODO: Windows/Version-specific
 			String[] cmd = {"cmd", "/c", "\"C:\\Program Files\\MySQL\\MySQL Server 8.0\\bin\\mysql.exe\"", "-uGARITS", "-pG@R!T$$$", "-h176.58.124.119", "GARITS", "<", filePath};
 
 			ProcessBuilder pb = new ProcessBuilder(cmd);
