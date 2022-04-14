@@ -39,7 +39,24 @@ public class VehicleReportGUI extends JFrame{
                 }else if (!(perJobTypeCheckBox.isSelected()) && !(perCustomerTypeCheckBox.isSelected())){
                     JOptionPane.showMessageDialog(null, "Select a filter option.");
                 }else{
-                    //DisplayReportGUI.main();
+                    try {
+                        // Current working directory
+                        String cdir = System.getProperty("user.dir");
+
+                        // Python process, passing type (Overall OR MOT/Service/Repair) to program
+                        ProcessBuilder pb = new ProcessBuilder("python3", cdir + "/src/Reports/VehicleReport/vehiclereportgenerator.py");
+                        Process p = pb.start();
+                        p.waitFor();
+
+                        // DEBUG ONLY
+                        //BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
+                        //System.out.println(in.readLine());
+
+                        String filename = java.time.LocalDate.now() + "-vehicleReport.pdf";
+                        DisplayReportGUI.main(cdir + "/src/Reports/VehicleReport", filename);
+                    } catch (Exception ignore) {
+                        JOptionPane.showMessageDialog(null, "Something went wrong. Contact your administrator.");
+                    }
                 }
             }
         });

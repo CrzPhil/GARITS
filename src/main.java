@@ -1,8 +1,8 @@
-import GUIs.SplashScreen;
+import GUIs.VehicleReportGUI;
 
 public class main {
 
     public static void main(String[] args) {
-        SplashScreen.main(null);
+        VehicleReportGUI.main();
     }
 }
