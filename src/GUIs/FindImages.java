@@ -3,6 +3,10 @@ package GUIs;
 import java.awt.*;
 import java.net.URL;
 
+/**
+ * Helper class to enable images to be found once converting to .jar.
+ * Links images using ClassLoader() and getResource()
+ */
 public class FindImages {
 
 

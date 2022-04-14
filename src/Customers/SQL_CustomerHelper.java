@@ -14,15 +14,6 @@ public class SQL_CustomerHelper extends Database_Controller {
 		this.conn = super.connectToDb();
 	}
 
-	/**
-	 * @param obj
-	 * @param command
-	 */
-	public String generateQuery(Object obj, String command) {
-		this.query = command;
-		return this.query;
-	}
-
 	public Customer[] getCustomers() {
 		Customer[] out = null;
 

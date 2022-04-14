@@ -3,39 +3,26 @@ package Database;
 import java.io.IOException;
 import java.sql.*;
 
+/**
+ * Database controller.
+ * Connection is initiated here.
+ * All SQL helpers inherit from this class.
+ */
 public class Database_Controller implements I_Database {
 
-	protected String query;
 	protected static Connection conn;
 
-	public String getQuery() {
-		return this.query;
-	}
 
-	public void setQuery(String query) {
-		this.query = query;
-	}
-
-	public String generateQuery(Object obj, String command) {
-		// TODO - implement Database_Controller.generateQuery
-		throw new UnsupportedOperationException();
-	}
-
-	public void read() {
-		// TODO - implement Database_Controller.read
-		throw new UnsupportedOperationException();
-	}
-
-	public boolean write() {
-		// TODO - implement Database_Controller.write
-		throw new UnsupportedOperationException();
-	}
-
+	/**
+	 * Function connecting GARITS to the DB.
+	 * We use an external server running on linode.
+	 * @return Connection to be used by helpers.
+	 */
 	public Connection connectToDb() {
 		try {
 			// IP + Database name
 			String url = "jdbc:mysql://176.58.124.119:3306/GARITS";
-			//String url = "jdbc:mysql//127.0.0.1:3306/GARITS";
+
 			// Username + Password
 			conn = DriverManager.getConnection(url, "GARITS", "G@R!T$$$");
 
@@ -47,6 +34,10 @@ public class Database_Controller implements I_Database {
 		return null;
 	}
 
+	/**
+	 * Close connection.
+	 * To be used by helpers after completing their function.
+	 */
 	public void closeConnection() {
 		try {
 			conn.close();
@@ -99,6 +90,7 @@ public class Database_Controller implements I_Database {
 	 */
 	public boolean restoreDatabase(String filePath) {
 		try {
+			// Using local installation of mysql to create backup
 			String[] cmd = {"cmd", "/c", "\"C:\\Program Files\\MySQL\\MySQL Server 8.0\\bin\\mysql.exe\"", "-uGARITS", "-pG@R!T$$$", "-h176.58.124.119", "GARITS", "<", filePath};
 
 			ProcessBuilder pb = new ProcessBuilder(cmd);

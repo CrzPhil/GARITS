@@ -13,16 +13,6 @@ public class SQL_UserHelper extends Database_Controller {
 		this.conn = super.connectToDb();
 	}
 
-	/**
-	 * 
-	 * @param obj
-	 * @param command
-	 */
-	public String generateQuery(Object obj, String command) {
-		this.query = command;
-		return this.query;
-	}
-
 	// Authentication function
 	public boolean compareCredentials(String username, String password) {
 		String qur = String.format("SELECT Count(*) AS Count FROM Staff WHERE username LIKE '%s' AND password LIKE '%s'", username, password);

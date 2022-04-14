@@ -7,83 +7,24 @@ import java.util.Date;
 
 public interface I_Job {
 
-    /**
-     *
-     * @param jobID
-     * @param name
-     * @param status
-     * @param startDate
-     * @param finishDate
-     * @param price
-     * @param jobDetails
-     * @param partsNeed
-     * @param duration
-     */
-    abstract Job createJob(long jobID, String name, boolean status, Date startDate, Date finishDate, double price, String jobDetails, SparePart partsNeed, double duration);
+    abstract void createJob(String jobType, float duration, String dates, String motNo, int mileage, String additionalInfo, String completionStatus, String regNo);
 
-    /**
-     *
-     * @param jobID
-     */
-    abstract Job getJob(long jobID);
+    abstract Job[] getJobs();
 
-    /**
-     *
-     * @param partID
-     * @param type
-     * @param name
-     * @param purchaseDate
-     */
-    abstract SparePart createSparePart(long partID, String type, String name, Date purchaseDate);
+    abstract Job[] getCompletedJobs();
 
-    /**
-     *
-     * @param partID
-     */
-    abstract void modifySparePart(long partID);
+    abstract int getJobID(String jobType, float duration, String dates, String motNo, int mileage, String additionalInfo, String completionStatus, String regNo);
 
-    /**
-     *
-     * @param partID
-     */
-    abstract boolean deleteSparePart(long partID);
+    abstract SparePart[] getAllParts();
 
-    /**
-     *
-     * @param jobID
-     */
-    abstract void modifyJob(long jobID);
+    abstract SparePart[] getSpecificParts(String regNo);
 
-    /**
-     *
-     * @param jobID
-     */
-    abstract boolean deleteJob(long jobID);
+    abstract void updateStock(int stock, String partCode);
 
-    /**
-     *
-     * @param bookingID
-     * @param date
-     * @param jobType
-     */
-    abstract Booking createBooking(long bookingID, Date date, String jobType);
+    abstract SparePart[] getJobParts(int jobID);
 
-    /**
-     *
-     * @param bookingID
-     */
-    abstract void modifyBooking(long bookingID);
+    abstract void addToJob(int jobID, String partID);
 
-    /**
-     *
-     * @param bookingID
-     */
-    abstract boolean deleteBooking(long bookingID);
-
-    /**
-     *
-     * @param partID
-     */
-    boolean orderSparePart(long partID);
+    abstract void deleteJobPart(int partID);
 
 }

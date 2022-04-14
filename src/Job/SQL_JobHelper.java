@@ -13,16 +13,6 @@ public class SQL_JobHelper extends Database_Controller {
 		this.conn = super.connectToDb();
 	}
 
-	/**
-	 *
-	 * @param obj
-	 * @param command
-	 */
-	public String generateQuery(Object obj, String command) {
-		this.query = command;
-		return this.query;
-	}
-
 	public Job[] deleteJob(int JobID){
 		// Since we store status as a tinyint, 1 -> Complete 0 -> Incomplete
 		int jStatus;
