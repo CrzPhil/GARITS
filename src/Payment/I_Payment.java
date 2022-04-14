@@ -1,6 +1,6 @@
-package src.Payment;
+package Payment;
 
-import src.Payment.*;
+import Payment.*;
 
 public interface I_Payment {
 
@@ -10,13 +10,13 @@ public interface I_Payment {
      * @param paymentType
      * @param priceOfJob
      */
-    abstract Payment.Payment createPayment(long paymentID, String paymentType, double priceOfJob);
+    abstract Payment createPayment(long paymentID, String paymentType, double priceOfJob);
 
     /**
      *
      * @param paymentID
      */
-    abstract Payment.Payment getPayment(long paymentID);
+    abstract Payment getPayment(long paymentID);
 
     /**
      *

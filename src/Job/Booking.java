@@ -8,12 +8,6 @@ public class Booking {
 	private Date date;
 	private String jobType;
 
-	/**
-	 * 
-	 * @param bookingID
-	 * @param date
-	 * @param jobType
-	 */
 	public Booking(long bookingID, Date date, String jobType) {
 		// TODO - implement Booking.Booking
 		throw new UnsupportedOperationException();
@@ -23,10 +17,6 @@ public class Booking {
 		return this.bookingID;
 	}
 
-	/**
-	 * 
-	 * @param bookingID
-	 */
 	public void setBookingID(long bookingID) {
 		this.bookingID = bookingID;
 	}
@@ -35,10 +25,6 @@ public class Booking {
 		return this.date;
 	}
 
-	/**
-	 * 
-	 * @param date
-	 */
 	public void setDate(Date date) {
 		this.date = date;
 	}
@@ -47,10 +33,6 @@ public class Booking {
 		return this.jobType;
 	}
 
-	/**
-	 * 
-	 * @param jobType
-	 */
 	public void setJobType(String jobType) {
 		this.jobType = jobType;
 	}

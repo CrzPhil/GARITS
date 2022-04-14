@@ -13,7 +13,12 @@ public class SQL_UserHelper extends Database_Controller {
 		this.conn = super.connectToDb();
 	}
 
-	// Authentication function
+	/**
+	 * Authentication function
+	 * @param username Username
+	 * @param password (hashed) Password
+	 * @return Whether auth was successful
+	 */
 	public boolean compareCredentials(String username, String password) {
 		String qur = String.format("SELECT Count(*) AS Count FROM Staff WHERE username LIKE '%s' AND password LIKE '%s'", username, password);
 
@@ -36,7 +41,11 @@ public class SQL_UserHelper extends Database_Controller {
 		return login;
 	}
 
-	// Get the role of a username -> used for privileges
+	/**
+	 * Get the role of a username -> used for privileges
+	 * @param username Username
+	 * @return return Role as String
+	 */
 	public String getRole(String username) {
 		String qur = String.format("SELECT role FROM Staff WHERE username LIKE '%s'", username);
 		String role = null;
@@ -58,7 +67,11 @@ public class SQL_UserHelper extends Database_Controller {
 		return role;
 	}
 
-	// Get a user by role
+	/**
+	 * Get users by Role
+	 * @param role Role (i.e Mechanic, Receptionist, etc.)
+	 * @return User array of accounts with that role
+	 */
 	public User[] getByRole(String role) {
 		String getsize = String.format("SELECT COUNT(*) AS Count FROM Staff WHERE role LIKE '%s'", role);
 		String qur = String.format("SELECT * FROM Staff WHERE role LIKE '%s'", role);
@@ -141,7 +154,11 @@ public class SQL_UserHelper extends Database_Controller {
 		return out;
 	}
 
-	// Matches First name, last name, username for easy recognition; returns full name
+	/**
+	 * Matches First name, last name, username for easy recognition; returns full name
+	 * @param any Any string to match
+	 * @return Return Staff name
+	 */
 	public String getStaff(String any) {
 		String getsize = String.format("SELECT COUNT(*) AS Count FROM Staff WHERE firstName LIKE '%s' OR lastName LIKE '%s' OR username LIKE '%s'", any, any, any);
 		String qur = String.format("SELECT firstName, lastName FROM Staff WHERE firstName LIKE '%s' OR lastName LIKE '%s' OR username LIKE '%s'", any, any, any);
@@ -149,7 +166,11 @@ public class SQL_UserHelper extends Database_Controller {
 		return getStaffName(getsize, qur);
 	}
 
-	// Get Staff by ID
+	/**
+	 * Get Staff Account by Staff ID
+	 * @param staffID ID
+	 * @return Staff Name
+	 */
 	public String getStaff(long staffID) {
 		String getsize = String.format("SELECT COUNT(*) AS Count FROM Staff WHERE staffID = %d", staffID);
 		String qur = String.format("SELECT firstName, lastName FROM Staff WHERE staffID = %d", staffID);
@@ -157,7 +178,11 @@ public class SQL_UserHelper extends Database_Controller {
 		return getStaffName(getsize, qur);
 	}
 
-	// Get ID by username
+	/**
+	 * Get Staff ID by Username
+	 * @param username Username
+	 * @return staffID
+	 */
 	public long getID(String username) {
 		String qur = String.format("SELECT staffID FROM Staff WHERE username LIKE '%s'", username);
 
@@ -180,7 +205,11 @@ public class SQL_UserHelper extends Database_Controller {
 		}
 	}
 
-	// Get Hashed pass by username
+	/**
+	 * Get hashed password by username
+	 * @param username Username
+	 * @return Hashed password String
+	 */
 	public String getPass(String username) {
 		String qur = String.format("SELECT password FROM Staff WHERE username LIKE '%s'", username);
 
@@ -203,6 +232,12 @@ public class SQL_UserHelper extends Database_Controller {
 		}
 	}
 
+	/**
+	 * Get StaffName function
+	 * @param getsize Size query
+	 * @param qur Actual query
+	 * @return Staff name
+	 */
 	private String getStaffName(String getsize, String qur) {
 		try {
 			PreparedStatement pSt = conn.prepareStatement(getsize);
@@ -235,7 +270,16 @@ public class SQL_UserHelper extends Database_Controller {
 		}
 	}
 
-	// Create a Staff account in the database
+	/**
+	 * Create a Staff account in the database
+	 * @param fname fname
+	 * @param lname lname
+	 * @param username username
+	 * @param password password
+	 * @param role role
+	 * @param rate rate
+	 * @param mail mail
+	 */
 	public void createStaff(String fname, String lname, String username, char[] password, String role, String rate, String mail) {
 		HashClass hasher = new HashClass();
 		String hashedpass = hasher.chartosha256(password);
@@ -256,6 +300,10 @@ public class SQL_UserHelper extends Database_Controller {
 		}
 	}
 
+	/**
+	 * Delete Staff Account by staffID
+	 * @param userID userID
+	 */
 	public void deleteStaff(long userID) {
 			String qur = String.format("DELETE FROM Staff WHERE staffID = %d", userID);
 			try {
@@ -267,8 +315,19 @@ public class SQL_UserHelper extends Database_Controller {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-		}
+	}
 
+	/**
+	 * Update staff account by staffID
+ 	 * @param fname fname
+	 * @param lname lname
+	 * @param username username
+	 * @param role role
+	 * @param rate rate
+	 * @param mail mail
+	 * @param staffID staffID
+	 * @return Whether update was successful
+	 */
 	public boolean updateStaff(String fname, String lname, String username, String role, String rate, String mail, long staffID)	{
 		String qur;
 		if (rate.equals("NULL")) {
@@ -310,6 +369,12 @@ public class SQL_UserHelper extends Database_Controller {
 
 	}
 
+	/**
+	 * Set a new password
+	 * @param staffID staffID to match account
+	 * @param newpass New password
+	 * @return whether update was successful
+	 */
 	public boolean updatePassword(long staffID, char[] newpass) {
 		HashClass hasher = new HashClass();
 		String hashedpass = hasher.chartosha256(newpass);

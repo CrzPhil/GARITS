@@ -13,7 +13,11 @@ public class SQL_JobHelper extends Database_Controller {
 		this.conn = super.connectToDb();
 	}
 
-	public Job[] deleteJob(int JobID){
+	/**
+	 * Delete a job by job ID
+	 * @param JobID jobID
+	 */
+	public void deleteJob(int JobID){
 		// Since we store status as a tinyint, 1 -> Complete 0 -> Incomplete
 		int jStatus;
 
@@ -31,10 +35,22 @@ public class SQL_JobHelper extends Database_Controller {
 			System.err.println(ex.getMessage());
 		}
 
-		return out;
 	}
 
-	// Update job with new values
+	/**
+	 * Update job with new values
+	 * @param jobID jobID
+	 * @param jobType jobType
+	 * @param duration duration
+	 * @param dates dates
+	 * @param motNO motNO
+	 * @param mileage mileage
+	 * @param price price
+	 * @param additionalInfo Tasks done
+	 * @param status status
+	 * @param mechanicID ID of Mechanic who worked on the job
+	 * @return Whether update was successful
+	 */
 	public boolean updateJob(int jobID, String jobType, float duration, String dates, String motNO, int mileage, float price, String additionalInfo, String status, long mechanicID) {
 		// Since we store status as a tinyint, 1 -> Complete 0 -> Incomplete
 		int jStatus;
@@ -69,8 +85,17 @@ public class SQL_JobHelper extends Database_Controller {
 	}
 
 
-	// TODO: Modify type / Add to controller
-	public Job[] createJob(String jobType, float duration, String dates, String motNO, int mileage, String additionalInfo, String status, String regNo){
+	/**
+	 * Create new Job
+	 * @param jobType        jobType
+	 * @param dates          dates
+	 * @param motNO          motNO
+	 * @param mileage        mileage
+	 * @param additionalInfo Tasks done
+	 * @param status         status
+	 * @param regNo          registration Number of Vehicle worked on
+	 */
+	public void createJob(String jobType, float duration, String dates, String motNO, int mileage, String additionalInfo, String status, String regNo){
 		// Since we store status as a tinyint, 1 -> Complete 0 -> Incomplete
 		int jStatus;
 		if (Objects.equals(status, "Complete")) {
@@ -99,10 +124,12 @@ public class SQL_JobHelper extends Database_Controller {
 			System.err.println(ex.getMessage());
 		}
 
-		return out;
 	}
 
-	// Get all jobs from database
+	/**
+	 * Get all incomplete jobs from database
+	 * @return Job Array of all Jobs
+	 */
 	public Job[] getJobs() {
 		Job[] out = null;
 
@@ -110,6 +137,17 @@ public class SQL_JobHelper extends Database_Controller {
 		String sizequr = "SELECT COUNT(*) AS Count FROM Jobs WHERE status = 0 ORDER BY jobID DESC";
 		String qur = "SELECT * FROM Jobs WHERE status = 0";
 
+		return getJobs(out, sizequr, qur);
+	}
+
+	/**
+	 * Get All Jobs depending on query
+	 * @param out Array of Jobs
+	 * @param sizequr Length of Rows returned + Size of out array
+	 * @param qur Actual Query
+	 * @return Job Array of Jobs
+	 */
+	private Job[] getJobs(Job[] out, String sizequr, String qur) {
 		try {
 			//SQL sanitization to prevent SQL injection attacks
 			PreparedStatement pSt = conn.prepareStatement(sizequr);
@@ -152,7 +190,10 @@ public class SQL_JobHelper extends Database_Controller {
 		return out;
 	}
 
-	// Get Completed jobs from database
+	/**
+	 * Get Completed jobs from database
+	 * @return Job Array of completed jobs
+	 */
 	public Job[] getCompletedJobs() {
 		Job[] out = null;
 
@@ -161,47 +202,22 @@ public class SQL_JobHelper extends Database_Controller {
 		// Status = 1 means job is complete
 		String qur = "SELECT * FROM Jobs WHERE status = 1";
 
-		try {
-			PreparedStatement pSt = conn.prepareStatement(sizequr);
-			ResultSet rs = pSt.executeQuery();
-
-			// Get count for returned rows
-			rs.next();
-			int size = rs.getInt("Count");
-			rs.close();
-
-			out = new Job[size];
-
-			// Get Job
-			rs = pSt.executeQuery(qur);
-
-			int i = 0;
-
-			while (rs.next()) {
-				out[i] = new Job(
-						rs.getInt("jobID"),
-						rs.getString("jobType"),
-						rs.getFloat("duration"),
-						rs.getString("dates"),
-						rs.getString("motNo"),
-						rs.getInt("mileage"),
-						rs.getFloat("price"),
-						rs.getString("additionalInfo"),
-						Job.getStates()[rs.getInt("status")],
-						rs.getString("registrationNo")
-				);
-				i++;
-			}
-			rs.close();
-			pSt.close();
-		} catch (SQLException ex) {
-			System.err.println(ex.getMessage());
-		}
-
-		this.closeConnection();
-		return out;
+		return getJobs(out, sizequr, qur);
 	}
 
+	/**
+	 * Get ID of a newly created Job
+	 * Matches all the details to a jobID
+	 * @param jobType jobType
+	 * @param duration duration
+	 * @param dates dates
+	 * @param motNo motNo
+	 * @param mileage mileage
+	 * @param additionalInfo additionalInfo
+	 * @param completionStatus completionStatus
+	 * @param regNo Registration number of vehicle worked on
+	 * @return jobID
+	 */
 	public int getJobID(String jobType, float duration, String dates, String motNo, int mileage, String additionalInfo, String completionStatus, String regNo) {
 		String qur = String.format("SELECT jobID FROM Jobs WHERE jobType = '%s' AND duration = %f AND dates = '%s' AND motNo = '%s' AND mileage = %d AND additionalinfo = '%s' AND status = '%s' AND registrationNo = '%s'",
 				jobType,
@@ -223,7 +239,11 @@ public class SQL_JobHelper extends Database_Controller {
 		}
 	}
 
-	// Create a job-part entry in the Job_SpareParts Table
+	/**
+	 * Create a job-part entry in the Job_SpareParts Table
+	 * @param jobID jobID
+	 * @param partCode partCode
+	 */
 	public void addToJob(int jobID, String partCode) {
 		try {
 			//SQL sanitization to prevent SQL injection attacks

@@ -6,7 +6,7 @@ import java.awt.*;
 
 import static java.lang.Thread.sleep;
 
-/*
+/**
     Main Class for GARITS Software Solution - Group 4.
     Run the main function and log in as one of the following users to test the different Dashboards / Privileges:
 
@@ -19,11 +19,16 @@ import static java.lang.Thread.sleep;
     Our Database is hosted on a third-party Server (linode).
     Credentials are found in source code, but connection is automatic.
  */
-
 public class SplashScreen extends JFrame {
     private JPanel Main;
     private JLabel logoLabel;
 
+    /**
+     * MAIN FUNCTION OF GARITS.
+     * RUN THIS TO APPRECIATE THE FULL EXTENT OF CITYTECH UX.
+     * READ HEADER FOR LOGIN CREDENTIALS.
+     * @param args args
+     */
     public static void main(String args[]) {
         SplashScreen j = new SplashScreen();
         j.setContentPane(new SplashScreen().Main);
