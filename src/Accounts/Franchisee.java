@@ -2,7 +2,6 @@ package Accounts;
 
 import Customers.*;
 import Database.Alert;
-import Database.Report;
 
 public class Franchisee extends User {
 
@@ -43,11 +42,6 @@ public class Franchisee extends User {
 
 	public Alert latePaymentAlert() {
 		// TODO - implement Franchisee.latePaymentAlert
-		throw new UnsupportedOperationException();
-	}
-
-	public Report submitOnDemeandReports() {
-		// TODO - implement Franchisee.submitOnDemeandReports
 		throw new UnsupportedOperationException();
 	}
 

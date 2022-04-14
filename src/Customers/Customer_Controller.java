@@ -49,15 +49,6 @@ public class Customer_Controller implements I_Customers {
 		throw new UnsupportedOperationException();
 	}
 
-	public Customers.MOT_Reminder createReminder() {
-		// TODO - implement Customer_Controller.createReminder
-		throw new UnsupportedOperationException();
-	}
-
-	public Customers.MOT_Reminder getReminder() {
-		// TODO - implement Customer_Controller.getReminder
-		throw new UnsupportedOperationException();
-	}
 
 
 	// Pattern checker

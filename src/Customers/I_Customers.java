@@ -19,8 +19,4 @@ public interface I_Customers {
 
     abstract Customers.Vehicle getVehicle();
 
-    abstract Customers.MOT_Reminder createReminder();
-
-    abstract Customers.MOT_Reminder getReminder();
-
 }
