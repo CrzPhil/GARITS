@@ -63,7 +63,7 @@ public class CustomerAccountCreationGUI extends JFrame{
         j.setContentPane(new CustomerAccountCreationGUI().Main);
         j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         j.setTitle("Create Customer Account");
-        Image icon = Toolkit.getDefaultToolkit().getImage("data/logo.png");
+        Image icon = FindImages.getImageLogo();
         j.setIconImage(icon);
         j.setPreferredSize(new Dimension(800, 480));
         j.pack();
@@ -71,17 +71,4 @@ public class CustomerAccountCreationGUI extends JFrame{
         j.setVisible(true);
     }
 
-    // Checks for existing username in the Database
-    private boolean checkForUsername(String username) {
-        SQL_UserHelper helper = new SQL_UserHelper();
-
-        // If user already exists, a role will be found. Recycling methods here.
-        if (helper.getStaff(username) != null) {
-            return false;
-        }
-
-        helper.closeConnection();
-
-        return true;
-    }
 }

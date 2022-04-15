@@ -4,23 +4,12 @@ import Customers.*;
 
 public interface I_Customers {
 
-    /**
-     *
-     * @param customerID
-     * @param contactNumber
-     * @param regularCustomer
-     * @param valuedCustomer
-     */
-    abstract Customers.Customer createCustomer(long customerID, String contactNumber, boolean regularCustomer, boolean valuedCustomer);
+    abstract boolean createCustomer(String fname, String lname, String address, String telephone, String email, String fax, int discount);
 
-    abstract Customers.Customer getCustomer();
+    abstract Customer[] getCustomers();
 
-    abstract Customers.Vehicle createVehicle();
+    abstract boolean createVehicle(Vehicle vehicle);
 
-    abstract Customers.Vehicle getVehicle();
-
-    abstract Customers.MOT_Reminder createReminder();
-
-    abstract Customers.MOT_Reminder getReminder();
+    abstract boolean vehicleExists(String regNo);
 
 }

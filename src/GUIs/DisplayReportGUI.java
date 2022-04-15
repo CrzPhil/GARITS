@@ -16,24 +16,15 @@ public class DisplayReportGUI extends JFrame {
     private static DisplayReportGUI j = new DisplayReportGUI();
 
     private String filepath;
-    private String filename;
 
-    public DisplayReportGUI() {}
+    public DisplayReportGUI() {
+    }
 
     public DisplayReportGUI(String filepath, String filename) {
-        this.filename = filename;
         this.filepath = filepath;
         closeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO: Decide what to do here
-                // Clean up files, so that only pdf remains
-/*                String cdir = System.getProperty("user.dir");
-                File myObj = new File(cdir + "/src/Reports/preview_page1.png");
-
-                // If deletion does not happen (i.e if the user closes the program instead of returning,
-                // it is not critical, as it will be overwritten by the next report.
-                myObj.delete();*/
 
                 j.dispose();
             }
@@ -50,14 +41,14 @@ public class DisplayReportGUI extends JFrame {
                     if (fileChooser.getSelectedFile().isDirectory()) {
                         InputStream in = null;
 
-                        // TODO: taken from https://stackoverflow.com/questions/1146153/copying-files-from-one-directory-to-another-in-java
-                        try {
-                            // Get python-generated report pdf file
-                            //String filename = java.time.LocalDate.now() + "-report.pdf";
-                            //String cdir = System.getProperty("user.dir");
+                        // CREDIT: How to copy-and-paste files using in/out streams taken from
+                        // https://stackoverflow.com/questions/1146153/copying-files-from-one-directory-to-another-in-java
+                        //
+                        // All report/invoice generation code, however, is OURS
 
+                        try {
                             // Copy bits from pdf
-                            in = new FileInputStream( filepath + '/' + filename);
+                            in = new FileInputStream(filepath + '/' + filename);
                             // Outstream to write file to new directory
                             OutputStream out = new FileOutputStream(fileChooser.getSelectedFile() + "/" + filename);
 
@@ -84,20 +75,20 @@ public class DisplayReportGUI extends JFrame {
     }
 
 
-
-    public static void main(String filepath, String filename){
+    public static void main(String filepath, String filename) {
         j.setContentPane(new DisplayReportGUI(filepath, filename).main);
         j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         j.setTitle("Report");
-            Image icon = Toolkit.getDefaultToolkit().getImage("data/logo.png");
-            j.setIconImage(icon);
+        Image icon = FindImages.getImageLogo();
+        j.setIconImage(icon);
         //j.setPreferredSize(new Dimension(700, 990));
         j.pack();
         j.setLocationRelativeTo(null);
         // Make the report fit into the screen
         j.setSize(new Dimension(new ImageIcon(filepath + "/preview_page1.png").getIconWidth(), new ImageIcon(filepath + "/preview_page1.png").getIconHeight()));
         j.setVisible(true);
-}
+    }
+
     private void createUIComponents() {
         ReportImage = new JLabel(new ImageIcon(filepath + "/preview_page1.png"));
     }

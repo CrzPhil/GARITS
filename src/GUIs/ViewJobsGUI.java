@@ -50,7 +50,7 @@ public class ViewJobsGUI extends JFrame{
         j.setContentPane(new ViewJobsGUI().Main);
         j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         j.setTitle("Jobs Library");
-        Image icon = Toolkit.getDefaultToolkit().getImage("data/logo.png");
+        Image icon = FindImages.getImageLogo();
         j.setIconImage(icon);
         j.setPreferredSize(new Dimension(1000, 480));
         j.pack();

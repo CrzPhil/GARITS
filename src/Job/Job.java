@@ -73,23 +73,6 @@ public class Job {
 		return this.jobID + "    " + this.dates + "    " + this.jobType + "    ￡" + this.price + " " + this.status;
 	}
 
-	public void update_on_job() {
-		// TODO - implement Job.update_on_job
-		throw new UnsupportedOperationException();
-	}
-
-	public void show_job_status() {
-		// TODO - implement Job.show_job_status
-		throw new UnsupportedOperationException();
-	}
-
-
-
-	public void partsAvaliable() {
-		// TODO - implement Job.partsAvaliable
-		throw new UnsupportedOperationException();
-	}
-
 	public int getJobID() {
 		return jobID;
 	}

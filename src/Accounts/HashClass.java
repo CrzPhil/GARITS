@@ -4,22 +4,18 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+/**
+ * Class to hash passwords using SHA-256
+ */
 public class HashClass {
-    // TODO: Revise whether to implement char[]
-/*    private String clearText;
-    private char[] clearTextChars;
 
-    // In case String is passed (not recommended as String is stored in memory; cleartext password will be in memory)
-    public HashClass(String text) {
-        this.clearText = text;
-    }
-
-    // passwordField.getPassword returns char[] instead of String for security reasons
-    public HashClass(char[] text) {
-        this.clearTextChars = text;
-    }*/
-
-    // TODO: Inspired by https://www.baeldung.com/sha-256-hashing-java
+    // CREDIT: Inspired by https://www.baeldung.com/sha-256-hashing-java
+    /**
+     * stringtosha256 returns a byte[] array.
+     * This function creates a string out of the bytes.
+     * @param bytes hash bytes
+     * @return String of hash
+     */
     private String byteToString(byte[] bytes) {
         StringBuilder hexStr = new StringBuilder(2 * bytes.length);
         for (byte i : bytes) {
@@ -31,7 +27,11 @@ public class HashClass {
         return hexStr.toString();
     }
 
-    // Passwords are sha-256 encoded in the database
+    /**
+     * Passwords are sha-256 hashed in the database
+     * @param text Cleartext
+     * @return Hashed password
+     */
     public String stringtosha256(String text) {
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
@@ -45,7 +45,12 @@ public class HashClass {
         return null;
     }
 
-    // Passwords are sha-256 encoded in the database
+    /**
+     * JPasswordFields return the input in char[] arrays
+     * We turn those into a Sha256 string
+     * @param text password in char[] array
+     * @return Hashed password String
+     */
     public String chartosha256(char[] text) {
         String cleartext = new String(text);
 

@@ -15,11 +15,11 @@ public class SparePart {
 	private int threshold;
 
 	/**
-	 *
-	 * @param partCode
-	 * @param type
-	 * @param name
-	 * @param year
+	 * Spare Part Constructor
+	 * @param partCode partCode
+	 * @param type type
+	 * @param name name
+	 * @param year year
 	 */
 	public SparePart(String partCode, String name, String manufacturer, String type, int year, int stock, double price, int threshold) {
 		this.type = type;
@@ -99,31 +99,6 @@ public class SparePart {
 	// Used when displaying Spare Parts in GUI, when creating the JTable
 	public String[] toData() {
 		return new String[]{this.partCode, this.name, this.manufacturer, this.type, String.valueOf(this.year), String.valueOf(this.stock), String.valueOf(this.price), String.valueOf(this.threshold)};
-	}
-
-	public boolean orderPart() {
-		// TODO - implement SparePart.orderPart
-		throw new UnsupportedOperationException();
-	}
-
-	public boolean reorderPart() {
-		// TODO - implement SparePart.reorderPart
-		throw new UnsupportedOperationException();
-	}
-
-	public boolean usePart() {
-		// TODO - implement SparePart.usePart
-		throw new UnsupportedOperationException();
-	}
-
-	public void enterPartInfo() {
-		// TODO - implement SparePart.enterPartInfo
-		throw new UnsupportedOperationException();
-	}
-
-	public SparePartsCollection checkStock() {
-		// TODO - implement SparePart.checkStock
-		throw new UnsupportedOperationException();
 	}
 
 	public String getPartCode() {

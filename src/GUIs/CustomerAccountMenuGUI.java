@@ -57,7 +57,7 @@ public class CustomerAccountMenuGUI extends JFrame{
         j.setContentPane(new CustomerAccountMenuGUI().Main);
         j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         j.setTitle("Customer Account Library");
-        Image icon = Toolkit.getDefaultToolkit().getImage("data/logo.png");
+        Image icon = FindImages.getImageLogo();
         j.setIconImage(icon);
         j.setPreferredSize(new Dimension(800,600));
         j.pack();

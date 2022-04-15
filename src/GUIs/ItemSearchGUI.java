@@ -77,7 +77,7 @@ public class ItemSearchGUI extends JFrame {
         j.setContentPane(new ItemSearchGUI().Main);
         j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         j.setTitle("Spare Parts Catalogue");
-        Image icon = Toolkit.getDefaultToolkit().getImage("data/logo.png");
+        Image icon = FindImages.getImageLogo();
         j.setIconImage(icon);
         j.setPreferredSize(new Dimension(800, 480));
         j.pack();
@@ -94,7 +94,7 @@ public class ItemSearchGUI extends JFrame {
         typeBox = new JComboBox(types);
         newSparePartButton = new JButton();
         try {
-            Image nImg = ImageIO.read(new FileInputStream("data/newpart.png")).getScaledInstance(100, 100, Image.SCALE_DEFAULT);
+            Image nImg = FindImages.getImageDisplay("newpart").getScaledInstance(100, 100, Image.SCALE_DEFAULT);
             newSparePartButton.setIcon(new ImageIcon(nImg));
         } catch (Exception ignored) {
         }

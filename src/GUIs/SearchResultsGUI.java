@@ -32,6 +32,74 @@ public class SearchResultsGUI extends JFrame{
 
             }
         });
+
+        editItemButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int row = resultTable.getSelectedRow();
+                // If nothing is selected, getSelectedRow() returns -1
+                if (row != -1) {
+                    // Call edit GUI with selected row's details
+                    EditSparePartGUI.main(new SparePart(
+                            resultTable.getModel().getValueAt(row, 0).toString(),
+                            resultTable.getModel().getValueAt(row, 1).toString(),
+                            resultTable.getModel().getValueAt(row, 2).toString(),
+                            resultTable.getModel().getValueAt(row, 3).toString(),
+                            Integer.parseInt(resultTable.getModel().getValueAt(row, 4).toString()),
+                            Integer.parseInt(resultTable.getModel().getValueAt(row, 5).toString()),
+                            Float.parseFloat(resultTable.getModel().getValueAt(row, 6).toString()),
+                            Integer.parseInt(resultTable.getModel().getValueAt(row, 7).toString())));
+                    j.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Select a part first!");
+                }
+            }
+        });
+
+        incrementStockButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int row = resultTable.getSelectedRow();
+                // If nothing is selected, getSelectedRow() returns -1
+                if (row != -1) {
+                    // Update Table
+                    resultTable.getModel().setValueAt(Integer.parseInt(resultTable.getModel().getValueAt(row, 5).toString()) + 1,
+                            row,
+                            5);
+                    SQL_PartsHelper helper = new SQL_PartsHelper();
+                    // Update DB using current stock and partCode
+                    helper.updateStock(Integer.parseInt(resultTable.getModel().getValueAt(row, 5).toString()),
+                            resultTable.getModel().getValueAt(row, 0).toString());
+                } else {
+                    JOptionPane.showMessageDialog(null, "Select a part first!");
+                }
+            }
+        });
+
+        decrementStockButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int row = resultTable.getSelectedRow();
+                // If nothing is selected, getSelectedRow() returns -1
+                if (row != -1) {
+                    SQL_PartsHelper helper = new SQL_PartsHelper();
+                    if (Integer.parseInt(resultTable.getModel().getValueAt(row, 5).toString()) <= 0) {
+                        JOptionPane.showMessageDialog(null, "Stock depleted!");
+                    } else {
+                        // Update Table
+                        resultTable.getModel().setValueAt(Integer.parseInt(resultTable.getModel().getValueAt(row, 5).toString()) - 1,
+                                row,
+                                5);
+
+                        // Update DB using current stock and partCode
+                        helper.updateStock(Integer.parseInt(resultTable.getModel().getValueAt(row, 5).toString()),
+                                resultTable.getModel().getValueAt(row, 0).toString());
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Select a part first!");
+                }
+            }
+        });
     }
 
     public SearchResultsGUI(String partName) {
@@ -130,7 +198,7 @@ public class SearchResultsGUI extends JFrame{
     private static void createFrame() {
         j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         j.setTitle("Search results");
-        Image icon = Toolkit.getDefaultToolkit().getImage("data/logo.png");
+        Image icon = FindImages.getImageLogo();
         j.setIconImage(icon);
         j.setPreferredSize(new Dimension(800,480));
         j.Main.setOpaque(true);
@@ -139,6 +207,11 @@ public class SearchResultsGUI extends JFrame{
         j.setVisible(true);
     }
 
+    /**
+     * Prepare Data for JTable
+     * @param data SparePart Array
+     * @return String 2d-array
+     */
     private String[][] prepareData(SparePart[] data) {
         // 8 is attribute count of a spare part
         String[][] out = new String[data.length][8] ;
@@ -152,6 +225,9 @@ public class SearchResultsGUI extends JFrame{
         return out;
     }
 
+    /**
+     * Generate JTable
+     */
     private void generateTable() {
         String[] columnNames = {
                 "Part ID",
@@ -182,7 +258,10 @@ public class SearchResultsGUI extends JFrame{
         resultTable.setFillsViewportHeight(true);
     }
 
-    // Get All parts by previous' GUI's search parameter
+    /**
+     * Get All parts by previous' GUI's search parameter
+     * @return SparePart array
+     */
     private SparePart[] getParts() {
         SQL_PartsHelper helper = new SQL_PartsHelper();
         if(partName == null){

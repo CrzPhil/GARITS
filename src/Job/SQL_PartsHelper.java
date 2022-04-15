@@ -14,25 +14,29 @@ public class SQL_PartsHelper extends Database_Controller {
 	}
 
 	/**
-	 *
-	 * @param obj
-	 * @param command
+	 * Match string with either partName, partCode, or vehicleType; Makes for a generic search.
+	 * @param part detail about part
+	 * @return SparePart array
 	 */
-	public String generateQuery(Object obj, String command) {
-		// TODO - implement SQL_PartsHelper.generateQuery
-		throw new UnsupportedOperationException();
-	}
-
-	// Match string with either partName, partCode, or vehicleType; Makes for a generic search.
 	public SparePart[] getPartByIdName(String part) {
-		// TODO: Get rid of SQLi
 		String sizequr = String.format("SELECT COUNT(*) AS Count FROM SpareParts WHERE code LIKE '%s' OR partName LIKE '%s' OR vehicleType LIKE '%s'", part, part, part);
 		String qur = String.format("SELECT * FROM SpareParts WHERE code LIKE '%s' OR partName LIKE '%s' OR vehicleType LIKE '%s'", part, part, part);
 
 		return getParts(sizequr, qur);
 	}
 
-	// Create new spare part with custom stock in DB
+	/**
+	 * Create new spare part with custom stock in DB
+	 * @param code code
+	 * @param name name
+	 * @param make make
+	 * @param model model
+	 * @param year year
+	 * @param stock stock
+	 * @param price price
+	 * @param threshold threshold
+	 * @return Boolean if creation was successful
+	 */
 	public boolean createSparePart(String code, String name, String make, String model, int year, int stock, float price, int threshold) {
 
 			try {
@@ -56,7 +60,11 @@ public class SQL_PartsHelper extends Database_Controller {
 
 	}
 
-	// Check if code already exists
+	/**
+	 * Check if spare part with this code already exists
+	 * @param code code
+	 * @return boolean
+	 */
 	public boolean getCode(String code) {
 		String qur = String.format("SELECT COUNT(*) AS Count FROM SpareParts WHERE code = '%s'", code);
 		try {
@@ -76,7 +84,10 @@ public class SQL_PartsHelper extends Database_Controller {
 		return false;
 	}
 
-	// Get all different types
+	/**
+	 * Get all different types of Spare Part
+	 * @return String Array of types
+	 */
 	public String[] getTypes() {
 		String[] out = null;
 
@@ -118,7 +129,10 @@ public class SQL_PartsHelper extends Database_Controller {
 		return out;
 	}
 
-	// Get all unique part names
+	/**
+	 * Get all unique part names
+	 * @return String Array of part names
+	 */
 	public String[] getPartNames() {
 		String sizequr = "SELECT COUNT(DISTINCT partName) AS Count FROM SpareParts";
 		String qur = "SELECT DISTINCT partName FROM SpareParts";
@@ -149,7 +163,10 @@ public class SQL_PartsHelper extends Database_Controller {
 		}
 	}
 
-	// Get all parts
+	/**
+	 * Get all parts
+	 * @return SparePart Array of all parts
+	 */
 	public SparePart[] getAllParts() {
 		String sizequr = "SELECT COUNT(*) AS Count FROM SpareParts";
 		String qur = "SELECT * FROM SpareParts";
@@ -157,7 +174,11 @@ public class SQL_PartsHelper extends Database_Controller {
 		return getParts(sizequr, qur);
 	}
 
-	// Get all spare parts relating to the Vehicle type/make
+	/**
+	 * Get all spare parts relating to the Vehicle type/make
+	 * @param regNo Vehicle's reg No to get make/model
+	 * @return SparePart array of parts
+	 */
 	public SparePart[] getSpecificParts(String regNo) {
 		SparePart[] out = null;
 		// Query to get vehicle type and make from regNo
@@ -190,7 +211,12 @@ public class SQL_PartsHelper extends Database_Controller {
 		return out;
 	}
 
-	// Get spare parts by certain query (Has to be SELECT * [...])
+	/**
+	 * Get spare parts by certain query (Has to be SELECT * [...])
+	 * @param sizequr Size query (query with Count(*) to get rowcount)
+	 * @param qur Actual query
+	 * @return Array of Spare Parts with size of Count(*) generated through query.
+	 */
 	private SparePart[] getParts(String sizequr, String qur) {
 		SparePart[] out = null;
 
@@ -233,7 +259,11 @@ public class SQL_PartsHelper extends Database_Controller {
 		return out;
 	}
 
-	// Updates item stock by partID
+	/**
+	 * Updates item stock by partID
+	 * @param stock NewStock
+	 * @param partID Code of Part
+	 */
 	public void updateStock(int stock, String partID) {
 		try {
 			//SQL sanitization to prevent SQL injection attacks
@@ -247,7 +277,11 @@ public class SQL_PartsHelper extends Database_Controller {
 		}
 	}
 
-	// Get all parts used on a job (from Job_SpareParts) using jobID
+	/**
+	 * Get all parts used on a job (from Job_SpareParts) using jobID
+	 * @param jobID jobID
+	 * @return Return Spare Parts
+	 */
 	public SparePart[] getJobParts(int jobID) {
 		String sizequr = "SELECT COUNT(*) AS Count FROM SpareParts t1 INNER JOIN Job_SpareParts JSP on t1.code = JSP.partCode WHERE jobID = " + jobID;
 		String qur = "SELECT JSP.ID, t1.* FROM SpareParts t1 INNER JOIN Job_SpareParts JSP on t1.code = JSP.partCode WHERE jobID = " + jobID;
@@ -288,7 +322,10 @@ public class SQL_PartsHelper extends Database_Controller {
 		}
 	}
 
-	// Delete a Part that's assigned to a job (from Job_SpareParts) using partID
+	/**
+	 * Delete a Part that's assigned to a job (from Job_SpareParts) using partID
+	 * @param partID partID
+	 */
 	public void deleteJobPart(int partID) {
 		try {
 			//SQL sanitization to prevent SQL injection attacks
@@ -301,12 +338,23 @@ public class SQL_PartsHelper extends Database_Controller {
 		}
 	}
 
-	// Update method for part editing gui
+	/**
+	 * Update method for part editing gui
+	 * @param code code
+	 * @param name name
+	 * @param make make
+	 * @param model model
+	 * @param year year
+	 * @param stock stock
+	 * @param price price
+	 * @param threshold threshold
+	 * @return whether update was successful
+	 */
 	public boolean updateSparePart(String code, String name, String make, String model, int year, int stock, float price, int threshold) {
 		try {
 			//SQL sanitization to prevent SQL injection attacks
 			PreparedStatement pSt;
-			pSt = conn.prepareStatement("INSERT INTO Vehicles (registrationNo, make, model, engSerial, chassisNo, colour, MoTDate, CustomercustomerID)" + " VALUES (?,?,?, ?, ?, ?, ?,?)");
+			pSt = conn.prepareStatement("UPDATE SpareParts SET partName = ?, manufacturer = ?, vehicleType = ?, year = ?, stock = ?, price = ?, threshold = ? WHERE code = '" + code +"'");
 			pSt.setString(1, name);
 			pSt.setString(2, make);
 			pSt.setString(3, model);
@@ -314,7 +362,6 @@ public class SQL_PartsHelper extends Database_Controller {
 			pSt.setInt(5, stock);
 			pSt.setFloat(6, price);
 			pSt.setInt(7, threshold);
-			pSt.setString(8, code);
 			pSt.executeUpdate();
 			return true;
 		} catch (SQLException e) {

@@ -11,16 +11,10 @@ public class SQL_VehicleHelper extends Database_Controller {
 	public SQL_VehicleHelper() { this.conn = super.connectToDb();}
 
 	/**
-	 * 
-	 * @param obj
-	 * @param command
+	 * Return vehicle(s) corresponding to customer
+	 * @param customer customer object
+	 * @return return Vehicle Array of Customer's vehicles
 	 */
-	public String generateQuery(Object obj, String command) {
-		this.query = command;
-		return this.query;
-	}
-
-	// Return vehicle(s) corresponding to customer
 	public Vehicle[] getVehicles(Customer customer) {
 		Vehicle[] out = null;
 		String sizequr = String.format("SELECT COUNT(*) AS Count FROM Vehicles WHERE CustomercustomerID = %d", customer.getCustomerID());
@@ -59,7 +53,11 @@ public class SQL_VehicleHelper extends Database_Controller {
 		return out;
 	}
 
-	// Checks whether a Vehicle with a given reg No exists in the database
+	/**
+	 * Checks whether a Vehicle with a given reg No exists in the database
+	 * @param regNo Vehicle's registration number.
+	 * @return Boolean: whether vehicle exists
+	 */
 	public boolean vehicleExists(String regNo) {
 		String qur = String.format("SELECT COUNT(*) AS Count FROM Vehicles WHERE registrationNo = '%s'", regNo);
 		boolean exists = false;
@@ -82,6 +80,11 @@ public class SQL_VehicleHelper extends Database_Controller {
 		}
 	}
 
+	/**
+	 * Create a new vehicle in DB
+	 * @param vehicle Vehicle Object to create
+	 * @return Whether creation was successful
+	 */
 	public boolean createVehicle(Vehicle vehicle) {
 		// Format date correctly (DD/MM/YYYY)
 		String datePart = "STR_TO_DATE('" + vehicle.getMotDate() + "', \"%d/%m/%Y\")";
@@ -107,6 +110,11 @@ public class SQL_VehicleHelper extends Database_Controller {
 		}
 	}
 
+	/**
+	 * Delete Vehicle by Registration Number
+	 * @param reNo Vehicle's registration number
+	 * @return whether delete was successful
+	 */
 	public boolean deleteVehicle(String reNo) {
 		try {
 			//SQL sanitization to prevent SQL injection attacks
@@ -122,6 +130,19 @@ public class SQL_VehicleHelper extends Database_Controller {
 		}
 	}
 
+	/**
+	 * Update vehicle by registration Number
+	 * @param oldRegNo oldRegNo
+	 * @param regNo regNo
+	 * @param make make
+	 * @param model model
+	 * @param engSerial engSerial
+	 * @param chassisNo chassisNo
+	 * @param colour colour
+	 * @param motDate motDate
+	 * @param customerID customerID
+	 * @return whether update was successful
+	 */
 	public boolean updateVehicle(String oldRegNo, String regNo, String make, String model, String engSerial, String chassisNo, String colour, String motDate, long customerID) {
 		String datePart = "STR_TO_DATE(\"" + motDate + "\", \"%Y-%m-%d\")";
 		try {

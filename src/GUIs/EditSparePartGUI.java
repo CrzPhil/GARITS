@@ -68,6 +68,18 @@ public class EditSparePartGUI extends JFrame {
         });
     }
 
+    /**
+     * Validate user input
+     * @param code code
+     * @param name name
+     * @param make make
+     * @param model model
+     * @param year year
+     * @param stock stock
+     * @param price price
+     * @param threshold threshold
+     * @return Whether input is valid
+     */
     private boolean validateInput(String code, String name,String make,String model,String year,String stock,String price,String threshold) {
         SQL_PartsHelper helper = new SQL_PartsHelper();
 
@@ -126,7 +138,7 @@ public class EditSparePartGUI extends JFrame {
         j.setContentPane(new EditSparePartGUI(currentPart).Main);
         j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         j.setTitle("Edit Spare Part");
-        Image icon = Toolkit.getDefaultToolkit().getImage("data/logo.png");
+        Image icon = FindImages.getImageLogo();
         j.setIconImage(icon);
         j.setPreferredSize(new Dimension(800,480));
         j.pack();

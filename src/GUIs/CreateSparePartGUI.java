@@ -39,7 +39,7 @@ public class CreateSparePartGUI extends JFrame {
                 // Validate input & create Spare Part
                 if (validateInput(code, name, make, model, year, stock, price, threshold)) {
                     SQL_PartsHelper helper = new SQL_PartsHelper();
-                    if (helper.createSparePart(code, name, make, model, Integer.parseInt(year), Integer.parseInt(stock), Float.parseFloat(price), Integer.parseInt(threshold))) {
+                    if (helper.createSparePart(code, name, make, model, Integer.parseInt(year), Integer.parseInt(stock), (float) (Float.parseFloat(price)+(Float.parseFloat(price)*0.3)), Integer.parseInt(threshold))) {
                         JOptionPane.showMessageDialog(null, "Spare Part created successfully.");
                         helper.closeConnection();
                         j.dispose();
@@ -124,7 +124,7 @@ public class CreateSparePartGUI extends JFrame {
         j.setContentPane(new CreateSparePartGUI().Main);
         j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         j.setTitle("Spare Part Creation Menu");
-        Image icon = Toolkit.getDefaultToolkit().getImage("data/logo.png");
+        Image icon = FindImages.getImageLogo();
         j.setIconImage(icon);
         j.setPreferredSize(new Dimension(800,480));
         j.pack();

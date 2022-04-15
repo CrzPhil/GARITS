@@ -60,7 +60,16 @@ public class UserAccountCreationGUI extends JFrame {
         });
     }
 
-    // Method to validate user input; mostly regex, one query to the database to check for the username
+    /**
+     * Method to validate user input; mostly regex, one query to the database to check for the username
+     * @param rate rate
+     * @param username username
+     * @param pass pass
+     * @param confirmpass confirmpass
+     * @param mail mail
+     * @param role role
+     * @return Whether input is valid
+     */
     private boolean digestInfo(String rate, String username, char[] pass, char[] confirmpass, String mail, String role) {
         Accounts_Controller controller = new Accounts_Controller();
 
@@ -130,7 +139,7 @@ public class UserAccountCreationGUI extends JFrame {
         j.setContentPane(new UserAccountCreationGUI().Main);
         j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         j.setTitle("Create Staff Account");
-        Image icon = Toolkit.getDefaultToolkit().getImage("data/logo.png");
+        Image icon = FindImages.getImageLogo();
         j.setIconImage(icon);
         j.setPreferredSize(new Dimension(800, 480));
         j.pack();
@@ -138,7 +147,11 @@ public class UserAccountCreationGUI extends JFrame {
         j.setVisible(true);
     }
 
-    // Checks for existing username in the Database
+    /**
+     * Checks for existing username in the Database
+     * @param username username
+     * @return Whether username exists in DB
+     */
     private boolean checkForUsername(String username) {
         SQL_UserHelper helper = new SQL_UserHelper();
 

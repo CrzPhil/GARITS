@@ -54,6 +54,8 @@ public class ViewCompletedJobsGUI extends JFrame{
                     ProcessBuilder pb = new ProcessBuilder("python3", cdir + "/src/Invoices/invoicegenerator.py", String.valueOf(selectedJob.getJobID()));
                     Process p = pb.start();
 
+                    p.waitFor();
+
                     // DEBUG ONLY
                     //BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
                     //System.out.println(in.readLine());
@@ -76,7 +78,7 @@ public class ViewCompletedJobsGUI extends JFrame{
         j.setContentPane(new ViewCompletedJobsGUI().Main);
         j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         j.setTitle("Completed Jobs Library");
-        Image icon = Toolkit.getDefaultToolkit().getImage("data/logo.png");
+        Image icon = FindImages.getImageLogo();
         j.setIconImage(icon);
         j.setPreferredSize(new Dimension(1000, 480));
         j.pack();

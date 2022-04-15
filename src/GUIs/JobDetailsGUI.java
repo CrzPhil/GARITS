@@ -177,22 +177,22 @@ public class JobDetailsGUI extends JFrame {
             }
         });
 
-        // TODO: Make this more readable
         // Add PART to LIST
         addPartButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (partSelectBox.getSelectedItem() != null) {
-                    if (((SparePart) partSelectBox.getSelectedItem()).getStock() >= 1) {
+                    SparePart selected = ((SparePart) partSelectBox.getSelectedItem());
+                    if (selected.getStock() >= 1) {
                         // Add Item to JList
-                        partModel.addElement((SparePart) partSelectBox.getSelectedItem());
+                        partModel.addElement(selected);
                         // Update part Object
-                        ((SparePart) partSelectBox.getSelectedItem()).setStock(((SparePart) partSelectBox.getSelectedItem()).getStock() - 1);
+                        (selected).setStock(selected.getStock() - 1);
 
                         // Update database
                         Job_Controller controller = new Job_Controller();
                         // Decrement stock
-                        controller.updateStock(((SparePart) partSelectBox.getSelectedItem()).getStock(), ((SparePart) partSelectBox.getSelectedItem()).getPartCode());
+                        controller.updateStock(selected.getStock(), selected.getPartCode());
                     }
                     // If Stock is less than one
                     else {
@@ -268,9 +268,9 @@ public class JobDetailsGUI extends JFrame {
         j.setContentPane(new JobDetailsGUI(job).Main);
         j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         j.setTitle("Chosen Job Details");
-        Image icon = Toolkit.getDefaultToolkit().getImage("data/logo.png");
+        Image icon = FindImages.getImageLogo();
         j.setIconImage(icon);
-        j.setPreferredSize(new Dimension(1000, 480));
+        j.setPreferredSize(new Dimension(1200, 480));
         j.pack();
         j.setLocationRelativeTo(null);
         j.setVisible(true);
@@ -329,7 +329,6 @@ public class JobDetailsGUI extends JFrame {
         }
     }
 
-    // TODO: Registration Number ?
     private void createUIComponents() {
         if (job != null) {
             // For some reason label does not get updated here, and we have to repeat this in the constructor

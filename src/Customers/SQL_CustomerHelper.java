@@ -15,14 +15,9 @@ public class SQL_CustomerHelper extends Database_Controller {
 	}
 
 	/**
-	 * @param obj
-	 * @param command
+	 * Get all customers
+	 * @return Customer[] all customers
 	 */
-	public String generateQuery(Object obj, String command) {
-		this.query = command;
-		return this.query;
-	}
-
 	public Customer[] getCustomers() {
 		Customer[] out = null;
 
@@ -65,7 +60,17 @@ public class SQL_CustomerHelper extends Database_Controller {
 		return out;
 	}
 
-	// Create customer
+	/**
+	 * Create Customer
+	 * @param fname fname
+	 * @param lname lname
+	 * @param address address
+	 * @param telephone telephone
+	 * @param email email
+	 * @param fax fax
+	 * @param discount discount
+	 * @return Whether creation was successful
+	 */
 	public boolean createCustomer(String fname, String lname, String address, String telephone, String email, String fax, int discount) {
 		try {
 			//SQL sanitization to prevent SQL injection attacks
@@ -86,7 +91,11 @@ public class SQL_CustomerHelper extends Database_Controller {
 		}
 	}
 
-	// Delete customer by customerID
+	/**
+	 * Delete customer by ID
+	 * @param customerID staffID
+	 * @return Whether deletion was successful
+	 */
 	public boolean deleteCustomer(long customerID) {
 
 		try {
@@ -103,7 +112,18 @@ public class SQL_CustomerHelper extends Database_Controller {
 		}
 	}
 
-	// Update values for a customer (by customerID)
+	/**
+	 * Update values for a customer (by customerID)
+	 * @param fname fname
+	 * @param lname lname
+	 * @param address address
+	 * @param telephone telephone
+	 * @param email email
+	 * @param fax fax
+	 * @param discount discount
+	 * @param customerID customer ID to change
+	 * @return whether update was successful
+	 */
 	public boolean updateCustomer(String fname, String lname, String address, String telephone, String email, String fax, int discount, long customerID) {
 		try {
 			//SQL sanitization to prevent SQL injection attacks

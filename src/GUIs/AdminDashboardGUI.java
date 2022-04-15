@@ -21,7 +21,8 @@ public class AdminDashboardGUI extends JFrame{
         j.setContentPane(new AdminDashboardGUI().Main);
         j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         j.setTitle("Admin Dashboard");
-        Image icon = Toolkit.getDefaultToolkit().getImage("data/logo.png");
+
+        Image icon = FindImages.getImageLogo();
         j.setIconImage(icon);
         j.setPreferredSize(new Dimension(800,480));
         j.pack();
@@ -57,8 +58,8 @@ public class AdminDashboardGUI extends JFrame{
         usersButton = new JButton();
         databaseButton = new JButton("dbbutton");
         try {
-            Image img = ImageIO.read(new FileInputStream("data/userwhite.png")).getScaledInstance(100, 100, Image.SCALE_DEFAULT);
-            Image dtbImg = ImageIO.read(new FileInputStream("data/dbicon.png")).getScaledInstance(100, 100, Image.SCALE_DEFAULT);
+            Image img = FindImages.getImageDisplay("userwhite").getScaledInstance(100, 100, Image.SCALE_DEFAULT);
+            Image dtbImg = FindImages.getImageDisplay("dbicon").getScaledInstance(100, 100, Image.SCALE_DEFAULT);
             usersButton.setIcon(new ImageIcon(img));
             databaseButton.setIcon(new ImageIcon(dtbImg));
         } catch (Exception ignored) {

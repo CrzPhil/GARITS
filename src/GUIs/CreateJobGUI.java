@@ -99,7 +99,7 @@ public class CreateJobGUI extends JFrame{
                 int mileage = Integer.parseInt(mileageField.getText());
                 String additionalInfo = detailsField.getText();
                 // Create Job in DB
-                controller.sendData(jobType, duration, dates, motNo, mileage, additionalInfo, "Incomplete", regNoField.getText());
+                controller.createJob(jobType, duration, dates, motNo, mileage, additionalInfo, "Incomplete", regNoField.getText());
                 // Get ID of newly created Job
                 int jobID = controller.getJobID(jobType, duration, dates, motNo, mileage, additionalInfo, "Incomplete", regNoField.getText());
                 // Add Parts from List to Job (Job_SpareParts)
@@ -166,12 +166,11 @@ public class CreateJobGUI extends JFrame{
         return m.matches();
     }
 
-    // TODO: What happens to the added spare parts if the application is closed?
     public static void main(){
         j.setContentPane(new CreateJobGUI().Main);
         j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         j.setTitle("Job Creation Menu");
-        Image icon = Toolkit.getDefaultToolkit().getImage("data/logo.png");
+        Image icon = FindImages.getImageLogo();
         j.setIconImage(icon);
         j.setPreferredSize(new Dimension(1280,720));
         j.pack();
@@ -190,15 +189,12 @@ public class CreateJobGUI extends JFrame{
     private void createUIComponents(){
         jDateChooser = new JDateChooser();
 
-
         // Configure List of added parts
         this.partModel = new DefaultListModel<SparePart>();
         partList = new JList<>(partModel);
         partList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
         // Dropdown of possible parts to add to job
-        // TODO: filter this to become vehicle-specific (manufacturer/model)
-
         partSelectBox = new JComboBox<>();
 
     }

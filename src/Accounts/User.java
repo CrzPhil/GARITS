@@ -1,5 +1,10 @@
 package Accounts;
 
+import javax.management.relation.Role;
+
+/**
+ * User class from which all Staff accounts will inherit.
+ */
 public class User {
 
 	protected long userID;
@@ -33,11 +38,18 @@ public class User {
 
 	}
 
+	/**
+	 * Get user ID
+	 * @return user ID
+	 */
 	public long getUserID() {
 		return this.userID;
 	}
 
-
+	/**
+	 * Get Username
+	 * @return username
+	 */
 	public String getUsername() {
 		return this.username;
 	}
@@ -51,6 +63,10 @@ public class User {
 		this.username = username;
 	}
 
+	/**
+	 * Get email
+	 * @return email
+	 */
 	public String getEmail() {
 		return this.email;
 	}
@@ -77,6 +93,10 @@ public class User {
 		this.password = password;
 	}
 
+	/**
+	 * Get Name
+	 * @return name
+	 */
 	public String getName() {
 		return this.name;
 	}
@@ -90,13 +110,18 @@ public class User {
 		this.name = name;
 	}
 
-
+	/**
+	 * ToString method to display users in GUI by their name
+	 * @return Name
+	 */
 	@Override
 	public String toString() {
 		return name;
 	}
 
-	// Helper function to determine Role when editing accounts
+	/**
+	 * Helper function to determine Role when editing accounts
+ 	 */
 	public String getInstanceClass() {
 		return "User";
 	}

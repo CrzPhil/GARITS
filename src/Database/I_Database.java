@@ -2,25 +2,16 @@ package Database;
 
 import Database.*;
 
+import java.sql.Connection;
+
 public interface I_Database {
 
-    abstract String getQuery();
+    abstract Connection connectToDb();
 
-    /**
-     *
-     * @param query
-     */
-    abstract void setQuery(String query);
+    abstract void closeConnection();
 
-    /**
-     *
-     * @param obj
-     * @param command
-     */
-    abstract String generateQuery(Object obj, String command);
+    abstract boolean backupDatabase();
 
-    abstract void read();
-
-    abstract boolean write();
+    abstract boolean restoreDatabase(String filePath);
 
 }

@@ -26,8 +26,6 @@ public class VehicleReportGUI extends JFrame{
         generateReportButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               /* j.dispose();
-                ReportsMenuGUI.main(); */
                 if(!(monthlyCheckBox.isSelected()) && !(perJobTypeCheckBox.isSelected()) && !(overallCheckBox.isSelected()) && !(perCustomerTypeCheckBox.isSelected())){
                     JOptionPane.showMessageDialog(null, "Select a filter and timeframe option.");
                 }else if ((overallCheckBox.isSelected()) && (monthlyCheckBox.isSelected())){
@@ -39,7 +37,24 @@ public class VehicleReportGUI extends JFrame{
                 }else if (!(perJobTypeCheckBox.isSelected()) && !(perCustomerTypeCheckBox.isSelected())){
                     JOptionPane.showMessageDialog(null, "Select a filter option.");
                 }else{
-                    //DisplayReportGUI.main();
+                    try {
+                        // Current working directory
+                        String cdir = System.getProperty("user.dir");
+
+                        // Python process, passing type (Overall OR MOT/Service/Repair) to program
+                        ProcessBuilder pb = new ProcessBuilder("python3", cdir + "/src/Reports/VehicleReport/vehiclereportgenerator.py");
+                        Process p = pb.start();
+                        p.waitFor();
+
+                        // DEBUG ONLY
+                        //BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
+                        //System.out.println(in.readLine());
+
+                        String filename = java.time.LocalDate.now() + "-vehicleReport.pdf";
+                        DisplayReportGUI.main(cdir + "/src/Reports/VehicleReport", filename);
+                    } catch (Exception ignore) {
+                        JOptionPane.showMessageDialog(null, "Something went wrong. Contact your administrator.");
+                    }
                 }
             }
         });
@@ -48,7 +63,7 @@ public class VehicleReportGUI extends JFrame{
         j.setContentPane(new VehicleReportGUI().Main);
         j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         j.setTitle("Generate Vehicle Quantity Report");
-        Image icon = Toolkit.getDefaultToolkit().getImage("data/logo.png");
+        Image icon = FindImages.getImageLogo();
         j.setIconImage(icon);
         j.setPreferredSize(new Dimension(800,480));
         j.pack();

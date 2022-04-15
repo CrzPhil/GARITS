@@ -18,18 +18,6 @@ public class JobSelectionGUI extends JFrame{
     private JButton createButton;
     public static JobSelectionGUI j = new JobSelectionGUI();
 
-    public static void main() {
-        j.setContentPane(new JobSelectionGUI().Main);
-        j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        j.setTitle("Job Selection");
-        Image icon = Toolkit.getDefaultToolkit().getImage("data/logo.png");
-        j.setIconImage(icon);
-        j.setPreferredSize(new Dimension(800,480));
-        j.pack();
-        j.setLocationRelativeTo(null);
-        j.setVisible(true);
-    }
-
     public JobSelectionGUI() {
         returnButton.addActionListener(new ActionListener() {
             @Override
@@ -68,14 +56,26 @@ public class JobSelectionGUI extends JFrame{
         });
     }
 
+    public static void main() {
+        j.setContentPane(new JobSelectionGUI().Main);
+        j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        j.setTitle("Job Selection");
+        Image icon = FindImages.getImageLogo();
+        j.setIconImage(icon);
+        j.setPreferredSize(new Dimension(800,480));
+        j.pack();
+        j.setLocationRelativeTo(null);
+        j.setVisible(true);
+    }
+
     private void createUIComponents() {
         incompButton = new JButton();
         CompButton = new JButton();
         createButton = new JButton();
         try {
-            Image img = ImageIO.read(new FileInputStream("data/loading.png")).getScaledInstance(100, 100, Image.SCALE_DEFAULT);
-            Image tImg = ImageIO.read(new FileInputStream("data/tick3.png")).getScaledInstance(100, 100, Image.SCALE_DEFAULT);
-            Image bImg = ImageIO.read(new FileInputStream("data/plus.png")).getScaledInstance(100, 100, Image.SCALE_DEFAULT);
+            Image img = FindImages.getImageDisplay("loading").getScaledInstance(100, 100, Image.SCALE_DEFAULT);
+            Image tImg = FindImages.getImageDisplay("tick3").getScaledInstance(100, 100, Image.SCALE_DEFAULT);
+            Image bImg = FindImages.getImageDisplay("plus").getScaledInstance(100, 100, Image.SCALE_DEFAULT);
             incompButton.setIcon(new ImageIcon(img));
             CompButton.setIcon(new ImageIcon(tImg));
             createButton.setIcon(new ImageIcon(bImg));
