@@ -21,10 +21,10 @@ public class Database_Controller implements I_Database {
 	public Connection connectToDb() {
 		try {
 			// IP + Database name
-			String url = "jdbc:mysql://176.58.124.119:3306/GARITS";
+			String url = "jdbc:mysql://REDACTED:REDACTED/GARITS";
 
 			// Username + Password
-			conn = DriverManager.getConnection(url, "GARITS", "G@R!T$$$");
+			conn = DriverManager.getConnection(url, "REDACTED", "REDACTED");
 
 			return conn;
 
@@ -58,7 +58,7 @@ public class Database_Controller implements I_Database {
 		String filename = java.time.LocalDate.now() + "-backup.sql";
 
 		try {
-			String[] cmd = {"cmd", "/c", "C:\\Program Files\\MySQL\\MySQL Server 8.0\\bin\\mysqldump.exe", "-uGARITS", "-pG@R!T$$$", "-h176.58.124.119", "GARITS", ">", cdir + "\\src\\Database\\Backups\\" + filename};
+			String[] cmd = {"cmd", "/c", "C:\\Program Files\\MySQL\\MySQL Server 8.0\\bin\\mysqldump.exe", "-uREDACTED", "-pREDACTED", "-hREDACTED", "REDACTED", ">", cdir + "\\src\\Database\\Backups\\" + filename};
 			ProcessBuilder pb = new ProcessBuilder(cmd);
 			pb.redirectErrorStream(true);
 			Process pr = pb.start();
@@ -69,7 +69,7 @@ public class Database_Controller implements I_Database {
 
 		} catch (Exception e) {
 			// Linux/Mac specific; MySQL has to be installed.
-			String[] cmd = {"/bin/sh", "-c", "mysqldump", "-uGARITS", "-pG@R!T$$$", "-h176.58.124.119", "GARITS", ">", cdir + "/src/Database/Backups/" + filename};
+			String[] cmd = {"/bin/sh", "-c", "mysqldump", "-uREDACTED", "-pREDACTED", "-hREDACTED", "REDACTED", ">", cdir + "/src/Database/Backups/" + filename};
 
 			Runtime rt = Runtime.getRuntime();
 			try {

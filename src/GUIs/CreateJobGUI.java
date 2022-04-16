@@ -90,28 +90,33 @@ public class CreateJobGUI extends JFrame{
             public void actionPerformed(ActionEvent e) {
 
 
-                // TODO: Check if records are empty
                 Job_Controller controller = new Job_Controller();
-                String jobType = (String) jobTypeBox.getSelectedItem();
-                float duration = Float.parseFloat(durationField.getText());
-                String dates = String.valueOf(jDateChooser.getDate());
-                String motNo = motField.getText();
-                int mileage = Integer.parseInt(mileageField.getText());
-                String additionalInfo = detailsField.getText();
-                // Create Job in DB
-                controller.createJob(jobType, duration, dates, motNo, mileage, additionalInfo, "Incomplete", regNoField.getText());
-                // Get ID of newly created Job
-                int jobID = controller.getJobID(jobType, duration, dates, motNo, mileage, additionalInfo, "Incomplete", regNoField.getText());
-                // Add Parts from List to Job (Job_SpareParts)
-                for(int i = 0; i< partList.getModel().getSize();i++){
-                    controller.addToJob(jobID, ((SparePart) partList.getModel().getElementAt(i)).getPartCode());
+                try {
+                    String jobType = (String) jobTypeBox.getSelectedItem();
+                    float duration = Float.parseFloat(durationField.getText());
+                    String dates = String.valueOf(jDateChooser.getDate());
+                    String motNo = motField.getText();
+                    int mileage = Integer.parseInt(mileageField.getText());
+                    String additionalInfo = detailsField.getText();
+
+                    // Create Job in DB
+                    controller.createJob(jobType, duration, dates, motNo, mileage, additionalInfo, "Incomplete", regNoField.getText());
+                    // Get ID of newly created Job
+                    int jobID = controller.getJobID(jobType, duration, dates, motNo, mileage, additionalInfo, "Incomplete", regNoField.getText());
+                    // Add Parts from List to Job (Job_SpareParts)
+                    for(int i = 0; i< partList.getModel().getSize();i++){
+                        controller.addToJob(jobID, ((SparePart) partList.getModel().getElementAt(i)).getPartCode());
+                    }
+                    j.dispose();
+                    if (LoginGUI.access == 'F') {
+                        ForepersonDashboardGUI.main();
+                    } else {
+                        JobSelectionGUI.main();
+                    }
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, "Please fill in all required fields.");
                 }
-                j.dispose();
-                if (LoginGUI.access == 'F') {
-                    ForepersonDashboardGUI.main();
-                } else {
-                    JobSelectionGUI.main();
-                }
+
 
             }
         });

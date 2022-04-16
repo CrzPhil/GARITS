@@ -49,10 +49,10 @@ def connect():
     """ Connect to MySQL database """
     conn = None
     try:
-        conn = mysql.connector.connect(host='176.58.124.119',
-                                       database='GARITS',
-                                       user='GARITS',
-                                       password='G@R!T$$$')
+        conn = mysql.connector.connect(host='REDACTED',
+                                       database='REDACTED',
+                                       user='REDACTED',
+                                       password='REDACTED')
         if conn.is_connected():
             print('Connected to MySQL database')
 
