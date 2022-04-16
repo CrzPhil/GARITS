@@ -63,7 +63,7 @@ public class ViewCompletedJobsGUI extends JFrame{
                     DisplayInvoiceGUI.main(selectedJob);
 
                 } catch (Exception ignore) {
-                    JOptionPane.showMessageDialog(null, "Something went wrong. Contact your administrator.");
+                    JOptionPane.showMessageDialog(null, "Please select a completed job.");
                 }
             }
         });
