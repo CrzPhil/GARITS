@@ -103,7 +103,7 @@ public class Database_Controller implements I_Database {
 
 		} catch (Exception e) {
 			// Linux/Mac specific; MySQL has to be installed.
-			String[] cmd = {"/bin/sh", "-c", "mysqldump", "-uGARITS", "-pG@R!T$$$", "-h176.58.124.119", "GARITS", "<", filePath};
+			String[] cmd = {"/bin/sh", "-c", "mysqldump", "-uREDACTED", "-pREDACTED", "-hREDACTED", "REDACTED", "<", filePath};
 			ProcessBuilder pb = new ProcessBuilder(cmd);
 			pb.redirectErrorStream(true);
 
